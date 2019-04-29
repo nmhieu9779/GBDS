@@ -13,6 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@fortawesome/react-native-fontawesome": "^0.1.0",
+    "base-64": "^0.1.0",
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.24.0",
     "react": "16.8.3",
@@ -35,7 +36,8 @@
     "react-test-renderer": "16.8.3"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "verbose": true
   },
   "rnpm": {
     "assets": [

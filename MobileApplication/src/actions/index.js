@@ -1,7 +1,7 @@
-export const LOGIN = "login"
-export const LOGIN_SUCCESS = "login_success"
-export const LOGIN_FAILED = "login_failed"
+export const SIGN_IN = "sign_in"
+export const SIGN_IN_SUCCESS = "sign_in_success"
+export const SIGN_IN_FAILURE = "sign_in_failure"
 
-export const REGISTRATION = "registration"
-export const REGISTRATION_SUCCESS = "registration_success"
-export const REGISTRATION_FAILED = "registration_failed"
+export const SIGN_UP = "sign_up"
+export const SIGN_UP_SUCCESS = "sign_up_success"
+export const SIGN_UP_FAILURE = "sign_up_failure"

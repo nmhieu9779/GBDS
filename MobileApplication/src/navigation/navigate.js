@@ -1,6 +1,5 @@
-// import LoginContainer from "../LoginScreen/LoginScreen"
-// import QRCodeScreen from "../QRCodeScreen/QRCodeScreen"
-// import RegistrationContainer from "../RegistrationScreen/RegistrationScreen"
+import AuthScreen from "../AuthScreen"
+import HomeScreen from "../HomeScreen/HomeScreen"
 import {
   createStackNavigator,
   createAppContainer,
@@ -9,23 +8,13 @@ import {
   createSwitchNavigator
 } from "react-navigation"
 
-// const LoginStack = createStackNavigator(
-//   {
-//     LoginScreen: { screen: LoginContainer },
-//     RegistrationScreen: { screen: RegistrationContainer }
-//   },
-//   {
-//     initialRouteName: "LoginScreen",
-//     headerMode: "none"
-//   }
-// )
-
 const AppContainer = createAppContainer(
   createSwitchNavigator({
-    // LoginStack: { screen: QRCodeScreen }
+    Authentication: { screen: AuthScreen },
+    HomeScreen: { screen: HomeScreen }
   }),
   {
-    // initialRouteName: "LoginStack",
+    initialRouteName: "Authentication",
     headerMode: "none"
   }
 )
