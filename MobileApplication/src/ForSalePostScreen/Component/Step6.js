@@ -1,13 +1,10 @@
 import React, { Component } from "react"
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  ScrollView,
-  Dimensions
-} from "react-native"
+import { Platform, StyleSheet, Text, ScrollView } from "react-native"
+import constants from "../../Constant"
+import Header from "./Header"
 import { SafeAreaView } from "react-navigation"
 import TextInputCustom from "../../Component/TextInputCustom"
+
 class Step6 extends Component {
   constructor(props) {
     super(props)
@@ -18,16 +15,14 @@ class Step6 extends Component {
     const { style } = this.props
     return (
       <SafeAreaView style={[styles.container, style]}>
-        <Text style={{ fontWeight: "bold", fontSize: 20, padding: 10 }}>
-          {"Liên hệ"}
-        </Text>
+        <Header text={"Liên hệ"} />
         <ScrollView contentContainerStyle={{ alignItems: "center" }}>
           <TextInputCustom
             onChangeText={text => this.setState({ name: text })}
             value={this.state.name}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -38,7 +33,7 @@ class Step6 extends Component {
             value={this.state.address}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -49,7 +44,7 @@ class Step6 extends Component {
             value={this.state.phoneNumber}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -61,7 +56,7 @@ class Step6 extends Component {
             value={this.state.email}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}

@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Platform, StyleSheet, Text, ScrollView } from "react-native"
+import Header from "./Header"
 import { SafeAreaView } from "react-navigation"
 
 class Step4 extends Component {
@@ -12,9 +13,7 @@ class Step4 extends Component {
     const { style } = this.props
     return (
       <SafeAreaView style={[styles.container, style]}>
-        <Text style={{ fontWeight: "bold", fontSize: 20, padding: 10 }}>
-          {"Hình ảnh và video"}
-        </Text>
+        <Header text={"Hình ảnh và video"} />
         <ScrollView>
           <Text
             style={{

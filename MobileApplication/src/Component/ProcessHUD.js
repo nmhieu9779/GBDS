@@ -25,9 +25,8 @@ class ProcessHUD extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-  container: {},
   hud_container: {
-    backgroundColor: "white",
+    backgroundColor: "transparent",
     justifyContent: "center",
     alignItems: "center",
     height: "20%",

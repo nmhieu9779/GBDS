@@ -22,6 +22,7 @@ const authReducers = (state = initStateAuth, action) => {
     case SIGN_IN:
       newState.isLoading = true
       newState.signInSuccess = false
+      newState.signUpSuccess = false
       break
     case SIGN_IN_SUCCESS:
       newState.isLoading = false
@@ -33,6 +34,7 @@ const authReducers = (state = initStateAuth, action) => {
     case SIGN_UP:
       newState.isLoading = true
       newState.signUpSuccess = false
+      newState.signInSuccess = false
       break
     case SIGN_UP_SUCCESS:
       newState.isLoading = false

@@ -1,12 +1,7 @@
 import React, { Component } from "react"
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  ScrollView,
-  TextInput,
-  Dimensions
-} from "react-native"
+import { Platform, StyleSheet, Text, ScrollView, TextInput } from "react-native"
+import constants from "../../Constant"
+import Header from "./Header"
 import { SafeAreaView } from "react-navigation"
 
 class Step2 extends Component {
@@ -19,9 +14,7 @@ class Step2 extends Component {
     const { style } = this.props
     return (
       <SafeAreaView style={[styles.container, style]}>
-        <Text style={{ fontWeight: "bold", fontSize: 20, padding: 10 }}>
-          {"Thông tin mô tả"}
-        </Text>
+        <Header text={"Thông tin mô tả"} />
         <ScrollView>
           <Text
             style={{
@@ -36,7 +29,7 @@ class Step2 extends Component {
           </Text>
           <TextInput
             style={{
-              height: Dimensions.get("screen").height / 2,
+              height: constants.width / 2,
               margin: 10,
               padding: 10,
               borderWidth: 0.5,

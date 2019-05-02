@@ -6,14 +6,15 @@ import {
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE
 } from "../actions"
-
-import { put, takeLatest, retry } from "redux-saga/effects"
+import AsyncStorage from "@react-native-community/async-storage"
+import { put, takeLatest, call } from "redux-saga/effects"
 import { Api } from "./authApi"
 
 function* signIn(payload) {
   try {
     const response = yield Api.signIn(payload.payload)
     if (response.isSuccess) {
+      yield AsyncStorage.setItem("accessToken", response.accessToken)
       yield put({ type: SIGN_IN_SUCCESS, response: response })
     } else {
       yield put({ type: SIGN_IN_FAILURE, response: response })

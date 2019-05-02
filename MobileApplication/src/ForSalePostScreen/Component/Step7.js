@@ -5,9 +5,10 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  Dimensions,
   TouchableOpacity
 } from "react-native"
+import constants from "../../Constant"
+import Header from "./Header"
 import { SafeAreaView } from "react-navigation"
 import ComboBox from "../../Component/ComboBox"
 import DatePicker from "react-native-datepicker"
@@ -187,14 +188,12 @@ class Step7 extends Component {
     const { style } = this.props
     return (
       <SafeAreaView style={[styles.container, style]}>
-        <Text style={{ fontWeight: "bold", fontSize: 20, padding: 10 }}>
-          {"Lịch đăng tin"}
-        </Text>
+        <Header text={"Lịch đăng tin"} />
         <ScrollView>
           <ComboBox
             style={{
               container: {
-                width: Dimensions.get("screen").width
+                width: constants.width
               },
               combobox: { flex: 3 }
             }}
@@ -294,7 +293,7 @@ class Step7 extends Component {
             style={{
               padding: 5,
               marginBottom: 5,
-              width: Dimensions.get("screen").width
+              width: constants.width
             }}
           >
             {"Phí dịch vụ trừ vào tài khoản: "}

@@ -4,12 +4,13 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  Dimensions,
   View,
   TextInput
 } from "react-native"
+import constants from "../../Constant"
 import { SafeAreaView } from "react-navigation"
 import TextInputCustom from "../../Component/TextInputCustom"
+import Header from "./Header"
 import ComboBox from "../../Component/ComboBox"
 
 class Step3 extends Component {
@@ -41,9 +42,7 @@ class Step3 extends Component {
     const { style } = this.props
     return (
       <SafeAreaView style={[styles.container, style]}>
-        <Text style={{ fontWeight: "bold", fontSize: 20, padding: 10 }}>
-          {"Thông tin khác"}
-        </Text>
+        <Header text={"Thông tin khác"} />
         <ScrollView
           contentContainerStyle={{ alignItems: "center", paddingBottom: 50 }}
         >
@@ -63,7 +62,7 @@ class Step3 extends Component {
             value={this.state.width}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -75,7 +74,7 @@ class Step3 extends Component {
             value={this.state.landWidth}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -85,7 +84,7 @@ class Step3 extends Component {
           <ComboBox
             style={{
               container: {
-                width: Dimensions.get("screen").width,
+                width: constants.width,
                 height: null
               },
               combobox: { flex: 2 },
@@ -102,7 +101,7 @@ class Step3 extends Component {
           <ComboBox
             style={{
               container: {
-                width: Dimensions.get("screen").width,
+                width: constants.width,
                 height: null
               },
               combobox: { flex: 2 },
@@ -121,7 +120,7 @@ class Step3 extends Component {
             value={this.state.floorNumbers}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -133,7 +132,7 @@ class Step3 extends Component {
             value={this.state.roomNumber}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -145,7 +144,7 @@ class Step3 extends Component {
             value={this.state.toiletNumber}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -155,7 +154,7 @@ class Step3 extends Component {
           <View
             style={{
               padding: 5,
-              width: Dimensions.get("screen").width
+              width: constants.width
             }}
           >
             <Text style={{ fontSize: 16, fontWeight: "bold", marginBottom: 5 }}>

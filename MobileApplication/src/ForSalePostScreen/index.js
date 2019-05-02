@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { StyleSheet, ScrollView, View, Text, Dimensions } from "react-native"
+import { StyleSheet, ScrollView } from "react-native"
+import constants from "../Constant"
 import { SafeAreaView } from "react-navigation"
 import Breadcrumb from "./Component/Breadcrumb"
 import Step1 from "./Component/Step1"
@@ -13,7 +14,7 @@ import Step7 from "./Component/Step7"
 class ForSalePostScreen extends Component {
   constructor(props) {
     super(props)
-    this.state = { step: 0, width: Dimensions.get("screen").width }
+    this.state = { step: 0, width: constants.width }
   }
 
   render() {
@@ -75,8 +76,8 @@ const styles = StyleSheet.create({
   for_sale_post_container: { flex: 1, backgroundColor: "white" },
 
   item: {
-    width: Dimensions.get("screen").width,
-    height: Dimensions.get("screen").height - 50
+    width: constants.width,
+    height: constants.height - 50
   },
   step_container: {
     height: 50,

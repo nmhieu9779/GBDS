@@ -3,14 +3,15 @@ import {
   Platform,
   StyleSheet,
   Text,
-  Dimensions,
   View,
   TextInput,
   ScrollView
 } from "react-native"
+import constants from "../../Constant"
 import propTypes from "prop-types"
 import TextInputCustom from "../../Component/TextInputCustom"
 import ComboBox from "../../Component/ComboBox"
+import Header from "./Header"
 import { SafeAreaView } from "react-navigation"
 
 class Step1 extends Component {
@@ -97,10 +98,10 @@ class Step1 extends Component {
   }
 
   componentDidMount = () => {
-    fetch("https://thongtindoanhnghiep.co/api/city")
+    fetch("http://35.187.253.10:21006/api-gateway/grre-admnu/api/v1/provinces")
       .then(response => response.json())
       .then(responseJson => {
-        let listCity = responseJson.LtsItem.map(item => ({ label: item.Title }))
+        let listCity = responseJson.content.map(item => ({ label: item.name }))
         let listData = this.createNewData(listCity, 2)
         this.setState({ lisData: listData })
       })
@@ -132,9 +133,7 @@ class Step1 extends Component {
         : ""
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
-        <Text style={{ fontWeight: "bold", fontSize: 20, padding: 10 }}>
-          {"Thông tin cơ bản"}
-        </Text>
+        <Header text={"Thông tin cơ bản"} />
         <ScrollView contentContainerStyle={{ alignItems: "center" }}>
           <TextInputCustom
             onChangeText={text => this.setState({ productTitle: text })}
@@ -144,7 +143,7 @@ class Step1 extends Component {
                 color: "red"
               },
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -155,7 +154,7 @@ class Step1 extends Component {
               <ComboBox
                 style={{
                   container: {
-                    width: Dimensions.get("screen").width,
+                    width: constants.width,
                     height: null
                   },
                   combobox: { flex: 2 }
@@ -176,7 +175,7 @@ class Step1 extends Component {
             value={this.state.area}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -192,7 +191,7 @@ class Step1 extends Component {
             value={this.state.price}
             style={{
               container: {
-                width: Dimensions.get("screen").width - 10,
+                width: constants.width - 10,
                 marginBottom: 5
               }
             }}
@@ -202,7 +201,7 @@ class Step1 extends Component {
             <ComboBox
               style={{
                 container: {
-                  width: Dimensions.get("screen").width / 2,
+                  width: constants.width / 2,
                   position: "absolute",
                   right: 5,
                   bottom: 3
@@ -274,11 +273,17 @@ class Step1 extends Component {
         break
       case 3:
         listSelected[index].selected = selected
-        this.getDataWard(this.state.listData[3][selected].id)
+        this.getDataWard(
+          this.state.listSelected[2].selected + 1,
+          this.state.listData[3][selected].id
+        )
         break
       case 4:
         listSelected[index].selected = selected
-        // this.getDataStreet(this.state.listData[4][selected].id)
+        this.getDataStreet(
+          this.state.listSelected[2].selected + 1,
+          this.state.listData[3][selected].id
+        )
         break
       case 5:
         listSelected[index].selected = selected
@@ -316,12 +321,14 @@ class Step1 extends Component {
     this.setState({ lisData: listData })
   }
   getDataDistrict = id => {
-    fetch("https://thongtindoanhnghiep.co/api/city/" + id + "/district")
+    fetch(
+      "http://35.187.253.10:21006/api-gateway/grre-admnu/api/v1/districts/" + id
+    )
       .then(response => response.json())
       .then(responseJson => {
-        let listDistrict = responseJson.map(item => ({
-          label: item.Title,
-          id: item.ID
+        let listDistrict = responseJson.content.map(item => ({
+          label: item.name,
+          id: item.id
         }))
         let listData = this.createNewData(listDistrict, 3)
         this.setState({ lisData: listData })
@@ -330,13 +337,18 @@ class Step1 extends Component {
         console.error(error)
       })
   }
-  getDataWard = id => {
-    fetch("https://thongtindoanhnghiep.co/api/district/" + id + "/ward")
+  getDataWard = (city, district) => {
+    fetch(
+      "http://35.187.253.10:21006/api-gateway/grre-admnu/api/v1/wards/" +
+        city +
+        "/" +
+        district
+    )
       .then(response => response.json())
       .then(responseJson => {
-        let listWard = responseJson.map(item => ({
-          label: item.Title,
-          id: item.ID
+        let listWard = responseJson.content.map(item => ({
+          label: item.name,
+          id: item.id
         }))
         let listData = this.createNewData(listWard, 4)
         this.setState({ lisData: listData })
@@ -345,21 +357,26 @@ class Step1 extends Component {
         console.error(error)
       })
   }
-  // getDataStreet = id => {
-  //   fetch("https://thongtindoanhnghiep.co/api/district/" + id + "/ward")
-  //     .then(response => response.json())
-  //     .then(responseJson => {
-  //       let listWard = responseJson.map(item => ({
-  //         label: item.Title,
-  //         id: item.ID
-  //       }))
-  //       let listData = this.createNewData(listWard, 4)
-  //       this.setState({ lisData: listData })
-  //     })
-  //     .catch(error => {
-  //       console.error(error)
-  //     })
-  // }
+  getDataStreet = (city, district) => {
+    fetch(
+      "http://35.187.253.10:21006/api-gateway/grre-admnu/api/v1/streets/" +
+        city +
+        "/" +
+        district
+    )
+      .then(response => response.json())
+      .then(responseJson => {
+        let listStreet = responseJson.content.map(item => ({
+          label: item.name,
+          id: item.ID
+        }))
+        let listData = this.createNewData(listStreet, 5)
+        this.setState({ lisData: listData })
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
   getDataPrice = selected => {
     const sale = [
       { label: "Thoả thuận" },

@@ -1,11 +1,7 @@
 import React, { Component } from "react"
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  ScrollView,
-  Dimensions
-} from "react-native"
+import { Platform, StyleSheet, Text, ScrollView } from "react-native"
+import constants from "../../Constant"
+import Header from "./Header"
 import { SafeAreaView } from "react-navigation"
 // import MapView from "react-native-maps"
 
@@ -19,9 +15,7 @@ class Step5 extends Component {
     const { style } = this.props
     return (
       <SafeAreaView style={[styles.container, style]}>
-        <Text style={{ fontWeight: "bold", fontSize: 20, padding: 10 }}>
-          {"Bản đồ"}
-        </Text>
+        <Header text={"Bản đồ"} />
         <ScrollView>
           <Text
             style={{
@@ -36,8 +30,8 @@ class Step5 extends Component {
           </Text>
           {/* <MapView
             style={{
-              width: Dimensions.get("screen").width,
-              height: Dimensions.get("screen").height / 2
+              width: constants.width,
+              height: constants.height / 2
             }}
             region={{
               latitude: 42.882004,
