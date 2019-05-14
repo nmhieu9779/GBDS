@@ -60,11 +60,11 @@ class Step1 extends Component {
           title: "-- Phân mục --",
           label: "Loại"
         }
-      ]
+      ],
+      address: "",
+      homeNumber: ""
     }
   }
-
-  componentDidMount = () => {}
 
   createNewData = (data, index) => {
     let listData = this.state.listData
@@ -112,7 +112,9 @@ class Step1 extends Component {
               />
             )
           })}
-          <AddressInput />
+          <AddressInput
+            onChangeAddress={address => this.setState({ address: address })}
+          />
           <TextInputCustom
             onChangeText={text => this.setState({ area: text })}
             value={this.state.area}
@@ -192,6 +194,12 @@ class Step1 extends Component {
                 padding: 5
               }}
               multiline={true}
+              value={this.state.homeNumber + this.state.address}
+              onChangeText={text =>
+                this.setState({
+                  homeNumber: text.replace(this.state.address, "")
+                })
+              }
             />
           </View>
         </ScrollView>

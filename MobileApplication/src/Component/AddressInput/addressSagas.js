@@ -10,7 +10,9 @@ import {
   GET_WARD_FAILURE,
   GET_STREET,
   GET_STREET_SUCCESS,
-  GET_STREET_FAILURE
+  GET_STREET_FAILURE,
+  OPEN_HUD,
+  CLOSE_HUD
 } from "../../actions"
 import { put, takeLatest, call } from "redux-saga/effects"
 import { Api } from "./addressApi"
@@ -26,26 +28,32 @@ function* handleResponse(response, typeSuccess) {
   if (response.status === 200) {
     const data = this.formatData(response.data.content)
     yield put({ type: typeSuccess, data })
+    yield put({ type: CLOSE_HUD })
   } else {
+    yield put({ type: CLOSE_HUD })
   }
 }
 
 function* getCity() {
+  yield put({ type: OPEN_HUD })
   const response = yield call(Api.getCity)
   yield call(handleResponse, response, GET_CITY_SUCCESS)
 }
 
 function* getDistrict(payload) {
+  yield put({ type: OPEN_HUD })
   const response = yield call(Api.getDistrict, payload.cityId)
   yield call(handleResponse, response, GET_DISTRICT_SUCCESS)
 }
 
 function* getWard(payload) {
+  yield put({ type: OPEN_HUD })
   const response = yield call(Api.getWard, payload.cityId, payload.districtId)
   yield call(handleResponse, response, GET_WARD_SUCCESS)
 }
 
 function* getStreet(payload) {
+  yield put({ type: OPEN_HUD })
   const response = yield call(Api.getStreet, payload.cityId, payload.districtId)
   yield call(handleResponse, response, GET_STREET_SUCCESS)
 }

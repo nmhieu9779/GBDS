@@ -21,3 +21,6 @@ export const GET_WARD_FAILURE = "get_ward_failure"
 export const GET_STREET = "get_street"
 export const GET_STREET_SUCCESS = "get_street_success"
 export const GET_STREET_FAILURE = "get_street_failure"
+
+export const OPEN_HUD = "open_hud"
+export const CLOSE_HUD = "close_hud"

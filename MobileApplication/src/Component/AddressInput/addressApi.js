@@ -16,7 +16,6 @@ function* getDistrict(cityId) {
 }
 
 function* getWard(cityId, districtId) {
-  console.log(cityId, districtId)
   return yield axios
     .get(constants.urlAddress.ward + cityId + "/" + districtId)
     .then(response => response)

@@ -98,7 +98,26 @@ class AddressInput extends Component {
     )
   }
 
-  onChangeSelected = (selected, name) => this.setState({ [name]: selected })
+  onChangeSelected = (selected, name) => {
+    this.setState({ [name]: selected }, () => {
+      const { city, district, ward, street } = this.props
+      const {
+        citySelected,
+        districtSelected,
+        wardSelected,
+        streetSelected
+      } = this.state
+      streetAddress =
+        streetSelected != -1 ? street[streetSelected].label + ", " : ""
+      wardAddress = wardSelected != -1 ? ward[wardSelected].label + ", " : ""
+      districtAddress =
+        districtSelected != -1 ? district[districtSelected].label + ", " : ""
+      cityAddress = citySelected != -1 ? city[citySelected].label : ""
+      const address =
+        streetAddress + wardAddress + districtAddress + cityAddress
+      this.props.onChangeAddress(address)
+    })
+  }
 }
 
 const styles = StyleSheet.create({
