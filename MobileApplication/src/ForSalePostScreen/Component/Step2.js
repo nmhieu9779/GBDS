@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Platform, StyleSheet, Text, ScrollView, TextInput } from "react-native"
 import constants from "../../Constant"
-import Header from "./Header"
+import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
 
 class Step2 extends Component {

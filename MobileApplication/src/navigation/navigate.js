@@ -11,14 +11,10 @@ import {
 
 const AppContainer = createAppContainer(
   createSwitchNavigator({
+    HomeStack: { screen: HomeStack },
     AuthLoadingScreen: { screen: AuthLoadingScreen },
     AuthStack: { screen: AuthScreen },
-    HomeStack: { screen: HomeStack }
   }),
-  {
-    initialRouteName: "AuthLoadingScreen",
-    headerMode: "none"
-  }
 )
 
 export default AppContainer

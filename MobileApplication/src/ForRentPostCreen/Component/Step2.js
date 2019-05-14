@@ -14,7 +14,7 @@ import ComboBox from "../../Component/ComboBox"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
 
-class Step1 extends Component {
+class Step2 extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -24,6 +24,8 @@ class Step1 extends Component {
       dataPrice: [],
       selectedPrice: -1,
       listSelected: [
+        { selected: -1 },
+        { selected: -1 },
         { selected: -1 },
         { selected: -1 },
         { selected: -1 },
@@ -92,6 +94,16 @@ class Step1 extends Component {
           key: "street",
           title: "-- Đường/Phố --",
           label: "Đường/Phố"
+        },
+        {
+          key: "street",
+          title: "-- Đường/Phố --",
+          label: "Đường/Phố"
+        },
+        {
+          key: "street",
+          title: "-- Đường/Phố --",
+          label: "Đường/Phố"
         }
       ]
     }
@@ -120,12 +132,12 @@ class Step1 extends Component {
     let ward =
       this.state.listSelected[4].selected != -1
         ? this.state.lisData[4][this.state.listSelected[4].selected].label +
-          ", "
+        ", "
         : ""
     let district =
       this.state.listSelected[3].selected != -1
         ? this.state.lisData[3][this.state.listSelected[3].selected].label +
-          ", "
+        ", "
         : ""
     let city =
       this.state.listSelected[2].selected != -1
@@ -135,20 +147,6 @@ class Step1 extends Component {
       <SafeAreaView style={[styles.container, this.props.style]}>
         <Header text={"Thông tin cơ bản"} />
         <ScrollView contentContainerStyle={{ alignItems: "center" }}>
-          <TextInputCustom
-            onChangeText={text => this.setState({ productTitle: text })}
-            value={this.state.productTitle}
-            style={{
-              labelStyle: {
-                color: "red"
-              },
-              container: {
-                width: constants.width - 10,
-                marginBottom: 5
-              }
-            }}
-            label={"Tiêu đề"}
-          />
           {this.state.listComboBox.map(({ key, title, label }, index) => {
             return (
               <ComboBox
@@ -170,65 +168,6 @@ class Step1 extends Component {
               />
             )
           })}
-          <TextInputCustom
-            onChangeText={text => this.setState({ area: text })}
-            value={this.state.area}
-            style={{
-              container: {
-                width: constants.width - 10,
-                marginBottom: 5
-              }
-            }}
-            label={"Diện tích"}
-            keyboardType={"numeric"}
-          >
-            <Text style={{ position: "absolute", right: 5, bottom: 3 }}>
-              {"m²"}
-            </Text>
-          </TextInputCustom>
-          <TextInputCustom
-            onChangeText={text => this.setState({ price: text })}
-            value={this.state.price}
-            style={{
-              container: {
-                width: constants.width - 10,
-                marginBottom: 5
-              }
-            }}
-            label={"Giá"}
-            keyboardType={"numeric"}
-          >
-            <ComboBox
-              style={{
-                container: {
-                  width: constants.width / 2,
-                  position: "absolute",
-                  right: 5,
-                  bottom: 3
-                }
-              }}
-              data={this.state.dataPrice}
-              selected={this.state.selectedPrice}
-              title={"-- Đơn vị --"}
-              onChangeSelected={selected => {
-                this.setState({ selectedPrice: selected })
-              }}
-            />
-          </TextInputCustom>
-          <View
-            style={{
-              flexDirection: "row",
-              padding: 5,
-              alignItems: "center"
-            }}
-          >
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-              {"Tổng giá tiền:"}
-            </Text>
-            <Text style={{ color: "red", marginLeft: 10, flex: 1 }}>
-              100000
-            </Text>
-          </View>
           <View
             style={{
               flexDirection: "row",
@@ -340,9 +279,9 @@ class Step1 extends Component {
   getDataWard = (city, district) => {
     fetch(
       "http://35.187.253.10:21006/api-gateway/grre-admnu/api/v1/wards/" +
-        city +
-        "/" +
-        district
+      city +
+      "/" +
+      district
     )
       .then(response => response.json())
       .then(responseJson => {
@@ -360,9 +299,9 @@ class Step1 extends Component {
   getDataStreet = (city, district) => {
     fetch(
       "http://35.187.253.10:21006/api-gateway/grre-admnu/api/v1/streets/" +
-        city +
-        "/" +
-        district
+      city +
+      "/" +
+      district
     )
       .then(response => response.json())
       .then(responseJson => {
@@ -397,11 +336,11 @@ class Step1 extends Component {
   }
 }
 
-Step1.propTypes = {
+Step2.propTypes = {
   style: propTypes.object.isRequired
 }
 
-Step1.defaultProps = {
+Step2.defaultProps = {
   style: { flex: 1 }
 }
 
@@ -409,4 +348,4 @@ const styles = StyleSheet.create({
   container: { flex: 1 }
 })
 
-export default Step1
+export default Step2

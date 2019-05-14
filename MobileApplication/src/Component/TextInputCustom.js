@@ -147,7 +147,7 @@ TextInputCustom.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     borderBottomColor: "#b9c1ca",
     ...Platform.select({ ios: { height: 51 }, android: { height: 52 } }),
     margin: 0,

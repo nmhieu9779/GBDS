@@ -6,7 +6,8 @@ import {
   ImageBackground,
   TouchableOpacity,
   ScrollView,
-  Modal
+  Modal,
+  StyleSheet
 } from "react-native"
 import {
   SafeAreaView,
@@ -18,6 +19,7 @@ import { faDollarSign } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import HomeScreen from "../HomeScreen/HomeScreen"
 import ForSalePostScreen from "../ForSalePostScreen"
+import ForRentPostScreen from '../ForRentPostCreen';
 
 const menu = [
   {
@@ -68,52 +70,16 @@ class DrawerMenu extends Component {
   render() {
     let me = this
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={style.container}>
         <Modal visible={me.state.visible} transparent={true}>
-          <View
-            style={{
-              backgroundColor: "white",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: 5,
-              height: "20%",
-              width: "70%",
-              position: "absolute",
-              top: "40%",
-              left: "15%",
-              borderRadius: 10,
-              shadowColor: "#000000",
-              shadowOpacity: 0.8,
-              shadowRadius: 2,
-              shadowOffset: {
-                height: 1,
-                width: 1
-              }
-            }}
-          >
+          <View style={[style.boxShadow, style.modalContainer]}>
             <View>
-              <Text style={{ fontWeight: "bold", fontSize: 20 }}>
-                {"Chọn loại bài cần đăng"}
-              </Text>
+              <Text style={style.modalTitle}>{"Chọn loại bài cần đăng"}</Text>
             </View>
-            <View style={{ flex: 1 }} />
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
+            <View style={style.modalContent} />
+            <View style={style.modalButtonContainer}>
               <TouchableOpacity
-                style={{
-                  flex: 1,
-                  backgroundColor: "#E9EBEE",
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                  borderRadius: 5,
-                  borderColor: "#ccc",
-                  borderWidth: 0.5
-                }}
+                style={style.modalButton}
                 onPress={() => {
                   me.setState({ visible: false })
                   me.props.navigation.navigate("ForSalePostScreen")
@@ -124,16 +90,11 @@ class DrawerMenu extends Component {
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={{
-                  flex: 1,
-                  backgroundColor: "#E9EBEE",
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                  borderRadius: 5,
-                  borderColor: "#ccc",
-                  borderWidth: 0.5
+                style={style.modalButton}
+                onPress={() => {
+                  me.setState({ visible: false })
+                  me.props.navigation.navigate("ForRentPostScreen")
                 }}
-                onPress={() => me.setState({ visible: false })}
               >
                 <Text style={{ textAlign: "center" }}>
                   {"Cần mua - Cần thuê"}
@@ -143,56 +104,17 @@ class DrawerMenu extends Component {
           </View>
         </Modal>
         <ImageBackground
-          style={{
-            width: "100%",
-            flexDirection: "row",
-            shadowColor: "#000000",
-            shadowOpacity: 0.8,
-            shadowRadius: 1,
-            shadowOffset: {
-              height: 1,
-              width: 0
-            }
-          }}
+          style={[style.boxShadow, style.infoContainer]}
           source={require("../../res/DrawerBackground.jpg")}
         >
-          <View
-            style={{
-              backgroundColor: "white",
-              width: 0.2 * constants.width + 10,
-              height: 0.2 * constants.width + 10,
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: 999,
-              margin: 5
-            }}
-          >
+          <View style={style.avatarContainer}>
             <Image
-              style={{
-                width: 0.2 * constants.width,
-                height: 0.2 * constants.width
-              }}
+              style={style.avatar}
               source={require("../../res/Avatar.png")}
             />
           </View>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              padding: 5,
-              paddingLeft: 0
-            }}
-          >
-            <Text
-              style={{
-                marginBottom: 5,
-                color: "#4267b2",
-                fontWeight: "bold",
-                fontSize: 21
-              }}
-            >
-              {"Nguyễn Minh Hiếu"}
-            </Text>
+          <View style={style.nameContainer}>
+            <Text style={style.name}>{"Nguyễn Minh Hiếu"}</Text>
             <View style={{ flexDirection: "row" }}>
               <FontAwesomeIcon icon={faDollarSign} color={"#4285F4"} />
               <Text style={{ color: "#4285F4", fontWeight: "bold" }}>
@@ -201,19 +123,15 @@ class DrawerMenu extends Component {
             </View>
             <TouchableOpacity
               elevation={5}
-              style={{
-                margin: 5,
-                padding: 5,
-                backgroundColor: "#00AB6B",
-                shadowColor: "#000000",
-                shadowOpacity: 0.8,
-                shadowRadius: 2,
-                shadowOffset: {
-                  height: 1,
-                  width: 1
-                },
-                alignItems: "center"
-              }}
+              style={[
+                style.boxShadow,
+                {
+                  margin: 5,
+                  padding: 5,
+                  backgroundColor: "#00AB6B",
+                  alignItems: "center"
+                }
+              ]}
               onPress={() => me.onPressPost()}
             >
               <Text
@@ -239,10 +157,9 @@ class DrawerMenu extends Component {
                 padding: 20
                 // backgroundColor: "#E6EDF1"
               }}
+              onPress={() => this.props.navigation.navigate("HomeScreen")}
             >
-              <Text style={{ color: "#4267b2", fontSize: 20 }}>
-                {item.label}
-              </Text>
+              <Text style={{ color: "#4267b2" }}>{item.label}</Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
@@ -251,15 +168,85 @@ class DrawerMenu extends Component {
   }
 }
 
+const style = StyleSheet.create({
+  container: { flex: 1 },
+  boxShadow: {
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    }
+  },
+  modalContainer: {
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 5,
+    height: "20%",
+    width: "70%",
+    position: "absolute",
+    top: "40%",
+    left: "15%",
+    borderRadius: 10
+  },
+  modalTitle: { fontWeight: "bold", fontSize: 20 },
+  modalButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  modalContent: { flex: 1 },
+  modalButton: {
+    flex: 1,
+    backgroundColor: "#E9EBEE",
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 5,
+    borderColor: "#ccc",
+    borderWidth: 0.5
+  },
+  infoContainer: { width: "100%", flexDirection: "row" },
+  avatarContainer: {
+    backgroundColor: "white",
+    width: 0.2 * constants.width + 10,
+    height: 0.2 * constants.width + 10,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 999,
+    margin: 5
+  },
+  avatar: {
+    width: 0.2 * constants.width,
+    height: 0.2 * constants.width
+  },
+  nameContainer: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 5,
+    paddingLeft: 0
+  },
+  name: {
+    marginBottom: 5,
+    color: "#4267b2",
+    fontWeight: "bold",
+    fontSize: 21
+  }
+})
+
 const HomeStack = createDrawerNavigator(
   {
     HomeScreen: { screen: HomeScreen },
     ForSalePostScreen: {
       screen: ForSalePostScreen
+    },
+    ForRentPostScreen: {
+      screen: ForRentPostScreen
     }
   },
   {
-    initialRouteName: "HomeScreen",
+    initialRouteName: "ForSalePostScreen",
     contentComponent: DrawerMenu
   }
 )

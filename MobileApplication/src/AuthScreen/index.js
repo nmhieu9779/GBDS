@@ -7,8 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   ImageBackground,
-  Animated,
-  AsyncStorage
+  Animated
 } from "react-native"
 import constants from "../Constant"
 import { connect } from "react-redux"
@@ -18,7 +17,8 @@ import {
   faUser,
   faUserLock,
   faMailBulk,
-  faPhone
+  faPhone,
+  faThumbsDown
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
@@ -361,9 +361,7 @@ class AuthScreen extends Component {
               email={signIn.email}
               password={signIn.password}
               onChangeText={(text, type) =>
-                this.setState({
-                  signIn: { ...this.state.signIn, [type]: text }
-                })
+                this.onChangeText(text, type, "SignIn")
               }
               onPress={() =>
                 this.props.onSignIn({
@@ -380,9 +378,7 @@ class AuthScreen extends Component {
               email={signUp.email}
               phone={signUp.phone}
               onChangeText={(text, type) =>
-                this.setState({
-                  signUp: { ...this.state.signUp, [type]: text }
-                })
+                this.onChangeText(text, type, "SignUp")
               }
               onPress={() =>
                 this.props.onSignUp({
@@ -395,6 +391,21 @@ class AuthScreen extends Component {
         </ImageBackground>
       </SafeAreaView>
     )
+  }
+  onChangeText = (text, type, parent) => {
+    switch (parent) {
+      case "SignIn":
+        this.setState({
+          signIn: { ...this.state.signIn, [type]: text }
+        })
+        break
+      case "SignUp":
+        this.setState({
+          signUp: { ...this.state.signUp, [type]: text }
+        })
+      default:
+        break
+    }
   }
 }
 

@@ -20,14 +20,14 @@ class RenderItem extends Component {
     this.state = { visiable: false }
   }
 
-  getHeightContainer = data => {
+  getHeightContainer = length => {
     this.heightContainer = parseInt(
-      data.length >= 5 ? 240 : 40 * (data.length + 1)
+      length >= 5 ? 240 : 40 * (length + 1)
     )
   }
 
   componentDidMount = () => {
-    this.getHeightContainer(this.props.data)
+    this.getHeightContainer(this.props.data.length)
   }
 
   componentDidUpdate = prevProps => {
@@ -35,7 +35,7 @@ class RenderItem extends Component {
       this.setState({ visiable: this.props.visiable })
     }
     if (prevProps.data != this.props.data) {
-      this.getHeightContainer(this.props.data)
+      this.getHeightContainer(this.props.data.length)
     }
   }
 
@@ -114,10 +114,6 @@ class ComboBoxBase extends Component {
     }
   }
 
-  componentDidMount = () => {
-    this.setState({})
-  }
-
   render() {
     console.disableYellowBox = true
     const { style, data, title, selected } = this.props
@@ -137,7 +133,7 @@ class ComboBoxBase extends Component {
           visiable={this.state.visiable}
           onClose={index => {
             this.setState({ visiable: false })
-            index >= 0 ? this.props.onChangeSelected(index) : null
+            index >= 0 && this.props.onChangeSelected(index)
           }}
           data={data}
           title={title}
@@ -158,7 +154,7 @@ ComboBoxBase.defaultProps = {
   style: { container: {} },
   data: [],
   defaultSelected: 0,
-  onChangeSelected: () => {}
+  onChangeSelected: () => { }
 }
 
 const styles = StyleSheet.create({

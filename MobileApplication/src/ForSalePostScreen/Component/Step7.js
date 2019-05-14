@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from "react-native"
 import constants from "../../Constant"
-import Header from "./Header"
+import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
 import ComboBox from "../../Component/ComboBox"
 import DatePicker from "react-native-datepicker"

@@ -7,11 +7,8 @@ import Step1 from "./Component/Step1"
 import Step2 from "./Component/Step2"
 import Step3 from "./Component/Step3"
 import Step4 from "./Component/Step4"
-import Step5 from "./Component/Step5"
-import Step6 from "./Component/Step6"
-import Step7 from "./Component/Step7"
 
-class ForSalePostScreen extends Component {
+class ForRentPostScreen extends Component {
   constructor(props) {
     super(props)
     this.state = { step: 0, width: constants.width }
@@ -38,9 +35,6 @@ class ForSalePostScreen extends Component {
           <Step2 style={styles.item} ref={r => (this.step2Ref = r)} />
           <Step3 style={styles.item} ref={r => (this.step3Ref = r)} />
           <Step4 style={styles.item} ref={r => (this.step4Ref = r)} />
-          <Step5 style={styles.item} ref={r => (this.step5Ref = r)} />
-          <Step6 style={styles.item} ref={r => (this.step6Ref = r)} />
-          <Step7 style={styles.item} ref={r => (this.step7Ref = r)} />
         </ScrollView>
         <Breadcrumb
           styleContainer={styles.step_container}
@@ -53,9 +47,6 @@ class ForSalePostScreen extends Component {
             { label: "Bước 2" },
             { label: "Bước 3" },
             { label: "Bước 4" },
-            { label: "Bước 5" },
-            { label: "Bước 6" },
-            { label: "Bước 7" }
           ]}
         />
       </SafeAreaView>
@@ -86,4 +77,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ForSalePostScreen
+export default ForRentPostScreen
