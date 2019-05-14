@@ -21,9 +21,7 @@ class RenderItem extends Component {
   }
 
   getHeightContainer = length => {
-    this.heightContainer = parseInt(
-      length >= 5 ? 240 : 40 * (length + 1)
-    )
+    this.heightContainer = parseInt(length >= 5 ? 240 : 40 * (length + 1))
   }
 
   componentDidMount = () => {
@@ -64,21 +62,25 @@ class RenderItem extends Component {
             </View>
             <FlatList
               data={this.props.data}
-              keyExtractor={(index, item) => item.id}
-              renderItem={({ item, index }) => (
-                <TouchableOpacity
-                  onPress={e => this.onPressItem(index)}
-                  style={stylesListItem.itemContainer}
-                >
-                  <Text style={stylesListItem.itemLabel}>{item.label}</Text>
-                </TouchableOpacity>
-              )}
+              keyExtractor={this._keyExtractor.bind(this)}
+              renderItem={this._renderItem.bind(this)}
             />
           </View>
         </SafeAreaView>
       </Modal>
     )
   }
+
+  _renderItem = ({ item, index }) => (
+    <TouchableOpacity
+      onPress={() => this.onPressItem(index)}
+      style={stylesListItem.itemContainer}
+    >
+      <Text style={stylesListItem.itemLabel}>{item.label}</Text>
+    </TouchableOpacity>
+  )
+
+  _keyExtractor = (index, item) => item.id
 }
 
 const stylesListItem = StyleSheet.create({
@@ -121,7 +123,7 @@ class ComboBoxBase extends Component {
       <TouchableOpacity
         activeOpacity={1}
         onPress={() => this.setState({ visiable: true })}
-        style={[styles.container, style.container]}
+        style={[styles.container, style]}
       >
         <Text style={styles.selected} numberOfLines={1}>
           {selected === -1 ? title : data[selected].label}
@@ -151,10 +153,10 @@ ComboBoxBase.propTypes = {
 }
 
 ComboBoxBase.defaultProps = {
-  style: { container: {} },
+  style: {},
   data: [],
   defaultSelected: 0,
-  onChangeSelected: () => { }
+  onChangeSelected: () => {}
 }
 
 const styles = StyleSheet.create({

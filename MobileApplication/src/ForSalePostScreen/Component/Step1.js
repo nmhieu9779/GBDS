@@ -13,6 +13,7 @@ import TextInputCustom from "../../Component/TextInputCustom"
 import ComboBox from "../../Component/ComboBox"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
+import AddressInput from "../../Component/AddressInput"
 
 class Step1 extends Component {
   constructor(props) {
@@ -23,22 +24,8 @@ class Step1 extends Component {
       price: "",
       dataPrice: [],
       selectedPrice: -1,
-      listSelected: [
-        { selected: -1 },
-        { selected: -1 },
-        { selected: -1 },
-        { selected: -1 },
-        { selected: -1 },
-        { selected: -1 }
-      ],
-      listData: [
-        [{ label: "Nhà đất bán" }, { label: "Nhà đất cho thuê" }],
-        [],
-        [],
-        [],
-        [],
-        []
-      ],
+      listSelected: [{ selected: -1 }, { selected: -1 }],
+      listData: [[{ label: "Nhà đất bán" }, { label: "Nhà đất cho thuê" }], []],
       listComboBox: [
         {
           key: "productType",
@@ -72,43 +59,12 @@ class Step1 extends Component {
           },
           title: "-- Phân mục --",
           label: "Loại"
-        },
-        {
-          key: "city",
-          title: "-- Tỉnh/thành phố --",
-          label: "Tỉnh/thành phố"
-        },
-        {
-          key: "district",
-          title: "-- Quận/Huyện --",
-          label: "Quận/Huyện"
-        },
-        {
-          key: "ward",
-          title: "-- Phường/Xã --",
-          label: "Phường/Xã"
-        },
-        {
-          key: "street",
-          title: "-- Đường/Phố --",
-          label: "Đường/Phố"
         }
       ]
     }
   }
 
-  componentDidMount = () => {
-    fetch("http://35.187.253.10:21006/api-gateway/grre-admnu/api/v1/provinces")
-      .then(response => response.json())
-      .then(responseJson => {
-        let listCity = responseJson.content.map(item => ({ label: item.name }))
-        let listData = this.createNewData(listCity, 2)
-        this.setState({ lisData: listData })
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  }
+  componentDidMount = () => {}
 
   createNewData = (data, index) => {
     let listData = this.state.listData
@@ -117,24 +73,10 @@ class Step1 extends Component {
   }
 
   render() {
-    let ward =
-      this.state.listSelected[4].selected != -1
-        ? this.state.lisData[4][this.state.listSelected[4].selected].label +
-          ", "
-        : ""
-    let district =
-      this.state.listSelected[3].selected != -1
-        ? this.state.lisData[3][this.state.listSelected[3].selected].label +
-          ", "
-        : ""
-    let city =
-      this.state.listSelected[2].selected != -1
-        ? this.state.lisData[2][this.state.listSelected[2].selected].label
-        : ""
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
         <Header text={"Thông tin cơ bản"} />
-        <ScrollView contentContainerStyle={{ alignItems: "center" }}>
+        <ScrollView>
           <TextInputCustom
             onChangeText={text => this.setState({ productTitle: text })}
             value={this.state.productTitle}
@@ -170,6 +112,7 @@ class Step1 extends Component {
               />
             )
           })}
+          <AddressInput />
           <TextInputCustom
             onChangeText={text => this.setState({ area: text })}
             value={this.state.area}
@@ -249,7 +192,6 @@ class Step1 extends Component {
                 padding: 5
               }}
               multiline={true}
-              value={ward + district + city}
             />
           </View>
         </ScrollView>
@@ -320,63 +262,7 @@ class Step1 extends Component {
     let listData = this.createNewData(selected === 0 ? sale : rent, 1)
     this.setState({ lisData: listData })
   }
-  getDataDistrict = id => {
-    fetch(
-      "http://35.187.253.10:21006/api-gateway/grre-admnu/api/v1/districts/" + id
-    )
-      .then(response => response.json())
-      .then(responseJson => {
-        let listDistrict = responseJson.content.map(item => ({
-          label: item.name,
-          id: item.id
-        }))
-        let listData = this.createNewData(listDistrict, 3)
-        this.setState({ lisData: listData })
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  }
-  getDataWard = (city, district) => {
-    fetch(
-      "http://35.187.253.10:21006/api-gateway/grre-admnu/api/v1/wards/" +
-        city +
-        "/" +
-        district
-    )
-      .then(response => response.json())
-      .then(responseJson => {
-        let listWard = responseJson.content.map(item => ({
-          label: item.name,
-          id: item.id
-        }))
-        let listData = this.createNewData(listWard, 4)
-        this.setState({ lisData: listData })
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  }
-  getDataStreet = (city, district) => {
-    fetch(
-      "http://35.187.253.10:21006/api-gateway/grre-admnu/api/v1/streets/" +
-        city +
-        "/" +
-        district
-    )
-      .then(response => response.json())
-      .then(responseJson => {
-        let listStreet = responseJson.content.map(item => ({
-          label: item.name,
-          id: item.ID
-        }))
-        let listData = this.createNewData(listStreet, 5)
-        this.setState({ lisData: listData })
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  }
+
   getDataPrice = selected => {
     const sale = [
       { label: "Thoả thuận" },

@@ -17,7 +17,7 @@ class ComboBox extends Component {
           <Text style={style.label}>{label}</Text>
         </View>
         <ComboBoxBase
-          style={{ container: style.combobox }}
+          style={style.combobox}
           data={data}
           selected={selected}
           title={title}
