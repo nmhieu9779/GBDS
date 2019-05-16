@@ -1,12 +1,5 @@
 import React, { Component } from "react"
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  ScrollView
-} from "react-native"
+import { Text, View, TextInput, ScrollView } from "react-native"
 import constants from "../../Constant"
 import propTypes from "prop-types"
 import TextInputCustom from "../../Component/TextInputCustom"
@@ -14,53 +7,18 @@ import ComboBox from "../../Component/ComboBox"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
 import AddressInput from "../../Component/AddressInput"
+import style from "../style"
 
 class Step1 extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      productTypeSelected: -1,
+      productCateSelected: -1,
       productTitle: "",
       area: "",
       price: "",
-      dataPrice: [],
-      selectedPrice: -1,
-      listSelected: [{ selected: -1 }, { selected: -1 }],
-      listData: [[{ label: "Nhà đất bán" }, { label: "Nhà đất cho thuê" }], []],
-      listComboBox: [
-        {
-          key: "productType",
-          title: "-- Hình thức --",
-          label: "Hình thức"
-        },
-        {
-          key: "productCate",
-          data: {
-            sale: [
-              { label: "Bán căn hộ chung cư" },
-              { label: "Bán nhà riêng" },
-              { label: "Bán nhà biệt thự, liền kề" },
-              { label: "Bán nhà mặt phố" },
-              { label: "Bán đất nền dự án" },
-              { label: "Bán đất" },
-              { label: "Bán trang trại, khu nghĩ dưỡng" },
-              { label: "Bán kho, nhà xưởng" },
-              { label: "Bán loại bất động sản khác" }
-            ],
-            rent: [
-              { label: "Cho thuê căn hộ chng cư" },
-              { label: "Cho thuê nhà riêng" },
-              { label: "Cho thuê nhà mặt phố" },
-              { label: "Cho thuê nhà trọ, phòng trọ" },
-              { label: "Cho thuê văn phòng" },
-              { label: "Cho thuê cửa hàng, ki ốt" },
-              { label: "Cho thuê kho, nhà xưởng, đất" },
-              { label: "Cho thuê loại bất động sản khác" }
-            ]
-          },
-          title: "-- Phân mục --",
-          label: "Loại"
-        }
-      ],
+      priceSelected: -1,
       address: "",
       homeNumber: ""
     }
@@ -73,126 +31,75 @@ class Step1 extends Component {
   }
 
   render() {
+    const styles = style.step1
+    const string = constants.ForSalePostScreen.step1
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
-        <Header text={"Thông tin cơ bản"} />
-        <ScrollView>
+        <Header text={string.header} />
+        <ScrollView contentContainerStyle={styles.scrollView}>
           <TextInputCustom
             onChangeText={text => this.setState({ productTitle: text })}
             value={this.state.productTitle}
-            style={{
-              labelStyle: {
-                color: "red"
-              },
-              container: {
-                width: constants.width - 10,
-                marginBottom: 5
-              }
-            }}
-            label={"Tiêu đề"}
+            style={Object.assign(styles.title, styles.textInput)}
+            label={string.productTitle}
           />
-          {this.state.listComboBox.map(({ key, title, label }, index) => {
-            return (
-              <ComboBox
-                style={{
-                  container: {
-                    width: constants.width,
-                    height: null
-                  },
-                  combobox: { flex: 2 }
-                }}
-                key={key}
-                data={this.state.listData[index]}
-                selected={this.state.listSelected[index].selected}
-                title={title}
-                label={label}
-                onChangeSelected={selected => {
-                  this.onChangeSelected(selected, index)
-                }}
-              />
-            )
-          })}
+          <ComboBox
+            style={styles.combobox}
+            data={string.productType.data}
+            selected={this.state.productTypeSelected}
+            title={string.productType.title}
+            label={string.productType.label}
+            onChangeSelected={selected => {
+              this.onChangeSelected(selected)
+            }}
+          />
+          <ComboBox
+            style={styles.combobox}
+            data={[]}
+            selected={this.state.productCateSelected}
+            title={string.productCate.title}
+            label={string.productCate.label}
+            onChangeSelected={selected => {
+              this.onChangeSelected(selected)
+            }}
+          />
           <AddressInput
             onChangeAddress={address => this.setState({ address: address })}
           />
           <TextInputCustom
             onChangeText={text => this.setState({ area: text })}
             value={this.state.area}
-            style={{
-              container: {
-                width: constants.width - 10,
-                marginBottom: 5
-              }
-            }}
-            label={"Diện tích"}
+            style={styles.textInput}
+            label={string.area}
             keyboardType={"numeric"}
           >
-            <Text style={{ position: "absolute", right: 5, bottom: 3 }}>
-              {"m²"}
-            </Text>
+            <Text style={styles.area}>{string.areaString}</Text>
           </TextInputCustom>
           <TextInputCustom
             onChangeText={text => this.setState({ price: text })}
             value={this.state.price}
-            style={{
-              container: {
-                width: constants.width - 10,
-                marginBottom: 5
-              }
-            }}
-            label={"Giá"}
+            style={styles.textInput}
+            label={string.priceLabel}
             keyboardType={"numeric"}
           >
             <ComboBox
-              style={{
-                container: {
-                  width: constants.width / 2,
-                  position: "absolute",
-                  right: 5,
-                  bottom: 3
-                }
-              }}
-              data={this.state.dataPrice}
-              selected={this.state.selectedPrice}
-              title={"-- Đơn vị --"}
+              style={styles.price}
+              data={[]}
+              selected={this.state.priceSelected}
+              title={string.price.title}
               onChangeSelected={selected => {
-                this.setState({ selectedPrice: selected })
+                this.setState({ priceSelected: selected })
               }}
             />
           </TextInputCustom>
-          <View
-            style={{
-              flexDirection: "row",
-              padding: 5,
-              alignItems: "center"
-            }}
-          >
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-              {"Tổng giá tiền:"}
-            </Text>
-            <Text style={{ color: "red", marginLeft: 10, flex: 1 }}>
-              100000
-            </Text>
+          <View style={styles.priceContainer}>
+            <Text style={styles.priceTitle}>{string.priceTitle}</Text>
+            <Text style={styles.priceContent}>100000</Text>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              padding: 5,
-              alignItems: "center"
-            }}
-          >
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-              {"Địa chỉ"}
-            </Text>
+          <View style={styles.addressContainer}>
+            <Text style={styles.addressTitle}>{string.addressTitle}</Text>
             <TextInput
-              style={{
-                flex: 1,
-                borderColor: "#ccc",
-                borderWidth: 0.5,
-                borderRadius: 5,
-                marginLeft: 10,
-                padding: 5
-              }}
+              style={styles.addressTextInput}
               multiline={true}
               value={this.state.homeNumber + this.state.address}
               onChangeText={text =>
@@ -206,89 +113,6 @@ class Step1 extends Component {
       </SafeAreaView>
     )
   }
-  onChangeSelected = (selected, index) => {
-    let listSelected = this.state.listSelected
-    switch (index) {
-      case 0:
-        listSelected[index].selected = selected
-        this.getDataProductCate(selected)
-        this.getDataPrice(selected)
-        break
-      case 1:
-        listSelected[index].selected = selected
-        break
-      case 2:
-        listSelected[index].selected = selected
-        this.getDataDistrict(selected + 1)
-        break
-      case 3:
-        listSelected[index].selected = selected
-        this.getDataWard(
-          this.state.listSelected[2].selected + 1,
-          this.state.listData[3][selected].id
-        )
-        break
-      case 4:
-        listSelected[index].selected = selected
-        this.getDataStreet(
-          this.state.listSelected[2].selected + 1,
-          this.state.listData[3][selected].id
-        )
-        break
-      case 5:
-        listSelected[index].selected = selected
-        break
-      default:
-        break
-    }
-    this.setState({
-      listSelected: listSelected
-    })
-  }
-  getDataProductCate = selected => {
-    const sale = [
-      { label: "Bán căn hộ chung cư" },
-      { label: "Bán nhà riêng" },
-      { label: "Bán nhà biệt thự, liền kề" },
-      { label: "Bán nhà mặt phố" },
-      { label: "Bán đất nền dự án" },
-      { label: "Bán đất" },
-      { label: "Bán trang trại, khu nghĩ dưỡng" },
-      { label: "Bán kho, nhà xưởng" },
-      { label: "Bán loại bất động sản khác" }
-    ]
-    const rent = [
-      { label: "Cho thuê căn hộ chng cư" },
-      { label: "Cho thuê nhà riêng" },
-      { label: "Cho thuê nhà mặt phố" },
-      { label: "Cho thuê nhà trọ, phòng trọ" },
-      { label: "Cho thuê văn phòng" },
-      { label: "Cho thuê cửa hàng, ki ốt" },
-      { label: "Cho thuê kho, nhà xưởng, đất" },
-      { label: "Cho thuê loại bất động sản khác" }
-    ]
-    let listData = this.createNewData(selected === 0 ? sale : rent, 1)
-    this.setState({ lisData: listData })
-  }
-
-  getDataPrice = selected => {
-    const sale = [
-      { label: "Thoả thuận" },
-      { label: "Triệu" },
-      { label: "Tỷ" },
-      { label: "Trăm nghìn/m2" },
-      { label: "Triệu/m2" }
-    ]
-    const rent = [
-      { label: "Thoả thuận" },
-      { label: "Trăm nghìn/Tháng" },
-      { label: "Triệu/Tháng" },
-      { label: "Trăm nghìn/m2/Tháng" },
-      { label: "Triệu/m2/Tháng" },
-      { label: "Nghìn/m2/Tháng" }
-    ]
-    this.setState({ dataPrice: selected === 0 ? sale : rent, selectedPrice: 0 })
-  }
 }
 
 Step1.propTypes = {
@@ -298,9 +122,5 @@ Step1.propTypes = {
 Step1.defaultProps = {
   style: { flex: 1 }
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1 }
-})
 
 export default Step1

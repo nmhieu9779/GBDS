@@ -1,13 +1,7 @@
 import React, { Component } from "react"
-import {
-  Platform,
-  View,
-  StyleSheet,
-  Text,
-  ScrollView,
-  TouchableOpacity
-} from "react-native"
+import { View, Text, ScrollView, TouchableOpacity } from "react-native"
 import constants from "../../Constant"
+import style from "../style"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
 import ComboBox from "../../Component/ComboBox"
@@ -18,14 +12,6 @@ class Step7 extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      dataVipType: [
-        { label: "Tin thường" },
-        { label: "Tin ưu đãi" },
-        { label: "Tin Vip 3" },
-        { label: "Tin Vip 2" },
-        { label: "Tin Vip 1" },
-        { label: "Vip đặc biệt" }
-      ],
       selectedVipType: 0,
       startDate: new Date(),
       endDate: "",
@@ -39,83 +25,79 @@ class Step7 extends Component {
     this.setState({ endDate: endDate })
   }
 
-  vipTypeInfo = selectedVipType => {
+  vipTypeInfo = (selectedVipType, styles, string) => {
     switch (selectedVipType) {
       case 0:
         return (
-          <Text style={{ padding: 5 }}>
-            <Text style={{ fontWeight: "bold" }}>{"Tin thường"}</Text>
-            {": Là loại tin đăng bằng chữ "}
-            <Text style={{ color: "blue" }}>{"màu xanh"}</Text>
-            {", khung "}
-            <Text style={{ color: "blue" }}>{"màu xanh "}</Text>
+          <Text style={styles.text}>
+            <Text style={styles.infoVipName}>{string.normal.name}</Text>
+            {string.normal.content_1}
+            <Text style={styles.textCB}>{string.normal.content_2}</Text>
+            {string.normal.content_3}
+            <Text style={styles.textCB}>{string.normal.content_4}</Text>
           </Text>
         )
       case 1:
         return (
-          <Text style={{ padding: 5 }}>
-            <Text style={{ fontWeight: "bold" }}>{"Vip ưu đãi"}</Text>
-            {
-              ": Là loại tin được hiển thị trong vòng 3 tháng, mỗi tuần sẽ được up tin tự động 1 lần. Tuần đầu tiên sẽ được hiển thị dưới hình thức VIP 2, các tuần tiếp theo hiển thị hình thức tin thường"
-            }
+          <Text style={styles.text}>
+            <Text style={styles.infoVipName}>{string.goodwill.name}</Text>
+            {string.goodwill.content_1}
           </Text>
         )
       case 2:
         return (
-          <Text style={{ padding: 5 }}>
-            <Text style={{ fontWeight: "bold" }}>{"Tin Vip 3"}</Text>
-            {": Là loại tin đăng bằng chữ "}
-            <Text style={{ color: "orange" }}>{"thường màu cam"}</Text>
-            {", khung "}
-            <Text style={{ color: "orange" }}>{"màu cam "}</Text>
-            {
-              "và luôn nằm dưới tin Vip 2 nhưng luôn luôn hiển thị trên tin thường."
-            }
+          <Text style={styles.text}>
+            <Text style={styles.infoVipName}>{string.vip_3.name}</Text>
+            {string.vip_3.content_1}
+            <Text style={styles.textCO}>{string.vip_3.content_2}</Text>
+            {string.vip_3.content_3}
+            <Text style={styles.textCO}>{string.vip_3.content_4}</Text>
+            {string.vip_3.content_5}
           </Text>
         )
       case 3:
         return (
-          <Text style={{ padding: 5 }}>
-            <Text style={{ fontWeight: "bold" }}>{"Tin Vip 2"}</Text>
-            {": Là loại tin đăng bằng chữ "}
-            <Text style={{ color: "orange", fontWeight: "bold" }}>
-              {"IN HOA MÀU CAM"}
+          <Text style={styles.text}>
+            <Text style={styles.infoVipName}>{string.vip_2.name}</Text>
+            {string.vip_2.content_1}
+            <Text style={[styles.textCO, styles.textFB]}>
+              {string.vip_2.content_2}
             </Text>
-            {", khung "}
-            <Text style={{ color: "orange", fontWeight: "bold" }}>
-              {"màu cam "}
+            {string.vip_2.content_3}
+            <Text style={[styles.textCO, styles.textFB]}>
+              {string.vip_2.content_4}
             </Text>
-            {"nằm bên dưới tin VIP 1 và ở trên các tin vip 3."}
+            {string.vip_2.content_5}
           </Text>
         )
       case 4:
         return (
-          <Text style={{ padding: 5 }}>
-            <Text style={{ fontWeight: "bold" }}>{"Tin Vip 1"}</Text>
-            {": Là loại tin đăng bằng chữ "}
-            <Text style={{ color: "red", fontWeight: "bold" }}>
-              {"IN HOA MÀU ĐỎ"}
+          <Text style={styles.text}>
+            <Text style={styles.infoVipName}>{string.vip_1.name}</Text>
+            {string.vip_1.content_1}
+            <Text style={[styles.textCR, styles.textFB]}>
+              {string.vip_1.content_2}
             </Text>
-            {", khung "}
-            <Text style={{ color: "red", fontWeight: "bold" }}>{"màu đỏ"}</Text>
-            {"nằm bên dưới tin VIP ĐẶC BIỆT và ở trên các tin vip 2."}
+            {string.vip_1.content_3}
+            <Text style={[styles.textCR, styles.textFB]}>
+              {string.vip_1.content_4}
+            </Text>
+            {string.vip_1.content_5}
           </Text>
         )
       case 5:
         return (
-          <Text style={{ padding: 5 }}>
-            <Text style={{ fontWeight: "bold" }}>{"Vip đặc biệt"}</Text>
-            {": Là loại tin đăng bằng chữ "}
-            <Text style={{ color: "red", fontWeight: "bold" }}>
-              {"IN HOA MÀU ĐỎ"}
+          <Text style={styles.text}>
+            <Text style={styles.infoVipName}>{string.special.name}</Text>
+            {string.special.content_1}
+            <Text style={[styles.textCR, styles.textFB]}>
+              {string.special.content_2}
             </Text>
-            {", khung "}
-            <Text style={{ color: "red", fontWeight: "bold" }}>
-              {"màu đỏ "}
+            {string.special.content_3}
+            <Text style={[styles.textCR, styles.textFB]}>
+              {string.special.content_4}
             </Text>
-            {
-              "gắn biểu tượng ngôi sao vàng nổi bật ở tiêu đề tin đăng, hiển thị ở top đầu trang tin và được hưởng nhiều ưu tiên nhất."
-            }
+            {string.special.content_5}
           </Text>
         )
       default:
@@ -123,58 +105,12 @@ class Step7 extends Component {
     }
   }
 
-  getDayPrice = selectedVipType => {
-    dayPrice = ""
-    switch (selectedVipType) {
-      case 0:
-        dayPrice = "1 nghìn 727 đồng/Ngày"
-        break
-      case 1:
-        dayPrice = "454 nghìn 545 đồng"
-        break
-      case 2:
-        dayPrice = "27 nghìn 272 đồng/Ngày"
-        break
-      case 3:
-        dayPrice = "50 nghìn/Ngày"
-        break
-      case 4:
-        dayPrice = "68 nghìn 181 đồng/Ngày"
-        break
-      case 5:
-        dayPrice = "168 nghìn 181 đồng/Ngày"
-        break
-      default:
-        break
-    }
-    return dayPrice
-  }
-
-  getTotal = (startDate, endDate, type) => {
-    let total = 0
+  getTotal = (startDate, endDate, type, string) => {
     let day = this.getDay(startDate, endDate)
-    switch (type) {
-      case 0:
-        total = 1727 * day
-        break
-      case 1:
-        total = "454 nghìn 545 đồng"
-        break
-      case 2:
-        total = 27272 * day
-        break
-      case 3:
-        total = 50000 * day
-        break
-      case 4:
-        total = 68181 * day
-        break
-      case 5:
-        total = 168181 * day
-        break
-      default:
-        break
-    }
+    let total =
+      (Number.isInteger(string.dayPriceInt[type]) &&
+        string.dayPriceInt[type] * day) ||
+      string.dayPriceInt[type]
     return this.formatTotal(total)
   }
 
@@ -185,149 +121,89 @@ class Step7 extends Component {
     total.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 
   render() {
-    const { style } = this.props
+    const styles = style.step7
+    const string = constants.ForSalePostScreen.step7
     return (
-      <SafeAreaView style={[styles.container, style]}>
-        <Header text={"Lịch đăng tin"} />
+      <SafeAreaView style={[styles.container, this.props.style]}>
+        <Header text={string.header} />
         <ScrollView>
           <ComboBox
-            style={{
-              container: {
-                width: constants.width
-              },
-              combobox: { flex: 3 }
-            }}
-            data={this.state.dataVipType}
+            style={styles.combobox}
+            data={string.vipType.data}
             selected={this.state.selectedVipType}
-            title={"-- Loại tin rao --"}
-            label={"Loại tin rao"}
+            title={string.vipType.title}
+            label={string.vipType.label}
             onChangeSelected={selected => {
               this.setState({ selectedVipType: selected })
             }}
           />
-          {this.vipTypeInfo(this.state.selectedVipType)}
-          <View
-            style={{ flexDirection: "row", alignItems: "center", padding: 5 }}
-          >
-            <Text style={{ flex: 1 }}>{"Ngày bắt đầu"}</Text>
+          {this.vipTypeInfo(this.state.selectedVipType, styles, string)}
+          <View style={styles.datePickerContainer}>
+            <Text style={styles.datePickerLabel}>{string.startDate}</Text>
             <DatePicker
-              style={{ flex: 3 }}
+              style={styles.datePicker}
               date={this.state.startDate}
-              mode="date"
-              placeholder="Ngày bắt đầu"
-              format="DD-MM-YYYY"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-                dateIcon: {
-                  position: "absolute",
-                  right: 0,
-                  top: 4,
-                  marginRight: 0
-                },
-                dateInput: {
-                  marginRight: 36,
-                  borderRadius: 5
-                }
-              }}
+              mode={string.datePicker.mode}
+              placeholder={string.startDate}
+              format={string.datePicker.format}
+              confirmBtnText={string.datePicker.confirmBtnText}
+              cancelBtnText={string.datePicker.cancelBtnText}
+              customStyles={styles.datePickerCustom}
               onDateChange={(dateStr, date) => {
                 this.setState({ startDate: date })
               }}
             />
           </View>
-          <View
-            style={{ flexDirection: "row", alignItems: "center", padding: 5 }}
-          >
-            <Text style={{ flex: 1 }}>{"Ngày kêt thúc"}</Text>
+          <View style={styles.datePickerContainer}>
+            <Text style={styles.datePickerLabel}>{string.endDate}</Text>
             <DatePicker
-              style={{ flex: 3 }}
+              style={styles.datePicker}
               date={this.state.endDate}
-              mode="date"
-              placeholder="Ngày kết thúc"
-              format="DD-MM-YYYY"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-                dateIcon: {
-                  position: "absolute",
-                  right: 0,
-                  top: 4,
-                  marginRight: 0
-                },
-                dateInput: {
-                  marginRight: 36,
-                  borderRadius: 5
-                }
-              }}
+              mode={string.datePicker.mode}
+              placeholder={string.endDate}
+              format={string.datePicker.format}
+              confirmBtnText={string.datePicker.confirmBtnText}
+              cancelBtnText={string.datePicker.cancelBtnText}
+              customStyles={styles.datePickerCustom}
               onDateChange={(dateStr, date) => {
                 this.setState({ endDate: date })
               }}
             />
           </View>
-          <Text style={{ padding: 5 }}>
-            {"Đơn gía cuối cùng: "}
-            <Text style={{ fontWeight: "bold", color: "blue" }}>
-              {this.getDayPrice(this.state.selectedVipType)}
+          <Text style={styles.text}>
+            {string.latestPrice}
+            <Text style={[styles.textCB, styles.textFB]}>
+              {string.dayPrice[this.state.selectedVipType]}
             </Text>
           </Text>
-          <Text style={{ padding: 5 }}>
-            {"Số ngày: "}
-            <Text style={{ fontWeight: "bold", color: "blue" }}>
+          <Text style={styles.text}>
+            {string.dayNumber}
+            <Text style={[styles.textCB, styles.textFB]}>
               {this.getDay(this.state.startDate, this.state.endDate)}
             </Text>
           </Text>
-          <Text
-            style={{
-              fontStyle: "italic",
-              color: "gray",
-              padding: 10
-            }}
-          >
-            {
-              "Quý khách nên chọn đăng tin Vip để có hiệu quả cao hơn, ví dụ: tin Vip1 có lượt xem trung bình cao hơn 20 lần so với tin thường"
-            }
-          </Text>
+          <Text style={styles.suggest}>{string.suggest}</Text>
         </ScrollView>
-        <SafeAreaView style={{ marginBottom: 100, alignItems: "center" }}>
-          <Text
-            style={{
-              padding: 5,
-              marginBottom: 5,
-              width: constants.width
-            }}
-          >
-            {"Phí dịch vụ trừ vào tài khoản: "}
-            <Text style={{ fontSize: 18, fontWeight: "bold", color: "red" }}>
+        <SafeAreaView style={styles.footer}>
+          <Text style={styles.textFooter}>
+            {string.textFooter}
+            <Text style={styles.total}>
               {this.getTotal(
                 this.state.startDate,
                 this.state.endDate,
-                this.state.selectedVipType
+                this.state.selectedVipType,
+                string
               )}
-              {" VND"}
+              {string.vnd}
             </Text>
           </Text>
-          <TouchableOpacity
-            style={{
-              width: 300,
-              height: 40,
-              backgroundColor: "red",
-              borderRadius: 5,
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <Text style={{ color: "white" }}>{"Đăng bài"}</Text>
+          <TouchableOpacity style={styles.btnPost}>
+            <Text style={[styles.textFB, styles.textCW]}>{string.post}</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </SafeAreaView>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-})
 
 export default Step7

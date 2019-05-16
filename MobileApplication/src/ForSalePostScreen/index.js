@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { StyleSheet, ScrollView } from "react-native"
+import { ScrollView } from "react-native"
 import constants from "../Constant"
 import { SafeAreaView } from "react-navigation"
 import Breadcrumb from "../Component/Breadcrumb"
@@ -10,16 +10,17 @@ import Step4 from "./Component/Step4"
 import Step5 from "./Component/Step5"
 import Step6 from "./Component/Step6"
 import Step7 from "./Component/Step7"
+import style from "./style"
 
 class ForSalePostScreen extends Component {
   constructor(props) {
     super(props)
-    this.state = { step: 0, width: constants.width }
+    this.state = { step: 0 }
   }
 
   render() {
     return (
-      <SafeAreaView style={styles.for_sale_post_container}>
+      <SafeAreaView style={style.for_sale_post_container}>
         <ScrollView
           ref={ref => {
             this.scrollView = ref
@@ -27,36 +28,28 @@ class ForSalePostScreen extends Component {
           onMomentumScrollEnd={e => {
             this.setState({
               step: parseInt(
-                e.nativeEvent.contentOffset.x / this.state.width + 0.1
+                e.nativeEvent.contentOffset.x / constants.width + 0.1
               )
             })
           }}
           pagingEnabled={true}
           horizontal={true}
         >
-          <Step1 style={styles.item} ref={r => (this.step1Ref = r)} />
-          <Step2 style={styles.item} ref={r => (this.step2Ref = r)} />
-          <Step3 style={styles.item} ref={r => (this.step3Ref = r)} />
-          <Step4 style={styles.item} ref={r => (this.step4Ref = r)} />
-          <Step5 style={styles.item} ref={r => (this.step5Ref = r)} />
-          <Step6 style={styles.item} ref={r => (this.step6Ref = r)} />
-          <Step7 style={styles.item} ref={r => (this.step7Ref = r)} />
+          <Step1 style={style.item} ref={r => (this.step1Ref = r)} />
+          <Step2 style={style.item} ref={r => (this.step2Ref = r)} />
+          <Step3 style={style.item} ref={r => (this.step3Ref = r)} />
+          <Step4 style={style.item} ref={r => (this.step4Ref = r)} />
+          <Step5 style={style.item} ref={r => (this.step5Ref = r)} />
+          <Step6 style={style.item} ref={r => (this.step6Ref = r)} />
+          <Step7 style={style.item} ref={r => (this.step7Ref = r)} />
         </ScrollView>
         <Breadcrumb
-          styleContainer={styles.step_container}
+          styleContainer={style.step_container}
           itemSelected={this.state.step}
           onItemPress={e => {
             this.onPressStepItem(e)
           }}
-          data={[
-            { label: "Bước 1" },
-            { label: "Bước 2" },
-            { label: "Bước 3" },
-            { label: "Bước 4" },
-            { label: "Bước 5" },
-            { label: "Bước 6" },
-            { label: "Bước 7" }
-          ]}
+          data={constants.ForSalePostScreen.labelStep}
         />
       </SafeAreaView>
     )
@@ -65,25 +58,11 @@ class ForSalePostScreen extends Component {
   onPressStepItem = e => {
     this.scrollView.scrollTo({
       y: 0,
-      x: e * this.state.width,
+      x: e * constants.width,
       Animation: true
     })
     this.setState({ step: e })
   }
 }
-
-const styles = StyleSheet.create({
-  for_sale_post_container: { flex: 1, backgroundColor: "white" },
-
-  item: {
-    width: constants.width,
-    height: constants.height - 50
-  },
-  step_container: {
-    height: 50,
-    width: null,
-    flexDirection: "row"
-  }
-})
 
 export default ForSalePostScreen

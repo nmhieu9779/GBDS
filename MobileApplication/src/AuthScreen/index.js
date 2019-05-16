@@ -18,13 +18,12 @@ import {
   faUserLock,
   faMailBulk,
   faPhone,
-  faThumbsDown
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
 
 function ButtonCustom(props) {
-  const stylesButtonCustom = {
+  const stylesButtonCustom = StyleSheet.create({
     container: {
       backgroundColor: props.backgroundColor,
       justifyContent: "center",
@@ -36,7 +35,7 @@ function ButtonCustom(props) {
       borderWidth: 0.5
     },
     text: { color: props.textColor, fontWeight: "bold" }
-  }
+  })
   return (
     <TouchableOpacity
       style={[stylesButtonCustom.container, props.style]}
@@ -53,7 +52,7 @@ function ButtonCustom(props) {
 }
 
 function TextInputCustom(props) {
-  const stylesTextInputCustom = {
+  const stylesTextInputCustom = StyleSheet.create({
     container: {
       backgroundColor: "#f0f0f0",
       flexDirection: "row",
@@ -67,7 +66,7 @@ function TextInputCustom(props) {
       flex: 1,
       ...Platform.select({ android: { padding: 0 } })
     }
-  }
+  })
   return (
     <View style={[stylesTextInputCustom.container, props.style]}>
       <FontAwesomeIcon
@@ -89,13 +88,7 @@ function TextInputCustom(props) {
 }
 
 function SignIn(props) {
-  const stylesSignIn = {
-    conatiner: {
-      opacity: props.focusedAnim.interpolate({
-        inputRange: [0, 2],
-        outputRange: [0, 1]
-      })
-    },
+  const stylesSignIn = StyleSheet.create({
     input_container: { alignItems: "center", marginBottom: 40 },
     input: {
       width: 0.7 * constants.width + 10,
@@ -115,9 +108,16 @@ function SignIn(props) {
     },
     social_container: { flexDirection: "row" },
     button_custom: { marginRight: 10 }
-  }
+  })
   return (
-    <Animated.View style={stylesSignIn.conatiner}>
+    <Animated.View
+      style={{
+        opacity: props.focusedAnim.interpolate({
+          inputRange: [0, 2],
+          outputRange: [0, 1]
+        })
+      }}
+    >
       <View style={stylesSignIn.input_container}>
         <TextInputCustom
           style={stylesSignIn.input}
@@ -175,13 +175,7 @@ function SignIn(props) {
 }
 
 function SignUp(props) {
-  const stylesSignUp = {
-    conatiner: {
-      opacity: props.focusedAnim.interpolate({
-        inputRange: [0, 2],
-        outputRange: [0, 1]
-      })
-    },
+  const stylesSignUp = StyleSheet.create({
     input_container: { alignItems: "center", marginBottom: 40 },
     input: {
       width: 0.7 * constants.width + 10,
@@ -195,9 +189,16 @@ function SignUp(props) {
       paddingTop: 15,
       paddingBottom: 15
     }
-  }
+  })
   return (
-    <Animated.View style={stylesSignUp.conatiner}>
+    <Animated.View
+      style={{
+        opacity: props.focusedAnim.interpolate({
+          inputRange: [0, 2],
+          outputRange: [0, 1]
+        })
+      }}
+    >
       <View style={stylesSignUp.input_container}>
         <TextInputCustom
           style={stylesSignUp.input}
@@ -274,19 +275,21 @@ class AuthScreen extends Component {
       this.props.navigation.navigate("HomeScreen")
     }
     if (props.signUpSuccess && !props.isLoading) {
-      this.setState({
-        signIn: {
-          email: state.signUp.email,
-          password: state.signUp.password
+      this.setState(
+        {
+          signIn: {
+            email: state.signUp.email,
+            password: state.signUp.password
+          },
+          signUp: {
+            fullName: "",
+            password: "",
+            email: "",
+            phone: ""
+          }
         },
-        signUp: {
-          fullName: "",
-          password: "",
-          email: "",
-          phone: ""
-        }
-      })
-      this.onPress("SignIn")
+        this.onPress("SignIn")
+      )
     }
   }
 

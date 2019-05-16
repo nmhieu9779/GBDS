@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import { SafeAreaView } from "react-navigation"
 import ComboBox from "../ComboBox"
 import constants from "../../Constant"
+import styles from "./styles"
 import {
   getCityAction,
   getDistrictAction,
@@ -19,13 +20,6 @@ class AddressInput extends Component {
       districtSelected: -1,
       wardSelected: -1,
       streetSelected: -1
-    }
-    this.combobox = {
-      container: {
-        width: constants.width,
-        height: null
-      },
-      combobox: { flex: 2 }
     }
   }
 
@@ -52,7 +46,10 @@ class AddressInput extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <ComboBox
-          style={this.combobox}
+          style={{
+            container: styles.containerCombobox,
+            combobox: styles.combobox
+          }}
           data={city}
           selected={citySelected}
           title={constants.address.city.title}
@@ -63,7 +60,10 @@ class AddressInput extends Component {
           }}
         />
         <ComboBox
-          style={this.combobox}
+          style={{
+            container: styles.containerCombobox,
+            combobox: styles.combobox
+          }}
           data={district}
           selected={districtSelected}
           title={constants.address.district.title}
@@ -74,7 +74,10 @@ class AddressInput extends Component {
           }}
         />
         <ComboBox
-          style={this.combobox}
+          style={{
+            container: styles.containerCombobox,
+            combobox: styles.combobox
+          }}
           data={ward}
           selected={wardSelected}
           title={constants.address.ward.title}
@@ -85,7 +88,10 @@ class AddressInput extends Component {
           }}
         />
         <ComboBox
-          style={this.combobox}
+          style={{
+            container: styles.containerCombobox,
+            combobox: styles.combobox
+          }}
           data={street}
           selected={streetSelected}
           title={constants.address.street.title}
@@ -108,23 +114,17 @@ class AddressInput extends Component {
         streetSelected
       } = this.state
       streetAddress =
-        streetSelected != -1 ? street[streetSelected].label + ", " : ""
-      wardAddress = wardSelected != -1 ? ward[wardSelected].label + ", " : ""
+        streetSelected != -1 && street[streetSelected].label + ", "
+      wardAddress = wardSelected != -1 && ward[wardSelected].label + ", "
       districtAddress =
-        districtSelected != -1 ? district[districtSelected].label + ", " : ""
-      cityAddress = citySelected != -1 ? city[citySelected].label : ""
+        districtSelected != -1 && district[districtSelected].label + ", "
+      cityAddress = citySelected != -1 && city[citySelected].label
       const address =
         streetAddress + wardAddress + districtAddress + cityAddress
       this.props.onChangeAddress(address)
     })
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-})
 
 const mapStateToProps = ({ addressReducers }) => {
   return {

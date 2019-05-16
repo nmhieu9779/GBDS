@@ -1,6 +1,7 @@
 import React, { Component } from "react"
-import { Platform, StyleSheet, Text, ScrollView } from "react-native"
+import { Text, ScrollView } from "react-native"
 import constants from "../../Constant"
+import style from "../style"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
 // import MapView from "react-native-maps"
@@ -12,27 +13,15 @@ class Step5 extends Component {
   }
 
   render() {
-    const { style } = this.props
+    const styles = style.step5
+    const string = constants.ForSalePostScreen.step5
     return (
-      <SafeAreaView style={[styles.container, style]}>
-        <Header text={"Bản đồ"} />
+      <SafeAreaView style={[styles.container, this.props.style]}>
+        <Header text={string.header} />
         <ScrollView>
-          <Text
-            style={{
-              fontStyle: "italic",
-              color: "gray",
-              padding: 10
-            }}
-          >
-            {
-              "Để tăng độ tin cậy và tin rao được nhiều người quan tâm hơn, hãy sửa vị trí tin rao của bạn trên bản đồ bằng cách Chọn lại vị trí bản đồ"
-            }
-          </Text>
+          <Text style={styles.note}>{string.suggest}</Text>
           {/* <MapView
-            style={{
-              width: constants.width,
-              height: constants.height / 2
-            }}
+            style={styles.map}
             region={{
               latitude: 42.882004,
               longitude: 74.582748,
@@ -41,27 +30,11 @@ class Step5 extends Component {
             }}
             showsUserLocation={true}
           /> */}
-          <Text
-            style={{
-              fontStyle: "italic",
-              color: "gray",
-              padding: 10
-            }}
-          >
-            {
-              "Có thể dữ liệu bản đồ không chính xác. Vì vậy nếu có bất kỳ sai sót nào xin bạn hãy báo cho chúng tôi để khắc phục kịp thời."
-            }
-          </Text>
+          <Text style={styles.note}>{string.note}</Text>
         </ScrollView>
       </SafeAreaView>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-})
 
 export default Step5

@@ -1,6 +1,7 @@
 import React, { Component } from "react"
-import { Platform, StyleSheet, Text, ScrollView } from "react-native"
+import { ScrollView } from "react-native"
 import constants from "../../Constant"
+import style from "../style"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
 import TextInputCustom from "../../Component/TextInputCustom"
@@ -12,55 +13,36 @@ class Step6 extends Component {
   }
 
   render() {
-    const { style } = this.props
+    const styles = style.step6
+    const string = constants.ForSalePostScreen.step6
     return (
-      <SafeAreaView style={[styles.container, style]}>
-        <Header text={"Liên hệ"} />
-        <ScrollView contentContainerStyle={{ alignItems: "center" }}>
+      <SafeAreaView style={[styles.container, this.props.style]}>
+        <Header text={string.header} />
+        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
           <TextInputCustom
             onChangeText={text => this.setState({ name: text })}
             value={this.state.name}
-            style={{
-              container: {
-                width: constants.width - 10,
-                marginBottom: 5
-              }
-            }}
-            label={"Tên liên hệ"}
+            style={styles.textInputCustom}
+            label={string.nameLabel}
           />
           <TextInputCustom
             onChangeText={text => this.setState({ address: text })}
             value={this.state.address}
-            style={{
-              container: {
-                width: constants.width - 10,
-                marginBottom: 5
-              }
-            }}
-            label={"Địa chỉ"}
+            style={styles.textInputCustom}
+            label={string.addressLable}
           />
           <TextInputCustom
             onChangeText={text => this.setState({ phoneNumber: text })}
             value={this.state.phoneNumber}
-            style={{
-              container: {
-                width: constants.width - 10,
-                marginBottom: 5
-              }
-            }}
-            label={"Di động"}
+            style={styles.textInputCustom}
+            label={string.phoneNumberLabel}
             keyboardType={"numeric"}
           />
           <TextInputCustom
             onChangeText={text => this.setState({ email: text })}
             value={this.state.email}
-            style={{
-              container: {
-                width: constants.width - 10,
-                marginBottom: 5
-              }
-            }}
-            label={"Email"}
+            style={styles.textInputCustom}
+            label={string.emailLabel}
             keyboardType={"email-address"}
           />
         </ScrollView>
@@ -68,11 +50,5 @@ class Step6 extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-})
 
 export default Step6
