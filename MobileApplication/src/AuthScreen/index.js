@@ -10,6 +10,7 @@ import {
   Animated
 } from "react-native"
 import constants from "../Constant"
+import styles from "./styles"
 import { connect } from "react-redux"
 import { signInAction, signUpAction } from "./authAction"
 import { SafeAreaView } from "react-navigation"
@@ -17,7 +18,7 @@ import {
   faUser,
   faUserLock,
   faMailBulk,
-  faPhone,
+  faPhone
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
@@ -29,8 +30,8 @@ function ButtonCustom(props) {
       justifyContent: "center",
       alignItems: "center",
       padding: 10,
-      borderTopLeftRadius: props.borderRadius ? props.borderRadius : 20,
-      borderBottomRightRadius: props.borderRadius ? props.borderRadius : 20,
+      borderTopLeftRadius: props.borderRadius || 20,
+      borderBottomRightRadius: props.borderRadius || 20,
       borderColor: "gray",
       borderWidth: 0.5
     },
@@ -88,27 +89,6 @@ function TextInputCustom(props) {
 }
 
 function SignIn(props) {
-  const stylesSignIn = StyleSheet.create({
-    input_container: { alignItems: "center", marginBottom: 40 },
-    input: {
-      width: 0.7 * constants.width + 10,
-      borderTopLeftRadius: 15,
-      marginBottom: 1
-    },
-    button_forgot_password: {
-      width: 0.7 * constants.width + 10,
-      alignItems: "flex-end"
-    },
-    button_container: { alignItems: "center" },
-    button_signIn: {
-      width: 0.7 * constants.width + 10,
-      marginBottom: 10,
-      paddingTop: 15,
-      paddingBottom: 15
-    },
-    social_container: { flexDirection: "row" },
-    button_custom: { marginRight: 10 }
-  })
   return (
     <Animated.View
       style={{
@@ -118,9 +98,9 @@ function SignIn(props) {
         })
       }}
     >
-      <View style={stylesSignIn.input_container}>
+      <View style={styles.stylesSignIn.input_container}>
         <TextInputCustom
-          style={stylesSignIn.input}
+          style={styles.stylesSignIn.input}
           icon={faMailBulk}
           placeholder={constants.authScreen.email}
           value={props.email}
@@ -129,7 +109,7 @@ function SignIn(props) {
           returnKeyType={"next"}
         />
         <TextInputCustom
-          style={stylesSignIn.input}
+          style={styles.stylesSignIn.input}
           icon={faUserLock}
           placeholder={constants.authScreen.password}
           value={props.password}
@@ -137,24 +117,24 @@ function SignIn(props) {
           secureTextEntry={true}
           returnKeyType={"go"}
         />
-        <View style={stylesSignIn.button_forgot_password}>
+        <View style={styles.stylesSignIn.button_forgot_password}>
           <TouchableOpacity onPress={() => alert(constants.commingSoon)}>
             <Text>{constants.authScreen.forgotPassword}</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={stylesSignIn.button_container}>
+      <View style={styles.stylesSignIn.button_container}>
         <ButtonCustom
-          style={stylesSignIn.button_signIn}
+          style={styles.stylesSignIn.button_signIn}
           label={constants.authScreen.textSignIn}
           textColor={"white"}
           backgroundColor={"#4285F4"}
           onPress={() => props.onPress()}
         />
         <Text style={{ marginBottom: 10 }}>{constants.authScreen.or}</Text>
-        <View style={stylesSignIn.social_container}>
+        <View style={styles.stylesSignIn.social_container}>
           <ButtonCustom
-            style={stylesSignIn.button_custom}
+            style={styles.stylesSignIn.button_custom}
             borderRadius={10}
             icon={faFacebookF}
             iconColor={"white"}
@@ -175,21 +155,6 @@ function SignIn(props) {
 }
 
 function SignUp(props) {
-  const stylesSignUp = StyleSheet.create({
-    input_container: { alignItems: "center", marginBottom: 40 },
-    input: {
-      width: 0.7 * constants.width + 10,
-      borderTopLeftRadius: 15,
-      marginBottom: 1
-    },
-    button_container: { alignItems: "center" },
-    button_signUp: {
-      width: 0.7 * constants.width + 10,
-      marginBottom: 10,
-      paddingTop: 15,
-      paddingBottom: 15
-    }
-  })
   return (
     <Animated.View
       style={{
@@ -199,9 +164,9 @@ function SignUp(props) {
         })
       }}
     >
-      <View style={stylesSignUp.input_container}>
+      <View style={styles.stylesSignUp.input_container}>
         <TextInputCustom
-          style={stylesSignUp.input}
+          style={styles.stylesSignUp.input}
           icon={faUser}
           placeholder={constants.authScreen.fullName}
           value={props.fullName}
@@ -209,7 +174,7 @@ function SignUp(props) {
           returnKeyType={"next"}
         />
         <TextInputCustom
-          style={stylesSignUp.input}
+          style={styles.stylesSignUp.input}
           icon={faUserLock}
           placeholder={constants.authScreen.password}
           value={props.password}
@@ -218,7 +183,7 @@ function SignUp(props) {
           returnKeyType={"next"}
         />
         <TextInputCustom
-          style={stylesSignUp.input}
+          style={styles.stylesSignUp.input}
           icon={faMailBulk}
           placeholder={constants.authScreen.email}
           value={props.email}
@@ -227,7 +192,7 @@ function SignUp(props) {
           returnKeyType={"next"}
         />
         <TextInputCustom
-          style={stylesSignUp.input}
+          style={styles.stylesSignUp.input}
           icon={faPhone}
           placeholder={constants.authScreen.telephoneNumber}
           value={props.phone}
@@ -236,9 +201,9 @@ function SignUp(props) {
           returnKeyType={"next"}
         />
       </View>
-      <View style={stylesSignUp.button_container}>
+      <View style={styles.stylesSignUp.button_container}>
         <ButtonCustom
-          style={stylesSignUp.button_signUp}
+          style={styles.stylesSignUp.button_signUp}
           label={constants.authScreen.textSignUp}
           textColor={"white"}
           backgroundColor={"#4285F4"}
@@ -330,11 +295,11 @@ class AuthScreen extends Component {
   render() {
     const { status, focusedAnim, signIn, signUp } = this.state
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.main.container}>
         <ImageBackground
-          imageStyle={styles.image_style_background}
+          imageStyle={styles.main.image_style_background}
           source={require("../../res/background.jpg")}
-          style={styles.background_image}
+          style={styles.main.background_image}
         >
           <View
             style={{
@@ -411,17 +376,6 @@ class AuthScreen extends Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  background_image: {
-    flex: 1,
-    justifyContent: "center"
-  },
-  image_style_background: { opacity: 0.5 }
-})
 
 const mapStateToProps = state => {
   return {

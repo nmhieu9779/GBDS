@@ -4,7 +4,7 @@ import constants from "../../Constant"
 import style from "../style"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
-// import MapView from "react-native-maps"
+import MapView from "react-native-maps"
 
 class Step5 extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Step5 extends Component {
         <Header text={string.header} />
         <ScrollView>
           <Text style={styles.note}>{string.suggest}</Text>
-          {/* <MapView
+          <MapView
             style={styles.map}
             region={{
               latitude: 42.882004,
@@ -29,7 +29,7 @@ class Step5 extends Component {
               longitudeDelta: 0.0421
             }}
             showsUserLocation={true}
-          /> */}
+          />
           <Text style={styles.note}>{string.note}</Text>
         </ScrollView>
       </SafeAreaView>

@@ -4,7 +4,7 @@ const style = {
   for_sale_post_container: { flex: 1, backgroundColor: "white" },
   item: {
     width: constants.width,
-    height: constants.height - 50
+    height: constants.height - 70
   },
   step_container: {
     height: 50,
@@ -14,6 +14,7 @@ const style = {
   scrollView: { alignItems: "center" },
   step1: {
     container: { flex: 1 },
+    contentContainerStyle: { alignItems: "center" },
     title: {
       labelStyle: {
         color: "red"
@@ -85,7 +86,7 @@ const style = {
   },
   step3: {
     container: { flex: 1 },
-    contentContainerStyle: { alignItems: "center", paddingBottom: 50 },
+    contentContainerStyle: { alignItems: "center" },
     suggest: {
       fontStyle: "italic",
       color: "gray",
@@ -128,6 +129,23 @@ const style = {
       fontStyle: "italic",
       color: "gray",
       padding: 10
+    },
+    imageContainer: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "center"
+    },
+    image: {
+      width: constants.width / 2 - 10,
+      height: constants.width / 2 - 10,
+      borderWidth: 1,
+      borderRadius: 5,
+      borderStyle: "dashed",
+      borderColor: "#C9D9CB"
+    },
+    center: {
+      justifyContent: "center",
+      alignItems: "center"
     }
   },
   step5: {

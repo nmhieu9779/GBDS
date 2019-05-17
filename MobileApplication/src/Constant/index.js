@@ -153,7 +153,8 @@ const constants = {
       header: "Hình ảnh và video",
       note: "Tối đa 8 ảnh với tin thường và 16 với tin VIP. Mỗi ảnh tối đa 2MB",
       suggest:
-        "Tin rao có ảnh sẽ được xem nhiều hơn gấp 10 lần và được nhiều người gọi gấp 5 lần so với tin rao không có ảnh. Hãy đăng ảnh để được giao dịch nhanh chóng!"
+        "Tin rao có ảnh sẽ được xem nhiều hơn gấp 10 lần và được nhiều người gọi gấp 5 lần so với tin rao không có ảnh. Hãy đăng ảnh để được giao dịch nhanh chóng!",
+      image: "Click để tải hình ảnh"
     },
     step5: {
       header: "Bản đồ",

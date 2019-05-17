@@ -36,7 +36,7 @@ class Step1 extends Component {
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
         <Header text={string.header} />
-        <ScrollView contentContainerStyle={styles.scrollView}>
+        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
           <TextInputCustom
             onChangeText={text => this.setState({ productTitle: text })}
             value={this.state.productTitle}
