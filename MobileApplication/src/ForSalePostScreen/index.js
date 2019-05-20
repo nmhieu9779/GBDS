@@ -3,6 +3,8 @@ import { ScrollView } from "react-native"
 import constants from "../Constant"
 import { SafeAreaView } from "react-navigation"
 import Breadcrumb from "../Component/Breadcrumb"
+import TopBarMenu from "../Component/Menu/top-bar-menu"
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import Step1 from "./Component/Step1"
 import Step2 from "./Component/Step2"
 import Step3 from "./Component/Step3"
@@ -21,6 +23,13 @@ class ForSalePostScreen extends Component {
   render() {
     return (
       <SafeAreaView style={style.for_sale_post_container}>
+        <TopBarMenu
+          icon={{ left: faArrowLeft }}
+          title={"Đăng bài bán"}
+          onPressLeft={() => {
+            this.props.navigation.goBack()
+          }}
+        />
         <ScrollView
           ref={ref => {
             this.scrollView = ref

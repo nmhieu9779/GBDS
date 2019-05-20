@@ -5,7 +5,7 @@ import style from "../style"
 import { SafeAreaView } from "react-navigation"
 import TextInputCustom from "../../Component/TextInputCustom"
 import Header from "../../Component/HeaderPost"
-import ComboBox from "../../Component/ComboBox"
+import ComboBox from "../../Component/combobox"
 
 class Step3 extends Component {
   constructor(props) {

@@ -10,7 +10,7 @@ import {
 import constants from "../../Constant"
 import propTypes from "prop-types"
 import TextInputCustom from "../../Component/TextInputCustom"
-import ComboBox from "../../Component/ComboBox"
+import ComboBox from "../../Component/combobox"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
 

@@ -1,4 +1,4 @@
-import constants from "../../Constant"
+import constants from "../../../Constant"
 const axios = require("axios")
 
 function* getCity() {

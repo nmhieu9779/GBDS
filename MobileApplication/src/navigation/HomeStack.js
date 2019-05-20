@@ -17,9 +17,9 @@ import {
 import constants from "../Constant"
 import { faDollarSign } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
-import HomeScreen from "../HomeScreen/HomeScreen"
+import HomeScreen from "../HomeScreen"
 import ForSalePostScreen from "../ForSalePostScreen"
-import ForRentPostScreen from '../ForRentPostCreen';
+import ForRentPostScreen from "../ForRentPostCreen"
 
 const menu = [
   {
@@ -237,7 +237,9 @@ const style = StyleSheet.create({
 
 const HomeStack = createDrawerNavigator(
   {
-    HomeScreen: { screen: HomeScreen },
+    HomeScreen: {
+      screen: HomeScreen
+    },
     ForSalePostScreen: {
       screen: ForSalePostScreen
     },
@@ -246,7 +248,7 @@ const HomeStack = createDrawerNavigator(
     }
   },
   {
-    initialRouteName: "ForSalePostScreen",
+    initialRouteName: "HomeScreen",
     contentComponent: DrawerMenu
   }
 )

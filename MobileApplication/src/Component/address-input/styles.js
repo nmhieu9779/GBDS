@@ -3,7 +3,8 @@ import constants from "../../Constant"
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "white"
   },
   containerCombobox: {
     width: constants.width,

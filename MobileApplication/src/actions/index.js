@@ -24,3 +24,7 @@ export const GET_STREET_FAILURE = "get_street_failure"
 
 export const OPEN_HUD = "open_hud"
 export const CLOSE_HUD = "close_hud"
+
+export const GET_PRODUCT_TYPE = "get_product_type"
+export const GET_PRODUCT_CATE = "get_product_cate"
+export const GET_PRICE = "get_price"

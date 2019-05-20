@@ -10,21 +10,17 @@ import {
 import constants from "../../Constant"
 import propTypes from "prop-types"
 import TextInputCustom from "../../Component/TextInputCustom"
-import ComboBox from "../../Component/ComboBox"
+import ComboBox from "../../Component/combobox"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
 
 class Step1 extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-
-    }
+    this.state = {}
   }
 
-  componentDidMount = () => {
-
-  }
+  componentDidMount = () => {}
   render() {
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
@@ -44,7 +40,8 @@ class Step1 extends Component {
             }}
             label={"Tiêu đề"}
           />
-          <View style={{ marginTop: 20 }} ><Text>{"Nội dung đăng tin"}</Text>
+          <View style={{ marginTop: 20 }}>
+            <Text>{"Nội dung đăng tin"}</Text>
             <TextInput
               style={{
                 height: constants.width / 2,
@@ -56,7 +53,8 @@ class Step1 extends Component {
                 borderRadius: 10
               }}
               multiline={true}
-            /></View>
+            />
+          </View>
         </ScrollView>
       </SafeAreaView>
     )

@@ -4,7 +4,7 @@ import constants from "../../Constant"
 import style from "../style"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
-import ComboBox from "../../Component/ComboBox"
+import ComboBox from "../../Component/combobox"
 import DatePicker from "react-native-datepicker"
 import moment from "moment"
 

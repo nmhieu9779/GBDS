@@ -3,10 +3,11 @@ import { Text, View, TextInput, ScrollView } from "react-native"
 import constants from "../../Constant"
 import propTypes from "prop-types"
 import TextInputCustom from "../../Component/TextInputCustom"
-import ComboBox from "../../Component/ComboBox"
+import ComboBox from "../../Component/combobox"
 import Header from "../../Component/HeaderPost"
 import { SafeAreaView } from "react-navigation"
-import AddressInput from "../../Component/AddressInput"
+import AddressInput from "../../Component/address-input"
+import TypeProduct from "../../Component/type-product"
 import style from "../style"
 
 class Step1 extends Component {
@@ -43,27 +44,12 @@ class Step1 extends Component {
             style={Object.assign(styles.title, styles.textInput)}
             label={string.productTitle}
           />
-          <ComboBox
-            style={styles.combobox}
-            data={string.productType.data}
-            selected={this.state.productTypeSelected}
-            title={string.productType.title}
-            label={string.productType.label}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected)
-            }}
-          />
-          <ComboBox
-            style={styles.combobox}
-            data={[]}
-            selected={this.state.productCateSelected}
-            title={string.productCate.title}
-            label={string.productCate.label}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected)
-            }}
-          />
+          <TypeProduct isProductType={true} isProductCate={true} />
           <AddressInput
+            isCity={true}
+            isDistrict={true}
+            isWard={true}
+            isStreet={true}
             onChangeAddress={address => this.setState({ address: address })}
           />
           <TextInputCustom
@@ -82,15 +68,7 @@ class Step1 extends Component {
             label={string.priceLabel}
             keyboardType={"numeric"}
           >
-            <ComboBox
-              style={styles.price}
-              data={[]}
-              selected={this.state.priceSelected}
-              title={string.price.title}
-              onChangeSelected={selected => {
-                this.setState({ priceSelected: selected })
-              }}
-            />
+            <TypeProduct isPrice={true} style={styles.price} />
           </TextInputCustom>
           <View style={styles.priceContainer}>
             <Text style={styles.priceTitle}>{string.priceTitle}</Text>

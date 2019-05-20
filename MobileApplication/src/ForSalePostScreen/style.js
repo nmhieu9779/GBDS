@@ -34,14 +34,6 @@ const style = {
       combobox: { flex: 2 }
     },
     area: { position: "absolute", right: 5, bottom: 3 },
-    price: {
-      container: {
-        width: constants.width / 2,
-        position: "absolute",
-        right: 5,
-        bottom: 3
-      }
-    },
     priceContainer: {
       flexDirection: "row",
       padding: 5,
@@ -62,6 +54,12 @@ const style = {
       borderRadius: 5,
       marginLeft: 10,
       padding: 5
+    },
+    price: {
+      width: constants.width / 2,
+      position: "absolute",
+      right: 5,
+      bottom: 3
     }
   },
   step2: {

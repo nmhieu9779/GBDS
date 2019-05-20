@@ -4,7 +4,6 @@ import { AppRegistry } from "react-native"
 import React from "react"
 // import App from "./App"
 import { name as appName } from "./app.json"
-// import AppContainer from "./src/navigation/Navigate"
 //redux
 import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
@@ -20,7 +19,8 @@ const sagaMiddleware = createSagaMiddleware()
 let store = createStore(allReducers, applyMiddleware(sagaMiddleware))
 
 import AppContainer from "./src/navigation/navigate"
-import ProcessHUD from "./src/Component/ProcessHUD"
+import ProcessHUD from "./src/Component/process-hud"
+import MyMapView from "./my-map-view"
 
 const App = () => (
   <Provider store={store}>

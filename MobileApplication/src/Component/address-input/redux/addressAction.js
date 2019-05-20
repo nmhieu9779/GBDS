@@ -11,7 +11,7 @@ import {
   GET_STREET,
   GET_STREET_SUCCESS,
   GET_STREET_FAILURE
-} from "../../actions"
+} from "../../../actions"
 
 export const getCityAction = payload => ({
   type: GET_CITY,

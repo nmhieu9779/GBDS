@@ -1,19 +1,15 @@
 import {
   GET_CITY,
   GET_CITY_SUCCESS,
-  GET_CITY_FAILURE,
   GET_DISTRICT,
   GET_DISTRICT_SUCCESS,
-  GET_DISTRICT_FAILURE,
   GET_WARD,
   GET_WARD_SUCCESS,
-  GET_WARD_FAILURE,
   GET_STREET,
   GET_STREET_SUCCESS,
-  GET_STREET_FAILURE,
   OPEN_HUD,
   CLOSE_HUD
-} from "../../actions"
+} from "../../../actions"
 import { put, takeLatest, call } from "redux-saga/effects"
 import { Api } from "./addressApi"
 
@@ -26,6 +22,7 @@ formatData = data =>
 
 function* handleResponse(response, typeSuccess) {
   if (response.status === 200) {
+    console.log("a")
     const data = this.formatData(response.data.content)
     yield put({ type: typeSuccess, data })
     yield put({ type: CLOSE_HUD })
