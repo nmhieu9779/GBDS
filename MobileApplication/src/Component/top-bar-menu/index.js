@@ -1,8 +1,7 @@
 import React, { PureComponent } from "react"
-import { StyleSheet, Platform, Dimensions } from "react-native"
-import { SafeAreaView } from "react-navigation"
 import Icon from "./icon"
 import Title from "./title"
+import styles from "./styles"
 import SafeAreaViewBoxShadow from "../safe-area-view-box-shadow"
 
 class TopBarMenu extends PureComponent {
@@ -28,18 +27,5 @@ class TopBarMenu extends PureComponent {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    width: "100%",
-    height: 56,
-    backgroundColor: "white",
-    alignItems: "center"
-  },
-  icon: {
-    margin: 16
-  }
-})
 
 export default TopBarMenu

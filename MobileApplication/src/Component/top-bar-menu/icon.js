@@ -2,7 +2,7 @@ import React, { PureComponent } from "react"
 import { TouchableOpacity, View } from "react-native"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 
-class LeftIcon extends PureComponent {
+class Icon extends PureComponent {
   constructor(props) {
     super(props)
   }
@@ -23,4 +23,4 @@ class LeftIcon extends PureComponent {
   }
 }
 
-export default LeftIcon
+export default Icon

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { StyleSheet } from "react-native"
-import TopBarMenu from "../Component/Menu/top-bar-menu"
+import TopBarMenu from "../Component/top-bar-menu"
 import { SafeAreaView } from "react-navigation"
 import { faBars, faFilter } from "@fortawesome/free-solid-svg-icons"
 import Filter from "./Component/filter"

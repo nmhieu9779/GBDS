@@ -15,7 +15,13 @@ const typeProductReducers = (state = initStateTypeProduct, action) => {
       newState.productType = strings.productType.data
       break
     case GET_PRODUCT_CATE:
-      newState.productCate = strings.productCate.data[action.productTypeId]
+      console.log(
+        strings.productCate.data[action.postTypeId][action.productTypeId],
+        action.postTypeId,
+        action.productTypeId
+      )
+      newState.productCate =
+        strings.productCate.data[action.postTypeId][action.productTypeId]
       break
     case GET_PRICE:
       newState.price = strings.price.data[action.productTypeId]

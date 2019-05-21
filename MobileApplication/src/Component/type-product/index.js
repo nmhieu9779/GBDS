@@ -35,7 +35,8 @@ class TypeProduct extends Component {
       productCate,
       price,
       getProductCate,
-      getPrice
+      getPrice,
+      postTypeId
     } = this.props
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
@@ -45,14 +46,14 @@ class TypeProduct extends Component {
               container: styles.containerCombobox,
               combobox: styles.combobox
             }}
-            data={productType}
+            data={productType[postTypeId]}
             selected={this.state.productTypeSelected}
             title={strings.productType.title}
             label={strings.productType.label}
             onChangeSelected={selected => {
               this.onChangeSelected(selected, "productTypeSelected")
-              getProductCate(selected)
-              getPrice(selected)
+              getProductCate(postTypeId, selected)
+              postTypeId === 1 && getPrice(selected)
             }}
           />
         )}
@@ -90,7 +91,6 @@ class TypeProduct extends Component {
 }
 
 const mapStateToProps = ({ typeProductReducers }) => {
-  console.log(typeProductReducers)
   return {
     productType: typeProductReducers.productType,
     productCate: typeProductReducers.productCate,
@@ -103,8 +103,8 @@ const mapDispatchToProps = dispatch => {
     getProductType: () => {
       dispatch(getProductTypeAction())
     },
-    getProductCate: productTypeId => {
-      dispatch(getProductCateAction(productTypeId))
+    getProductCate: (postTypeId, productTypeId) => {
+      dispatch(getProductCateAction(postTypeId, productTypeId))
     },
     getPrice: productTypeId => {
       dispatch(getPriceAction(productTypeId))

@@ -24,13 +24,13 @@ const constants = {
   },
   ForSalePostScreen: {
     labelStep: [
-      { labelSelected: "Bước 1", label: "1", isFirst: true },
-      { labelSelected: "Bước 2", label: "2" },
-      { labelSelected: "Bước 3", label: "3" },
-      { labelSelected: "Bước 4", label: "4" },
-      { labelSelected: "Bước 5", label: "5" },
-      { labelSelected: "Bước 6", label: "6" },
-      { labelSelected: "Bước 7", label: "7", isLast: true }
+      { length: 7, label: "1", isFirst: true },
+      { length: 7, label: "2" },
+      { length: 7, label: "3" },
+      { length: 7, label: "4" },
+      { length: 7, label: "5" },
+      { length: 7, label: "6" },
+      { length: 7, label: "7", isLast: true }
     ],
     step1: {
       header: "Thông tin cơ bản",

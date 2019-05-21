@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import { ScrollView } from "react-native"
 import constants from "../Constant"
 import { SafeAreaView } from "react-navigation"
-import Breadcrumb from "../Component/Breadcrumb"
-import TopBarMenu from "../Component/Menu/top-bar-menu"
+import Breadcrumb from "../Component/breadcrumb"
+import TopBarMenu from "../Component/top-bar-menu"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import Step1 from "./Component/Step1"
 import Step2 from "./Component/Step2"
@@ -17,7 +17,7 @@ import style from "./style"
 class ForSalePostScreen extends Component {
   constructor(props) {
     super(props)
-    this.state = { step: 2 }
+    this.state = { step: 0 }
   }
 
   render() {
@@ -53,7 +53,6 @@ class ForSalePostScreen extends Component {
           <Step7 style={style.item} ref={r => (this.step7Ref = r)} />
         </ScrollView>
         <Breadcrumb
-          styleContainer={style.step_container}
           itemSelected={this.state.step}
           onItemPress={e => {
             this.onPressStepItem(e)

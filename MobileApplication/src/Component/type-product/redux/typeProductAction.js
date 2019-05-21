@@ -2,8 +2,9 @@ import { GET_PRODUCT_TYPE, GET_PRODUCT_CATE, GET_PRICE } from "../../../actions"
 
 export const getProductTypeAction = () => ({ type: GET_PRODUCT_TYPE })
 
-export const getProductCateAction = productTypeId => ({
+export const getProductCateAction = (postTypeId, productTypeId) => ({
   type: GET_PRODUCT_CATE,
+  postTypeId: postTypeId,
   productTypeId: productTypeId
 })
 

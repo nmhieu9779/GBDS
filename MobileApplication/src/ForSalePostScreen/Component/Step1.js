@@ -44,7 +44,11 @@ class Step1 extends Component {
             style={Object.assign(styles.title, styles.textInput)}
             label={string.productTitle}
           />
-          <TypeProduct isProductType={true} isProductCate={true} />
+          <TypeProduct
+            isProductType={true}
+            isProductCate={true}
+            postTypeId={1}
+          />
           <AddressInput
             isCity={true}
             isDistrict={true}

@@ -1,10 +1,18 @@
 import constants from "../Constant"
+import { Platform } from "react-native"
 
 const style = {
   for_sale_post_container: { flex: 1, backgroundColor: "white" },
   item: {
     width: constants.width,
-    height: constants.height - 70
+    ...Platform.select({
+      ios: {
+        height: constants.height - 126
+      },
+      android: {
+        height: constants.height - 146
+      }
+    })
   },
   scrollView: { alignItems: "center" },
   step1: {
