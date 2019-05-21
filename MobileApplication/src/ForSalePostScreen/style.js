@@ -6,11 +6,6 @@ const style = {
     width: constants.width,
     height: constants.height - 70
   },
-  step_container: {
-    height: 50,
-    width: null,
-    flexDirection: "row"
-  },
   scrollView: { alignItems: "center" },
   step1: {
     container: { flex: 1 },

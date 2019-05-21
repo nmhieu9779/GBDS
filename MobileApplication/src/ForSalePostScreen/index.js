@@ -17,7 +17,7 @@ import style from "./style"
 class ForSalePostScreen extends Component {
   constructor(props) {
     super(props)
-    this.state = { step: 0 }
+    this.state = { step: 2 }
   }
 
   render() {
