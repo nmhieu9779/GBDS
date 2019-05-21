@@ -27,4 +27,6 @@ export const CLOSE_HUD = "close_hud"
 
 export const GET_PRODUCT_TYPE = "get_product_type"
 export const GET_PRODUCT_CATE = "get_product_cate"
+export const GET_PRICE_UNIT = "get_price_unit"
+export const GET_AREA = "get_area"
 export const GET_PRICE = "get_price"

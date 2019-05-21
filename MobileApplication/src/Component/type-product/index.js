@@ -3,7 +3,9 @@ import { connect } from "react-redux"
 import {
   getProductTypeAction,
   getProductCateAction,
-  getPriceAction
+  getPriceAction,
+  getAreaAction,
+  getPriceUnitAction
 } from "./redux/typeProductAction"
 import { SafeAreaView } from "react-navigation"
 import ComboBox from "../combobox"
@@ -14,10 +16,10 @@ class TypeProduct extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      dataProductCate: [],
-      dataPrice: [],
       productTypeSelected: -1,
       productCateSelected: -1,
+      priceUnitSelected: -1,
+      areaSelected: -1,
       priceSelected: -1
     }
   }
@@ -30,11 +32,17 @@ class TypeProduct extends Component {
     const {
       isProductType,
       isProductCate,
+      isPriceUnit,
+      isArea,
       isPrice,
       productType,
       productCate,
+      priceUnit,
+      area,
       price,
       getProductCate,
+      getPriceUnit,
+      getArea,
       getPrice,
       postTypeId
     } = this.props
@@ -46,14 +54,15 @@ class TypeProduct extends Component {
               container: styles.containerCombobox,
               combobox: styles.combobox
             }}
-            data={productType[postTypeId]}
+            data={productType[postTypeId] || []}
             selected={this.state.productTypeSelected}
             title={strings.productType.title}
             label={strings.productType.label}
             onChangeSelected={selected => {
               this.onChangeSelected(selected, "productTypeSelected")
-              getProductCate(postTypeId, selected)
-              postTypeId === 1 && getPrice(selected)
+              postTypeId === 0 && (getArea(), getPrice(selected))
+              postTypeId === 1 && getProductCate(postTypeId, selected),
+                getPriceUnit(selected)
             }}
           />
         )}
@@ -72,11 +81,41 @@ class TypeProduct extends Component {
             }}
           />
         )}
+        {isPriceUnit && (
+          <ComboBox
+            data={priceUnit}
+            selected={this.state.priceSelected}
+            title={strings.priceUnit.title}
+            onChangeSelected={selected => {
+              this.onChangeSelected(selected, "priceUnitSelected")
+            }}
+          />
+        )}
+        {isArea && (
+          <ComboBox
+            style={{
+              container: styles.containerCombobox,
+              combobox: styles.combobox
+            }}
+            data={area}
+            selected={this.state.areaSelected}
+            title={strings.area.title}
+            label={strings.area.label}
+            onChangeSelected={selected => {
+              this.onChangeSelected(selected, "areaSelected")
+            }}
+          />
+        )}
         {isPrice && (
           <ComboBox
+            style={{
+              container: styles.containerCombobox,
+              combobox: styles.combobox
+            }}
             data={price}
             selected={this.state.priceSelected}
             title={strings.price.title}
+            label={strings.price.label}
             onChangeSelected={selected => {
               this.onChangeSelected(selected, "priceSelected")
             }}
@@ -94,6 +133,8 @@ const mapStateToProps = ({ typeProductReducers }) => {
   return {
     productType: typeProductReducers.productType,
     productCate: typeProductReducers.productCate,
+    priceUnit: typeProductReducers.priceUnit,
+    area: typeProductReducers.area,
     price: typeProductReducers.price
   }
 }
@@ -105,6 +146,12 @@ const mapDispatchToProps = dispatch => {
     },
     getProductCate: (postTypeId, productTypeId) => {
       dispatch(getProductCateAction(postTypeId, productTypeId))
+    },
+    getPriceUnit: productTypeId => {
+      dispatch(getPriceUnitAction(productTypeId))
+    },
+    getArea: () => {
+      dispatch(getAreaAction())
     },
     getPrice: productTypeId => {
       dispatch(getPriceAction(productTypeId))

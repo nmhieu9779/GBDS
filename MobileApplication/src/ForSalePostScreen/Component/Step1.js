@@ -72,7 +72,7 @@ class Step1 extends Component {
             label={string.priceLabel}
             keyboardType={"numeric"}
           >
-            <TypeProduct isPrice={true} style={styles.price} />
+            <TypeProduct isPriceUnit={true} style={styles.price} />
           </TextInputCustom>
           <View style={styles.priceContainer}>
             <Text style={styles.priceTitle}>{string.priceTitle}</Text>

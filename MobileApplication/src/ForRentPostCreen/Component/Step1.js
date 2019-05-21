@@ -32,6 +32,7 @@ class Step1 extends Component {
             isStreet={true}
             onChangeAddress={() => {}}
           />
+          <TypeProduct isArea={true} isPrice={true} postTypeId={0} />
         </ScrollView>
       </SafeAreaView>
     )
