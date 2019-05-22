@@ -11,6 +11,32 @@ import {
   getstreetAction
 } from "./redux/actions"
 
+const ComboBoxDetail = ({
+  is,
+  style,
+  data,
+  selected,
+  title,
+  label,
+  onChangeSelected
+}) =>
+  (is && (
+    <ComboBox
+      style={
+        style || {
+          container: styles.containerCombobox,
+          combobox: styles.combobox
+        }
+      }
+      data={data}
+      selected={selected}
+      title={title}
+      label={label}
+      onChangeSelected={onChangeSelected.bind(this)}
+    />
+  )) ||
+  null
+
 class AddressInput extends Component {
   constructor(props) {
     super(props)
@@ -48,70 +74,50 @@ class AddressInput extends Component {
     } = this.state
     return (
       <SafeAreaView style={styles.container}>
-        {isCity && (
-          <ComboBox
-            style={{
-              container: styles.containerCombobox,
-              combobox: styles.combobox
-            }}
-            data={city}
-            selected={citySelected}
-            title={strings.city.title}
-            label={strings.city.label}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected, "citySelected")
-              isDistrict && getDistrict(city[selected].id)
-            }}
-          />
-        )}
-        {isDistrict && (
-          <ComboBox
-            style={{
-              container: styles.containerCombobox,
-              combobox: styles.combobox
-            }}
-            data={district}
-            selected={districtSelected}
-            title={strings.district.title}
-            label={strings.district.label}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected, "districtSelected")
-              isWard && getWard(city[citySelected].id, district[selected].id)
-            }}
-          />
-        )}
-        {isWard && (
-          <ComboBox
-            style={{
-              container: styles.containerCombobox,
-              combobox: styles.combobox
-            }}
-            data={ward}
-            selected={wardSelected}
-            title={strings.ward.title}
-            label={strings.ward.label}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected, "wardSelected")
-              isStreet &&
-                getStreet(city[citySelected].id, district[districtSelected].id)
-            }}
-          />
-        )}
-        {isStreet && (
-          <ComboBox
-            style={{
-              container: styles.containerCombobox,
-              combobox: styles.combobox
-            }}
-            data={street}
-            selected={streetSelected}
-            title={strings.street.title}
-            label={strings.street.label}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected, "streetSelected")
-            }}
-          />
-        )}
+        <ComboBoxDetail
+          is={isCity}
+          data={city}
+          selected={citySelected}
+          title={strings.city.title}
+          label={strings.city.label}
+          onChangeSelected={selected => {
+            this.onChangeSelected(selected, "citySelected")
+            isDistrict && getDistrict(city[selected].id)
+          }}
+        />
+        <ComboBoxDetail
+          is={isDistrict}
+          data={district}
+          selected={districtSelected}
+          title={strings.district.title}
+          label={strings.district.label}
+          onChangeSelected={selected => {
+            this.onChangeSelected(selected, "districtSelected")
+            isWard && getWard(city[citySelected].id, district[selected].id)
+          }}
+        />
+        <ComboBoxDetail
+          is={isWard}
+          data={ward}
+          selected={wardSelected}
+          title={strings.ward.title}
+          label={strings.ward.label}
+          onChangeSelected={selected => {
+            this.onChangeSelected(selected, "wardSelected")
+            isStreet &&
+              getStreet(city[citySelected].id, district[districtSelected].id)
+          }}
+        />
+        <ComboBoxDetail
+          is={isStreet}
+          data={street}
+          selected={streetSelected}
+          title={strings.street.title}
+          label={strings.street.label}
+          onChangeSelected={selected => {
+            this.onChangeSelected(selected, "streetSelected")
+          }}
+        />
       </SafeAreaView>
     )
   }

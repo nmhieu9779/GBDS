@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { PureComponent } from "react"
 import { connect } from "react-redux"
 import {
   getProductTypeAction,
@@ -12,7 +12,33 @@ import ComboBox from "../combobox"
 import styles from "./styles"
 import strings from "./strings"
 
-class TypeProduct extends Component {
+const ComboBoxDetail = ({
+  is,
+  style,
+  data,
+  selected,
+  title,
+  label,
+  onChangeSelected
+}) =>
+  (is && (
+    <ComboBox
+      style={
+        style || {
+          container: styles.containerCombobox,
+          combobox: styles.combobox
+        }
+      }
+      data={data}
+      selected={selected}
+      title={title}
+      label={label}
+      onChangeSelected={onChangeSelected.bind(this)}
+    />
+  )) ||
+  null
+
+class TypeProduct extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -40,92 +66,80 @@ class TypeProduct extends Component {
       priceUnit,
       area,
       price,
-      getProductCate,
-      getPriceUnit,
-      getArea,
-      getPrice,
       postTypeId
     } = this.props
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
-        {isProductType && (
-          <ComboBox
-            style={{
-              container: styles.containerCombobox,
-              combobox: styles.combobox
-            }}
-            data={productType[postTypeId] || []}
-            selected={this.state.productTypeSelected}
-            title={strings.productType.title}
-            label={strings.productType.label}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected, "productTypeSelected")
-              postTypeId === 0 && (getArea(), getPrice(selected))
-              postTypeId === 1 && getProductCate(postTypeId, selected),
-                getPriceUnit(selected)
-            }}
-          />
-        )}
-        {isProductCate && (
-          <ComboBox
-            style={{
-              container: styles.containerCombobox,
-              combobox: styles.combobox
-            }}
-            data={productCate}
-            selected={this.state.productCateSelected}
-            title={strings.productCate.title}
-            label={strings.productCate.label}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected, "productCateSelected")
-            }}
-          />
-        )}
-        {isPriceUnit && (
-          <ComboBox
-            data={priceUnit}
-            selected={this.state.priceSelected}
-            title={strings.priceUnit.title}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected, "priceUnitSelected")
-            }}
-          />
-        )}
-        {isArea && (
-          <ComboBox
-            style={{
-              container: styles.containerCombobox,
-              combobox: styles.combobox
-            }}
-            data={area}
-            selected={this.state.areaSelected}
-            title={strings.area.title}
-            label={strings.area.label}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected, "areaSelected")
-            }}
-          />
-        )}
-        {isPrice && (
-          <ComboBox
-            style={{
-              container: styles.containerCombobox,
-              combobox: styles.combobox
-            }}
-            data={price}
-            selected={this.state.priceSelected}
-            title={strings.price.title}
-            label={strings.price.label}
-            onChangeSelected={selected => {
-              this.onChangeSelected(selected, "priceSelected")
-            }}
-          />
-        )}
+        <ComboBoxDetail
+          is={isProductType}
+          data={productType[postTypeId]}
+          selected={this.state.productTypeSelected}
+          title={strings.productType.title}
+          label={strings.productType.label}
+          onChangeSelected={selected => {
+            this.onChangeSelected(selected, "productTypeSelected")
+            this.getData(selected, postTypeId)
+          }}
+        />
+        <ComboBoxDetail
+          is={isProductCate}
+          data={productCate}
+          selected={this.state.productCateSelected}
+          title={strings.productCate.title}
+          label={strings.productCate.label}
+          onChangeSelected={selected => {
+            this.onChangeSelected(selected, "productCateSelected")
+          }}
+        />
+        <ComboBoxDetail
+          is={isPriceUnit}
+          style={{}}
+          data={priceUnit}
+          selected={this.state.priceSelected}
+          title={strings.priceUnit.title}
+          onChangeSelected={selected => {
+            this.onChangeSelected(selected, "priceUnitSelected")
+          }}
+        />
+        <ComboBoxDetail
+          is={isArea}
+          data={area}
+          selected={this.state.areaSelected}
+          title={strings.area.title}
+          label={strings.area.label}
+          onChangeSelected={selected => {
+            this.onChangeSelected(selected, "areaSelected")
+          }}
+        />
+        <ComboBoxDetail
+          is={isPrice}
+          data={price}
+          selected={this.state.priceSelected}
+          title={strings.price.title}
+          label={strings.price.label}
+          onChangeSelected={selected => {
+            this.onChangeSelected(selected, "priceSelected")
+          }}
+        />
       </SafeAreaView>
     )
   }
   onChangeSelected = (selected, name) => {
     this.setState({ [name]: selected })
+  }
+  getData = (selected, postTypeId) => {
+    switch (postTypeId) {
+      case 0:
+        this.props.getProductCate(postTypeId, selected)
+        this.props.getArea()
+        this.props.getPrice(selected)
+        break
+      case 1:
+        this.props.getProductCate(postTypeId, selected)
+        this.props.getPriceUnit(selected)
+      default:
+        break
+    }
   }
 }
 
