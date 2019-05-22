@@ -11,7 +11,7 @@ import {
   CLOSE_HUD
 } from "../../../actions"
 import { put, takeLatest, call } from "redux-saga/effects"
-import { Api } from "./addressApi"
+import { Api } from "./api"
 
 formatData = data =>
   data.map(item => ({
@@ -22,7 +22,6 @@ formatData = data =>
 
 function* handleResponse(response, typeSuccess) {
   if (response.status === 200) {
-    console.log("a")
     const data = this.formatData(response.data.content)
     yield put({ type: typeSuccess, data })
     yield put({ type: CLOSE_HUD })

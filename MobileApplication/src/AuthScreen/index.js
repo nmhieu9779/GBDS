@@ -12,7 +12,7 @@ import {
 import constants from "../Constant"
 import styles from "./styles"
 import { connect } from "react-redux"
-import { signInAction, signUpAction } from "./authAction"
+import { signInAction, signUpAction } from "./redux/actions"
 import { SafeAreaView } from "react-navigation"
 import {
   faUser,

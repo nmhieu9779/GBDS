@@ -9,7 +9,7 @@ import {
   getDistrictAction,
   getWardAction,
   getstreetAction
-} from "./redux/addressAction"
+} from "./redux/actions"
 
 class AddressInput extends Component {
   constructor(props) {

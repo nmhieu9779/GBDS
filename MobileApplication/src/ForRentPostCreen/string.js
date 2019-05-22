@@ -17,3 +17,11 @@ export const string_step2 = {
   productTitle: "Tiêu đề",
   infoPostLabel: "Nội dung đăng tin"
 }
+
+export const string_step3 = {
+  header: "Liên hệ",
+  nameLabel: "Tên liên hệ",
+  addressLable: "Địa chỉ",
+  phoneNumberLabel: "Di động",
+  emailLabel: "Email"
+}

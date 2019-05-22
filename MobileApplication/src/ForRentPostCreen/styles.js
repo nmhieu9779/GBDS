@@ -44,3 +44,12 @@ export const styles_step2 = StyleSheet.create({
     borderRadius: 10
   }
 })
+
+export const styles_step3 = StyleSheet.create({
+  container: { flex: 1 },
+  contentContainerStyle: { alignItems: "center" },
+  textInputCustomContainer: {
+    width: constants.width - 10,
+    marginBottom: 5
+  }
+})

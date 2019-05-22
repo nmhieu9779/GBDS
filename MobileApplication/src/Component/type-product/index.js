@@ -6,7 +6,7 @@ import {
   getPriceAction,
   getAreaAction,
   getPriceUnitAction
-} from "./redux/typeProductAction"
+} from "./redux/actions"
 import { SafeAreaView } from "react-navigation"
 import ComboBox from "../combobox"
 import styles from "./styles"

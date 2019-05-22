@@ -1,5 +1,5 @@
 import { fromJS } from "immutable"
-import { OPEN_HUD, CLOSE_HUD } from "../../actions"
+import { OPEN_HUD, CLOSE_HUD } from "../../../actions"
 
 initStateHud = {
   isLoading: false

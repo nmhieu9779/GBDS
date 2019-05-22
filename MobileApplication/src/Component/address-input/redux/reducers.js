@@ -1,17 +1,9 @@
 import { fromJS } from "immutable"
 import {
-  GET_CITY,
   GET_CITY_SUCCESS,
-  GET_CITY_FAILURE,
-  GET_DISTRICT,
   GET_DISTRICT_SUCCESS,
-  GET_DISTRICT_FAILURE,
-  GET_WARD,
   GET_WARD_SUCCESS,
-  GET_WARD_FAILURE,
-  GET_STREET,
-  GET_STREET_SUCCESS,
-  GET_STREET_FAILURE
+  GET_STREET_SUCCESS
 } from "../../../actions"
 
 initStateAddress = {

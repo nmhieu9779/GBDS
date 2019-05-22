@@ -248,7 +248,7 @@ const HomeStack = createDrawerNavigator(
     }
   },
   {
-    initialRouteName: "ForRentPostScreen",
+    initialRouteName: "HomeScreen",
     contentComponent: DrawerMenu
   }
 )
