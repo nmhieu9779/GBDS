@@ -5,7 +5,7 @@ import {
   SIGN_UP,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE
-} from "../../actions"
+} from "../../redux/actions"
 import AsyncStorage from "@react-native-community/async-storage"
 import { put, takeLatest, call } from "redux-saga/effects"
 import { Api } from "./api"

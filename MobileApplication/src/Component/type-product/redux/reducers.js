@@ -5,7 +5,7 @@ import {
   GET_PRICE_UNIT,
   GET_AREA,
   GET_PRICE
-} from "../../../actions"
+} from "../../../redux/actions"
 import strings from "../strings"
 
 initStateTypeProduct = {

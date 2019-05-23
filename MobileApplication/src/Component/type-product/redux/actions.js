@@ -4,7 +4,7 @@ import {
   GET_PRICE_UNIT,
   GET_AREA,
   GET_PRICE
-} from "../../../actions"
+} from "../../../redux/actions"
 
 export const getProductTypeAction = () => ({ type: GET_PRODUCT_TYPE })
 

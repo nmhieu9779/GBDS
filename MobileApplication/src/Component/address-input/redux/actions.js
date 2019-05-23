@@ -7,7 +7,7 @@ import {
   GET_WARD_SUCCESS,
   GET_STREET,
   GET_STREET_SUCCESS
-} from "../../../actions"
+} from "../../../redux/actions"
 
 export const getCityAction = payload => ({
   type: GET_CITY,

@@ -6,7 +6,7 @@ import {
   SIGN_UP,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE
-} from "../../actions"
+} from "../../redux/actions"
 
 initStateAuth = {
   isLoading: false,

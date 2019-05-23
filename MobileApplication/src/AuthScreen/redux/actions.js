@@ -5,7 +5,7 @@ import {
   SIGN_UP,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE
-} from "../../actions"
+} from "../../redux/actions"
 
 export const signInAction = payload => ({
   type: SIGN_IN,

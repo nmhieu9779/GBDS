@@ -8,11 +8,11 @@ import { name as appName } from "./app.json"
 import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
 
-import allReducers from "./src/reducers"
+import allReducers from "./src/redux/reducers"
 
 // redux saga
 import createSagaMiddleware from "redux-saga"
-import rootSaga from "./src/sagas"
+import rootSaga from "./src/redux/sagas"
 
 const sagaMiddleware = createSagaMiddleware()
 
