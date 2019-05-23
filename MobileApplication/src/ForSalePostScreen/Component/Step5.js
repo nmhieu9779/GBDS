@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Text, ScrollView } from "react-native"
 import constants from "../../Constant"
 import style from "../style"
-import Header from "../../Component/HeaderPost"
+import Header from "../../Component/header-post"
 import { SafeAreaView } from "react-navigation"
 import MapView, { Marker } from "react-native-maps"
 

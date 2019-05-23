@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import { Text, View, TextInput, ScrollView } from "react-native"
 import { styles_step2 as styles } from "../styles"
 import { string_step2 as string } from "../string"
-import TextInputCustom from "../../Component/TextInputCustom"
-import Header from "../../Component/HeaderPost"
+import TextInputCustom from "../../Component/text-input-custom"
+import Header from "../../Component/header-post"
 import { SafeAreaView } from "react-navigation"
 
 class Step2 extends Component {

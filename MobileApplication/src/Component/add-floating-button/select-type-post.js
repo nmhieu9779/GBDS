@@ -2,6 +2,7 @@ import React, { PureComponent } from "react"
 import { View, Text, Modal, TouchableOpacity } from "react-native"
 import SafeAreaViewBoxShadow from "../safe-area-view-box-shadow"
 import styles from "./styles"
+import string from "./string"
 import { connect } from "react-redux"
 import { closeSelectTypePostAction } from "./redux/actions"
 import NavigationService from "../../navigation/NavigationService"
@@ -19,12 +20,11 @@ class SelectTypePost extends PureComponent {
   }
 
   render() {
-    console.log(this.props)
     return (
       <Modal visible={this.state.visiable} transparent={true}>
         <SafeAreaViewBoxShadow style={styles.modalContainer}>
           <View>
-            <Text style={styles.modalTitle}>{"Chọn loại bài cần đăng"}</Text>
+            <Text style={styles.modalTitle}>{string.modalTitle}</Text>
           </View>
           <View style={styles.modalContent} />
           <View style={styles.modalButtonContainer}>
@@ -35,9 +35,7 @@ class SelectTypePost extends PureComponent {
                 NavigationService.navigate("ForSalePostScreen")
               }}
             >
-              <Text style={{ textAlign: "center" }}>
-                {"Cần bán - Cho thuê"}
-              </Text>
+              <Text style={{ textAlign: "center" }}>{string.forSale}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.modalButton}
@@ -46,9 +44,7 @@ class SelectTypePost extends PureComponent {
                 NavigationService.navigate("ForRentPostScreen")
               }}
             >
-              <Text style={{ textAlign: "center" }}>
-                {"Cần mua - Cần thuê"}
-              </Text>
+              <Text style={{ textAlign: "center" }}>{string.forRent}</Text>
             </TouchableOpacity>
           </View>
         </SafeAreaViewBoxShadow>

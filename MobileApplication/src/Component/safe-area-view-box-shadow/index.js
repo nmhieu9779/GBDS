@@ -1,18 +1,9 @@
-import React, { PureComponent } from "react"
+import React from "react"
 import { SafeAreaView } from "react-navigation"
 import styles from "./styles"
 
-class SafeAreaViewBoxShadow extends PureComponent {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <SafeAreaView style={[this.props.style, styles.boxShadow]}>
-        {this.props.children}
-      </SafeAreaView>
-    )
-  }
-}
+const SafeAreaViewBoxShadow = ({ style, children }) => (
+  <SafeAreaView style={[style, styles.boxShadow]}>{children}</SafeAreaView>
+)
 
 export default SafeAreaViewBoxShadow

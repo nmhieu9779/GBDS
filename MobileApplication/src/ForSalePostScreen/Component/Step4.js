@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Text, ScrollView, TouchableOpacity, Image, View } from "react-native"
-import Header from "../../Component/HeaderPost"
+import Header from "../../Component/header-post"
 import constants from "../../Constant"
 import style from "../style"
 import ImagePicker from "react-native-image-picker"

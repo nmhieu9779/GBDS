@@ -4,7 +4,7 @@ import { styles_step1 as styles } from "../styles"
 import { string_step1 as string } from "../string"
 import AddressInput from "../../Component/address-input"
 import TypeProduct from "../../Component/type-product"
-import Header from "../../Component/HeaderPost"
+import Header from "../../Component/header-post"
 import { SafeAreaView } from "react-navigation"
 
 class Step1 extends Component {

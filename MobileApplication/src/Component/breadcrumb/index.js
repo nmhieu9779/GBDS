@@ -1,77 +1,69 @@
-import React, { PureComponent } from "react"
+import React from "react"
 import { Text, View, TouchableOpacity } from "react-native"
 import { SafeAreaView } from "react-navigation"
 import styles from "./styles"
 import constants from "../../Constant"
 
-function Line({ width, children }) {
-  return <View style={[styles.line, { width: width }]}>{children}</View>
-}
+const {
+  activeLineItem,
+  unActiveLineItem,
+  lengthItem,
+  crumbContainer,
+  crumbStyle,
+  activeCrumbStyle,
+  unActiveCrumbStyle,
+  crumbTextStyle,
+  activeCrumbTextStyle
+} = styles
 
-function LineItem({ selected, line, isFirst, isLast, isRight, isLeft }) {
-  const { activeLineItem, unActiveLineItem, lengthItem } = styles
-  return (
-    <View
-      style={[
-        lengthItem,
-        isLeft && !isFirst && (selected ? activeLineItem : unActiveLineItem),
-        isRight && !isLast && (line ? activeLineItem : unActiveLineItem)
-      ]}
-    />
-  )
-}
+const Line = ({ width, children }) => (
+  <View style={[styles.line, { width: width }]}>{children}</View>
+)
 
-function Crumb({ label, isFirst, isLast, length, selected, line, onPress }) {
-  const {
-    crumbContainer,
-    crumbStyle,
-    activeCrumbStyle,
-    unActiveCrumbStyle,
-    crumbTextStyle,
-    activeCrumbTextStyle
-  } = styles
-  return (
-    <View style={crumbContainer}>
-      <Line width={constants.width / length}>
-        <LineItem isFirst={isFirst} isLeft={true} selected={selected} />
-        <LineItem isLast={isLast} isRight={true} line={line} />
-      </Line>
-      <TouchableOpacity
-        style={[crumbStyle, selected ? activeCrumbStyle : unActiveCrumbStyle]}
-        onPress={() => onPress()}
-        activeOpacity={1}
-      >
-        <Text style={[crumbTextStyle, selected && activeCrumbTextStyle]}>
-          {label}
-        </Text>
-      </TouchableOpacity>
-    </View>
-  )
-}
+const LineItem = ({ selected, line, isFirst, isLast, isRight, isLeft }) => (
+  <View
+    style={[
+      lengthItem,
+      isLeft && !isFirst && (selected ? activeLineItem : unActiveLineItem),
+      isRight && !isLast && (line ? activeLineItem : unActiveLineItem)
+    ]}
+  />
+)
 
-export default class Breadcrumb extends PureComponent {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
+const Crumb = ({ label, isFirst, isLast, length, selected, line, onPress }) => (
+  <View style={crumbContainer}>
+    <Line width={constants.width / length}>
+      <LineItem isFirst={isFirst} isLeft={true} selected={selected} />
+      <LineItem isLast={isLast} isRight={true} line={line} />
+    </Line>
+    <TouchableOpacity
+      style={[crumbStyle, selected ? activeCrumbStyle : unActiveCrumbStyle]}
+      onPress={() => onPress()}
+      activeOpacity={1}
+    >
+      <Text style={[crumbTextStyle, selected && activeCrumbTextStyle]}>
+        {label}
+      </Text>
+    </TouchableOpacity>
+  </View>
+)
 
-  render() {
-    return (
-      <SafeAreaView style={[styles.breadcrums_container]}>
-        {this.props.data.map(({ label, length, isFirst, isLast }, index) => (
-          <Crumb
-            key={index}
-            index={index}
-            label={label}
-            isFirst={isFirst}
-            isLast={isLast}
-            selected={this.props.itemSelected >= index}
-            line={this.props.itemSelected > index}
-            onPress={() => this.props.onItemPress(index)}
-            length={length}
-          />
-        ))}
-      </SafeAreaView>
-    )
-  }
-}
+const Breadcrumb = ({ data, onItemPress, itemSelected }) => (
+  <SafeAreaView style={[styles.breadcrums_container]}>
+    {data.map(({ label, length, isFirst, isLast }, index) => (
+      <Crumb
+        key={index}
+        index={index}
+        label={label}
+        isFirst={isFirst}
+        isLast={isLast}
+        selected={itemSelected >= index}
+        line={itemSelected > index}
+        onPress={() => onItemPress(index)}
+        length={length}
+      />
+    ))}
+  </SafeAreaView>
+)
+
+export default Breadcrumb

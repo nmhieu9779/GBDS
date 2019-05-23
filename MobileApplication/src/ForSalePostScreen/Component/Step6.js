@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import { ScrollView } from "react-native"
 import constants from "../../Constant"
 import style from "../style"
-import Header from "../../Component/HeaderPost"
+import Header from "../../Component/header-post"
 import { SafeAreaView } from "react-navigation"
-import TextInputCustom from "../../Component/TextInputCustom"
+import TextInputCustom from "../../Component/text-input-custom"
 
 class Step6 extends Component {
   constructor(props) {

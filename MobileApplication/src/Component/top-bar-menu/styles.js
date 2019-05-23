@@ -10,6 +10,13 @@ const styles = StyleSheet.create({
   },
   icon: {
     margin: 16
+  },
+  title: {
+    flex: 1,
+    fontSize: 24,
+    color: "black",
+    textAlign: "center",
+    textAlignVertical: "center"
   }
 })
 

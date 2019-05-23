@@ -1,35 +1,14 @@
-import React, { Component } from "react"
-import { StyleSheet, View, ActivityIndicator } from "react-native"
+import React from "react"
+import { View, ActivityIndicator } from "react-native"
 import { connect } from "react-redux"
-import constants from "../../Constant"
+import styles from "./styles"
 
-class ProcessHUD extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return this.props.isLoading ? (
-      <View style={styles.hud_container}>
-        <ActivityIndicator color={"black"} size={"large"} />
-      </View>
-    ) : null
-  }
-}
-
-const styles = StyleSheet.create({
-  hud_container: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: constants.width,
-    height: constants.height,
-    backgroundColor: "transparent",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: 999
-  }
-})
+const ProcessHUD = ({ isLoading }) =>
+  isLoading && (
+    <View style={styles.hud_container}>
+      <ActivityIndicator color={"black"} size={"large"} />
+    </View>
+  )
 
 const mapStateToProps = state => {
   return {

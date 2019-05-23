@@ -3,8 +3,8 @@ import { Text, ScrollView, View, TextInput } from "react-native"
 import constants from "../../Constant"
 import style from "../style"
 import { SafeAreaView } from "react-navigation"
-import TextInputCustom from "../../Component/TextInputCustom"
-import Header from "../../Component/HeaderPost"
+import TextInputCustom from "../../Component/text-input-custom"
+import Header from "../../Component/header-post"
 import ComboBox from "../../Component/combobox"
 
 class Step3 extends Component {

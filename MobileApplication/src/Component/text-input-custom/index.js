@@ -1,15 +1,12 @@
 import React, { Component } from "react"
 import {
   Platform,
-  StyleSheet,
-  Text,
   TextInput,
   Animated,
-  TouchableWithoutFeedback,
-  View
+  TouchableWithoutFeedback
 } from "react-native"
-import propTypes from "prop-types"
 import { SafeAreaView } from "react-navigation"
+import styles from "./styles"
 
 class TextInputCustom extends Component {
   constructor(props) {
@@ -58,7 +55,6 @@ class TextInputCustom extends Component {
                     })
                   }
                 }),
-
                 left: focusedAnim.interpolate({
                   inputRange: [0, 0.5, 0.51, 1],
                   outputRange: [10, 30, 0, 5]
@@ -114,9 +110,9 @@ class TextInputCustom extends Component {
     }
   }
 
-  onBlur = e => (this.state.value ? null : this._toggle(false))
+  onBlur = () => (this.state.value ? null : this._toggle(false))
 
-  onFocus = e => this._toggle(true)
+  onFocus = () => this._toggle(true)
 
   _toggle(isActive) {
     Animated.timing(this.state.focusedAnim, {
@@ -124,63 +120,5 @@ class TextInputCustom extends Component {
     }).start()
   }
 }
-
-TextInputCustom.propTypes = {
-  style: propTypes.object,
-  editable: propTypes.bool,
-  secureTextEntry: propTypes.bool,
-  keyboardType: propTypes.string,
-  label: propTypes.string
-}
-
-TextInputCustom.defaultProps = {
-  style: {
-    container: {},
-    input: {},
-    labelStyle: {}
-  },
-  editable: true,
-  secureTextEntry: false,
-  keyboardType: "default",
-  string: ""
-}
-
-const styles = StyleSheet.create({
-  container: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#b9c1ca",
-    ...Platform.select({ ios: { height: 51 }, android: { height: 52 } }),
-    margin: 0,
-    padding: 0
-  },
-  labelContainer: {
-    position: "absolute"
-  },
-  label: { fontSize: 16, fontWeight: "bold" },
-  input: {
-    position: "absolute",
-    bottom: 3,
-    ...Platform.select({
-      ios: {
-        paddingTop: 5,
-        paddingBottom: 5
-      },
-      android: {
-        padding: 0
-      }
-    }),
-    paddingLeft: 15,
-    paddingRight: 15,
-    margin: 0,
-    opacity: 0.9
-  },
-  border: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 3
-  }
-})
 
 export default TextInputCustom
