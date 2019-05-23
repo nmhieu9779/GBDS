@@ -4,6 +4,7 @@ import TopBarMenu from "../Component/top-bar-menu"
 import { SafeAreaView } from "react-navigation"
 import { faBars, faFilter } from "@fortawesome/free-solid-svg-icons"
 import Filter from "./Component/filter"
+import AddFloatingButton from "../Component/add-floating-button"
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class HomeScreen extends Component {
             onPressClose={() => this.setState({ visiableFilter: false })}
           />
         )}
+        <AddFloatingButton />
       </SafeAreaView>
     )
   }

@@ -21,11 +21,18 @@ let store = createStore(allReducers, applyMiddleware(sagaMiddleware))
 import AppContainer from "./src/navigation/navigate"
 import ProcessHUD from "./src/Component/process-hud"
 import MyMapView from "./my-map-view"
+import SelectTypePost from "./src/Component/add-floating-button/select-type-post"
+import NavigationService from "./src/navigation/NavigationService"
 
 const App = () => (
   <Provider store={store}>
     <ProcessHUD />
-    <AppContainer />
+    <SelectTypePost />
+    <AppContainer
+      ref={navigatorRef => {
+        NavigationService.setTopLevelNavigator(navigatorRef)
+      }}
+    />
   </Provider>
 )
 sagaMiddleware.run(rootSaga)

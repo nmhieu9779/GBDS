@@ -95,7 +95,7 @@ class TypeProduct extends PureComponent {
           is={isPriceUnit}
           style={{}}
           data={priceUnit}
-          selected={this.state.priceSelected}
+          selected={this.state.priceUnitSelected}
           title={strings.priceUnit.title}
           onChangeSelected={selected => {
             this.onChangeSelected(selected, "priceUnitSelected")
