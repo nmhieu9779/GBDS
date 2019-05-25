@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     bottom: 20,
     right: 20,
     backgroundColor: "white",
-    borderRadius: 999
+    borderRadius: 999,
+    zIndex: 999
   },
   floatingButtonConainer: {
     height: 50,

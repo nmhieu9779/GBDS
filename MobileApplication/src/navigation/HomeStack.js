@@ -19,7 +19,7 @@ import { faDollarSign } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import HomeScreen from "../HomeScreen"
 import ForSalePostScreen from "../ForSalePostScreen"
-import ForRentPostScreen from "../ForRentPostCreen"
+import ForRentPostScreen from "../NeedSalePostCreen"
 import { openSelectTypePostAction } from "../Component/add-floating-button/redux/actions"
 import { connect } from "react-redux"
 
