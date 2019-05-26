@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+import { moderateScale } from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   boxShadow: {
@@ -7,7 +8,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 1,
     shadowOffset: {
-      height: 0.5,
+      height: moderateScale(0.5),
       width: 0
     }
   }

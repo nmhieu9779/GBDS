@@ -30,6 +30,7 @@ class Step4 extends Component {
               (item, index) =>
                 (item.isSelected && (
                   <TouchableOpacity
+                    key={index}
                     style={[styles.image, styles.center]}
                     onPress={this.selectPhotoTapped.bind(this)}
                   >
@@ -42,7 +43,11 @@ class Step4 extends Component {
                   </TouchableOpacity>
                 )) ||
                 (item.uri && (
-                  <Image style={styles.image} source={{ uri: item.uri }} />
+                  <Image
+                    key={index}
+                    style={styles.image}
+                    source={{ uri: item.uri }}
+                  />
                 ))
             )}
           </View>

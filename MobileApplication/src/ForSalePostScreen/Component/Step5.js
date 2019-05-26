@@ -29,7 +29,6 @@ class Step5 extends Component {
             latitudeDelta: LATITUDE_DELTA,
             longitudeDelta: LONGITUDE_DELTA
           }
-          console.log(region)
         },
         error => {
           //TODO: better design
@@ -60,7 +59,6 @@ class Step5 extends Component {
   render() {
     const styles = style.step5
     const string = constants.ForSalePostScreen.step5
-    console.log(this.state)
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
         <Header text={string.header} />

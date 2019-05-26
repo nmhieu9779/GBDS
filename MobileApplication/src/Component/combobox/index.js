@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View } from "react-native"
 import { SafeAreaView } from "react-navigation"
-import ComboBoxBase from "./ComboBoxBase"
+import ComboBoxBase from "./combobox-base"
 import styles from "./styles"
 
 const ComboBox = ({

@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native"
-import constants from "../../Constant"
+import { width, height } from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   hud_container: {
     position: "absolute",
     top: 0,
     left: 0,
-    width: constants.width,
-    height: constants.height,
+    width: width,
+    height: height,
     backgroundColor: "transparent",
     justifyContent: "center",
     alignItems: "center",

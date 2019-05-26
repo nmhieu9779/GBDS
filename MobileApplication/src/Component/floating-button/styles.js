@@ -1,22 +1,23 @@
 import { StyleSheet } from "react-native"
+import { moderateScale } from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    bottom: 20,
-    right: 20,
+    bottom: moderateScale(20),
+    right: moderateScale(20),
     backgroundColor: "white",
-    borderRadius: 999,
+    borderRadius: moderateScale(30),
     zIndex: 999
   },
   floatingButtonConainer: {
-    height: 50,
-    width: 50,
-    borderRadius: 999,
+    height: moderateScale(50),
+    width: moderateScale(50),
+    borderRadius: moderateScale(25),
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#34A853",
-    margin: 5
+    margin: moderateScale(5)
   }
 })
 

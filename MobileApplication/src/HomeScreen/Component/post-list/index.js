@@ -60,7 +60,7 @@ const renderItem = (
 const renderSectionFooter = () => (
   <View style={styles.footer}>
     <TouchableOpacity>
-      <Text style={styles.headerTitle}>{"Xem thêm"}</Text>
+      <Text style={{ fontWeight: "bold", fontSize: 20 }}>{"Xem thêm"}</Text>
     </TouchableOpacity>
   </View>
 )
