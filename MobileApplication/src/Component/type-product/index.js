@@ -37,9 +37,7 @@ const TypeProduct = ({
   const [areaSelected, setAreaSelected] = useState(-1)
   const [priceSelected, setPriceSelected] = useState(-1)
 
-  useEffect(() => {
-    productType.length === 0 && isProductType && getProductType()
-  }, productType.length)
+  useEffect(() => isProductType && getProductType(), [productType.length])
 
   const getData = (selected, postTypeId) => {
     switch (postTypeId) {

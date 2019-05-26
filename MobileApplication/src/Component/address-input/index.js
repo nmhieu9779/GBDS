@@ -30,9 +30,7 @@ const AddressInput = ({
   const [wardSelected, setWardSelected] = useState(-1)
   const [streetSelected, setStreetSelected] = useState(-1)
 
-  useEffect(() => {
-    city.length === 0 && isCity && getCity()
-  }, city.length)
+  useEffect(() => isCity && getCity(), [city.length])
 
   return (
     <SafeAreaView style={styles.container}>

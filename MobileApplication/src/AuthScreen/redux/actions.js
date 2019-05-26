@@ -1,10 +1,8 @@
 import {
   SIGN_IN,
   SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE,
   SIGN_UP,
-  SIGN_UP_SUCCESS,
-  SIGN_UP_FAILURE
+  SIGN_UP_SUCCESS
 } from "../../redux/actions"
 
 export const signInAction = payload => ({
@@ -13,22 +11,14 @@ export const signInAction = payload => ({
 })
 
 export const signInSuccessAction = payload => ({
-  type: SIGN_IN_SUCCESS,
-  payload
+  type: SIGN_IN_SUCCESS
 })
-export const signInFailureAction = payload => ({
-  type: SIGN_IN_FAILURE,
-  payload
-})
+
 export const signUpAction = payload => ({
   type: SIGN_UP,
   payload
 })
+
 export const signUpSuccessAction = payload => ({
-  type: SIGN_UP_SUCCESS,
-  payload
-})
-export const signUpFailureAction = payload => ({
-  type: SIGN_IN_FAILURE,
-  payload
+  type: SIGN_UP_SUCCESS
 })

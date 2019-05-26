@@ -1,59 +1,30 @@
-let base64 = require("base-64")
+const axios = require("axios")
 
 function* signIn(data) {
   const { email, password } = data
-  let responseSignIn = {}
-  let headers = new Headers()
-  headers.set(
-    "Authorization",
-    "Basic " + base64.encode("T-GRRE-CLIENT-MM-01" + ":" + "tgrreclientmm01")
-  )
-  let url =
-    "http://35.187.253.10:21006/api-gateway/grre-oauth/oauth/token?scope=ui&grant_type=password&username=" +
-    email +
-    "&password=" +
-    password
-  yield fetch(url, { method: "POST", headers: headers })
-    .then(response => {
-      responseSignIn.isSuccess = response.ok
-      return response.json()
+  const url = "http://35.187.253.10:21006/api-gateway/grre-oauth/oauth/token"
+  return yield axios
+    .post(url, null, {
+      auth: {
+        username: "T-GRRE-CLIENT-MM-01",
+        password: "tgrreclientmm01"
+      },
+      params: {
+        scope: "ui",
+        grant_type: "password",
+        username: email,
+        password: password
+      }
     })
-    .then(responseJson => {
-      responseSignIn = responseSignIn.isSuccess
-        ? {
-            ...responseSignIn,
-            accessToken: responseJson.access_token
-          }
-        : {
-            ...responseSignIn,
-            message: responseJson.error_description
-          }
-    })
-  return responseSignIn
+    .then(response => response)
+    .catch(error => error)
 }
 function* signUp(data) {
   const { email, password } = data
-  let responseSignUp = {}
-  // let headers = new Headers()
-  // headers.set(
-  //   "Authorization",
-  //   "Basic " + base64.encode("T-GRRE-CLIENT-MM-01" + ":" + "tgrreclientmm01")
-  // )
-  let url = "http://www.mocky.io/v2/5cc6ddcb3200006700b94f0d"
-  yield fetch(url)
-    .then(response => {
-      responseSignUp.isSuccess = response.ok
-      return response.json()
-    })
-    .then(responseJson => {
-      responseSignUp = responseSignUp.isSuccess
-        ? {
-            ...responseSignUp
-          }
-        : {
-            ...responseSignUp
-          }
-    })
-  return responseSignUp
+  let url = "http://www.mocky.io/v2/5cea755333000069107c381f"
+  return yield axios
+    .post(url)
+    .then(response => response)
+    .catch(error => error)
 }
 export const Api = { signIn, signUp }
