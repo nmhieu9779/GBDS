@@ -5,6 +5,7 @@ import { string_step2 as string } from "../string"
 import TextInputCustom from "../../Component/text-input-custom"
 import Header from "../../Component/header-post"
 import { SafeAreaView } from "react-navigation"
+import { width } from "@src/utilities/scale"
 
 class Step2 extends Component {
   constructor(props) {
@@ -20,10 +21,8 @@ class Step2 extends Component {
           <TextInputCustom
             onChangeText={text => this.setState({ productTitle: text })}
             value={this.state.productTitle}
-            style={{
-              labelStyle: styles.labelTextInputCustomStyle,
-              container: styles.containerTextInputCustom
-            }}
+            width={width * 0.8}
+            color={"red"}
             label={string.productTitle}
           />
           <View style={styles.infoPostContainer}>

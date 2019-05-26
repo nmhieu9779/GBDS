@@ -12,7 +12,7 @@ import Step4 from "./Component/Step4"
 import Step5 from "./Component/Step5"
 import Step6 from "./Component/Step6"
 import Step7 from "./Component/Step7"
-import style from "./style"
+import { main as styles } from "./styles"
 
 class ForSalePostScreen extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class ForSalePostScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={style.for_sale_post_container}>
+      <SafeAreaView style={styles.for_sale_post_container}>
         <TopBarMenu
           icon={{ left: faArrowLeft }}
           title={"Đăng bài bán"}
@@ -44,13 +44,13 @@ class ForSalePostScreen extends Component {
           pagingEnabled={true}
           horizontal={true}
         >
-          <Step1 style={style.item} ref={r => (this.step1Ref = r)} />
-          <Step2 style={style.item} ref={r => (this.step2Ref = r)} />
-          <Step3 style={style.item} ref={r => (this.step3Ref = r)} />
-          <Step4 style={style.item} ref={r => (this.step4Ref = r)} />
-          <Step5 style={style.item} ref={r => (this.step5Ref = r)} />
-          <Step6 style={style.item} ref={r => (this.step6Ref = r)} />
-          <Step7 style={style.item} ref={r => (this.step7Ref = r)} />
+          <Step1 />
+          <Step2 />
+          <Step3 />
+          <Step4 />
+          <Step5 />
+          <Step6 />
+          <Step7 />
         </ScrollView>
         <Breadcrumb
           itemSelected={this.state.step}

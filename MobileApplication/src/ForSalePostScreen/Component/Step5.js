@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Text, ScrollView } from "react-native"
-import constants from "../../Constant"
-import style from "../style"
+import { stringStep5 as string } from "../string"
+import { step5 as styles } from "../styles"
 import Header from "../../Component/header-post"
 import { SafeAreaView } from "react-navigation"
 import MapView, { Marker } from "react-native-maps"
@@ -57,8 +57,6 @@ class Step5 extends Component {
   }
 
   render() {
-    const styles = style.step5
-    const string = constants.ForSalePostScreen.step5
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
         <Header text={string.header} />

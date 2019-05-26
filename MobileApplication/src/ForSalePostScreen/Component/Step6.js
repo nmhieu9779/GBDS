@@ -1,54 +1,51 @@
-import React, { Component } from "react"
+import React, { useState } from "react"
 import { ScrollView } from "react-native"
-import constants from "../../Constant"
-import style from "../style"
+import { stringStep6 as string } from "../string"
+import { step6 as styles } from "../styles"
 import Header from "../../Component/header-post"
 import { SafeAreaView } from "react-navigation"
 import TextInputCustom from "../../Component/text-input-custom"
+import { width, moderateScale } from "@src/utilities/scale"
 
-class Step6 extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { name: "", address: "", phoneNumber: "", email: "" }
-  }
+const Step6 = () => {
+  const [name, setName] = useState("")
+  const [address, setAddress] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [email, setEmail] = useState("")
 
-  render() {
-    const styles = style.step6
-    const string = constants.ForSalePostScreen.step6
-    return (
-      <SafeAreaView style={[styles.container, this.props.style]}>
-        <Header text={string.header} />
-        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-          <TextInputCustom
-            onChangeText={text => this.setState({ name: text })}
-            value={this.state.name}
-            style={styles.textInputCustom}
-            label={string.nameLabel}
-          />
-          <TextInputCustom
-            onChangeText={text => this.setState({ address: text })}
-            value={this.state.address}
-            style={styles.textInputCustom}
-            label={string.addressLable}
-          />
-          <TextInputCustom
-            onChangeText={text => this.setState({ phoneNumber: text })}
-            value={this.state.phoneNumber}
-            style={styles.textInputCustom}
-            label={string.phoneNumberLabel}
-            keyboardType={"numeric"}
-          />
-          <TextInputCustom
-            onChangeText={text => this.setState({ email: text })}
-            value={this.state.email}
-            style={styles.textInputCustom}
-            label={string.emailLabel}
-            keyboardType={"email-address"}
-          />
-        </ScrollView>
-      </SafeAreaView>
-    )
-  }
+  return (
+    <SafeAreaView style={styles.container}>
+      <Header text={string.header} />
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <TextInputCustom
+          onChangeText={text => setName(text)}
+          value={name}
+          width={width - moderateScale(10)}
+          label={string.nameLabel}
+        />
+        <TextInputCustom
+          onChangeText={text => setAddress(text)}
+          value={address}
+          width={width - moderateScale(10)}
+          label={string.addressLable}
+        />
+        <TextInputCustom
+          onChangeText={text => setPhoneNumber(text)}
+          value={phoneNumber}
+          width={width - moderateScale(10)}
+          label={string.phoneNumberLabel}
+          keyboardType={"numeric"}
+        />
+        <TextInputCustom
+          onChangeText={text => setEmail(email)}
+          value={email}
+          width={width - moderateScale(10)}
+          label={string.emailLabel}
+          keyboardType={"email-address"}
+        />
+      </ScrollView>
+    </SafeAreaView>
+  )
 }
 
 export default Step6

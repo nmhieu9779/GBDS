@@ -22,12 +22,6 @@ export const styles_step1 = StyleSheet.create({
 
 export const styles_step2 = StyleSheet.create({
   contentContainerStyle: { alignItems: "center" },
-  labelTextInputCustomStyle: {
-    color: "red"
-  },
-  containerTextInputCustom: {
-    width: constants.width - 10
-  },
   infoPostLabel: {
     fontSize: 16,
     fontWeight: "bold",
@@ -47,9 +41,5 @@ export const styles_step2 = StyleSheet.create({
 
 export const styles_step3 = StyleSheet.create({
   container: { flex: 1 },
-  contentContainerStyle: { alignItems: "center" },
-  textInputCustomContainer: {
-    width: constants.width - 10,
-    marginBottom: 5
-  }
+  contentContainerStyle: { alignItems: "center" }
 })

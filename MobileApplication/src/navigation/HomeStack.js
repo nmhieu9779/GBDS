@@ -19,7 +19,7 @@ import { faDollarSign } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import HomeScreen from "../HomeScreen"
 import ForSalePostScreen from "../ForSalePostScreen"
-import ForRentPostScreen from "../NeedSalePostCreen"
+import NeedSalePostCreen from "../NeedSalePostCreen"
 import { openSelectTypePostAction } from "../Component/add-floating-button/redux/actions"
 import { connect } from "react-redux"
 
@@ -179,12 +179,12 @@ const HomeStack = createDrawerNavigator(
     ForSalePostScreen: {
       screen: ForSalePostScreen
     },
-    ForRentPostScreen: {
-      screen: ForRentPostScreen
+    NeedSalePostCreen: {
+      screen: NeedSalePostCreen
     }
   },
   {
-    initialRouteName: "HomeScreen",
+    initialRouteName: "ForSalePostScreen",
     contentComponent: DrawerMenuContainer
   }
 )

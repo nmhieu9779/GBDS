@@ -1,67 +1,20 @@
-import React, { Component } from "react"
+import React, { useState } from "react"
 import { Text, ScrollView, TouchableOpacity, Image, View } from "react-native"
 import Header from "../../Component/header-post"
-import constants from "../../Constant"
-import style from "../style"
+import { stringStep4 as string } from "../string"
+import { step4 as styles } from "../styles"
 import ImagePicker from "react-native-image-picker"
 import { SafeAreaView } from "react-navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faImages } from "@fortawesome/free-regular-svg-icons"
 
-class Step4 extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      data: [{ isSelected: true }]
-    }
-  }
+const Step4 = () => {
+  const [data, setData] = useState([{ isSelected: true }])
 
-  render() {
-    const styles = style.step4
-    const string = constants.ForSalePostScreen.step4
-    return (
-      <SafeAreaView style={[styles.container, this.props.style]}>
-        <Header text={string.header} />
-        <ScrollView>
-          <Text style={styles.note}>{string.note}</Text>
-          <Text style={styles.suggest}>{string.suggest}</Text>
-          <View style={styles.imageContainer}>
-            {this.state.data.map(
-              (item, index) =>
-                (item.isSelected && (
-                  <TouchableOpacity
-                    key={index}
-                    style={[styles.image, styles.center]}
-                    onPress={this.selectPhotoTapped.bind(this)}
-                  >
-                    <FontAwesomeIcon
-                      size={50}
-                      icon={faImages}
-                      color={"#C9D9CB"}
-                    />
-                    <Text>{string.image}</Text>
-                  </TouchableOpacity>
-                )) ||
-                (item.uri && (
-                  <Image
-                    key={index}
-                    style={styles.image}
-                    source={{ uri: item.uri }}
-                  />
-                ))
-            )}
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    )
-  }
-
-  selectPhotoTapped() {
-    let me = this
+  const selectPhotoTapped = () => {
     const options = {
       title: "Chọn Hình"
     }
-
     ImagePicker.showImagePicker(options, response => {
       if (response.didCancel) {
         console.log("User cancelled photo picker")
@@ -70,17 +23,50 @@ class Step4 extends Component {
       } else if (response.customButton) {
         console.log("User tapped custom button: ", response.customButton)
       } else {
-        me.handleResponse(response)
+        handleResponse(response)
       }
     })
   }
 
-  handleResponse = async response => {
-    const data = [{ uri: response.uri }, ...this.state.data]
-    this.setState({
-      data: data
-    })
+  const handleResponse = async response => {
+    setData([{ uri: response.uri }, ...data])
   }
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Header text={string.header} />
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <Text style={styles.note}>{string.note}</Text>
+        <Text style={styles.suggest}>{string.suggest}</Text>
+        <View style={styles.imageContainer}>
+          {data.map(
+            (item, index) =>
+              (item.isSelected && (
+                <TouchableOpacity
+                  key={index}
+                  style={[styles.image, styles.center, styles.border]}
+                  onPress={selectPhotoTapped.bind(this)}
+                >
+                  <FontAwesomeIcon
+                    size={50}
+                    icon={faImages}
+                    color={"#C9D9CB"}
+                  />
+                  <Text>{string.image}</Text>
+                </TouchableOpacity>
+              )) ||
+              (item.uri && (
+                <Image
+                  key={index}
+                  style={styles.image}
+                  source={{ uri: item.uri }}
+                />
+              ))
+          )}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  )
 }
 
 export default Step4

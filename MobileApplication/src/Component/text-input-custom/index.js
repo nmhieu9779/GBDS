@@ -10,13 +10,14 @@ import styles from "./styles"
 
 const TextInputCustom = ({
   value,
-  style,
   secureTextEntry,
   keyboardType,
   label,
   editable,
   onChangeText,
-  children
+  children,
+  color,
+  width
 }) => {
   const [focusedAnim] = useState(new Animated.Value(0))
 
@@ -35,7 +36,7 @@ const TextInputCustom = ({
   }
 
   return (
-    <SafeAreaView style={[styles.container, style.container]}>
+    <SafeAreaView style={[styles.container, { width }]}>
       <TouchableWithoutFeedback onPress={focus.bind(this)}>
         <Animated.View
           style={[
@@ -66,7 +67,7 @@ const TextInputCustom = ({
             }
           ]}
         >
-          <Animated.Text style={[styles.label, style.labelStyle]}>
+          <Animated.Text style={[styles.label, { color: color }]}>
             {label}
           </Animated.Text>
         </Animated.View>
@@ -76,9 +77,8 @@ const TextInputCustom = ({
         value={value}
         style={[
           styles.input,
-          style.input,
           {
-            width: style.container.width
+            width: width
           }
         ]}
         onBlur={onBlur.bind(this)}
@@ -94,7 +94,7 @@ const TextInputCustom = ({
           {
             width: focusedAnim.interpolate({
               inputRange: [0, 1],
-              outputRange: [0, style.container.width]
+              outputRange: [0, width]
             }),
             backgroundColor: "green"
           }

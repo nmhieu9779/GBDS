@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
       android: { height: moderateScale(52) }
     }),
     margin: 0,
-    padding: 0
+    padding: 0,
   },
   labelContainer: {
     position: "absolute"

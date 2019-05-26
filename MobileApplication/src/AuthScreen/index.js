@@ -76,11 +76,11 @@ const AuthScreen = ({
   }
 
   return (
-    <SafeAreaView style={styles.main.container}>
+    <SafeAreaView style={styles.container}>
       <ImageBackground
-        imageStyle={styles.main.image_style_background}
+        imageStyle={styles.image_style_background}
         source={require("../../res/background.jpg")}
-        style={styles.main.background_image}
+        style={styles.background_image}
       >
         <View
           style={{

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { View, Text, ScrollView, TouchableOpacity } from "react-native"
-import constants from "../../Constant"
-import style from "../style"
+import { stringStep7 as string } from "../string"
+import { step7 as styles } from "../styles"
 import Header from "../../Component/header-post"
 import { SafeAreaView } from "react-navigation"
 import ComboBox from "../../Component/combobox"
@@ -121,14 +121,15 @@ class Step7 extends Component {
     total.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 
   render() {
-    const styles = style.step7
-    const string = constants.ForSalePostScreen.step7
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
         <Header text={string.header} />
         <ScrollView>
           <ComboBox
-            style={styles.combobox}
+            style={{
+              container: styles.containerCombobox,
+              combobox: styles.comboboxCombobox
+            }}
             data={string.vipType.data}
             selected={this.state.selectedVipType}
             title={string.vipType.title}
@@ -148,7 +149,10 @@ class Step7 extends Component {
               format={string.datePicker.format}
               confirmBtnText={string.datePicker.confirmBtnText}
               cancelBtnText={string.datePicker.cancelBtnText}
-              customStyles={styles.datePickerCustom}
+              customStyles={{
+                dateIcon: styles.dateIcon,
+                dateInput: styles.dateInput
+              }}
               onDateChange={(dateStr, date) => {
                 this.setState({ startDate: date })
               }}
