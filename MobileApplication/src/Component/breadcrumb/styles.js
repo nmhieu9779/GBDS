@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native"
-import { moderateScale, width } from "@src/utilities/scale"
+import {StyleSheet} from "react-native"
+import {moderateScale, width} from "@src/utilities/scale"
 
 const COLOR = "#133337"
 
@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
     width: width,
     height: moderateScale(50)
   },
-  crumbContainer: { flex: 1, justifyContent: "center", alignItems: "center" },
+  crumbContainer: {flex: 1, justifyContent: "center", alignItems: "center"},
   line: {
     height: moderateScale(10),
     position: "absolute",
     top: moderateScale(width / 28 - 5),
     flexDirection: "row"
   },
-  lengthItem: { flex: 1 },
+  lengthItem: {flex: 1},
   activeLineItem: {
     backgroundColor: COLOR
   },

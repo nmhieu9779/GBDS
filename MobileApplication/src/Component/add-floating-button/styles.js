@@ -1,5 +1,5 @@
-import { StyleSheet, Platform } from "react-native"
-import { moderateScale, width } from "@src/utilities/scale"
+import {StyleSheet, Platform} from "react-native"
+import {moderateScale, width} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  modalContent: { flex: 1 },
+  modalContent: {flex: 1},
   modalButton: {
     flex: 1,
     backgroundColor: "#E9EBEE",

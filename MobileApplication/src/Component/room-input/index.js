@@ -1,8 +1,8 @@
-import React, { useState } from "react"
-import { Text, TextInput, TouchableWithoutFeedback, View } from "react-native"
+import React, {useState} from "react"
+import {Text, TextInput, TouchableWithoutFeedback, View} from "react-native"
 import styles from "./styles"
 
-const RoomInput = ({ width, name, onChange }) => {
+const RoomInput = ({width, name, onChange}) => {
   const roomInputNumber = React.createRef()
   const bedRoomInputNumber = React.createRef()
   const toiletInputNumber = React.createRef()
@@ -11,29 +11,27 @@ const RoomInput = ({ width, name, onChange }) => {
   const [bedRoomNumber, setBedRoomNumber] = useState("0")
   const [toiletNumber, setToiletNumber] = useState("0")
 
-  const _onSubmitEditing = component => {
+  const _onSubmitEditing = (component) => {
     component.current.focus()
   }
 
-  const _onBlur = e => {
-    onChange({ roomNumber, bedRoomNumber, toiletNumber })
+  const _onBlur = (e) => {
+    onChange({roomNumber, bedRoomNumber, toiletNumber})
   }
 
   return (
     <TouchableWithoutFeedback
       onPress={() => {
         roomInputNumber.current.focus()
-      }}
-    >
+      }}>
       <View
         style={[
           styles.container,
           {
             width: width
           }
-        ]}
-      >
-        <Text style={[styles.name, { flex: 1 }]}>{name}</Text>
+        ]}>
+        <Text style={[styles.name, {flex: 1}]}>{name}</Text>
         <Text>{" có "}</Text>
         <TextInput
           ref={roomInputNumber}
@@ -45,7 +43,7 @@ const RoomInput = ({ width, name, onChange }) => {
           onFocus={() => {
             setRoomNumber("")
           }}
-          onChangeText={text => {
+          onChangeText={(text) => {
             setRoomNumber(text)
           }}
           onBlur={() => {
@@ -64,7 +62,7 @@ const RoomInput = ({ width, name, onChange }) => {
           onFocus={() => {
             setBedRoomNumber("")
           }}
-          onChangeText={text => {
+          onChangeText={(text) => {
             setBedRoomNumber(text)
           }}
           onBlur={() => {
@@ -82,7 +80,7 @@ const RoomInput = ({ width, name, onChange }) => {
           onFocus={() => {
             setToiletNumber("")
           }}
-          onChangeText={text => {
+          onChangeText={(text) => {
             setToiletNumber(text)
           }}
           onBlur={() => {

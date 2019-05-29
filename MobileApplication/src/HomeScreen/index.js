@@ -1,14 +1,14 @@
-import React, { Component } from "react"
+import React, {Component} from "react"
 import styles from "./styles"
 import string from "./string"
-import { connect } from "react-redux"
+import {connect} from "react-redux"
 import TopBarMenu from "../Component/top-bar-menu"
 import SafeAreaView from "react-native-safe-area-view"
-import { faBars, faFilter } from "@fortawesome/free-solid-svg-icons"
+import {faBars, faFilter} from "@fortawesome/free-solid-svg-icons"
 import Filter from "./Component/filter"
 import AddFloatingButton from "../Component/add-floating-button"
 import PostList from "./Component/post-list"
-import { onFetchPostForSaleHome, onFetchPostForRentHome } from "./redux/actions"
+import {onFetchPostForSaleHome, onFetchPostForRentHome} from "./redux/actions"
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -32,26 +32,26 @@ class HomeScreen extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <TopBarMenu
-          icon={{ left: faBars, right: faFilter }}
+          icon={{left: faBars, right: faFilter}}
           title={string.title}
           onPressLeft={() => {
             this.props.navigation.toggleDrawer()
           }}
           onPressRight={() => {
-            this.setState({ visiableFilter: true })
+            this.setState({visiableFilter: true})
           }}
         />
         {this.state.visiableFilter && (
           <Filter
             visiable={this.state.visiableFilter}
-            onPressClose={() => this.setState({ visiableFilter: false })}
+            onPressClose={() => this.setState({visiableFilter: false})}
           />
         )}
         <AddFloatingButton />
         <PostList
           listData={this.props.listData}
           onRefresh={() => {
-            this.setState({ refreshing: this.props.refreshing })
+            this.setState({refreshing: this.props.refreshing})
             this.fetchData()
           }}
           refreshing={this.state.refreshing}
@@ -61,12 +61,12 @@ class HomeScreen extends Component {
   }
 }
 
-const mapStateToProps = ({ homeReducers }) => ({
+const mapStateToProps = ({homeReducers}) => ({
   listData: homeReducers.listData,
   refreshing: homeReducers.refreshing
 })
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchPostForSaleHome: () => {
       dispatch(onFetchPostForSaleHome())

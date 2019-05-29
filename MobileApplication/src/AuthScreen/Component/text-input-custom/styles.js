@@ -1,5 +1,5 @@
-import { StyleSheet, Platform } from "react-native"
-import { moderateScale } from "@src/utilities/scale"
+import {StyleSheet, Platform} from "react-native"
+import {moderateScale} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    ...Platform.select({ android: { padding: 0 } })
+    ...Platform.select({android: {padding: 0}})
   }
 })
 

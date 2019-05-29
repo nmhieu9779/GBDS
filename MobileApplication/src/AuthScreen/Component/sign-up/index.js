@@ -1,40 +1,26 @@
 import React from "react"
-import { View, Animated } from "react-native"
+import {View, Animated} from "react-native"
 import styles from "./styles"
 import string from "./string"
 import TextInputCustom from "../text-input-custom"
 import ButtonCustom from "../button-custom"
-import {
-  faUser,
-  faUserLock,
-  faMailBulk,
-  faPhone
-} from "@fortawesome/free-solid-svg-icons"
+import {faUser, faUserLock, faMailBulk, faPhone} from "@fortawesome/free-solid-svg-icons"
 
-const SignUp = ({
-  focusedAnim,
-  fullName,
-  password,
-  email,
-  phone,
-  onChangeText,
-  onPress
-}) => (
+const SignUp = ({focusedAnim, fullName, password, email, phone, onChangeText, onPress}) => (
   <Animated.View
     style={{
       opacity: focusedAnim.interpolate({
         inputRange: [0, 2],
         outputRange: [0, 1]
       })
-    }}
-  >
+    }}>
     <View style={styles.input_container}>
       <TextInputCustom
         style={styles.input}
         icon={faUser}
         placeholder={string.fullName}
         value={fullName}
-        onChangeText={text => onChangeText(text, "fullName")}
+        onChangeText={(text) => onChangeText(text, "fullName")}
         returnKeyType={"next"}
       />
       <TextInputCustom
@@ -42,7 +28,7 @@ const SignUp = ({
         icon={faUserLock}
         placeholder={string.password}
         value={password}
-        onChangeText={text => onChangeText(text, "password")}
+        onChangeText={(text) => onChangeText(text, "password")}
         secureTextEntry={true}
         returnKeyType={"next"}
       />
@@ -51,7 +37,7 @@ const SignUp = ({
         icon={faMailBulk}
         placeholder={string.email}
         value={email}
-        onChangeText={text => onChangeText(text, "email")}
+        onChangeText={(text) => onChangeText(text, "email")}
         keyboardType={"email-address"}
         returnKeyType={"next"}
       />
@@ -60,7 +46,7 @@ const SignUp = ({
         icon={faPhone}
         placeholder={string.telephoneNumber}
         value={phone}
-        onChangeText={text => onChangeText(text, "phone")}
+        onChangeText={(text) => onChangeText(text, "phone")}
         keyboardType={"numeric"}
         returnKeyType={"next"}
       />

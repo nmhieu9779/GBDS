@@ -6,24 +6,24 @@ import {
   OPEN_HUD,
   CLOSE_HUD
 } from "../../redux/actions"
-import { put, takeLatest, call } from "redux-saga/effects"
-import { Api } from "./api"
+import {put, takeLatest, call} from "redux-saga/effects"
+import {Api} from "./api"
 
 function* fetchPostForSaleHome() {
-  yield put({ type: OPEN_HUD })
+  yield put({type: OPEN_HUD})
   const response = yield call(Api.fetchPostForSaleHome)
   if (response.status === 200) {
-    yield put({ type: FETCH_POST_FOR_SALE_HOME_SUCCESS, data: response.data })
-    yield put({ type: CLOSE_HUD })
+    yield put({type: FETCH_POST_FOR_SALE_HOME_SUCCESS, data: response.data})
+    yield put({type: CLOSE_HUD})
   }
 }
 
 function* fetchPostForRentHome() {
-  yield put({ type: OPEN_HUD })
+  yield put({type: OPEN_HUD})
   const response = yield call(Api.fetchPostForRentHome)
   if (response.status === 200) {
-    yield put({ type: FETCH_POST_FOR_RENT_HOME_SUCCESS, data: response.data })
-    yield put({ type: CLOSE_HUD })
+    yield put({type: FETCH_POST_FOR_RENT_HOME_SUCCESS, data: response.data})
+    yield put({type: CLOSE_HUD})
   }
 }
 

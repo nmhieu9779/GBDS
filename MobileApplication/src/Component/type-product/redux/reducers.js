@@ -1,11 +1,5 @@
-import { fromJS } from "immutable"
-import {
-  GET_PRODUCT_TYPE,
-  GET_PRODUCT_CATE,
-  GET_PRICE_UNIT,
-  GET_AREA,
-  GET_PRICE
-} from "../../../redux/actions"
+import {fromJS} from "immutable"
+import {GET_PRODUCT_TYPE, GET_PRODUCT_CATE, GET_PRICE_UNIT, GET_AREA, GET_PRICE} from "../../../redux/actions"
 import strings from "../strings"
 
 initStateTypeProduct = {
@@ -23,8 +17,7 @@ const typeProductReducers = (state = initStateTypeProduct, action) => {
       newState.productType = strings.productType.data
       break
     case GET_PRODUCT_CATE:
-      newState.productCate =
-        strings.productCate.data[action.postTypeId][action.productTypeId]
+      newState.productCate = strings.productCate.data[action.postTypeId][action.productTypeId]
       break
     case GET_PRICE_UNIT:
       newState.priceUnit = strings.priceUnit.data[action.productTypeId]

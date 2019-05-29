@@ -1,7 +1,7 @@
 const axios = require("axios")
 
 function* signIn(data) {
-  const { email, password } = data
+  const {email, password} = data
   const url = "http://35.187.253.10:21006/api-gateway/grre-oauth/oauth/token"
   return yield axios
     .post(url, null, {
@@ -16,15 +16,15 @@ function* signIn(data) {
         password: password
       }
     })
-    .then(response => response)
-    .catch(error => error)
+    .then((response) => response)
+    .catch((error) => error)
 }
 function* signUp(data) {
-  const { email, password } = data
+  const {email, password} = data
   let url = "http://www.mocky.io/v2/5cea755333000069107c381f"
   return yield axios
     .post(url)
-    .then(response => response)
-    .catch(error => error)
+    .then((response) => response)
+    .catch((error) => error)
 }
-export const Api = { signIn, signUp }
+export const Api = {signIn, signUp}

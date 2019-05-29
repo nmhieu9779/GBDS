@@ -1,8 +1,5 @@
-import { fromJS } from "immutable"
-import {
-  OPEN_SELECT_TYPE_POST,
-  CLOSE_SELECT_TYPE_POST
-} from "../../../redux/actions"
+import {fromJS} from "immutable"
+import {OPEN_SELECT_TYPE_POST, CLOSE_SELECT_TYPE_POST} from "../../../redux/actions"
 
 initStateSelectTypePost = {
   visiable: false

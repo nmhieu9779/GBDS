@@ -1,8 +1,8 @@
-import { StyleSheet, Platform } from "react-native"
+import {StyleSheet, Platform} from "react-native"
 import constants from "../Constant"
 
 export const styles_main = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "white" },
+  container: {flex: 1, backgroundColor: "white"},
   item: {
     width: constants.width,
     ...Platform.select({
@@ -17,17 +17,17 @@ export const styles_main = StyleSheet.create({
 })
 
 export const styles_step1 = StyleSheet.create({
-  contentContainerStyle: { alignItems: "center" }
+  contentContainerStyle: {alignItems: "center"}
 })
 
 export const styles_step2 = StyleSheet.create({
-  contentContainerStyle: { alignItems: "center" },
+  contentContainerStyle: {alignItems: "center"},
   infoPostLabel: {
     fontSize: 16,
     fontWeight: "bold",
     marginLeft: 10
   },
-  infoPostContainer: { margin: 10 },
+  infoPostContainer: {margin: 10},
   infoPostTextInput: {
     height: constants.width / 2,
     width: constants.width - 10,
@@ -40,6 +40,6 @@ export const styles_step2 = StyleSheet.create({
 })
 
 export const styles_step3 = StyleSheet.create({
-  container: { flex: 1 },
-  contentContainerStyle: { alignItems: "center" }
+  container: {flex: 1},
+  contentContainerStyle: {alignItems: "center"}
 })

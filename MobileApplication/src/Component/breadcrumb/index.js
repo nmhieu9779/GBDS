@@ -1,6 +1,6 @@
 import React from "react"
-import { Text, View, TouchableOpacity } from "react-native"
-import { SafeAreaView } from "react-navigation"
+import {Text, View, TouchableOpacity} from "react-native"
+import {SafeAreaView} from "react-navigation"
 import styles from "./styles"
 import constants from "../../Constant"
 
@@ -16,11 +16,9 @@ const {
   activeCrumbTextStyle
 } = styles
 
-const Line = ({ width, children }) => (
-  <View style={[styles.line, { width: width }]}>{children}</View>
-)
+const Line = ({width, children}) => <View style={[styles.line, {width: width}]}>{children}</View>
 
-const LineItem = ({ selected, line, isFirst, isLast, isRight, isLeft }) => (
+const LineItem = ({selected, line, isFirst, isLast, isRight, isLeft}) => (
   <View
     style={[
       lengthItem,
@@ -30,7 +28,7 @@ const LineItem = ({ selected, line, isFirst, isLast, isRight, isLeft }) => (
   />
 )
 
-const Crumb = ({ label, isFirst, isLast, length, selected, line, onPress }) => (
+const Crumb = ({label, isFirst, isLast, length, selected, line, onPress}) => (
   <View style={crumbContainer}>
     <Line width={constants.width / length}>
       <LineItem isFirst={isFirst} isLeft={true} selected={selected} />
@@ -39,18 +37,15 @@ const Crumb = ({ label, isFirst, isLast, length, selected, line, onPress }) => (
     <TouchableOpacity
       style={[crumbStyle, selected ? activeCrumbStyle : unActiveCrumbStyle]}
       onPress={() => onPress()}
-      activeOpacity={1}
-    >
-      <Text style={[crumbTextStyle, selected && activeCrumbTextStyle]}>
-        {label}
-      </Text>
+      activeOpacity={1}>
+      <Text style={[crumbTextStyle, selected && activeCrumbTextStyle]}>{label}</Text>
     </TouchableOpacity>
   </View>
 )
 
-const Breadcrumb = ({ data, onItemPress, itemSelected }) => (
+const Breadcrumb = ({data, onItemPress, itemSelected}) => (
   <SafeAreaView style={[styles.breadcrums_container]}>
-    {data.map(({ label, length, isFirst, isLast }, index) => (
+    {data.map(({label, length, isFirst, isLast}, index) => (
       <Crumb
         key={index}
         index={index}

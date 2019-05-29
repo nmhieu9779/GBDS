@@ -1,14 +1,14 @@
 import React from "react"
-import { View, Text, Modal, TouchableOpacity } from "react-native"
+import {View, Text, Modal, TouchableOpacity} from "react-native"
 import stylesheets from "@src/common/stylesheets"
 import styles from "./styles"
 import string from "./string"
-import { connect } from "react-redux"
-import { closeSelectTypePostAction } from "./redux/actions"
+import {connect} from "react-redux"
+import {closeSelectTypePostAction} from "./redux/actions"
 import NavigationService from "../../navigation/NavigationService"
 import SafeAreaView from "react-native-safe-area-view"
 
-const SelectTypePost = ({ visiable, close }) => {
+const SelectTypePost = ({visiable, close}) => {
   return (
     <Modal visible={visiable} transparent={true}>
       <SafeAreaView style={[styles.modalContainer, stylesheets.boxShadow]}>
@@ -19,8 +19,7 @@ const SelectTypePost = ({ visiable, close }) => {
             onPress={() => {
               close()
               NavigationService.navigate("ForSalePostScreen")
-            }}
-          >
+            }}>
             <Text style={styles.textBtn}>{string.forSale}</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -28,8 +27,7 @@ const SelectTypePost = ({ visiable, close }) => {
             onPress={() => {
               close()
               NavigationService.navigate("NeedSalePostScreen")
-            }}
-          >
+            }}>
             <Text style={styles.textBtn}>{string.forRent}</Text>
           </TouchableOpacity>
         </View>
@@ -38,13 +36,13 @@ const SelectTypePost = ({ visiable, close }) => {
   )
 }
 
-const mapStateToProps = ({ selectTypePostReducers }) => {
+const mapStateToProps = ({selectTypePostReducers}) => {
   return {
     visiable: selectTypePostReducers.visiable
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     close: () => {
       dispatch(closeSelectTypePostAction())

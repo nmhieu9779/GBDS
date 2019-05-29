@@ -1,10 +1,5 @@
-import { fromJS } from "immutable"
-import {
-  SIGN_IN,
-  SIGN_IN_SUCCESS,
-  SIGN_UP,
-  SIGN_UP_SUCCESS
-} from "../../redux/actions"
+import {fromJS} from "immutable"
+import {SIGN_IN, SIGN_IN_SUCCESS, SIGN_UP, SIGN_UP_SUCCESS} from "../../redux/actions"
 
 initStateAuth = {
   signUpSuccess: false,

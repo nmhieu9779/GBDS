@@ -1,19 +1,12 @@
-import React, { useState } from "react"
-import {
-  Text,
-  ScrollView,
-  View,
-  TextInput,
-  TouchableOpacity,
-  FlatList
-} from "react-native"
-import { step3 as styles } from "../styles"
-import { SafeAreaView } from "react-navigation"
+import React, {useState} from "react"
+import {Text, ScrollView, View, TextInput, TouchableOpacity, FlatList} from "react-native"
+import {step3 as styles} from "../styles"
+import {SafeAreaView} from "react-navigation"
 import TextInputCustom from "../../Component/text-input-custom"
 import Header from "../../Component/header-post"
 import DirectionInput from "../../Component/direction-input"
-import { width, moderateScale } from "@src/utilities/scale"
-import { stringStep3 as string } from "../string"
+import {width, moderateScale} from "@src/utilities/scale"
+import {stringStep3 as string} from "../string"
 import RoomInput from "@src/Component/room-input"
 
 const Step3 = () => {
@@ -34,11 +27,11 @@ const Step3 = () => {
   ])
   const [date, setDate] = useState(new Date())
   const _keyExtractor = (item, index) => index.toString()
-  const _renderItem = ({ item, index }) => (
+  const _renderItem = ({item, index}) => (
     <RoomInput
       name={item.name}
       width={width}
-      onChange={data => {
+      onChange={(data) => {
         roomNumber[index].data = data
         setRoomNumber(roomNumber)
       }}
@@ -51,14 +44,14 @@ const Step3 = () => {
       <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         <Text style={styles.suggest}>{string.suggest}</Text>
         <TextInputCustom
-          onChangeText={text => setWidthState(text)}
+          onChangeText={(text) => setWidthState(text)}
           value={widthState}
           width={width - moderateScale(10)}
           label={string.widthLabel}
           keyboardType={"numeric"}
         />
         <TextInputCustom
-          onChangeText={text => setLanWidth(text)}
+          onChangeText={(text) => setLanWidth(text)}
           value={landWidth}
           width={width - moderateScale(10)}
           label={string.landWidthLabel}
@@ -71,7 +64,7 @@ const Step3 = () => {
           extraData={date}
           renderItem={_renderItem.bind(this)}
         />
-        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+        <View style={{flexDirection: "row", justifyContent: "space-around"}}>
           <TouchableOpacity
             style={styles.btnAdd}
             onPress={() => {
@@ -79,8 +72,7 @@ const Step3 = () => {
               data.pop()
               setRoomNumber(data)
               setDate(new Date())
-            }}
-          >
+            }}>
             <Text>{"-"}</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -88,15 +80,11 @@ const Step3 = () => {
             onPress={() => {
               let data = {
                 id: roomNumber.length,
-                name:
-                  roomNumber.length !== 0
-                    ? "Tầng " + roomNumber.length
-                    : "Tầng trệt",
+                name: roomNumber.length !== 0 ? "Tầng " + roomNumber.length : "Tầng trệt",
                 data: defaultData
               }
               setRoomNumber([...roomNumber, data])
-            }}
-          >
+            }}>
             <Text>{"+"}</Text>
           </TouchableOpacity>
         </View>
@@ -106,7 +94,7 @@ const Step3 = () => {
             style={styles.furnitureInput}
             multiline={true}
             value={other}
-            onChangeText={text => setOther(text)}
+            onChangeText={(text) => setOther(text)}
           />
         </View>
       </ScrollView>

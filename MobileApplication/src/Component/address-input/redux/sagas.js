@@ -10,11 +10,11 @@ import {
   OPEN_HUD,
   CLOSE_HUD
 } from "../../../redux/actions"
-import { put, takeLatest, call } from "redux-saga/effects"
-import { Api } from "./api"
+import {put, takeLatest, call} from "redux-saga/effects"
+import {Api} from "./api"
 
-formatData = data =>
-  data.map(item => ({
+formatData = (data) =>
+  data.map((item) => ({
     id: item.id,
     label: item.name,
     code: item.code
@@ -23,33 +23,33 @@ formatData = data =>
 function* handleResponse(response, typeSuccess) {
   if (response.status === 200) {
     const data = this.formatData(response.data.content)
-    yield put({ type: typeSuccess, data })
-    yield put({ type: CLOSE_HUD })
+    yield put({type: typeSuccess, data})
+    yield put({type: CLOSE_HUD})
   } else {
-    yield put({ type: CLOSE_HUD })
+    yield put({type: CLOSE_HUD})
   }
 }
 
 function* getCity() {
-  yield put({ type: OPEN_HUD })
+  yield put({type: OPEN_HUD})
   const response = yield call(Api.getCity)
   yield call(handleResponse, response, GET_CITY_SUCCESS)
 }
 
 function* getDistrict(payload) {
-  yield put({ type: OPEN_HUD })
+  yield put({type: OPEN_HUD})
   const response = yield call(Api.getDistrict, payload.cityId)
   yield call(handleResponse, response, GET_DISTRICT_SUCCESS)
 }
 
 function* getWard(payload) {
-  yield put({ type: OPEN_HUD })
+  yield put({type: OPEN_HUD})
   const response = yield call(Api.getWard, payload.cityId, payload.districtId)
   yield call(handleResponse, response, GET_WARD_SUCCESS)
 }
 
 function* getStreet(payload) {
-  yield put({ type: OPEN_HUD })
+  yield put({type: OPEN_HUD})
   const response = yield call(Api.getStreet, payload.cityId, payload.districtId)
   yield call(handleResponse, response, GET_STREET_SUCCESS)
 }

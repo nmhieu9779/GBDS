@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native"
-import { moderateScale } from "@src/utilities/scale"
+import {StyleSheet} from "react-native"
+import {moderateScale} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   boxShadow: {

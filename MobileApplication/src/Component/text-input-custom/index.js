@@ -1,11 +1,6 @@
-import React, { useState } from "react"
-import {
-  Platform,
-  TextInput,
-  Animated,
-  TouchableWithoutFeedback
-} from "react-native"
-import { SafeAreaView } from "react-navigation"
+import React, {useState} from "react"
+import {Platform, TextInput, Animated, TouchableWithoutFeedback} from "react-native"
+import {SafeAreaView} from "react-navigation"
 import styles from "./styles"
 
 const TextInputCustom = ({
@@ -29,14 +24,14 @@ const TextInputCustom = ({
 
   const onFocus = () => _toggle(true)
 
-  const _toggle = isActive => {
+  const _toggle = (isActive) => {
     Animated.timing(focusedAnim, {
       toValue: isActive ? 1 : 0
     }).start()
   }
 
   return (
-    <SafeAreaView style={[styles.container, { width }]}>
+    <SafeAreaView style={[styles.container, {width}]}>
       <TouchableWithoutFeedback onPress={focus.bind(this)}>
         <Animated.View
           style={[
@@ -65,11 +60,8 @@ const TextInputCustom = ({
                 outputRange: [10, 30, 0, 5]
               })
             }
-          ]}
-        >
-          <Animated.Text style={[styles.label, { color: color }]}>
-            {label}
-          </Animated.Text>
+          ]}>
+          <Animated.Text style={[styles.label, {color: color}]}>{label}</Animated.Text>
         </Animated.View>
       </TouchableWithoutFeedback>
       <TextInput
@@ -82,7 +74,7 @@ const TextInputCustom = ({
           }
         ]}
         onBlur={onBlur.bind(this)}
-        onChangeText={text => onChangeText(text)}
+        onChangeText={(text) => onChangeText(text)}
         onFocus={onFocus.bind(this)}
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}

@@ -1,10 +1,10 @@
-import React, { Component } from "react"
-import { TouchableOpacity, Modal } from "react-native"
+import React, {Component} from "react"
+import {TouchableOpacity, Modal} from "react-native"
 import AddressInput from "../../../Component/address-input"
 import styles from "./styles"
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
-import { faSortUp } from "@fortawesome/free-solid-svg-icons"
-import { height, width } from "@src/utilities/scale"
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
+import {faSortUp} from "@fortawesome/free-solid-svg-icons"
+import {height, width} from "@src/utilities/scale"
 import SafeAreaView from "react-native-safe-area-view"
 
 class FilterContainer extends Component {
@@ -13,41 +13,32 @@ class FilterContainer extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{flex: 1}}>
         <FontAwesomeIcon
           size={50}
-          style={{ position: "absolute", top: -20, right: 2 }}
+          style={{position: "absolute", top: -20, right: 2}}
           icon={faSortUp}
           color={"white"}
         />
-        <AddressInput
-          isCity={true}
-          isDistrict={true}
-          onChangeAddress={() => {}}
-        />
+        <AddressInput isCity={true} isDistrict={true} onChangeAddress={() => {}} />
       </SafeAreaView>
     )
   }
 }
 
-const Filter = ({ visiable, onPressClose }) => (
-  <Modal
-    style={{ flex: 1 }}
-    transparent={true}
-    visible={visiable}
-    animationType={"fade"}
-  >
-    <SafeAreaView style={{ flex: 1 }}>
+const Filter = ({visiable, onPressClose}) => (
+  <Modal style={{flex: 1}} transparent={true} visible={visiable} animationType={"fade"}>
+    <SafeAreaView style={{flex: 1}}>
       <TouchableOpacity
         onPress={() => onPressClose()}
         activeOpacity={1}
-        style={[styles.area_tranparent, { height: 56 }]}
+        style={[styles.area_tranparent, {height: 56}]}
       />
       <FilterContainer />
       <TouchableOpacity
         onPress={() => onPressClose()}
         activeOpacity={1}
-        style={[styles.area_tranparent, { flex: 2 }]}
+        style={[styles.area_tranparent, {flex: 2}]}
       />
     </SafeAreaView>
   </Modal>

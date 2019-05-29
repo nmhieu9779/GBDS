@@ -1,5 +1,5 @@
-import { StyleSheet, Platform } from "react-native"
-import { moderateScale } from "@src/utilities/scale"
+import {StyleSheet, Platform} from "react-native"
+import {moderateScale} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
       ios: {
         height: moderateScale(38)
       },
-      android: { height: moderateScale(56) }
+      android: {height: moderateScale(56)}
     })
   },
   icon: {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
       ios: {
         fontSize: moderateScale(17)
       },
-      android: { fontSize: moderateScale(19) }
+      android: {fontSize: moderateScale(19)}
     })
   }
 })

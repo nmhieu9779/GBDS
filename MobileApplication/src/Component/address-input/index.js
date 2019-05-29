@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from "react"
-import { connect } from "react-redux"
-import { SafeAreaView } from "react-navigation"
+import React, {useState, useEffect} from "react"
+import {connect} from "react-redux"
+import {SafeAreaView} from "react-navigation"
 import ComboBoxDetail from "../combobox-detail"
 import styles from "./styles"
 import strings from "./strings"
-import {
-  getCityAction,
-  getDistrictAction,
-  getWardAction,
-  getstreetAction
-} from "./redux/actions"
+import {getCityAction, getDistrictAction, getWardAction, getstreetAction} from "./redux/actions"
 
 const AddressInput = ({
   city,
@@ -42,7 +37,7 @@ const AddressInput = ({
         selected={citySelected}
         title={strings.city.title}
         label={strings.city.label}
-        onChangeSelected={selected => {
+        onChangeSelected={(selected) => {
           setCitySelected(selected)
           setDistrictSelected(-1)
           setWardSelected(-1)
@@ -57,7 +52,7 @@ const AddressInput = ({
         selected={districtSelected}
         title={strings.district.title}
         label={strings.district.label}
-        onChangeSelected={selected => {
+        onChangeSelected={(selected) => {
           setDistrictSelected(selected)
           setWardSelected(-1)
           setStreetSelected(-1)
@@ -71,11 +66,10 @@ const AddressInput = ({
         selected={wardSelected}
         title={strings.ward.title}
         label={strings.ward.label}
-        onChangeSelected={selected => {
+        onChangeSelected={(selected) => {
           setWardSelected(selected)
           setStreetSelected(-1)
-          isStreet &&
-            getStreet(city[citySelected].id, district[districtSelected].id)
+          isStreet && getStreet(city[citySelected].id, district[districtSelected].id)
         }}
         enable={districtSelected !== -1}
       />
@@ -85,7 +79,7 @@ const AddressInput = ({
         selected={streetSelected}
         title={strings.street.title}
         label={strings.street.label}
-        onChangeSelected={selected => {
+        onChangeSelected={(selected) => {
           setStreetSelected(selected)
         }}
         enable={wardSelected !== -1}
@@ -94,7 +88,7 @@ const AddressInput = ({
   )
 }
 
-const mapStateToProps = ({ addressReducers }) => {
+const mapStateToProps = ({addressReducers}) => {
   return {
     city: addressReducers.city,
     district: addressReducers.district,
@@ -103,19 +97,19 @@ const mapStateToProps = ({ addressReducers }) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getCity: () => {
       dispatch(getCityAction())
     },
-    getDistrict: cityId => {
+    getDistrict: (cityId) => {
       dispatch(getDistrictAction(cityId))
     },
     getWard: (cityId, districtId) => {
-      dispatch(getWardAction({ cityId, districtId }))
+      dispatch(getWardAction({cityId, districtId}))
     },
     getStreet: (cityId, districtId) => {
-      dispatch(getstreetAction({ cityId, districtId }))
+      dispatch(getstreetAction({cityId, districtId}))
     }
   }
 }

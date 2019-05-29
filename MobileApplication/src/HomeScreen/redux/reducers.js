@@ -1,4 +1,4 @@
-import { fromJS } from "immutable"
+import {fromJS} from "immutable"
 import {
   FETCH_POST_FOR_SALE_HOME,
   FETCH_POST_FOR_RENT_HOME,
@@ -7,10 +7,7 @@ import {
 } from "../../redux/actions"
 
 initStateHome = {
-  listData: [
-    { title: "Nhà đất bán nổi bật", data: [] },
-    { title: "Nhà đất cho thuê nổi bật nhất", data: [] }
-  ],
+  listData: [{title: "Nhà đất bán nổi bật", data: []}, {title: "Nhà đất cho thuê nổi bật nhất", data: []}],
   refreshing: false
 }
 

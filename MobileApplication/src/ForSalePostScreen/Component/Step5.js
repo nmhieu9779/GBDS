@@ -1,10 +1,10 @@
-import React, { Component } from "react"
-import { Text, ScrollView } from "react-native"
-import { stringStep5 as string } from "../string"
-import { step5 as styles } from "../styles"
+import React, {Component} from "react"
+import {Text, ScrollView} from "react-native"
+import {stringStep5 as string} from "../string"
+import {step5 as styles} from "../styles"
 import Header from "../../Component/header-post"
-import { SafeAreaView } from "react-navigation"
-import MapView, { Marker } from "react-native-maps"
+import {SafeAreaView} from "react-navigation"
+import MapView, {Marker} from "react-native-maps"
 
 const LATITUDE_DELTA = 0.01
 const LONGITUDE_DELTA = 0.01
@@ -22,7 +22,7 @@ class Step5 extends Component {
   getCurrentPosition() {
     try {
       navigator.geolocation.getCurrentPosition(
-        position => {
+        (position) => {
           const region = {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
@@ -30,7 +30,7 @@ class Step5 extends Component {
             longitudeDelta: LONGITUDE_DELTA
           }
         },
-        error => {
+        (error) => {
           //TODO: better design
           switch (error.code) {
             case 1:

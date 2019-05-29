@@ -1,4 +1,4 @@
-import { moderateScale } from "@src/utilities/scale"
+import {moderateScale} from "@src/utilities/scale"
 
 const stylesheets = {
   boxShadow: {

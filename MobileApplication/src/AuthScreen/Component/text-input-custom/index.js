@@ -1,6 +1,6 @@
 import React from "react"
-import { View, TextInput } from "react-native"
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
+import {View, TextInput} from "react-native"
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
 
 const TextInputCustom = ({
@@ -19,7 +19,7 @@ const TextInputCustom = ({
       style={styles.input}
       placeholder={placeholder}
       value={value}
-      onChangeText={text => onChangeText(text)}
+      onChangeText={(text) => onChangeText(text)}
       secureTextEntry={secureTextEntry}
       keyboardType={keyboardType}
       returnKeyType={returnKeyType}

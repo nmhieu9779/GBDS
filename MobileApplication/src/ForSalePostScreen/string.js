@@ -19,8 +19,7 @@ export const stringStep2 = {
 
 export const stringStep3 = {
   header: "Thông tin khác",
-  suggest:
-    "Quý vị nên điền đầy đủ thông tin vào các mục dưới đây để tin đăng có hiệu quả hơn",
+  suggest: "Quý vị nên điền đầy đủ thông tin vào các mục dưới đây để tin đăng có hiệu quả hơn",
   widthLabel: "Mặt tiền (m)",
   landWidthLabel: "Đường vào (m)",
   furnitureTitle: "Nội thất khác"
@@ -56,12 +55,12 @@ export const stringStep7 = {
     title: "-- Loại tin rao --",
     label: "Loại tin rao",
     data: [
-      { label: "Tin thường" },
-      { label: "Tin ưu đãi" },
-      { label: "Tin Vip 3" },
-      { label: "Tin Vip 2" },
-      { label: "Tin Vip 1" },
-      { label: "Vip đặc biệt" }
+      {label: "Tin thường"},
+      {label: "Tin ưu đãi"},
+      {label: "Tin Vip 3"},
+      {label: "Tin Vip 2"},
+      {label: "Tin Vip 1"},
+      {label: "Vip đặc biệt"}
     ]
   },
   startDate: "Ngày bắt đầu",
@@ -97,8 +96,7 @@ export const stringStep7 = {
     content_2: "thường màu cam",
     content_3: ", khung ",
     content_4: "màu cam ",
-    content_5:
-      "và luôn nằm dưới tin Vip 2 nhưng luôn luôn hiển thị trên tin thường."
+    content_5: "và luôn nằm dưới tin Vip 2 nhưng luôn luôn hiển thị trên tin thường."
   },
   vip_2: {
     name: "Tin Vip 2",

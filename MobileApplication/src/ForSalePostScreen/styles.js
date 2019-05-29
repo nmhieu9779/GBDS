@@ -1,8 +1,8 @@
-import { StyleSheet } from "react-native"
-import { width, moderateScale, height } from "@src/utilities/scale"
+import {StyleSheet} from "react-native"
+import {width, moderateScale, height} from "@src/utilities/scale"
 
 export const step1 = StyleSheet.create({
-  container: { width: width },
+  container: {width: width},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -19,14 +19,14 @@ export const step1 = StyleSheet.create({
     padding: moderateScale(5),
     alignItems: "center"
   },
-  priceTitle: { fontSize: moderateScale(16), fontWeight: "bold" },
-  priceContent: { color: "red", marginLeft: moderateScale(10), flex: 1 },
+  priceTitle: {fontSize: moderateScale(16), fontWeight: "bold"},
+  priceContent: {color: "red", marginLeft: moderateScale(10), flex: 1},
   addressContainer: {
     flexDirection: "row",
     padding: moderateScale(5),
     alignItems: "center"
   },
-  addressTitle: { fontSize: moderateScale(16), fontWeight: "bold" },
+  addressTitle: {fontSize: moderateScale(16), fontWeight: "bold"},
   addressTextInput: {
     flex: 1,
     borderColor: "#ccc",
@@ -44,14 +44,14 @@ export const step1 = StyleSheet.create({
 })
 
 export const step2 = StyleSheet.create({
-  container: { width: width },
+  container: {width: width},
   noteContent: {
     fontStyle: "italic",
     color: "gray",
     textAlign: "right",
     paddingRight: moderateScale(10)
   },
-  note: { color: "red" },
+  note: {color: "red"},
   textInput: {
     textAlignVertical: "top",
     height: moderateScale(width / 2),
@@ -61,12 +61,12 @@ export const step2 = StyleSheet.create({
     borderColor: "#ccc",
     borderRadius: moderateScale(10)
   },
-  suggest: { padding: moderateScale(5) },
-  suggestOther: { color: "red" }
+  suggest: {padding: moderateScale(5)},
+  suggestOther: {color: "red"}
 })
 
 export const step3 = StyleSheet.create({
-  container: { width: width },
+  container: {width: width},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -78,8 +78,8 @@ export const step3 = StyleSheet.create({
   containerCombobox: {
     width: width
   },
-  comboboxCombobox: { width: width },
-  labelCombobox: { fontWeight: "bold", fontSize: moderateScale(16) },
+  comboboxCombobox: {width: width},
+  labelCombobox: {fontWeight: "bold", fontSize: moderateScale(16)},
   furnitureContainer: {
     padding: moderateScale(5),
     width: width
@@ -107,7 +107,7 @@ export const step3 = StyleSheet.create({
 })
 
 export const step4 = StyleSheet.create({
-  container: { width: width },
+  container: {width: width},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -143,7 +143,7 @@ export const step4 = StyleSheet.create({
 })
 
 export const step5 = StyleSheet.create({
-  container: { width: width },
+  container: {width: width},
   note: {
     fontStyle: "italic",
     color: "gray",
@@ -156,32 +156,32 @@ export const step5 = StyleSheet.create({
 })
 
 export const step6 = StyleSheet.create({
-  container: { width: width },
-  contentContainerStyle: { alignItems: "center" }
+  container: {width: width},
+  contentContainerStyle: {alignItems: "center"}
 })
 
 export const step7 = StyleSheet.create({
-  container: { width: width },
+  container: {width: width},
   containerCombobox: {
     width: width
   },
-  comboboxCombobox: { flex: 3 },
+  comboboxCombobox: {flex: 3},
   text: {
     padding: moderateScale(5)
   },
-  infoVipName: { fontWeight: "bold" },
-  textCB: { color: "blue" },
-  textCO: { color: "orange" },
-  textCR: { color: "red" },
-  textFB: { fontWeight: "bold" },
-  textCW: { color: "white" },
+  infoVipName: {fontWeight: "bold"},
+  textCB: {color: "blue"},
+  textCO: {color: "orange"},
+  textCR: {color: "red"},
+  textFB: {fontWeight: "bold"},
+  textCW: {color: "white"},
   datePickerContainer: {
     flexDirection: "row",
     alignItems: "center",
     padding: moderateScale(5)
   },
-  datePickerLabel: { flex: 1 },
-  datePicker: { flex: 3 },
+  datePickerLabel: {flex: 1},
+  datePicker: {flex: 3},
   dateIcon: {
     position: "absolute",
     right: 0,
@@ -197,13 +197,13 @@ export const step7 = StyleSheet.create({
     color: "gray",
     padding: moderateScale(10)
   },
-  footer: { marginBottom: moderateScale(100), alignItems: "center" },
+  footer: {marginBottom: moderateScale(100), alignItems: "center"},
   textFooter: {
     padding: moderateScale(5),
     marginBottom: moderateScale(5),
     width: width
   },
-  total: { fontSize: moderateScale(18), fontWeight: "bold", color: "red" },
+  total: {fontSize: moderateScale(18), fontWeight: "bold", color: "red"},
   btnPost: {
     width: moderateScale(300),
     height: moderateScale(40),
@@ -215,5 +215,5 @@ export const step7 = StyleSheet.create({
 })
 
 export const main = StyleSheet.create({
-  for_sale_post_container: { flex: 1, backgroundColor: "white" }
+  for_sale_post_container: {flex: 1, backgroundColor: "white"}
 })

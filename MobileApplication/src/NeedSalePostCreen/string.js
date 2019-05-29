@@ -1,9 +1,9 @@
 export const stringMain = {
   breadcrumb: [
-    { length: 4, label: "1", isFirst: true },
-    { length: 4, label: "2" },
-    { length: 4, label: "3" },
-    { length: 4, label: "4", isLast: true }
+    {length: 4, label: "1", isFirst: true},
+    {length: 4, label: "2"},
+    {length: 4, label: "3"},
+    {length: 4, label: "4", isLast: true}
   ]
 }
 

@@ -1,14 +1,12 @@
 import React from "react"
-import { faPencilAlt } from "@fortawesome/free-solid-svg-icons"
+import {faPencilAlt} from "@fortawesome/free-solid-svg-icons"
 import FloatingButton from "../floating-button"
-import { connect } from "react-redux"
-import { openSelectTypePostAction } from "./redux/actions"
+import {connect} from "react-redux"
+import {openSelectTypePostAction} from "./redux/actions"
 
-const AddFloatingButton = ({ open }) => (
-  <FloatingButton icon={faPencilAlt} onPress={() => open()} />
-)
+const AddFloatingButton = ({open}) => <FloatingButton icon={faPencilAlt} onPress={() => open()} />
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     open: () => {
       dispatch(openSelectTypePostAction())

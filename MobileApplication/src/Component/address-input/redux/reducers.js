@@ -1,4 +1,4 @@
-import { fromJS } from "immutable"
+import {fromJS} from "immutable"
 import {
   GET_CITY_SUCCESS,
   GET_DISTRICT_SUCCESS,

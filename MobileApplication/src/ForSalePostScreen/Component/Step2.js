@@ -1,9 +1,9 @@
-import React, { useState } from "react"
-import { Text, ScrollView, TextInput } from "react-native"
-import { step2 as styles } from "../styles"
-import { stringStep2 as string } from "../string"
+import React, {useState} from "react"
+import {Text, ScrollView, TextInput} from "react-native"
+import {step2 as styles} from "../styles"
+import {stringStep2 as string} from "../string"
 import Header from "../../Component/header-post"
-import { SafeAreaView } from "react-navigation"
+import {SafeAreaView} from "react-navigation"
 
 const Step2 = () => {
   const [value, setValue] = useState("")
@@ -20,7 +20,7 @@ const Step2 = () => {
           style={styles.textInput}
           multiline={true}
           value={value}
-          onChangeText={text => setValue(text)}
+          onChangeText={(text) => setValue(text)}
         />
         <Text style={styles.suggest}>
           {string.suggest}

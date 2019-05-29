@@ -9,43 +9,43 @@ import {
   GET_STREET_SUCCESS
 } from "../../../redux/actions"
 
-export const getCityAction = payload => ({
+export const getCityAction = (payload) => ({
   type: GET_CITY,
   payload
 })
 
-export const getCitySuccessAction = payload => ({
+export const getCitySuccessAction = (payload) => ({
   type: GET_CITY_SUCCESS,
   payload
 })
 
-export const getDistrictAction = cityId => ({
+export const getDistrictAction = (cityId) => ({
   type: GET_DISTRICT,
   cityId
 })
 
-export const getDistrictSuccessAction = payload => ({
+export const getDistrictSuccessAction = (payload) => ({
   type: GET_DISTRICT_SUCCESS,
   payload
 })
 
-export const getWardAction = ({ cityId, districtId }) => ({
+export const getWardAction = ({cityId, districtId}) => ({
   type: GET_WARD,
   cityId,
   districtId
 })
 
-export const getWardSuccessAction = payload => ({
+export const getWardSuccessAction = (payload) => ({
   type: GET_WARD_SUCCESS,
   payload
 })
-export const getstreetAction = ({ cityId, districtId }) => ({
+export const getstreetAction = ({cityId, districtId}) => ({
   type: GET_STREET,
   cityId,
   districtId
 })
 
-export const getstreetSuccessAction = payload => ({
+export const getstreetSuccessAction = (payload) => ({
   type: GET_STREET_SUCCESS,
   payload
 })

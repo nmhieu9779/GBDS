@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { connect } from "react-redux"
+import React, {useState, useEffect} from "react"
+import {connect} from "react-redux"
 import {
   getProductTypeAction,
   getProductCateAction,
@@ -7,7 +7,7 @@ import {
   getAreaAction,
   getPriceUnitAction
 } from "./redux/actions"
-import { SafeAreaView } from "react-navigation"
+import {SafeAreaView} from "react-navigation"
 import ComboBoxDetail from "../combobox-detail"
 import styles from "./styles"
 import strings from "./strings"
@@ -64,7 +64,7 @@ const TypeProduct = ({
         selected={productTypeSelected}
         title={strings.productType.title}
         label={strings.productType.label}
-        onChangeSelected={selected => {
+        onChangeSelected={(selected) => {
           setProductTypeSelected(selected)
           getData(selected, postTypeId)
         }}
@@ -76,7 +76,7 @@ const TypeProduct = ({
         selected={productCateSelected}
         title={strings.productCate.title}
         label={strings.productCate.label}
-        onChangeSelected={selected => {
+        onChangeSelected={(selected) => {
           setProductCateSelected(selected)
         }}
         enable={true}
@@ -87,7 +87,7 @@ const TypeProduct = ({
         data={priceUnit}
         selected={priceUnitSelected}
         title={strings.priceUnit.title}
-        onChangeSelected={selected => {
+        onChangeSelected={(selected) => {
           setPriceUnitSelected(selected)
         }}
         enable={true}
@@ -98,7 +98,7 @@ const TypeProduct = ({
         selected={areaSelected}
         title={strings.area.title}
         label={strings.area.label}
-        onChangeSelected={selected => {
+        onChangeSelected={(selected) => {
           setAreaSelected(selected)
         }}
         enable={true}
@@ -109,7 +109,7 @@ const TypeProduct = ({
         selected={priceSelected}
         title={strings.price.title}
         label={strings.price.label}
-        onChangeSelected={selected => {
+        onChangeSelected={(selected) => {
           setPriceSelected(selected)
         }}
         enable={true}
@@ -118,7 +118,7 @@ const TypeProduct = ({
   )
 }
 
-const mapStateToProps = ({ typeProductReducers }) => {
+const mapStateToProps = ({typeProductReducers}) => {
   return {
     productType: typeProductReducers.productType,
     productCate: typeProductReducers.productCate,
@@ -128,7 +128,7 @@ const mapStateToProps = ({ typeProductReducers }) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getProductType: () => {
       dispatch(getProductTypeAction())
@@ -136,13 +136,13 @@ const mapDispatchToProps = dispatch => {
     getProductCate: (postTypeId, productTypeId) => {
       dispatch(getProductCateAction(postTypeId, productTypeId))
     },
-    getPriceUnit: productTypeId => {
+    getPriceUnit: (productTypeId) => {
       dispatch(getPriceUnitAction(productTypeId))
     },
     getArea: () => {
       dispatch(getAreaAction())
     },
-    getPrice: productTypeId => {
+    getPrice: (productTypeId) => {
       dispatch(getPriceAction(productTypeId))
     }
   }

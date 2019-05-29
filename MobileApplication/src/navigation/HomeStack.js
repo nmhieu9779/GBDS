@@ -1,4 +1,4 @@
-import React, { Component } from "React"
+import React, {Component} from "React"
 import {
   Text,
   View,
@@ -9,19 +9,15 @@ import {
   Modal,
   StyleSheet
 } from "react-native"
-import {
-  SafeAreaView,
-  createStackNavigator,
-  createDrawerNavigator
-} from "react-navigation"
+import {SafeAreaView, createStackNavigator, createDrawerNavigator} from "react-navigation"
 import constants from "../Constant"
-import { faDollarSign } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
+import {faDollarSign} from "@fortawesome/free-solid-svg-icons"
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import HomeScreen from "../HomeScreen"
 import ForSalePostScreen from "../ForSalePostScreen"
 import NeedSalePostCreen from "../NeedSalePostCreen"
-import { openSelectTypePostAction } from "../Component/add-floating-button/redux/actions"
-import { connect } from "react-redux"
+import {openSelectTypePostAction} from "../Component/add-floating-button/redux/actions"
+import {connect} from "react-redux"
 
 const menu = [
   {
@@ -59,20 +55,19 @@ const menu = [
   }
 ]
 
-const DrawerMenu = ({ open }) => (
+const DrawerMenu = ({open}) => (
   <SafeAreaView style={style.container}>
     <ImageBackground
       style={[style.boxShadow, style.infoContainer]}
-      source={require("../../res/DrawerBackground.jpg")}
-    >
+      source={require("../../res/DrawerBackground.jpg")}>
       <View style={style.avatarContainer}>
         <Image style={style.avatar} source={require("../../res/Avatar.png")} />
       </View>
       <View style={style.nameContainer}>
         <Text style={style.name}>{"Nguyễn Minh Hiếu"}</Text>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{flexDirection: "row"}}>
           <FontAwesomeIcon icon={faDollarSign} color={"#4285F4"} />
-          <Text style={{ color: "#4285F4", fontWeight: "bold" }}>100.000</Text>
+          <Text style={{color: "#4285F4", fontWeight: "bold"}}>100.000</Text>
         </View>
         <TouchableOpacity
           elevation={5}
@@ -85,14 +80,12 @@ const DrawerMenu = ({ open }) => (
               alignItems: "center"
             }
           ]}
-          onPress={() => open()}
-        >
+          onPress={() => open()}>
           <Text
             style={{
               color: "white",
               fontWeight: "bold"
-            }}
-          >
+            }}>
             {"Đăng bài"}
           </Text>
         </TouchableOpacity>
@@ -101,8 +94,7 @@ const DrawerMenu = ({ open }) => (
     <ScrollView
       style={{
         width: "100%"
-      }}
-    >
+      }}>
       {menu.map((item, index) => (
         <TouchableOpacity
           key={index}
@@ -110,16 +102,15 @@ const DrawerMenu = ({ open }) => (
             padding: 20
             // backgroundColor: "#E6EDF1"
           }}
-          onPress={() => this.props.navigation.navigate("HomeScreen")}
-        >
-          <Text style={{ color: "#4267b2" }}>{item.label}</Text>
+          onPress={() => this.props.navigation.navigate("HomeScreen")}>
+          <Text style={{color: "#4267b2"}}>{item.label}</Text>
         </TouchableOpacity>
       ))}
     </ScrollView>
   </SafeAreaView>
 )
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     open: () => {
       dispatch(openSelectTypePostAction())
@@ -133,7 +124,7 @@ const DrawerMenuContainer = connect(
 )(DrawerMenu)
 
 const style = StyleSheet.create({
-  container: { flex: 1 },
+  container: {flex: 1},
   boxShadow: {
     shadowColor: "#000000",
     shadowOpacity: 0.8,
@@ -143,7 +134,7 @@ const style = StyleSheet.create({
       width: 0
     }
   },
-  infoContainer: { width: "100%", flexDirection: "row" },
+  infoContainer: {width: "100%", flexDirection: "row"},
   avatarContainer: {
     backgroundColor: "white",
     width: 0.2 * constants.width + 10,

@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native"
-import { moderateScale } from "@src/utilities/scale"
+import {StyleSheet} from "react-native"
+import {moderateScale} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 0.5
   },
-  text: { fontWeight: "bold" }
+  text: {fontWeight: "bold"}
 })
 
 export default styles

@@ -1,21 +1,21 @@
-import React, { useState } from "react"
-import { Text, ScrollView, TouchableOpacity, Image, View } from "react-native"
+import React, {useState} from "react"
+import {Text, ScrollView, TouchableOpacity, Image, View} from "react-native"
 import Header from "../../Component/header-post"
-import { stringStep4 as string } from "../string"
-import { step4 as styles } from "../styles"
+import {stringStep4 as string} from "../string"
+import {step4 as styles} from "../styles"
 import ImagePicker from "react-native-image-picker"
-import { SafeAreaView } from "react-navigation"
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
-import { faImages } from "@fortawesome/free-regular-svg-icons"
+import {SafeAreaView} from "react-navigation"
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
+import {faImages} from "@fortawesome/free-regular-svg-icons"
 
 const Step4 = () => {
-  const [data, setData] = useState([{ isSelected: true }])
+  const [data, setData] = useState([{isSelected: true}])
 
   const selectPhotoTapped = () => {
     const options = {
       title: "Chọn Hình"
     }
-    ImagePicker.showImagePicker(options, response => {
+    ImagePicker.showImagePicker(options, (response) => {
       if (response.didCancel) {
         console.log("User cancelled photo picker")
       } else if (response.error) {
@@ -28,8 +28,8 @@ const Step4 = () => {
     })
   }
 
-  const handleResponse = async response => {
-    setData([{ uri: response.uri }, ...data])
+  const handleResponse = async (response) => {
+    setData([{uri: response.uri}, ...data])
   }
 
   return (
@@ -45,23 +45,12 @@ const Step4 = () => {
                 <TouchableOpacity
                   key={index}
                   style={[styles.image, styles.center, styles.border]}
-                  onPress={selectPhotoTapped.bind(this)}
-                >
-                  <FontAwesomeIcon
-                    size={50}
-                    icon={faImages}
-                    color={"#C9D9CB"}
-                  />
+                  onPress={selectPhotoTapped.bind(this)}>
+                  <FontAwesomeIcon size={50} icon={faImages} color={"#C9D9CB"} />
                   <Text>{string.image}</Text>
                 </TouchableOpacity>
               )) ||
-              (item.uri && (
-                <Image
-                  key={index}
-                  style={styles.image}
-                  source={{ uri: item.uri }}
-                />
-              ))
+              (item.uri && <Image key={index} style={styles.image} source={{uri: item.uri}} />)
           )}
         </View>
       </ScrollView>

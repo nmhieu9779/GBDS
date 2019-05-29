@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
-import { View, Text, ScrollView, TouchableOpacity } from "react-native"
-import { stringStep7 as string } from "../string"
-import { step7 as styles } from "../styles"
+import React, {useState, useEffect} from "react"
+import {View, Text, ScrollView, TouchableOpacity} from "react-native"
+import {stringStep7 as string} from "../string"
+import {step7 as styles} from "../styles"
 import Header from "../../Component/header-post"
-import { SafeAreaView } from "react-navigation"
+import {SafeAreaView} from "react-navigation"
 import ComboBox from "../../Component/combobox"
 import DatePicker from "react-native-datepicker"
 import moment from "moment"
@@ -92,7 +92,7 @@ const Step7 = () => {
 
   const getDay = (startDate, endDate) => moment(endDate).diff(moment(startDate), "days")
 
-  const formatTotal = total => total.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+  const formatTotal = (total) => total.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 
   return (
     <SafeAreaView style={styles.container}>
@@ -101,13 +101,13 @@ const Step7 = () => {
         <ComboBox
           style={{
             container: styles.containerCombobox,
-            combobox: styles.comboboxCombobox,
+            combobox: styles.comboboxCombobox
           }}
           data={string.vipType.data}
           selected={vipTypeSelected}
           title={string.vipType.title}
           label={string.vipType.label}
-          onChangeSelected={selected => {
+          onChangeSelected={(selected) => {
             setVipTypeSelected(selected)
           }}
           enable={true}
@@ -125,7 +125,7 @@ const Step7 = () => {
             cancelBtnText={string.datePicker.cancelBtnText}
             customStyles={{
               dateIcon: styles.dateIcon,
-              dateInput: styles.dateInput,
+              dateInput: styles.dateInput
             }}
             onDateChange={(dateStr, date) => {
               setStartDate(date)

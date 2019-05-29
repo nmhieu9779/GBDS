@@ -1,28 +1,27 @@
 import React from "react"
-import { Text, View, Animated, TouchableOpacity } from "react-native"
+import {Text, View, Animated, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import string from "./string"
 import TextInputCustom from "../text-input-custom"
 import ButtonCustom from "../button-custom"
-import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
-import { faUserLock, faMailBulk } from "@fortawesome/free-solid-svg-icons"
+import {faFacebookF, faGoogle} from "@fortawesome/free-brands-svg-icons"
+import {faUserLock, faMailBulk} from "@fortawesome/free-solid-svg-icons"
 
-const SignIn = ({ focusedAnim, email, password, onPress, onChangeText }) => (
+const SignIn = ({focusedAnim, email, password, onPress, onChangeText}) => (
   <Animated.View
     style={{
       opacity: focusedAnim.interpolate({
         inputRange: [0, 2],
         outputRange: [0, 1]
       })
-    }}
-  >
+    }}>
     <View style={styles.input_container}>
       <TextInputCustom
         style={styles.input}
         icon={faMailBulk}
         placeholder={string.email}
         value={email}
-        onChangeText={text => onChangeText(text, "email")}
+        onChangeText={(text) => onChangeText(text, "email")}
         keyboardType={"email-address"}
         returnKeyType={"next"}
       />
@@ -31,7 +30,7 @@ const SignIn = ({ focusedAnim, email, password, onPress, onChangeText }) => (
         icon={faUserLock}
         placeholder={string.password}
         value={password}
-        onChangeText={text => onChangeText(text, "password")}
+        onChangeText={(text) => onChangeText(text, "password")}
         secureTextEntry={true}
         returnKeyType={"go"}
       />

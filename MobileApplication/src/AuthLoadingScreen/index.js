@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react"
-import { Platform, StyleSheet, View, Image } from "react-native"
+import React, {PureComponent} from "react"
+import {Platform, StyleSheet, View, Image} from "react-native"
 import AsyncStorage from "@react-native-community/async-storage"
 
 class AuthLoadingScreen extends PureComponent {
