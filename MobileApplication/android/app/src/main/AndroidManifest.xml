@@ -17,6 +17,7 @@
         android:name="com.google.android.geo.API_KEY"
         android:value="AIzaSyAmY-PJu2VbyG0Fpj-5wUQpcoLDe1OmS7U"/>
       <activity
+        android:launchMode="singleTop"
         android:name=".MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"

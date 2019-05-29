@@ -9,7 +9,8 @@ const ComboBoxDetail = ({
   selected,
   title,
   label,
-  onChangeSelected
+  onChangeSelected,
+  enable
 }) =>
   (is && (
     <ComboBox
@@ -24,6 +25,7 @@ const ComboBoxDetail = ({
       title={title}
       label={label}
       onChangeSelected={onChangeSelected.bind(this)}
+      enable={enable}
     />
   )) ||
   null

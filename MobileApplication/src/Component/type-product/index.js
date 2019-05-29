@@ -37,7 +37,9 @@ const TypeProduct = ({
   const [areaSelected, setAreaSelected] = useState(-1)
   const [priceSelected, setPriceSelected] = useState(-1)
 
-  useEffect(() => isProductType && getProductType(), [productType.length])
+  useEffect(() => {
+    productType.length === 0 && isProductType && getProductType()
+  }, [productType.length])
 
   const getData = (selected, postTypeId) => {
     switch (postTypeId) {
@@ -66,6 +68,7 @@ const TypeProduct = ({
           setProductTypeSelected(selected)
           getData(selected, postTypeId)
         }}
+        enable={true}
       />
       <ComboBoxDetail
         is={isProductCate}
@@ -76,6 +79,7 @@ const TypeProduct = ({
         onChangeSelected={selected => {
           setProductCateSelected(selected)
         }}
+        enable={true}
       />
       <ComboBoxDetail
         is={isPriceUnit}
@@ -86,6 +90,7 @@ const TypeProduct = ({
         onChangeSelected={selected => {
           setPriceUnitSelected(selected)
         }}
+        enable={true}
       />
       <ComboBoxDetail
         is={isArea}
@@ -96,6 +101,7 @@ const TypeProduct = ({
         onChangeSelected={selected => {
           setAreaSelected(selected)
         }}
+        enable={true}
       />
       <ComboBoxDetail
         is={isPrice}
@@ -106,6 +112,7 @@ const TypeProduct = ({
         onChangeSelected={selected => {
           setPriceSelected(selected)
         }}
+        enable={true}
       />
     </SafeAreaView>
   )

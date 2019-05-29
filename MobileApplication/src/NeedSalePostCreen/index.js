@@ -12,7 +12,7 @@ import Step2 from "./Component/Step2"
 import Step3 from "./Component/Step3"
 import Step4 from "./Component/Step4"
 
-class ForRentPostScreen extends Component {
+class NeedSalePostScreen extends Component {
   constructor(props) {
     super(props)
     this.state = { step: 0 }
@@ -68,4 +68,4 @@ class ForRentPostScreen extends Component {
   }
 }
 
-export default ForRentPostScreen
+export default NeedSalePostScreen

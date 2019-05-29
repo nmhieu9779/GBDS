@@ -10,7 +10,8 @@ const ComboBox = ({
   selected,
   title,
   label,
-  onChangeSelected
+  onChangeSelected,
+  enable
 }) => (
   <SafeAreaView style={[styles.container, style.container]}>
     <View style={styles.labelContainer}>
@@ -18,10 +19,11 @@ const ComboBox = ({
     </View>
     <ComboBoxBase
       style={style.combobox}
-      data={data}
+      data={data || []}
       selected={selected}
       title={title}
       onChangeSelected={item => onChangeSelected(item)}
+      enable={enable}
     />
   </SafeAreaView>
 )

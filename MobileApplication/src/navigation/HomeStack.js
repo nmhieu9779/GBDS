@@ -179,12 +179,12 @@ const HomeStack = createDrawerNavigator(
     ForSalePostScreen: {
       screen: ForSalePostScreen
     },
-    NeedSalePostCreen: {
+    NeedSalePostScreen: {
       screen: NeedSalePostCreen
     }
   },
   {
-    initialRouteName: "ForSalePostScreen",
+    initialRouteName: "HomeScreen",
     contentComponent: DrawerMenuContainer
   }
 )

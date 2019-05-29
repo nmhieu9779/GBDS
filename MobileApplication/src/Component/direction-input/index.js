@@ -17,6 +17,7 @@ const DirectionInput = () => {
         title={string.homeDirection.title}
         label={string.homeDirection.label}
         onChangeSelected={selected => setHomeDirectionSelected(selected)}
+        enable={true}
       />
       <ComboBoxDetail
         is={true}
@@ -25,6 +26,7 @@ const DirectionInput = () => {
         title={string.baconDirection.title}
         label={string.baconDirection.label}
         onChangeSelected={selected => setBaconDirectionSelected(selected)}
+        enable={true}
       />
     </SafeAreaView>
   )

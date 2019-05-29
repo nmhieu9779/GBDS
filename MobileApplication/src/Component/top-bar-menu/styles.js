@@ -1,23 +1,33 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, Platform } from "react-native"
 import { moderateScale } from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     width: "100%",
-    height: moderateScale(40),
     backgroundColor: "white",
-    alignItems: "center"
+    alignItems: "center",
+    ...Platform.select({
+      ios: {
+        height: moderateScale(38)
+      },
+      android: { height: moderateScale(56) }
+    })
   },
   icon: {
     margin: moderateScale(10)
   },
   title: {
     flex: 1,
-    fontSize: moderateScale(20),
     color: "black",
     textAlign: "center",
-    textAlignVertical: "center"
+    textAlignVertical: "center",
+    ...Platform.select({
+      ios: {
+        fontSize: moderateScale(17)
+      },
+      android: { fontSize: moderateScale(19) }
+    })
   }
 })
 

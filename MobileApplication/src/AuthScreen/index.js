@@ -31,7 +31,7 @@ const AuthScreen = ({
   const [signUp, setSignUp] = useState(defaultSignUp)
 
   useEffect(() => {
-    signInSuccess && navigation.navigate("HomeScreen")
+   return  signInSuccess && navigation.navigate("HomeScreen")
   }, [signInSuccess])
 
   useEffect(() => {

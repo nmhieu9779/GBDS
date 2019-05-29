@@ -1,5 +1,12 @@
 import React, { useState } from "react"
-import { Text, ScrollView, View, TextInput } from "react-native"
+import {
+  Text,
+  ScrollView,
+  View,
+  TextInput,
+  TouchableOpacity,
+  FlatList
+} from "react-native"
 import { step3 as styles } from "../styles"
 import { SafeAreaView } from "react-navigation"
 import TextInputCustom from "../../Component/text-input-custom"
@@ -7,11 +14,36 @@ import Header from "../../Component/header-post"
 import DirectionInput from "../../Component/direction-input"
 import { width, moderateScale } from "@src/utilities/scale"
 import { stringStep3 as string } from "../string"
+import RoomInput from "@src/Component/room-input"
 
 const Step3 = () => {
+  const defaultData = {
+    roomNumber: "0",
+    bedRoomNumber: "0",
+    toiletNumber: "0"
+  }
   const [widthState, setWidthState] = useState("")
   const [landWidth, setLanWidth] = useState("")
   const [other, setOther] = useState("")
+  const [roomNumber, setRoomNumber] = useState([
+    {
+      id: 0,
+      name: "Tầng trệt",
+      data: defaultData
+    }
+  ])
+  const [date, setDate] = useState(new Date())
+  const _keyExtractor = (item, index) => index.toString()
+  const _renderItem = ({ item, index }) => (
+    <RoomInput
+      name={item.name}
+      width={width}
+      onChange={data => {
+        roomNumber[index].data = data
+        setRoomNumber(roomNumber)
+      }}
+    />
+  )
 
   return (
     <SafeAreaView style={styles.container}>
@@ -33,6 +65,41 @@ const Step3 = () => {
           keyboardType={"numeric"}
         />
         <DirectionInput />
+        <FlatList
+          data={roomNumber}
+          keyExtractor={_keyExtractor.bind(this)}
+          extraData={date}
+          renderItem={_renderItem.bind(this)}
+        />
+        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+          <TouchableOpacity
+            style={styles.btnAdd}
+            onPress={() => {
+              let data = roomNumber
+              data.pop()
+              setRoomNumber(data)
+              setDate(new Date())
+            }}
+          >
+            <Text>{"-"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.btnAdd}
+            onPress={() => {
+              let data = {
+                id: roomNumber.length,
+                name:
+                  roomNumber.length !== 0
+                    ? "Tầng " + roomNumber.length
+                    : "Tầng trệt",
+                data: defaultData
+              }
+              setRoomNumber([...roomNumber, data])
+            }}
+          >
+            <Text>{"+"}</Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.furnitureContainer}>
           <Text style={styles.furnitureTitle}>{string.furnitureTitle}</Text>
           <TextInput

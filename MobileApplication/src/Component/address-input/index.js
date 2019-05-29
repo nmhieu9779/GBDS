@@ -30,7 +30,9 @@ const AddressInput = ({
   const [wardSelected, setWardSelected] = useState(-1)
   const [streetSelected, setStreetSelected] = useState(-1)
 
-  useEffect(() => isCity && getCity(), [city.length])
+  useEffect(() => {
+    city.length === 0 && isCity && getCity()
+  }, [city.length === 0])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -42,8 +44,12 @@ const AddressInput = ({
         label={strings.city.label}
         onChangeSelected={selected => {
           setCitySelected(selected)
+          setDistrictSelected(-1)
+          setWardSelected(-1)
+          setStreetSelected(-1)
           isDistrict && getDistrict(city[selected].id)
         }}
+        enable={true}
       />
       <ComboBoxDetail
         is={isDistrict}
@@ -53,8 +59,11 @@ const AddressInput = ({
         label={strings.district.label}
         onChangeSelected={selected => {
           setDistrictSelected(selected)
+          setWardSelected(-1)
+          setStreetSelected(-1)
           isWard && getWard(city[citySelected].id, district[selected].id)
         }}
+        enable={citySelected !== -1}
       />
       <ComboBoxDetail
         is={isWard}
@@ -64,9 +73,11 @@ const AddressInput = ({
         label={strings.ward.label}
         onChangeSelected={selected => {
           setWardSelected(selected)
+          setStreetSelected(-1)
           isStreet &&
             getStreet(city[citySelected].id, district[districtSelected].id)
         }}
+        enable={districtSelected !== -1}
       />
       <ComboBoxDetail
         is={isStreet}
@@ -77,6 +88,7 @@ const AddressInput = ({
         onChangeSelected={selected => {
           setStreetSelected(selected)
         }}
+        enable={wardSelected !== -1}
       />
     </SafeAreaView>
   )

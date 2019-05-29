@@ -2,10 +2,11 @@ import React from "react"
 import Icon from "./icon"
 import Title from "./title"
 import styles from "./styles"
-import SafeAreaViewBoxShadow from "../safe-area-view-box-shadow"
+import SafeAreaView from "react-native-safe-area-view"
+import stylesheets from "@src/common/stylesheets"
 
 const TopBarMenu = ({ icon, title, onPressLeft, onPressRight }) => (
-  <SafeAreaViewBoxShadow style={styles.container}>
+  <SafeAreaView style={[styles.container, stylesheets.boxShadow]}>
     <Icon style={styles.icon} onPress={() => onPressLeft()} icon={icon.left} />
     <Title title={title} />
     <Icon
@@ -13,7 +14,7 @@ const TopBarMenu = ({ icon, title, onPressLeft, onPressRight }) => (
       onPress={() => onPressRight()}
       icon={icon.right}
     />
-  </SafeAreaViewBoxShadow>
+  </SafeAreaView>
 )
 
 export default TopBarMenu

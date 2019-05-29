@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Text, View, Modal, TouchableOpacity, FlatList } from "react-native"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
-import { SafeAreaView } from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import styles from "./styles"
 import { moderateScale } from "@src/utilities/scale"
 
@@ -15,8 +15,11 @@ const RenderItem = ({ data, visiable, title, onClose }) => {
 
   useEffect(() => {
     setHeightContainer(getHeightContainer(data.length))
+  }, [data.length])
+
+  useEffect(() => {
     setVisiableState(visiable)
-  })
+  }, [visiable])
 
   const _renderItem = ({ item, index }) => (
     <TouchableOpacity
@@ -62,14 +65,27 @@ const RenderItem = ({ data, visiable, title, onClose }) => {
   )
 }
 
-const ComboBoxBase = ({ style, data, title, selected, onChangeSelected }) => {
+const ComboBoxBase = ({
+  style,
+  data,
+  title,
+  selected,
+  onChangeSelected,
+  enable
+}) => {
   const [visiable, setVisiable] = useState(false)
 
   return (
     <TouchableOpacity
       activeOpacity={1}
-      onPress={() => setVisiable(true)}
-      style={[styles.container, style]}
+      onPress={() => {
+        enable && setVisiable(true)
+      }}
+      style={[
+        styles.container,
+        style,
+        { backgroundColor: enable ? "white" : "#ECECEC" }
+      ]}
     >
       <Text style={styles.selected} numberOfLines={1}>
         {selected === -1 ? title : data[selected].label}
@@ -83,7 +99,7 @@ const ComboBoxBase = ({ style, data, title, selected, onChangeSelected }) => {
           setVisiable(false)
           index >= 0 && onChangeSelected(index)
         }}
-        data={data || []}
+        data={(data.length !== 0 && data) || []}
         title={title}
       />
     </TouchableOpacity>

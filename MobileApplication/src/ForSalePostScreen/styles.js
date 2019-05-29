@@ -94,6 +94,15 @@ export const step3 = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 10,
     padding: moderateScale(5)
+  },
+  btnAdd: {
+    justifyContent: "center",
+    borderWidth: 0.5,
+    borderColor: "#ccc",
+    borderRadius: moderateScale(5),
+    padding: moderateScale(5),
+    flexDirection: "row",
+    alignItems: "center"
   }
 })
 
