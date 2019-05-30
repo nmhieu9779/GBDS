@@ -1,5 +1,5 @@
 const string = {
-  title: "Trang chủ"
+  title: "Nhà cần bán nổi bật"
 }
 
 export default string

@@ -7,9 +7,9 @@ import stylesheets from "@src/common/stylesheets"
 
 const TopBarMenu = ({icon, title, onPressLeft, onPressRight}) => (
   <SafeAreaView style={[styles.container, stylesheets.boxShadow]}>
-    <Icon style={styles.icon} onPress={() => onPressLeft()} icon={icon.left} />
+    <Icon style={styles.icon} onPress={() => onPressLeft()} icon={icon.left || null} />
     <Title title={title} />
-    <Icon style={styles.icon} onPress={() => onPressRight()} icon={icon.right} />
+    <Icon style={styles.icon} onPress={() => onPressRight()} icon={icon.right || null} />
   </SafeAreaView>
 )
 
