@@ -1,5 +1,5 @@
 import React from "react"
-import ComboBox from "../combobox"
+import ComboBox from "@src/component/combobox"
 import styles from "./styles"
 
 const ComboBoxDetail = ({is, style, data, selected, title, label, onChangeSelected, enable}) =>

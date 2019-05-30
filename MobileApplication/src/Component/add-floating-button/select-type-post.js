@@ -5,7 +5,7 @@ import styles from "./styles"
 import string from "./string"
 import {connect} from "react-redux"
 import {closeSelectTypePostAction} from "./redux/actions"
-import NavigationService from "../../navigation/NavigationService"
+import NavigationService from "@src/navigation/NavigationService"
 import SafeAreaView from "react-native-safe-area-view"
 
 const SelectTypePost = ({visiable, close}) => {

@@ -1,26 +1,8 @@
-import React from "React"
-import {
-  Text,
-  View,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  ScrollView,
-  Modal,
-  StyleSheet
-} from "react-native"
-import {SafeAreaView, createBottomTabNavigator} from "react-navigation"
-import constants from "../Constant"
-import {faDollarSign} from "@fortawesome/free-solid-svg-icons"
-import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
-import ForSalePostScreen from "../ForSalePostScreen"
-import NeedSalePostCreen from "../NeedSalePostCreen"
-import {openSelectTypePostAction} from "../Component/add-floating-button/redux/actions"
-import {connect} from "react-redux"
-import NewFeedForSale from "../NewFeedForSale"
-import NewFeedForRent from "../NewFeedForRent"
-import NewFeedNeedSale from "../NewFeedNeedSale"
-import NewFeedNeedRent from "../NewFeedNeedRent"
+import {createBottomTabNavigator} from "react-navigation"
+import NewFeedForSale from "@src/screen/NewFeedForSale"
+import NewFeedForRent from "@src/screen/NewFeedForRent"
+import NewFeedNeedSale from "@src/screen/NewFeedNeedSale"
+import NewFeedNeedRent from "@src/screen/NewFeedNeedRent"
 
 const HomeStack = createBottomTabNavigator(
   {

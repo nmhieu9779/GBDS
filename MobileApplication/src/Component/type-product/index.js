@@ -8,7 +8,7 @@ import {
   getPriceUnitAction
 } from "./redux/actions"
 import SafeAreaView from "react-native-safe-area-view"
-import ComboBoxDetail from "../combobox-detail"
+import ComboBoxDetail from "@src/component/combobox-detail"
 import styles from "./styles"
 import strings from "./strings"
 

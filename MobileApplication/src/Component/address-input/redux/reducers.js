@@ -4,7 +4,7 @@ import {
   GET_DISTRICT_SUCCESS,
   GET_WARD_SUCCESS,
   GET_STREET_SUCCESS
-} from "../../../redux/actions"
+} from "@src/redux/actions"
 
 initStateAddress = {
   city: [],

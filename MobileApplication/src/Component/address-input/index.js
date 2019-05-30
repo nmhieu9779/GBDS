@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 import {connect} from "react-redux"
 import SafeAreaView from "react-native-safe-area-view"
-import ComboBoxDetail from "../combobox-detail"
+import ComboBoxDetail from "@src/component/combobox-detail"
 import styles from "./styles"
 import strings from "./strings"
 import {getCityAction, getDistrictAction, getWardAction, getstreetAction} from "./redux/actions"

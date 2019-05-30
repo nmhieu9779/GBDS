@@ -9,7 +9,7 @@ import {
   GET_STREET_SUCCESS,
   OPEN_HUD,
   CLOSE_HUD
-} from "../../../redux/actions"
+} from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
 import {Api} from "./api"
 

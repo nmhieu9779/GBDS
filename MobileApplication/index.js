@@ -1,12 +1,12 @@
 /** @format */
 
-import { AppRegistry } from "react-native"
+import {AppRegistry} from "react-native"
 import React from "react"
 // import App from "./App"
-import { name as appName } from "./app.json"
+import {name as appName} from "./app.json"
 //redux
-import { createStore, applyMiddleware } from "redux"
-import { Provider } from "react-redux"
+import {createStore, applyMiddleware} from "redux"
+import {Provider} from "react-redux"
 
 import allReducers from "./src/redux/reducers"
 
@@ -19,9 +19,9 @@ const sagaMiddleware = createSagaMiddleware()
 let store = createStore(allReducers, applyMiddleware(sagaMiddleware))
 
 import AppContainer from "./src/navigation/navigate"
-import ProcessHUD from "./src/Component/process-hud"
+import ProcessHUD from "./src/component/process-hud"
 import MyMapView from "./my-map-view"
-import SelectTypePost from "./src/Component/add-floating-button/select-type-post"
+import SelectTypePost from "./src/component/add-floating-button/select-type-post"
 import NavigationService from "./src/navigation/NavigationService"
 
 const App = () => (
@@ -29,7 +29,7 @@ const App = () => (
     <ProcessHUD />
     <SelectTypePost />
     <AppContainer
-      ref={navigatorRef => {
+      ref={(navigatorRef) => {
         NavigationService.setTopLevelNavigator(navigatorRef)
       }}
     />

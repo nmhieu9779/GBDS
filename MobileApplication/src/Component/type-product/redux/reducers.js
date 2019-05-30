@@ -1,5 +1,5 @@
 import {fromJS} from "immutable"
-import {GET_PRODUCT_TYPE, GET_PRODUCT_CATE, GET_PRICE_UNIT, GET_AREA, GET_PRICE} from "../../../redux/actions"
+import {GET_PRODUCT_TYPE, GET_PRODUCT_CATE, GET_PRICE_UNIT, GET_AREA, GET_PRICE} from "@src/redux/actions"
 import strings from "../strings"
 
 initStateTypeProduct = {

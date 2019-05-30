@@ -1,6 +1,6 @@
 import React from "react"
 import {faPencilAlt} from "@fortawesome/free-solid-svg-icons"
-import FloatingButton from "../floating-button"
+import FloatingButton from "@src/component/floating-button"
 import {connect} from "react-redux"
 import {openSelectTypePostAction} from "./redux/actions"
 

@@ -2,7 +2,7 @@ import React from "react"
 import {Text, View, TouchableOpacity} from "react-native"
 import SafeAreaView from "react-native-safe-area-view"
 import styles from "./styles"
-import constants from "../../Constant"
+import constants from "@src/constant"
 
 const {
   activeLineItem,

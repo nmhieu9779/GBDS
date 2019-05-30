@@ -1,5 +1,5 @@
 import {fromJS} from "immutable"
-import {OPEN_HUD, CLOSE_HUD} from "../../../redux/actions"
+import {OPEN_HUD, CLOSE_HUD} from "@src/redux/actions"
 
 initStateHud = {
   isLoading: false

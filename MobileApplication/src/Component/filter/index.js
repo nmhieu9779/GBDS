@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import {TouchableOpacity, Modal} from "react-native"
-import AddressInput from "@src/Component/address-input"
+import AddressInput from "@src/component/address-input"
 import styles from "./styles"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faSortUp} from "@fortawesome/free-solid-svg-icons"

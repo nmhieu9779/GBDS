@@ -2,7 +2,7 @@ import React from "react"
 import {TouchableOpacity} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
-import SafeAreaViewBoxShadow from "../safe-area-view-box-shadow"
+import SafeAreaViewBoxShadow from "@src/component/safe-area-view-box-shadow"
 
 const FloatingButton = ({icon, onPress}) => (
   <SafeAreaViewBoxShadow style={styles.container}>

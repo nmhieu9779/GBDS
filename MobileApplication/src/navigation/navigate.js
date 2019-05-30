@@ -1,13 +1,7 @@
-import AuthScreen from "../AuthScreen"
-import AuthLoadingScreen from "../AuthLoadingScreen"
+import AuthScreen from "@src/screen/AuthScreen"
+import AuthLoadingScreen from "@src/screen/AuthLoading"
 import HomeStack from "./HomeStack"
-import {
-  createStackNavigator,
-  createAppContainer,
-  createDrawerNavigator,
-  withNavigationFocus,
-  createSwitchNavigator
-} from "react-navigation"
+import {createAppContainer, createSwitchNavigator} from "react-navigation"
 
 const AppContainer = createAppContainer(
   createSwitchNavigator(
