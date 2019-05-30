@@ -7,7 +7,7 @@ import SafeAreaView from "react-native-safe-area-view"
 import {faFilter} from "@fortawesome/free-solid-svg-icons"
 import Filter from "@src/Component/filter"
 import AddFloatingButton from "@src/Component/add-floating-button"
-import PostList from "@src/Component/post-list-for"
+import PostListFor from "@src/Component/post-list-for"
 import {onFetchPostForSaleHome} from "./redux/actions"
 
 const NewFeedForSale = ({data, refreshing, fetchPostForSaleHome}) => {
@@ -40,8 +40,8 @@ const NewFeedForSale = ({data, refreshing, fetchPostForSaleHome}) => {
         />
       )}
       <AddFloatingButton />
-      <PostList
-        listData={data}
+      <PostListFor
+        data={data}
         onRefresh={() => {
           fetchPostForSaleHome()
         }}

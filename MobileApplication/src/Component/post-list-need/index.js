@@ -3,29 +3,18 @@ import {Text, View, FlatList, Image, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import string from "./string"
 import {faUserCircle, faUserPlus} from "@fortawesome/free-solid-svg-icons"
-import {faStar, faThumbsUp, faComment} from "@fortawesome/free-regular-svg-icons"
+import {faThumbsUp, faComment} from "@fortawesome/free-regular-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 
-const _renderTop = (postDate, address, title, vipType, avatar) => (
+const _renderTop = (postDate, title, avatar) => (
   <View style={styles.topContainer}>
     <View style={styles.avatarContainer}>{_renderAvtar(avatar)}</View>
     <View style={styles.postNameContainer}>
-      {_renderTitle(title, vipType)}
-      <Text style={styles.postDate}>
-        {postDate} {" - "} {address}
-      </Text>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.postDate}>{postDate}</Text>
     </View>
   </View>
 )
-
-const _renderTitle = (title, vipType) =>
-  ((vipType === 0 || vipType === 1) && (
-    <Text style={[styles.title, styleTitle[vipType]]}>{title.toLowerCase()}</Text>
-  )) ||
-  ((vipType === 2 || vipType === 4) && (
-    <Text style={[styles.title, styleTitle[vipType]]}>{title.toUpperCase()}</Text>
-  )) ||
-  (vipType === 3 && <Text style={[styles.title, styleTitle[vipType]]}>{title.toUpperCase()}</Text>)
 
 const _renderAvtar = (avatarUrl) =>
   avatarUrl ? (
@@ -33,6 +22,25 @@ const _renderAvtar = (avatarUrl) =>
   ) : (
     <FontAwesomeIcon icon={faUserCircle} />
   )
+
+const _renderRequest = (price, area, address) => (
+  <View style={styles.requestContainer}>
+    <View style={styles.requestItem}>
+      <Text style={styles.requestLabel}>{"Giá: "}</Text>
+      <Text style={styles.requestContent}>{price}</Text>
+    </View>
+    <View style={styles.requestItem}>
+      <Text style={styles.requestLabel}>{"Diện tích: "}</Text>
+      <Text style={styles.requestContent}>{area}</Text>
+    </View>
+    <View style={styles.requestItem}>
+      <Text style={styles.requestLabel}>{"Địa chỉ: "}</Text>
+      <Text style={styles.requestContent} numberOfLines={2}>
+        {address}
+      </Text>
+    </View>
+  </View>
+)
 
 const _renderDescription = (description) =>
   description && (
@@ -42,9 +50,6 @@ const _renderDescription = (description) =>
       </Text>
     </View>
   )
-
-const _renderImage = (image) =>
-  (image && <Image style={styles.image} source={image && {uri: image}} />) || null
 
 const _renderBottom = () => (
   <View style={styles.bottomContainer}>
@@ -69,29 +74,17 @@ const _renderBottom = () => (
   </View>
 )
 
-const styleTitle = [
-  {color: "black"},
-  {color: "black"},
-  {color: "black", fontWeight: "bold"},
-  {color: "black", fontWeight: "bold"}
-]
-
-const color = ["blue", "blue", "blue", "red", "red"]
-
-const renderItem = (
-  {item: {description, avatar, vipType, title, image, price, area, address, postDate, id}},
-  index
-) => (
+const renderItem = ({item: {avatar, description, title, price, area, address, postDate, id}}, index) => (
   <TouchableOpacity activeOpacity={1} key={index + id} style={styles.postContainer}>
-    {_renderTop(postDate, address, title, vipType, avatar)}
+    {_renderTop(postDate, title, avatar)}
+    {_renderRequest(price, area, address)}
     {_renderDescription(description)}
-    {_renderImage(image)}
     {_renderBottom()}
   </TouchableOpacity>
 )
 const keyExtractor = (item, index) => index.toString()
 
-const PostListFor = ({data, onRefresh, refreshing}) => (
+const PostListNeed = ({data, onRefresh, refreshing}) => (
   <View style={{flex: 1, backgroundColor: "#D9DDE0"}}>
     <FlatList
       refreshing={refreshing}
@@ -103,4 +96,4 @@ const PostListFor = ({data, onRefresh, refreshing}) => (
   </View>
 )
 
-export default PostListFor
+export default PostListNeed

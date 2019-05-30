@@ -2,20 +2,20 @@ import React, {useState, useEffect} from "react"
 import styles from "./styles"
 import string from "./string"
 import {connect} from "react-redux"
-import TopBarMenu from "@src/Component/top-bar-menu"
+import TopBarMenu from "../Component/top-bar-menu"
 import SafeAreaView from "react-native-safe-area-view"
 import {faFilter} from "@fortawesome/free-solid-svg-icons"
 import Filter from "@src/Component/filter"
 import AddFloatingButton from "@src/Component/add-floating-button"
-import PostListFor from "@src/Component/post-list-for"
-import {onFetchPostForRentHome} from "./redux/actions"
+import PostListNeed from "@src/Component/post-list-need"
+import {onFetchPostNeedSaleHome} from "./redux/actions"
 
-const NewFeedForRent = ({data, refreshing, fetchPostForRentHome}) => {
+const NewFeedNeedSale = ({data, refreshing, fetchPostNeedSaleHome}) => {
   const [visiableFilter, setVisiableFilter] = useState(false)
   const [refreshingSate, setRefreshingState] = useState(false)
 
   useEffect(() => {
-    fetchPostForRentHome()
+    fetchPostNeedSaleHome()
   }, [])
 
   useEffect(() => {
@@ -40,10 +40,10 @@ const NewFeedForRent = ({data, refreshing, fetchPostForRentHome}) => {
         />
       )}
       <AddFloatingButton />
-      <PostListFor
+      <PostListNeed
         data={data}
         onRefresh={() => {
-          fetchPostForRentHome()
+          fetchPostNeedSaleHome()
         }}
         refreshing={refreshingSate}
       />
@@ -51,22 +51,22 @@ const NewFeedForRent = ({data, refreshing, fetchPostForRentHome}) => {
   )
 }
 
-const mapStateToProps = ({newFeedForRent: {data, refreshing}}) => ({
+const mapStateToProps = ({newFeedNeedSale: {data, refreshing}}) => ({
   data: data,
   refreshing: refreshing
 })
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPostForRentHome: () => {
-      dispatch(onFetchPostForRentHome())
+    fetchPostNeedSaleHome: () => {
+      dispatch(onFetchPostNeedSaleHome())
     }
   }
 }
 
-const NewFeedForRentContainer = connect(
+const NewFeedNeedSaleContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewFeedForRent)
+)(NewFeedNeedSale)
 
-export default NewFeedForRentContainer
+export default NewFeedNeedSaleContainer
