@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {moderateScale, width} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -14,22 +14,66 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: moderateScale(18)
   },
-  container: {
-    padding: moderateScale(5),
-    borderColor: "#ccc",
-    borderLeftWidth: moderateScale(0.5),
-    borderRightWidth: moderateScale(0.5)
+  topContainer: {
+    padding: moderateScale(10),
+    paddingBottom: 0,
+    marginBottom: moderateScale(12),
+    flexDirection: "row"
   },
   postContainer: {
-    padding: moderateScale(5),
-    borderRadius: moderateScale(5),
-    borderWidth: 1
+    marginBottom: moderateScale(5),
+    backgroundColor: "white"
   },
-  infoContainer: {flexDirection: "row", marginTop: moderateScale(10)},
-  image: {width: moderateScale(120), height: moderateScale(90)},
-  info: {paddingLeft: moderateScale(10), justifyContent: "space-around"},
-  price: {fontWeight: "bold"},
-  postDate: {color: "#9C9C9C", fontStyle: "italic"},
+  avatarContainer: {
+    paddingRight: moderateScale(8)
+  },
+  avatar: {
+    borderRadius: moderateScale(20),
+    width: moderateScale(40),
+    height: moderateScale(40),
+    overflow: "hidden"
+  },
+  postNameContainer: {flex: 1},
+  title: {
+    fontSize: moderateScale(14)
+  },
+  postDate: {
+    color: "rgb(144, 148, 156);",
+    fontSize: moderateScale(12)
+  },
+  descriptionContainer: {
+    marginTop: moderateScale(8),
+    marginBottom: moderateScale(8),
+    paddingLeft: moderateScale(10),
+    paddingRight: moderateScale(10)
+  },
+  description: {
+    fontSize: moderateScale(14)
+  },
+  image: {
+    width: width,
+    height: moderateScale(250)
+  },
+  bottomContainer: {
+    marginTop: moderateScale(10),
+    flexDirection: "row"
+  },
+  btnBottom: {
+    flexDirection: "row",
+    flex: 1,
+    paddingLeft: moderateScale(8),
+    paddingRight: moderateScale(8)
+  },
+  itemsBtn: {
+    flexDirection: "row",
+    padding: moderateScale(8),
+    paddingTop: moderateScale(6),
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  itemsBtnIcon: {
+    marginRight: moderateScale(4)
+  },
   footer: {
     width: "100%",
     borderBottomLeftRadius: moderateScale(20),

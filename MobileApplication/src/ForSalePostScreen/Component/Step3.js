@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {Text, ScrollView, View, TextInput, TouchableOpacity, FlatList} from "react-native"
 import {step3 as styles} from "../styles"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import TextInputCustom from "../../Component/text-input-custom"
 import Header from "../../Component/header-post"
 import DirectionInput from "../../Component/direction-input"
@@ -29,11 +29,16 @@ const Step3 = () => {
   const _keyExtractor = (item, index) => index.toString()
   const _renderItem = ({item, index}) => (
     <RoomInput
-      name={item.name}
-      width={width}
+      name={item.id === 0 ? "Tầng trệt" : "Tầng " + item.id}
       onChange={(data) => {
         roomNumber[index].data = data
         setRoomNumber(roomNumber)
+      }}
+      onClose={() => {
+        let data = roomNumber
+        data.splice(index, 1)
+        setRoomNumber(roomNumber.map((item, index) => ({...item, id: index})))
+        setDate(new Date())
       }}
     />
   )
@@ -64,28 +69,17 @@ const Step3 = () => {
           extraData={date}
           renderItem={_renderItem.bind(this)}
         />
-        <View style={{flexDirection: "row", justifyContent: "space-around"}}>
-          <TouchableOpacity
-            style={styles.btnAdd}
-            onPress={() => {
-              let data = roomNumber
-              data.pop()
-              setRoomNumber(data)
-              setDate(new Date())
-            }}>
-            <Text>{"-"}</Text>
-          </TouchableOpacity>
+        <View style={{}}>
           <TouchableOpacity
             style={styles.btnAdd}
             onPress={() => {
               let data = {
                 id: roomNumber.length,
-                name: roomNumber.length !== 0 ? "Tầng " + roomNumber.length : "Tầng trệt",
                 data: defaultData
               }
               setRoomNumber([...roomNumber, data])
             }}>
-            <Text>{"+"}</Text>
+            <Text style={{color:"#1DA1F2"}} >{"Thêm tầng..."}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.furnitureContainer}>

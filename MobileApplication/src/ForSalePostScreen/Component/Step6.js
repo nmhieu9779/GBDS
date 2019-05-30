@@ -3,7 +3,7 @@ import {ScrollView} from "react-native"
 import {stringStep6 as string} from "../string"
 import {step6 as styles} from "../styles"
 import Header from "../../Component/header-post"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import TextInputCustom from "../../Component/text-input-custom"
 import {width, moderateScale} from "@src/utilities/scale"
 

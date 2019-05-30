@@ -3,7 +3,7 @@ import {Text, ScrollView} from "react-native"
 import {stringStep5 as string} from "../string"
 import {step5 as styles} from "../styles"
 import Header from "../../Component/header-post"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import MapView, {Marker} from "react-native-maps"
 
 const LATITUDE_DELTA = 0.01

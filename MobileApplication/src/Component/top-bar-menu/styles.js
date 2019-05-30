@@ -12,7 +12,9 @@ const styles = StyleSheet.create({
         height: moderateScale(38)
       },
       android: {height: moderateScale(56)}
-    })
+    }),
+    borderBottomColor: "#E9EBEE",
+    borderBottomWidth: 1
   },
   icon: {
     margin: moderateScale(10)

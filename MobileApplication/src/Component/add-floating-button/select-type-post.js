@@ -11,25 +11,29 @@ import SafeAreaView from "react-native-safe-area-view"
 const SelectTypePost = ({visiable, close}) => {
   return (
     <Modal visible={visiable} transparent={true}>
-      <SafeAreaView style={[styles.modalContainer, stylesheets.boxShadow]}>
-        <Text style={styles.modalTitle}>{string.modalTitle}</Text>
-        <View style={styles.modalButtonContainer}>
-          <TouchableOpacity
-            style={styles.modalButton}
-            onPress={() => {
-              close()
-              NavigationService.navigate("ForSalePostScreen")
-            }}>
-            <Text style={styles.textBtn}>{string.forSale}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.modalButton}
-            onPress={() => {
-              close()
-              NavigationService.navigate("NeedSalePostScreen")
-            }}>
-            <Text style={styles.textBtn}>{string.forRent}</Text>
-          </TouchableOpacity>
+      <SafeAreaView style={styles.modalContainer}>
+        <View style={[styles.typeContainer, stylesheets.boxShadow]}>
+          <Text style={styles.modalTitle}>{string.modalTitle}</Text>
+          <View style={styles.modalButtonContainer}>
+            <TouchableOpacity
+              style={styles.modalButton}
+              onPress={() => {
+                close()
+                NavigationService.navigate("ForSalePostScreen")
+              }}
+              activeOpacity={1}>
+              <Text style={styles.textBtn}>{string.forSale}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.modalButton}
+              onPress={() => {
+                close()
+                NavigationService.navigate("NeedSalePostScreen")
+              }}
+              activeOpacity={1}>
+              <Text style={styles.textBtn}>{string.forRent}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </SafeAreaView>
     </Modal>

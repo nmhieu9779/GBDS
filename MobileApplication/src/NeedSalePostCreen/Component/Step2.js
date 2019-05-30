@@ -4,7 +4,7 @@ import {styles_step2 as styles} from "../styles"
 import {string_step2 as string} from "../string"
 import TextInputCustom from "../../Component/text-input-custom"
 import Header from "../../Component/header-post"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import {width} from "@src/utilities/scale"
 
 class Step2 extends Component {

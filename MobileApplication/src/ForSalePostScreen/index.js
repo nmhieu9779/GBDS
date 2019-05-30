@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import {ScrollView} from "react-native"
 import constants from "../Constant"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import Breadcrumb from "../Component/breadcrumb"
 import TopBarMenu from "../Component/top-bar-menu"
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons"

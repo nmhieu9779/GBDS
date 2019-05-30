@@ -62,7 +62,7 @@ class HomeScreen extends Component {
 }
 
 const mapStateToProps = ({homeReducers}) => ({
-  listData: homeReducers.listData,
+  listData: homeReducers.listData[0].data,
   refreshing: homeReducers.refreshing
 })
 

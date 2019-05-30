@@ -2,7 +2,7 @@ const axios = require("axios")
 
 function* fetchPostForSaleHome() {
   return yield axios
-    .get("http://www.mocky.io/v2/5ce989663300002132525d85")
+    .get("http://www.mocky.io/v2/5cefca81300000ce953cd329")
     .then((response) => response)
     .catch((error) => error)
 }

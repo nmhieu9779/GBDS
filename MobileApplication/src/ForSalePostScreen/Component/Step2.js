@@ -3,7 +3,7 @@ import {Text, ScrollView, TextInput} from "react-native"
 import {step2 as styles} from "../styles"
 import {stringStep2 as string} from "../string"
 import Header from "../../Component/header-post"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 
 const Step2 = () => {
   const [value, setValue] = useState("")

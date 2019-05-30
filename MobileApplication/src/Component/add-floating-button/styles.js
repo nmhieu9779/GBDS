@@ -1,17 +1,17 @@
-import {StyleSheet, Platform} from "react-native"
-import {moderateScale, width} from "@src/utilities/scale"
+import {StyleSheet} from "react-native"
+import {moderateScale} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   modalContainer: {
-    backgroundColor: "white",
+    flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
+  },
+  typeContainer: {
+    backgroundColor: "white",
+    borderRadius: moderateScale(5),
     padding: moderateScale(5),
-    marginLeft: moderateScale(5),
-    marginRight: moderateScale(5),
-    position: "absolute",
-    top: "40%",
-    borderRadius: moderateScale(10)
+    alignItems: "center"
   },
   modalTitle: {
     fontWeight: "bold",
@@ -23,12 +23,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  modalContent: {flex: 1},
   modalButton: {
-    flex: 1,
     backgroundColor: "#E9EBEE",
-    paddingTop: moderateScale(10),
-    paddingBottom: moderateScale(10),
+    padding: moderateScale(10),
     borderRadius: 5,
     borderColor: "#ccc",
     borderWidth: 0.5

@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {Platform, TextInput, Animated, TouchableWithoutFeedback} from "react-native"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import styles from "./styles"
 
 const TextInputCustom = ({

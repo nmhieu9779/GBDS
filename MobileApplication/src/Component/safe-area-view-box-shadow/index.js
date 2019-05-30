@@ -1,5 +1,5 @@
 import React from "react"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import styles from "./styles"
 
 const SafeAreaViewBoxShadow = ({style, children}) => (

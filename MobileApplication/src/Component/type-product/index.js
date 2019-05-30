@@ -7,7 +7,7 @@ import {
   getAreaAction,
   getPriceUnitAction
 } from "./redux/actions"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import ComboBoxDetail from "../combobox-detail"
 import styles from "./styles"
 import strings from "./strings"

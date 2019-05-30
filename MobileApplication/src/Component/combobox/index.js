@@ -1,6 +1,6 @@
 import React from "react"
 import {Text, View} from "react-native"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import ComboBoxBase from "./combobox-base"
 import styles from "./styles"
 

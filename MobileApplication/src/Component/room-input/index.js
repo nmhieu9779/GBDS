@@ -1,8 +1,11 @@
 import React, {useState} from "react"
-import {Text, TextInput, TouchableWithoutFeedback, View} from "react-native"
+import {Text, TextInput, TouchableWithoutFeedback, View, TouchableOpacity} from "react-native"
 import styles from "./styles"
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
+import {faTimesCircle} from "@fortawesome/free-regular-svg-icons"
+import stylesheets from "@src/common/stylesheets"
 
-const RoomInput = ({width, name, onChange}) => {
+const RoomInput = ({name, onChange, onClose}) => {
   const roomInputNumber = React.createRef()
   const bedRoomInputNumber = React.createRef()
   const toiletInputNumber = React.createRef()
@@ -24,74 +27,82 @@ const RoomInput = ({width, name, onChange}) => {
       onPress={() => {
         roomInputNumber.current.focus()
       }}>
-      <View
-        style={[
-          styles.container,
-          {
-            width: width
-          }
-        ]}>
-        <Text style={[styles.name, {flex: 1}]}>{name}</Text>
-        <Text>{" có "}</Text>
-        <TextInput
-          ref={roomInputNumber}
-          style={styles.textInput}
-          keyboardType={"numeric"}
-          returnKeyType={"next"}
-          value={roomNumber}
-          onSubmitEditing={() => _onSubmitEditing(bedRoomInputNumber)}
-          onFocus={() => {
-            setRoomNumber("")
-          }}
-          onChangeText={(text) => {
-            setRoomNumber(text)
-          }}
-          onBlur={() => {
-            !roomNumber && setRoomNumber("0")
-            _onBlur()
-          }}
-        />
-        <Text>{" phòng gồm: "}</Text>
-        <TextInput
-          ref={bedRoomInputNumber}
-          style={styles.textInput}
-          keyboardType={"numeric"}
-          returnKeyType={"next"}
-          value={bedRoomNumber}
-          onSubmitEditing={() => _onSubmitEditing(toiletInputNumber)}
-          onFocus={() => {
-            setBedRoomNumber("")
-          }}
-          onChangeText={(text) => {
-            setBedRoomNumber(text)
-          }}
-          onBlur={() => {
-            !bedRoomNumber && setBedRoomNumber("0")
-            _onBlur()
-          }}
-        />
-        <Text>{" phòng ngủ "}</Text>
-        <TextInput
-          ref={toiletInputNumber}
-          style={styles.textInput}
-          keyboardType={"numeric"}
-          value={toiletNumber}
-          returnKeyType={"done"}
-          onFocus={() => {
-            setToiletNumber("")
-          }}
-          onChangeText={(text) => {
-            setToiletNumber(text)
-          }}
-          onBlur={() => {
-            !toiletNumber && setToiletNumber("0")
-            _onBlur()
-          }}
-        />
-        <Text>{" toilet"}</Text>
+      <View style={[styles.container, stylesheets.boxShadow]}>
+        <View style={styles.titleContainer}>
+          <Text style={[styles.name, {flex: 1}]}>{name}</Text>
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => {
+              onClose()
+            }}>
+            <FontAwesomeIcon color={"#FE6093"} size={20} icon={faTimesCircle} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.infoContainer}>
+          <TextInput
+            ref={roomInputNumber}
+            style={styles.textInput}
+            keyboardType={"numeric"}
+            returnKeyType={"next"}
+            value={roomNumber}
+            onSubmitEditing={() => _onSubmitEditing(bedRoomInputNumber)}
+            onFocus={() => {
+              setRoomNumber("")
+            }}
+            onChangeText={(text) => {
+              setRoomNumber(text)
+            }}
+            onBlur={() => {
+              !roomNumber && setRoomNumber("0")
+              _onBlur()
+            }}
+          />
+          <Text>{" phòng gồm: "}</Text>
+          <TextInput
+            ref={bedRoomInputNumber}
+            style={styles.textInput}
+            keyboardType={"numeric"}
+            returnKeyType={"next"}
+            value={bedRoomNumber}
+            onSubmitEditing={() => _onSubmitEditing(toiletInputNumber)}
+            onFocus={() => {
+              setBedRoomNumber("")
+            }}
+            onChangeText={(text) => {
+              setBedRoomNumber(text)
+            }}
+            onBlur={() => {
+              !bedRoomNumber && setBedRoomNumber("0")
+              _onBlur()
+            }}
+          />
+          <Text>{" phòng ngủ "}</Text>
+          <TextInput
+            ref={toiletInputNumber}
+            style={styles.textInput}
+            keyboardType={"numeric"}
+            value={toiletNumber}
+            returnKeyType={"done"}
+            onFocus={() => {
+              setToiletNumber("")
+            }}
+            onChangeText={(text) => {
+              setToiletNumber(text)
+            }}
+            onBlur={() => {
+              !toiletNumber && setToiletNumber("0")
+              _onBlur()
+            }}
+          />
+          <Text>{" toilet"}</Text>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   )
 }
 
 export default RoomInput
+
+{
+  /*  */
+}

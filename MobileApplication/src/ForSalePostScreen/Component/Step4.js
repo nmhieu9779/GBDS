@@ -4,7 +4,7 @@ import Header from "../../Component/header-post"
 import {stringStep4 as string} from "../string"
 import {step4 as styles} from "../styles"
 import ImagePicker from "react-native-image-picker"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faImages} from "@fortawesome/free-regular-svg-icons"
 

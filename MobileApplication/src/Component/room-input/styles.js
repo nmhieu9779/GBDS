@@ -1,16 +1,18 @@
 import {StyleSheet} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {moderateScale, width} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
-    borderWidth: 0.5,
-    borderColor: "#ccc",
-    borderRadius: moderateScale(5),
     padding: moderateScale(5),
+    width: width - 10,
+    marginBottom: moderateScale(10),
+    borderRadius: 1
+  },
+  titleContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: moderateScale(5)
+    justifyContent: "space-between"
   },
   textInput: {
     borderColor: "#ccc",
@@ -19,7 +21,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderRadius: moderateScale(5)
   },
-  name: {fontSize: moderateScale(20), fontWeight: "bold", color: "red"}
+  name: {fontSize: moderateScale(18), fontWeight: "bold", color: "red"},
+  infoContainer: {flexDirection: "row", alignItems: "center"}
 })
 
 export default styles

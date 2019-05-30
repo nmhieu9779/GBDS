@@ -5,7 +5,7 @@ import {string_step1 as string} from "../string"
 import AddressInput from "../../Component/address-input"
 import TypeProduct from "../../Component/type-product"
 import Header from "../../Component/header-post"
-import {SafeAreaView} from "react-navigation"
+import SafeAreaView from "react-native-safe-area-view"
 
 class Step1 extends Component {
   constructor(props) {
