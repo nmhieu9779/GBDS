@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     margin: moderateScale(10)
   },
   title: {
-    flex: 2,
+    flex: 1,
     color: "white",
     textAlign: "center",
     textAlignVertical: "center",
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   itemContainer: {
-    flex: 1,
     flexDirection: "row"
   }
 })

@@ -5,6 +5,7 @@ import string from "./string"
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import BottomListPost from "@src/component/bottom-list-post"
+import NavigationService from "@src/navigation/NavigationService"
 
 const _renderTop = (postDate, address, title, vipType, avatar) => (
   <View style={styles.topContainer}>
@@ -85,11 +86,16 @@ const styleTitle = [
 
 const color = ["blue", "blue", "blue", "red", "red"]
 
-const renderItem = (
-  {item: {description, avatar, vipType, title, image, price, area, address, postDate, id}},
-  index
-) => (
-  <TouchableOpacity activeOpacity={1} key={index + id} style={styles.postContainer}>
+const renderItem = ({
+  item: {description, avatar, vipType, title, image, price, area, address, postDate, id}
+}) => (
+  <TouchableOpacity
+    onPress={() => {
+      NavigationService.navigate("ForSalePostDetail")
+    }}
+    activeOpacity={1}
+    key={id}
+    style={styles.postContainer}>
     {_renderTop(postDate, address, title, vipType, avatar)}
     {!image && _renderRequest({price, area})}
     {_renderDescription(description)}
@@ -97,9 +103,10 @@ const renderItem = (
     <BottomListPost />
   </TouchableOpacity>
 )
+
 const keyExtractor = (item, index) => index.toString()
 
-const PostListFor = ({data, onRefresh, refreshing}) => (
+const PostListFor = ({data, onRefresh, refreshing, onPress}) => (
   <View style={{flex: 1, backgroundColor: "#D9DDE0"}}>
     <FlatList
       refreshing={refreshing}

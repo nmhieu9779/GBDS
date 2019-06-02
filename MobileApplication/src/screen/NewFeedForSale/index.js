@@ -11,7 +11,7 @@ import AddFloatingButton from "@src/component/add-floating-button"
 import PostListFor from "@src/component/post-list-for"
 import {onFetchPostForSaleHome} from "./redux/actions"
 
-const NewFeedForSale = ({data, refreshing, fetchPostForSaleHome}) => {
+const NewFeedForSale = ({data, refreshing, fetchPostForSaleHome, navigation}) => {
   const [visiableFilter, setVisiableFilter] = useState(false)
   const [refreshingSate, setRefreshingState] = useState(false)
 

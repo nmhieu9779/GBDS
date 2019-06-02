@@ -5,6 +5,7 @@ import NewFeedNeedSale from "@src/screen/NewFeedNeedSale"
 import NewFeedNeedRent from "@src/screen/NewFeedNeedRent"
 import ForSalePost from "@src/screen/ForSalePost"
 import NeedSalePost from "@src/screen/NeedSalePost"
+import ForSalePostDetail from "@src/screen/ForSalePostDetail"
 import TabBarBottom from "./component/tab-bar-bottom"
 
 const HomeStack = createBottomTabNavigator(
@@ -27,6 +28,10 @@ const HomeStack = createBottomTabNavigator(
     },
     NeedSalePost: {
       screen: NeedSalePost,
+      navigationOptions: {tabBarVisible: false}
+    },
+    ForSalePostDetail: {
+      screen: ForSalePostDetail,
       navigationOptions: {tabBarVisible: false}
     }
   },

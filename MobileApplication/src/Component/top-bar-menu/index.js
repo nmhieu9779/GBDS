@@ -6,7 +6,11 @@ import {TouchableOpacity, View, Platform, Text} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {moderateScale} from "@src/utilities/scale"
 
-const Title = ({title}) => <Text style={styles.title}>{title}</Text>
+const Title = ({title}) => (
+  <Text style={styles.title} numberOfLines={1}>
+    {title}
+  </Text>
+)
 
 const Icon = ({icon, onPress}) =>
   (icon && (
@@ -19,9 +23,7 @@ const TopBarMenu = ({icon, title, titleIsLeft}) => (
   <SafeAreaView style={[styles.container, stylesheets.boxShadow]}>
     {titleIsLeft && <Title title={title} />}
     <View style={[styles.itemContainer, {justifyContent: titleIsLeft ? "flex-end" : "flex-start"}]}>
-      {icon.map(({icon}, index) => (
-        <Icon key={index} onPress={() => {}} icon={icon || null} />
-      ))}
+      {icon && icon.map(({icon}, index) => <Icon key={index} onPress={() => {}} icon={icon || null} />)}
     </View>
     {!titleIsLeft && <Title title={title} />}
   </SafeAreaView>
