@@ -10,7 +10,7 @@ import SignIn from "./Component/sign-in"
 import SignUp from "./Component/sign-up"
 import images from "@src/common/images"
 
-const AuthScreen = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigation}) => {
+const Auth = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigation}) => {
   const defaultSignUp = {
     fullName: "",
     password: "123456",
@@ -26,7 +26,7 @@ const AuthScreen = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigatio
   const [signUp, setSignUp] = useState(defaultSignUp)
 
   useEffect(() => {
-    return signInSuccess && navigation.navigate("HomeScreen")
+    return signInSuccess && navigation.navigate("Home")
   }, [signInSuccess])
 
   useEffect(() => {
@@ -153,5 +153,5 @@ const mapDispatchToProps = (dispatch) => {
 const AuthContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuthScreen)
+)(Auth)
 export default AuthContainer

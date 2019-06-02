@@ -3,7 +3,7 @@ import {StyleSheet, View, Image} from "react-native"
 import AsyncStorage from "@react-native-community/async-storage"
 import images from "@src/common/images"
 
-class AuthLoadingScreen extends PureComponent {
+class AuthLoading extends PureComponent {
   constructor(props) {
     super(props)
     this._bootstrapAsync()
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AuthLoadingScreen
+export default AuthLoading

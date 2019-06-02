@@ -12,7 +12,7 @@ const constants = {
   commingSoon: "Tính năng đang phát triển",
   width: Dimensions.get("screen").width,
   height: Dimensions.get("screen").height,
-  ForSalePostScreen: {
+  ForSalePost: {
     labelStep: [
       {length: 7, label: "1", isFirst: true},
       {length: 7, label: "2"},

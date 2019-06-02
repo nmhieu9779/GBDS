@@ -5,14 +5,16 @@ import SafeAreaView from "react-native-safe-area-view"
 import Breadcrumb from "@src/component/breadcrumb"
 import TopBarMenu from "@src/component/top-bar-menu"
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons"
-import {styles_main as styles} from "./styles"
-import {stringMain as string} from "./string"
 import Step1 from "./Component/Step1"
 import Step2 from "./Component/Step2"
 import Step3 from "./Component/Step3"
 import Step4 from "./Component/Step4"
+import Step5 from "./Component/Step5"
+import Step6 from "./Component/Step6"
+import Step7 from "./Component/Step7"
+import {main as styles} from "./styles"
 
-class NeedSalePostScreen extends Component {
+class ForSalePost extends Component {
   constructor(props) {
     super(props)
     this.state = {step: 0}
@@ -20,14 +22,8 @@ class NeedSalePostScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <TopBarMenu
-          icon={{left: faArrowLeft}}
-          title={"Đăng bài mua"}
-          onPressLeft={() => {
-            this.props.navigation.goBack()
-          }}
-        />
+      <SafeAreaView style={styles.for_sale_post_container}>
+        <TopBarMenu icon={[{icon: faArrowLeft}]} title={"Đăng bài mua"} />
         <ScrollView
           ref={(ref) => {
             this.scrollView = ref
@@ -39,17 +35,20 @@ class NeedSalePostScreen extends Component {
           }}
           pagingEnabled={true}
           horizontal={true}>
-          <Step1 style={styles.item} ref={(r) => (this.step1Ref = r)} />
-          <Step2 style={styles.item} ref={(r) => (this.step2Ref = r)} />
-          <Step3 style={styles.item} ref={(r) => (this.step3Ref = r)} />
-          <Step4 style={styles.item} ref={(r) => (this.step4Ref = r)} />
+          <Step1 />
+          <Step2 />
+          <Step3 />
+          <Step4 />
+          <Step5 />
+          <Step6 />
+          <Step7 />
         </ScrollView>
         <Breadcrumb
           itemSelected={this.state.step}
           onItemPress={(e) => {
             this.onPressStepItem(e)
           }}
-          data={string.breadcrumb}
+          data={constants.ForSalePost.labelStep}
         />
       </SafeAreaView>
     )
@@ -65,4 +64,4 @@ class NeedSalePostScreen extends Component {
   }
 }
 
-export default NeedSalePostScreen
+export default ForSalePost

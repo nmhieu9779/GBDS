@@ -1,5 +1,5 @@
-import AuthScreen from "@src/screen/AuthScreen"
-import AuthLoadingScreen from "@src/screen/AuthLoading"
+import Auth from "@src/screen/Auth"
+import AuthLoading from "@src/screen/AuthLoading"
 import HomeStack from "./HomeStack"
 import {createAppContainer, createSwitchNavigator} from "react-navigation"
 
@@ -7,8 +7,8 @@ const AppContainer = createAppContainer(
   createSwitchNavigator(
     {
       HomeStack: {screen: HomeStack},
-      AuthLoadingScreen: {screen: AuthLoadingScreen},
-      AuthStack: {screen: AuthScreen}
+      AuthLoading: {screen: AuthLoading},
+      AuthStack: {screen: Auth}
     },
     {
       initialRouteName: "HomeStack"

@@ -5,6 +5,7 @@ import {connect} from "react-redux"
 import TopBarMenu from "@src/component/top-bar-menu"
 import SafeAreaView from "react-native-safe-area-view"
 import {faFilter} from "@fortawesome/free-solid-svg-icons"
+import {faBell} from "@fortawesome/free-regular-svg-icons"
 import Filter from "@src/component/filter"
 import AddFloatingButton from "@src/component/add-floating-button"
 import PostListNeed from "@src/component/post-list-need"
@@ -24,13 +25,7 @@ const NewFeedNeedRent = ({data, refreshing, fetchPostNeedRentHome}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TopBarMenu
-        icon={{right: faFilter}}
-        title={string.title}
-        onPressRight={() => {
-          setVisiableFilter(true)
-        }}
-      />
+      <TopBarMenu titleIsLeft={true} icon={[{icon: faBell}, {icon: faFilter}]} title={string.title} />
       {visiableFilter && (
         <Filter
           visiable={visiableFilter}

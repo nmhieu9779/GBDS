@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     width: "100%",
-    backgroundColor: "white",
+    backgroundColor: "#2E75ED",
     alignItems: "center",
     ...Platform.select({
       ios: {
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    color: "black",
+    color: "white",
     textAlign: "center",
     textAlignVertical: "center",
     ...Platform.select({
@@ -29,7 +29,12 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(17)
       },
       android: {fontSize: moderateScale(19)}
-    })
+    }),
+    fontWeight: "bold"
+  },
+  itemContainer: {
+    flex: 1,
+    flexDirection: "row"
   }
 })
 

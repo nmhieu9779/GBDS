@@ -85,33 +85,7 @@ const styles = StyleSheet.create({
     borderWidth: moderateScale(0.5),
     borderTopWidth: 0
   },
-  footerText: {fontWeight: "bold", fontSize: moderateScale(18)},
-  priceAreaContainer: {
-    position: "absolute",
-    bottom: 0,
-    right: moderateScale(5),
-    zIndex: 1,
-    flexDirection: "row"
-  },
-  priceAreaLabelContainer: {
-    padding: moderateScale(5),
-    backgroundColor: "#34A853",
-    borderTopLeftRadius: moderateScale(10),
-    borderBottomRightRadius: moderateScale(10)
-  },
-  priceAreaLabelText: {color: "white", fontWeight: "bold"},
-  requestContainer: {
-    marginBottom: moderateScale(8),
-    paddingLeft: moderateScale(10),
-    paddingRight: moderateScale(10)
-  },
-  requestItem: {
-    flexDirection: "row"
-  },
-  requestLabel: {color: "#0072bc", fontWeight: "bold"},
-  requestContent: {
-    flex: 1
-  }
+  footerText: {fontWeight: "bold", fontSize: moderateScale(18)}
 })
 
 export default styles

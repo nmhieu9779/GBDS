@@ -1,5 +1,5 @@
 import {combineReducers} from "redux"
-import authReducers from "@src/screen/AuthScreen/redux/reducers"
+import authReducers from "@src/screen/Auth/redux/reducers"
 import addressReducers from "@src/component/address-input/redux/reducers"
 import processHudReducers from "@src/component/process-hud/redux/reducers"
 import typeProductReducers from "@src/component/type-product/redux/reducers"

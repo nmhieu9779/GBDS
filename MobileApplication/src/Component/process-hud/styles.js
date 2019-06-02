@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 999
+    zIndex: 10000000
   }
 })
 

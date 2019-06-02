@@ -19,7 +19,7 @@ const SelectTypePost = ({visiable, close}) => {
               style={styles.modalButton}
               onPress={() => {
                 close()
-                NavigationService.navigate("ForSalePostScreen")
+                NavigationService.navigate("ForSalePost")
               }}
               activeOpacity={1}>
               <Text style={styles.textBtn}>{string.forSale}</Text>
@@ -28,7 +28,7 @@ const SelectTypePost = ({visiable, close}) => {
               style={styles.modalButton}
               onPress={() => {
                 close()
-                NavigationService.navigate("NeedSalePostScreen")
+                NavigationService.navigate("NeedSalePost")
               }}
               activeOpacity={1}>
               <Text style={styles.textBtn}>{string.forRent}</Text>

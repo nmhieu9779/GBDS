@@ -1,15 +1,29 @@
 import React from "react"
-import Icon from "./icon"
-import Title from "./title"
 import styles from "./styles"
 import SafeAreaView from "react-native-safe-area-view"
 import stylesheets from "@src/common/stylesheets"
+import {TouchableOpacity, View, Platform, Text} from "react-native"
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
+import {moderateScale} from "@src/utilities/scale"
 
-const TopBarMenu = ({icon, title, onPressLeft, onPressRight}) => (
+const Title = ({title}) => <Text style={styles.title}>{title}</Text>
+
+const Icon = ({icon, onPress}) =>
+  (icon && (
+    <TouchableOpacity style={styles.icon} onPress={() => onPress()}>
+      <FontAwesomeIcon color={"white"} size={moderateScale(Platform.OS === "ios" ? 20 : 23)} icon={icon} />
+    </TouchableOpacity>
+  )) || <View style={{width: moderateScale(40)}} />
+
+const TopBarMenu = ({icon, title, titleIsLeft}) => (
   <SafeAreaView style={[styles.container, stylesheets.boxShadow]}>
-    <Icon style={styles.icon} onPress={() => onPressLeft()} icon={icon.left || null} />
-    <Title title={title} />
-    <Icon style={styles.icon} onPress={() => onPressRight()} icon={icon.right || null} />
+    {titleIsLeft && <Title title={title} />}
+    <View style={[styles.itemContainer, {justifyContent: titleIsLeft ? "flex-end" : "flex-start"}]}>
+      {icon.map(({icon}, index) => (
+        <Icon key={index} onPress={() => {}} icon={icon || null} />
+      ))}
+    </View>
+    {!titleIsLeft && <Title title={title} />}
   </SafeAreaView>
 )
 

@@ -1,5 +1,5 @@
 import {call, all, fork} from "redux-saga/effects"
-import {watchAuth} from "@src/screen/AuthScreen/redux/sagas"
+import {watchAuth} from "@src/screen/Auth/redux/sagas"
 import {watchAddress} from "@src/component/address-input/redux/sagas"
 import {watchNewFeedForSale} from "@src/screen/NewFeedForSale/redux/sagas"
 import {watchNewFeedForRent} from "@src/screen/NewFeedForRent/redux/sagas"

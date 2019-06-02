@@ -2,9 +2,9 @@ import React from "react"
 import {Text, View, FlatList, Image, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import string from "./string"
-import {faUserCircle, faUserPlus} from "@fortawesome/free-solid-svg-icons"
-import {faStar, faThumbsUp, faComment} from "@fortawesome/free-regular-svg-icons"
+import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
+import BottomListPost from "@src/component/bottom-list-post"
 
 const _renderTop = (postDate, address, title, vipType, avatar) => (
   <View style={styles.topContainer}>
@@ -31,7 +31,7 @@ const _renderAvtar = (avatarUrl) =>
   avatarUrl ? (
     <Image style={styles.avatar} source={{uri: avatarUrl}} />
   ) : (
-    <FontAwesomeIcon icon={faUserCircle} />
+    <FontAwesomeIcon size={40} icon={faUserCircle} />
   )
 
 const _renderDescription = (description) =>
@@ -43,29 +43,36 @@ const _renderDescription = (description) =>
     </View>
   )
 
-const _renderImage = (image) =>
-  (image && <Image style={styles.image} source={image && {uri: image}} />) || null
+const _renderImage = ({image, price, area}) =>
+  (image && (
+    <View>
+      {_renderPriceArea({price, area})}
+      <Image style={styles.image} source={image && {uri: image}} />
+    </View>
+  )) ||
+  null
 
-const _renderBottom = () => (
-  <View style={styles.bottomContainer}>
-    <TouchableOpacity style={styles.btnBottom}>
-      <View style={styles.itemsBtn}>
-        <FontAwesomeIcon style={styles.itemsBtnIcon} icon={faThumbsUp} />
-        <Text>{"Thích"}</Text>
-      </View>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.btnBottom}>
-      <View style={styles.itemsBtn}>
-        <FontAwesomeIcon style={styles.itemsBtnIcon} icon={faComment} />
-        <Text>{"Bình luận"}</Text>
-      </View>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.btnBottom}>
-      <View style={styles.itemsBtn}>
-        <FontAwesomeIcon style={styles.itemsBtnIcon} icon={faUserPlus} />
-        <Text>{"Đăng ký"}</Text>
-      </View>
-    </TouchableOpacity>
+const _renderPriceArea = ({price, area}) => (
+  <View style={styles.priceAreaContainer}>
+    <View style={[styles.priceAreaLabelContainer, {marginRight: 5}]}>
+      <Text style={styles.priceAreaLabelText}>{price}</Text>
+    </View>
+    <View style={styles.priceAreaLabelContainer}>
+      <Text style={styles.priceAreaLabelText}>{area}</Text>
+    </View>
+  </View>
+)
+
+const _renderRequest = ({price, area}) => (
+  <View style={styles.requestContainer}>
+    <View style={styles.requestItem}>
+      <Text style={styles.requestLabel}>{"Giá: "}</Text>
+      <Text style={styles.requestContent}>{price}</Text>
+    </View>
+    <View style={styles.requestItem}>
+      <Text style={styles.requestLabel}>{"Diện tích: "}</Text>
+      <Text style={styles.requestContent}>{area}</Text>
+    </View>
   </View>
 )
 
@@ -84,9 +91,10 @@ const renderItem = (
 ) => (
   <TouchableOpacity activeOpacity={1} key={index + id} style={styles.postContainer}>
     {_renderTop(postDate, address, title, vipType, avatar)}
+    {!image && _renderRequest({price, area})}
     {_renderDescription(description)}
-    {_renderImage(image)}
-    {_renderBottom()}
+    {_renderImage({image, price, area})}
+    <BottomListPost />
   </TouchableOpacity>
 )
 const keyExtractor = (item, index) => index.toString()
