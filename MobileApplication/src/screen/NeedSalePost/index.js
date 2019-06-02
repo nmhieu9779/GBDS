@@ -10,7 +10,6 @@ import {stringMain as string} from "./string"
 import Step1 from "./Component/Step1"
 import Step2 from "./Component/Step2"
 import Step3 from "./Component/Step3"
-import Step4 from "./Component/Step4"
 
 class NeedSalePost extends Component {
   constructor(props) {
@@ -33,10 +32,9 @@ class NeedSalePost extends Component {
           }}
           pagingEnabled={true}
           horizontal={true}>
-          <Step1 style={styles.item} ref={(r) => (this.step1Ref = r)} />
-          <Step2 style={styles.item} ref={(r) => (this.step2Ref = r)} />
-          <Step3 style={styles.item} ref={(r) => (this.step3Ref = r)} />
-          <Step4 style={styles.item} ref={(r) => (this.step4Ref = r)} />
+          <Step1 ref={(r) => (this.step1Ref = r)} />
+          <Step2 ref={(r) => (this.step2Ref = r)} />
+          <Step3 ref={(r) => (this.step3Ref = r)} />
         </ScrollView>
         <Breadcrumb
           itemSelected={this.state.step}

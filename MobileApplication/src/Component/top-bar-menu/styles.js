@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     margin: moderateScale(10)
   },
   title: {
-    flex: 1,
+    flex: 2,
     color: "white",
     textAlign: "center",
     textAlignVertical: "center",

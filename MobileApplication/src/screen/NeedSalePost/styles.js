@@ -1,27 +1,23 @@
 import {StyleSheet, Platform} from "react-native"
 import constants from "@src/constant"
+import {moderateScale, width} from "@src/utilities/scale"
 
 export const styles_main = StyleSheet.create({
-  container: {flex: 1, backgroundColor: "white"},
-  item: {
-    width: constants.width,
-    ...Platform.select({
-      ios: {
-        height: constants.height - 126
-      },
-      android: {
-        height: constants.height - 146
-      }
-    })
-  }
+  container: {flex: 1, backgroundColor: "white"}
 })
 
 export const styles_step1 = StyleSheet.create({
-  contentContainerStyle: {alignItems: "center"}
+  container: {width: width},
+  contentContainerStyle: {
+    alignItems: "center"
+  }
 })
 
 export const styles_step2 = StyleSheet.create({
-  contentContainerStyle: {alignItems: "center"},
+  container: {width: width},
+  contentContainerStyle: {
+    alignItems: "center"
+  },
   infoPostLabel: {
     fontSize: 16,
     fontWeight: "bold",
@@ -40,6 +36,17 @@ export const styles_step2 = StyleSheet.create({
 })
 
 export const styles_step3 = StyleSheet.create({
-  container: {flex: 1},
-  contentContainerStyle: {alignItems: "center"}
+  container: {width: width},
+  contentContainerStyle: {
+    alignItems: "center"
+  },
+  footer: {marginTop: moderateScale(100), alignItems: "center"},
+  btnPost: {
+    width: moderateScale(300),
+    height: moderateScale(40),
+    backgroundColor: "red",
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center"
+  }
 })

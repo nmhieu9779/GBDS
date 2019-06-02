@@ -1,4 +1,4 @@
-import {faHome} from "@fortawesome/free-solid-svg-icons"
+import {faHome, faUserCog} from "@fortawesome/free-solid-svg-icons"
 
 const string = {
   data: [
@@ -6,7 +6,7 @@ const string = {
     {label: "Nhà thuê", icon: faHome, stateName: "NewFeedForRent"},
     {label: "Cần bán", icon: faHome, stateName: "NewFeedNeedSale"},
     {label: "Cần thuê", icon: faHome, stateName: "NewFeedNeedRent"},
-    {label: "Tài khoản", icon: faHome, stateName: "NewFeedForSale"}
+    {label: "Tài khoản", icon: faUserCog, stateName: "NewFeedForSale"}
   ]
 }
 

@@ -3,6 +3,8 @@ import NewFeedForSale from "@src/screen/NewFeedForSale"
 import NewFeedForRent from "@src/screen/NewFeedForRent"
 import NewFeedNeedSale from "@src/screen/NewFeedNeedSale"
 import NewFeedNeedRent from "@src/screen/NewFeedNeedRent"
+import ForSalePost from "@src/screen/ForSalePost"
+import NeedSalePost from "@src/screen/NeedSalePost"
 import TabBarBottom from "./component/tab-bar-bottom"
 
 const HomeStack = createBottomTabNavigator(
@@ -18,6 +20,14 @@ const HomeStack = createBottomTabNavigator(
     },
     NewFeedNeedRent: {
       screen: NewFeedNeedRent
+    },
+    ForSalePost: {
+      screen: ForSalePost,
+      navigationOptions: {tabBarVisible: false}
+    },
+    NeedSalePost: {
+      screen: NeedSalePost,
+      navigationOptions: {tabBarVisible: false}
     }
   },
   {

@@ -1,7 +1,7 @@
 import {StyleSheet} from "react-native"
 import {moderateScale, width} from "@src/utilities/scale"
 
-const COLOR = "#133337"
+const COLOR = "#2E75ED"
 
 const styles = StyleSheet.create({
   breadcrums_container: {

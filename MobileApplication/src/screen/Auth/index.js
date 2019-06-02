@@ -26,7 +26,7 @@ const Auth = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigation}) =>
   const [signUp, setSignUp] = useState(defaultSignUp)
 
   useEffect(() => {
-    return signInSuccess && navigation.navigate("Home")
+    signInSuccess && navigation.navigate("NewFeedForSale")
   }, [signInSuccess])
 
   useEffect(() => {

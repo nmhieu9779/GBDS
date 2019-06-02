@@ -17,7 +17,7 @@ class Step1 extends Component {
 
   render() {
     return (
-      <SafeAreaView style={this.props.style}>
+      <SafeAreaView style={styles.container}>
         <Header text={string.header} />
         <ScrollView contentContainerStyle={styles.contentContainerStyle}>
           <TypeProduct isProductType={true} isProductCate={true} postTypeId={0} />

@@ -5,7 +5,7 @@ import {string_step2 as string} from "../string"
 import TextInputCustom from "@src/component/text-input-custom"
 import Header from "@src/component/header-post"
 import SafeAreaView from "react-native-safe-area-view"
-import {width} from "@src/utilities/scale"
+import {width, moderateScale} from "@src/utilities/scale"
 
 class Step2 extends Component {
   constructor(props) {
@@ -15,13 +15,13 @@ class Step2 extends Component {
 
   render() {
     return (
-      <SafeAreaView style={this.props.style}>
+      <SafeAreaView style={styles.container}>
         <Header text={string.header} />
         <ScrollView contentContainerStyle={styles.contentContainerStyle}>
           <TextInputCustom
             onChangeText={(text) => this.setState({productTitle: text})}
             value={this.state.productTitle}
-            width={width * 0.8}
+            width={width - moderateScale(10)}
             color={"red"}
             label={string.productTitle}
           />
