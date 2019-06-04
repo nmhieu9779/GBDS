@@ -7,6 +7,7 @@ import {name as appName} from "./app.json"
 //redux
 import {createStore, applyMiddleware} from "redux"
 import {Provider} from "react-redux"
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 import allReducers from "./src/redux/reducers"
 
@@ -16,7 +17,7 @@ import rootSaga from "./src/redux/sagas"
 
 const sagaMiddleware = createSagaMiddleware()
 
-let store = createStore(allReducers, applyMiddleware(sagaMiddleware))
+let store = createStore(allReducers, composeWithDevTools(applyMiddleware(sagaMiddleware)))
 
 import AppContainer from "./src/navigation/navigate"
 import ProcessHUD from "./src/component/process-hud"

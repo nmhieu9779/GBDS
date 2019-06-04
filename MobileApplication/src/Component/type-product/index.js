@@ -118,13 +118,13 @@ const TypeProduct = ({
   )
 }
 
-const mapStateToProps = ({typeProductReducers}) => {
+const mapStateToProps = ({typeProduct}) => {
   return {
-    productType: typeProductReducers.productType,
-    productCate: typeProductReducers.productCate,
-    priceUnit: typeProductReducers.priceUnit,
-    area: typeProductReducers.area,
-    price: typeProductReducers.price
+    productType: typeProduct.productType,
+    productCate: typeProduct.productCate,
+    priceUnit: typeProduct.priceUnit,
+    area: typeProduct.area,
+    price: typeProduct.price
   }
 }
 

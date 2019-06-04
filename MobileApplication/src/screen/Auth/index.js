@@ -134,8 +134,8 @@ const Auth = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigation}) =>
 
 const mapStateToProps = (state) => {
   return {
-    signInSuccess: state.authReducers.signInSuccess,
-    signUpSuccess: state.authReducers.signUpSuccess
+    signInSuccess: state.auth.signInSuccess,
+    signUpSuccess: state.auth.signUpSuccess
   }
 }
 

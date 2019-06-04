@@ -40,9 +40,9 @@ const SelectTypePost = ({visiable, close}) => {
   )
 }
 
-const mapStateToProps = ({selectTypePostReducers}) => {
+const mapStateToProps = ({selectTypePost}) => {
   return {
-    visiable: selectTypePostReducers.visiable
+    visiable: selectTypePost.visiable
   }
 }
 

@@ -12,7 +12,7 @@ const ProcessHUD = ({isLoading}) =>
 
 const mapStateToProps = (state) => {
   return {
-    isLoading: state.processHudReducers.isLoading
+    isLoading: state.processHud.isLoading
   }
 }
 

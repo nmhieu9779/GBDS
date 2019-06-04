@@ -88,12 +88,12 @@ const AddressInput = ({
   )
 }
 
-const mapStateToProps = ({addressReducers}) => {
+const mapStateToProps = ({address}) => {
   return {
-    city: addressReducers.city,
-    district: addressReducers.district,
-    ward: addressReducers.ward,
-    street: addressReducers.street
+    city: address.city,
+    district: address.district,
+    ward: address.ward,
+    street: address.street
   }
 }
 
