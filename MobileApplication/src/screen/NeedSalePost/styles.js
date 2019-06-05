@@ -1,5 +1,4 @@
 import {StyleSheet, Platform} from "react-native"
-import constants from "@src/constant"
 import {moderateScale, width} from "@src/utilities/scale"
 
 export const styles_main = StyleSheet.create({
@@ -25,8 +24,8 @@ export const styles_step2 = StyleSheet.create({
   },
   infoPostContainer: {margin: 10},
   infoPostTextInput: {
-    height: constants.width / 2,
-    width: constants.width - 10,
+    height: width / 2,
+    width: width - 10,
     margin: 10,
     padding: 10,
     borderWidth: 0.5,

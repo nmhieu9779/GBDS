@@ -1,57 +1,54 @@
 import {
   GET_CITY,
   GET_CITY_SUCCESS,
+  GET_CITY_FAILURE,
   GET_DISTRICT,
   GET_DISTRICT_SUCCESS,
+  GET_DISTRICT_FAILURE,
   GET_WARD,
   GET_WARD_SUCCESS,
+  GET_WARD_FAILURE,
   GET_STREET,
   GET_STREET_SUCCESS,
-  OPEN_HUD,
-  CLOSE_HUD
+  GET_STREET_FAILURE
 } from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
 import {Api} from "./api"
 
-formatData = (data) =>
+const formatData = (data) =>
   data.map((item) => ({
     id: item.id,
     label: item.name,
     code: item.code
   }))
 
-function* handleResponse(response, typeSuccess) {
+function* handleResponse(response, typeSuccess, typeFailure) {
   if (response.status === 200) {
-    const data = this.formatData(response.data.content)
+    const data = formatData(response.data.content)
     yield put({type: typeSuccess, data})
-    yield put({type: CLOSE_HUD})
   } else {
-    yield put({type: CLOSE_HUD})
+    yield put({type: typeFailure})
   }
 }
 
 function* getCity() {
-  yield put({type: OPEN_HUD})
   const response = yield call(Api.getCity)
-  yield call(handleResponse, response, GET_CITY_SUCCESS)
+  yield call(handleResponse, response, GET_CITY_SUCCESS, GET_CITY_FAILURE)
 }
 
 function* getDistrict(payload) {
-  yield put({type: OPEN_HUD})
   const response = yield call(Api.getDistrict, payload.cityId)
-  yield call(handleResponse, response, GET_DISTRICT_SUCCESS)
+  yield call(handleResponse, response, GET_DISTRICT_SUCCESS, GET_DISTRICT_FAILURE)
 }
 
 function* getWard(payload) {
-  yield put({type: OPEN_HUD})
   const response = yield call(Api.getWard, payload.cityId, payload.districtId)
-  yield call(handleResponse, response, GET_WARD_SUCCESS)
+  yield call(handleResponse, response, GET_WARD_SUCCESS, GET_WARD_FAILURE)
 }
 
 function* getStreet(payload) {
-  yield put({type: OPEN_HUD})
   const response = yield call(Api.getStreet, payload.cityId, payload.districtId)
-  yield call(handleResponse, response, GET_STREET_SUCCESS)
+  yield call(handleResponse, response, GET_STREET_SUCCESS, GET_STREET_FAILURE)
 }
 
 export function* watchAddress() {

@@ -4,7 +4,7 @@ import SafeAreaView from "react-native-safe-area-view"
 import ComboBoxDetail from "@src/component/combobox-detail"
 import styles from "./styles"
 import strings from "./strings"
-import {getCityAction, getDistrictAction, getWardAction, getstreetAction} from "./redux/actions"
+import {getCity, getDistrict, getWard, getStreet} from "./redux/actions"
 
 const AddressInput = ({
   city,
@@ -100,16 +100,16 @@ const mapStateToProps = ({address}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCity: () => {
-      dispatch(getCityAction())
+      dispatch(getCity())
     },
     getDistrict: (cityId) => {
-      dispatch(getDistrictAction(cityId))
+      dispatch(getDistrict(cityId))
     },
     getWard: (cityId, districtId) => {
-      dispatch(getWardAction({cityId, districtId}))
+      dispatch(getWard({cityId, districtId}))
     },
     getStreet: (cityId, districtId) => {
-      dispatch(getstreetAction({cityId, districtId}))
+      dispatch(getStreet({cityId, districtId}))
     }
   }
 }

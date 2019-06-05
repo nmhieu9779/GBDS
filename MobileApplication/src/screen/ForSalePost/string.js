@@ -1,3 +1,15 @@
+export const main = {
+  labelStep: [
+    {length: 7, label: "1", isFirst: true},
+    {length: 7, label: "2"},
+    {length: 7, label: "3"},
+    {length: 7, label: "4"},
+    {length: 7, label: "5"},
+    {length: 7, label: "6"},
+    {length: 7, label: "7", isLast: true}
+  ]
+}
+
 export const stringStep1 = {
   header: "Thông tin cơ bản",
   productTitle: "Tiêu đề",

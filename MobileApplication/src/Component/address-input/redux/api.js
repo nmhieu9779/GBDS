@@ -1,30 +1,30 @@
-import constants from "@src/constant"
+import url from "@src/constant"
 const axios = require("axios")
 
 function* getCity() {
   return yield axios
-    .get(constants.urlAddress.city)
+    .get(url.urlAddress.city)
     .then((response) => response)
     .catch((error) => error)
 }
 
 function* getDistrict(cityId) {
   return yield axios
-    .get(constants.urlAddress.district + cityId)
+    .get(url.urlAddress.district + cityId)
     .then((response) => response)
     .catch((error) => error)
 }
 
 function* getWard(cityId, districtId) {
   return yield axios
-    .get(constants.urlAddress.ward + cityId + "/" + districtId)
+    .get(url.urlAddress.ward + cityId + "/" + districtId)
     .then((response) => response)
     .catch((error) => error)
 }
 
 function* getStreet(cityId, districtId) {
   return yield axios
-    .get(constants.urlAddress.street + cityId + "/" + districtId)
+    .get(url.urlAddress.street + cityId + "/" + districtId)
     .then((response) => response)
     .catch((error) => error)
 }

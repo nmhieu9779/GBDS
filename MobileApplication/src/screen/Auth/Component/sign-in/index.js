@@ -35,7 +35,7 @@ const SignIn = ({focusedAnim, email, password, onPress, onChangeText}) => (
         returnKeyType={"go"}
       />
       <View style={styles.button_forgot_password}>
-        <TouchableOpacity onPress={() => alert(constants.commingSoon)}>
+        <TouchableOpacity onPress={() => alert("bla bla")}>
           <Text>{string.forgotPassword}</Text>
         </TouchableOpacity>
       </View>

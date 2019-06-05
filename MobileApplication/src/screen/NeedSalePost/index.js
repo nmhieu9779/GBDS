@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import {ScrollView} from "react-native"
-import constants from "@src/constant"
 import SafeAreaView from "react-native-safe-area-view"
 import Breadcrumb from "@src/component/breadcrumb"
 import TopBarMenu from "@src/component/top-bar-menu"
@@ -10,6 +9,7 @@ import {stringMain as string} from "./string"
 import Step1 from "./Component/Step1"
 import Step2 from "./Component/Step2"
 import Step3 from "./Component/Step3"
+import {width} from "@src/utilities/scale"
 
 class NeedSalePost extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class NeedSalePost extends Component {
           }}
           onMomentumScrollEnd={(e) => {
             this.setState({
-              step: parseInt(e.nativeEvent.contentOffset.x / constants.width + 0.1)
+              step: parseInt(e.nativeEvent.contentOffset.x / width + 0.1)
             })
           }}
           pagingEnabled={true}
@@ -50,7 +50,7 @@ class NeedSalePost extends Component {
   onPressStepItem = (e) => {
     this.scrollView.scrollTo({
       y: 0,
-      x: e * constants.width,
+      x: e * width,
       Animation: true
     })
     this.setState({step: e})

@@ -3,7 +3,7 @@ import {View, ImageBackground, Animated} from "react-native"
 import styles from "./styles"
 import string from "./string"
 import {connect} from "react-redux"
-import {signInAction, signUpAction} from "./redux/actions"
+import {signIn, signUp} from "./redux/actions"
 import SafeAreaView from "react-native-safe-area-view"
 import ButtonCustom from "./Component/button-custom"
 import SignIn from "./Component/sign-in"
@@ -132,20 +132,20 @@ const Auth = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigation}) =>
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({auth}) => {
   return {
-    signInSuccess: state.auth.signInSuccess,
-    signUpSuccess: state.auth.signUpSuccess
+    signInSuccess: auth.signInSuccess,
+    signUpSuccess: auth.signUpSuccess
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onSignIn: (payload) => {
-      dispatch(signInAction(payload))
+      dispatch(signIn(payload))
     },
     onSignUp: (payload) => {
-      dispatch(signUpAction(payload))
+      dispatch(signUp(payload))
     }
   }
 }
