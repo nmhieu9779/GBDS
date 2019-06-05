@@ -5,8 +5,13 @@ import {stringStep2 as string} from "../string"
 import Header from "@src/component/header-post"
 import SafeAreaView from "react-native-safe-area-view"
 
-const Step2 = () => {
+const Step2 = ({onChangeData}) => {
   const [value, setValue] = useState("")
+
+  const pushData = () =>
+    onChangeData({
+      description: value
+    })
 
   return (
     <SafeAreaView style={styles.container}>
@@ -21,6 +26,7 @@ const Step2 = () => {
           multiline={true}
           value={value}
           onChangeText={(text) => setValue(text)}
+          onBlur={() => pushData()}
         />
         <Text style={styles.suggest}>
           {string.suggest}

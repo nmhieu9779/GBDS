@@ -4,7 +4,7 @@ import SafeAreaView from "react-native-safe-area-view"
 import ComboBoxBase from "./combobox-base"
 import styles from "./styles"
 
-const ComboBox = ({style, data, selected, title, label, onChangeSelected, enable}) => (
+const ComboBox = ({style, data, selected, title, label, onChangeSelected, enable, name}) => (
   <SafeAreaView style={[styles.container, style.container]}>
     <View style={styles.labelContainer}>
       <Text style={style.label}>{label}</Text>
@@ -14,8 +14,9 @@ const ComboBox = ({style, data, selected, title, label, onChangeSelected, enable
       data={data || []}
       selected={selected}
       title={title}
-      onChangeSelected={(item) => onChangeSelected(item)}
+      onChangeSelected={({id, name, type, selected}) => onChangeSelected({id, name, type, selected})}
       enable={enable}
+      name={name}
     />
   </SafeAreaView>
 )

@@ -29,7 +29,8 @@ const TypeProduct = ({
   isPrice,
   getPrice,
   style,
-  postTypeId
+  postTypeId,
+  onChange
 }) => {
   const [productTypeSelected, setProductTypeSelected] = useState(-1)
   const [productCateSelected, setProductCateSelected] = useState(-1)
@@ -37,9 +38,28 @@ const TypeProduct = ({
   const [areaSelected, setAreaSelected] = useState(-1)
   const [priceSelected, setPriceSelected] = useState(-1)
 
+  const [productTypeId, setProductTypeId] = useState(-1)
+  const [priceUnitId, setPriceUnitId] = useState(-1)
+
+  const [productCateType, setProductCateType] = useState("")
+
+  const [productTypeName, setProductTypeName] = useState("")
+  const [productCateName, setProductCateName] = useState("")
+  const [priceUnitName, setPriceUnitName] = useState("")
+  const [areaName, setAreaName] = useState("")
+  const [priceName, setPriceName] = useState("")
+
   useEffect(() => {
     productType.length === 0 && isProductType && getProductType()
   }, [productType.length])
+
+  useEffect(() => {
+    onChange({
+      productTypeId,
+      unit: priceUnitId === 0 ? "Thoả thuận" : priceUnitName,
+      type: productCateType
+    })
+  }, [productTypeSelected, productCateSelected, priceUnitSelected, areaSelected, priceSelected])
 
   const getData = (selected, postTypeId) => {
     switch (postTypeId) {
@@ -64,8 +84,11 @@ const TypeProduct = ({
         selected={productTypeSelected}
         title={strings.productType.title}
         label={strings.productType.label}
-        onChangeSelected={(selected) => {
+        name={productTypeName}
+        onChangeSelected={({id, name, selected}) => {
           setProductTypeSelected(selected)
+          setProductTypeId(id)
+          setProductTypeName(name)
           getData(selected, postTypeId)
         }}
         enable={true}
@@ -76,8 +99,11 @@ const TypeProduct = ({
         selected={productCateSelected}
         title={strings.productCate.title}
         label={strings.productCate.label}
-        onChangeSelected={(selected) => {
+        name={productCateName}
+        onChangeSelected={({name, type, selected}) => {
           setProductCateSelected(selected)
+          setProductCateName(name)
+          setProductCateType(type)
         }}
         enable={true}
       />
@@ -86,9 +112,12 @@ const TypeProduct = ({
         style={{}}
         data={priceUnit}
         selected={priceUnitSelected}
+        name={priceUnitName}
         title={strings.priceUnit.title}
-        onChangeSelected={(selected) => {
+        onChangeSelected={({id, name, selected}) => {
           setPriceUnitSelected(selected)
+          setPriceUnitName(name)
+          setPriceUnitId(id)
         }}
         enable={true}
       />
@@ -98,8 +127,10 @@ const TypeProduct = ({
         selected={areaSelected}
         title={strings.area.title}
         label={strings.area.label}
-        onChangeSelected={(selected) => {
+        name={areaName}
+        onChangeSelected={({name, selected}) => {
           setAreaSelected(selected)
+          setAreaName(name)
         }}
         enable={true}
       />
@@ -109,8 +140,10 @@ const TypeProduct = ({
         selected={priceSelected}
         title={strings.price.title}
         label={strings.price.label}
-        onChangeSelected={(selected) => {
+        name={priceName}
+        onChangeSelected={({name, selected}) => {
           setPriceSelected(selected)
+          setPriceName(name)
         }}
         enable={true}
       />

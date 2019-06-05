@@ -21,22 +21,24 @@ const RenderItem = ({data, visiable, title, onClose}) => {
   }, [visiable])
 
   const _renderItem = ({item, index}) => (
-    <TouchableOpacity onPress={() => onPressItem(index)} style={styles.itemContainer_item}>
+    <TouchableOpacity
+      onPress={() => onPressItem({id: item.id, name: item.label, type: item.type || null, selected: index})}
+      style={styles.itemContainer_item}>
       <Text style={styles.itemLabel_item}>{item.label}</Text>
     </TouchableOpacity>
   )
 
   const _keyExtractor = (item, index) => index.toString() + new Date().toString()
 
-  const onPressItem = (index) => {
-    onClose(index)
+  const onPressItem = ({id, name, type, selected}) => {
+    onClose({id, name, type, selected})
   }
 
   return (
     <Modal visible={visiableState} transparent={true} animationType={"slide"}>
       <SafeAreaView style={{flex: 1}}>
         <TouchableOpacity
-          onPress={() => onPressItem()}
+          onPress={() => onPressItem({id: null, name: null, type: null, selected: -1})}
           activeOpacity={1}
           style={styles.area_tranparent_item}
         />
@@ -51,7 +53,7 @@ const RenderItem = ({data, visiable, title, onClose}) => {
   )
 }
 
-const ComboBoxBase = ({style, data, title, selected, onChangeSelected, enable}) => {
+const ComboBoxBase = ({style, data, title, selected, onChangeSelected, enable, name}) => {
   const [visiable, setVisiable] = useState(false)
 
   return (
@@ -62,16 +64,16 @@ const ComboBoxBase = ({style, data, title, selected, onChangeSelected, enable}) 
       }}
       style={[styles.container, style, {backgroundColor: enable ? "white" : "#ECECEC"}]}>
       <Text style={styles.selected} numberOfLines={1}>
-        {selected === -1 ? title : data[selected].label}
+        {selected === -1 ? title : name}
       </Text>
       <View style={styles.iconContainer}>
         <FontAwesomeIcon icon={faCaretDown} />
       </View>
       <RenderItem
         visiable={visiable}
-        onClose={(index) => {
+        onClose={({id, name, type, selected}) => {
           setVisiable(false)
-          index >= 0 && onChangeSelected(index)
+          selected >= 0 && onChangeSelected({id, name, type, selected})
         }}
         data={(data.length !== 0 && data) || []}
         title={title}

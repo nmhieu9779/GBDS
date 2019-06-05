@@ -19,7 +19,7 @@ const RoomInput = ({name, onChange, onClose}) => {
   }
 
   const _onBlur = (e) => {
-    onChange({roomNumber, bedRoomNumber, toiletNumber})
+    onChange({room: parseInt(roomNumber), bedRoom: parseInt(bedRoomNumber), bathRoom: parseInt(toiletNumber)})
   }
 
   return (

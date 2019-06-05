@@ -3,8 +3,8 @@ import NewFeedForSale from "@src/screen/NewFeedForSale"
 import NewFeedForRent from "@src/screen/NewFeedForRent"
 import NewFeedNeedSale from "@src/screen/NewFeedNeedSale"
 import NewFeedNeedRent from "@src/screen/NewFeedNeedRent"
-import ForSalePost from "@src/screen/ForSalePost"
-import NeedSalePost from "@src/screen/NeedSalePost"
+import ForNewPost from "@src/screen/ForNewPost"
+import NeedNewPost from "@src/screen/NeedNewPost"
 import ForSalePostDetail from "@src/screen/ForSalePostDetail"
 import UserProfile from "@src/screen/UserProfile"
 import TabBarBottom from "./component/tab-bar-bottom"
@@ -26,12 +26,12 @@ const HomeStack = createBottomTabNavigator(
     UserProfile: {
       screen: UserProfile
     },
-    ForSalePost: {
-      screen: ForSalePost,
+    ForNewPost: {
+      screen: ForNewPost,
       navigationOptions: {tabBarVisible: false}
     },
-    NeedSalePost: {
-      screen: NeedSalePost,
+    NeedNewPost: {
+      screen: NeedNewPost,
       navigationOptions: {tabBarVisible: false}
     },
     ForSalePostDetail: {
@@ -40,7 +40,7 @@ const HomeStack = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "NewFeedForSale",
+    initialRouteName: "ForNewPost",
     tabBarComponent: TabBarBottom
   }
 )

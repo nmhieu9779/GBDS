@@ -18,16 +18,35 @@ const AddressInput = ({
   getWard,
   street,
   isStreet,
-  getStreet
+  getStreet,
+  onChangeAddress
 }) => {
   const [citySelected, setCitySelected] = useState(-1)
   const [districtSelected, setDistrictSelected] = useState(-1)
   const [wardSelected, setWardSelected] = useState(-1)
   const [streetSelected, setStreetSelected] = useState(-1)
 
+  const [cityId, setCityId] = useState(-1)
+  const [districtId, setDistrictId] = useState(-1)
+  const [wardId, setWardId] = useState(-1)
+  const [streetId, setStreetId] = useState(-1)
+
+  const [cityName, setCityName] = useState("")
+  const [districtName, setDistrictName] = useState("")
+  const [wardName, setWardName] = useState("")
+  const [streetName, setStreetName] = useState("")
+
   useEffect(() => {
     city.length === 0 && isCity && getCity()
   }, [city.length === 0])
+
+  useEffect(() => {
+    onChangeAddress({
+      address: {province: cityId, district: districtId, ward: wardId, street: streetId},
+      name: `${streetName}${streetName && ", "}${wardName}${wardName && ", "}${districtName}${districtName &&
+        ", "} ${cityName}`
+    })
+  }, [cityName, districtName, wardName, streetName])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -37,12 +56,15 @@ const AddressInput = ({
         selected={citySelected}
         title={strings.city.title}
         label={strings.city.label}
-        onChangeSelected={(selected) => {
+        name={cityName}
+        onChangeSelected={({id, name, selected}) => {
           setCitySelected(selected)
+          setCityId(id)
+          setCityName(name)
           setDistrictSelected(-1)
           setWardSelected(-1)
           setStreetSelected(-1)
-          isDistrict && getDistrict(city[selected].id)
+          isDistrict && getDistrict(id)
         }}
         enable={true}
       />
@@ -52,11 +74,14 @@ const AddressInput = ({
         selected={districtSelected}
         title={strings.district.title}
         label={strings.district.label}
-        onChangeSelected={(selected) => {
+        name={districtName}
+        onChangeSelected={({id, name, selected}) => {
           setDistrictSelected(selected)
+          setDistrictId(id)
+          setDistrictName(name)
           setWardSelected(-1)
           setStreetSelected(-1)
-          isWard && getWard(city[citySelected].id, district[selected].id)
+          isWard && getWard(cityId, id)
         }}
         enable={citySelected !== -1}
       />
@@ -66,10 +91,13 @@ const AddressInput = ({
         selected={wardSelected}
         title={strings.ward.title}
         label={strings.ward.label}
-        onChangeSelected={(selected) => {
+        name={wardName}
+        onChangeSelected={({id, name, selected}) => {
           setWardSelected(selected)
+          setWardId(id)
+          setWardName(name)
           setStreetSelected(-1)
-          isStreet && getStreet(city[citySelected].id, district[districtSelected].id)
+          isStreet && getStreet(cityId, districtId)
         }}
         enable={districtSelected !== -1}
       />
@@ -79,8 +107,11 @@ const AddressInput = ({
         selected={streetSelected}
         title={strings.street.title}
         label={strings.street.label}
-        onChangeSelected={(selected) => {
+        name={streetName}
+        onChangeSelected={({id, name, selected}) => {
           setStreetSelected(selected)
+          setStreetId(id)
+          setStreetName(name)
         }}
         enable={wardSelected !== -1}
       />

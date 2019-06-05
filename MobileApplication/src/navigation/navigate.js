@@ -11,7 +11,7 @@ const AppContainer = createAppContainer(
       AuthStack: {screen: Auth}
     },
     {
-      initialRouteName: "HomeStack"
+      initialRouteName: "AuthLoading"
     }
   )
 )

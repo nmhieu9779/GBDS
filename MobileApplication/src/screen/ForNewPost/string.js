@@ -1,3 +1,5 @@
+import TYPE_CODE from "@src/common/typeCode"
+
 export const main = {
   labelStep: [
     {length: 7, label: "1", isFirst: true},
@@ -67,12 +69,10 @@ export const stringStep7 = {
     title: "-- Loại tin rao --",
     label: "Loại tin rao",
     data: [
-      {label: "Tin thường"},
-      {label: "Tin ưu đãi"},
-      {label: "Tin Vip 3"},
-      {label: "Tin Vip 2"},
-      {label: "Tin Vip 1"},
-      {label: "Vip đặc biệt"}
+      {id: 0, label: "Tin thường", type: TYPE_CODE.CODE_VIP.X_NORMAL},
+      {id: 1, label: "Tin VIP đặc biệt", type: TYPE_CODE.CODE_VIP.VIP_S0},
+      {id: 2, label: "Tin VIP 1", type: TYPE_CODE.CODE_VIP.VIP_S1},
+      {id: 3, label: "Tin VIP 2", type: TYPE_CODE.CODE_VIP.VIP_S2}
     ]
   },
   startDate: "Ngày bắt đầu",
@@ -80,68 +80,49 @@ export const stringStep7 = {
   datePicker: {
     mode: "date",
     format: "DD-MM-YYYY",
-    confirmBtnText: "Confirm",
-    cancelBtnText: "Cancel"
+    confirmBtnText: "Xác nhận",
+    cancelBtnText: "Huỷ"
   },
   latestPrice: "Đơn gía cuối cùng: ",
   dayNumber: "Số ngày: ",
-  suggest:
-    "Quý khách nên chọn đăng tin Vip để có hiệu quả cao hơn, ví dụ: tin Vip1 có lượt xem trung bình cao hơn 20 lần so với tin thường",
+  suggest: `Quý khách nên chọn đăng tin Vip để có hiệu quả cao hơn, ví dụ: tin Vip1 có lượt xem trung bình cao hơn 20 lần so với tin thường`,
   textFooter: "Phí dịch vụ trừ vào tài khoản: ",
   vnd: " VND",
   post: "Đăng bài",
-  normal: {
-    name: "Tin thường",
-    content_1: ": Là loại tin đăng bằng chữ ",
-    content_2: "màu xanh",
-    content_3: ", khung ",
-    content_4: "màu xanh "
-  },
-  goodwill: {
-    name: "Vip ưu đãi",
-    content_1:
-      ": Là loại tin được hiển thị trong vòng 3 tháng, mỗi tuần sẽ được up tin tự động 1 lần. Tuần đầu tiên sẽ được hiển thị dưới hình thức VIP 2, các tuần tiếp theo hiển thị hình thức tin thường"
-  },
-  vip_3: {
-    name: "Tin Vip 3",
-    content_1: ": Là loại tin đăng bằng chữ ",
-    content_2: "thường màu cam",
-    content_3: ", khung ",
-    content_4: "màu cam ",
-    content_5: "và luôn nằm dưới tin Vip 2 nhưng luôn luôn hiển thị trên tin thường."
-  },
-  vip_2: {
-    name: "Tin Vip 2",
-    content_1: ": Là loại tin đăng bằng chữ ",
-    content_2: "IN HOA MÀU CAM",
-    content_3: ", khung ",
-    content_4: "màu cam ",
-    content_5: "nằm bên dưới tin VIP 1 và ở trên các tin vip 3."
-  },
-  vip_1: {
-    name: "Tin Vip 1",
-    content_1: ": Là loại tin đăng bằng chữ ",
-    content_2: "IN HOA MÀU ĐỎ",
-    content_3: ", khung ",
-    content_4: "màu đỏ ",
-    content_5: "nằm bên dưới tin VIP ĐẶC BIỆT và ở trên các tin vip 2."
-  },
-  special: {
-    name: "Vip đặc biệt",
-    content_1: ": Là loại tin đăng bằng chữ ",
-    content_2: "IN HOA MÀU ĐỎ",
-    content_3: ", khung ",
-    content_4: "màu đỏ ",
-    content_5:
-      "gắn biểu tượng ngôi sao vàng nổi bật ở tiêu đề tin đăng, hiển thị ở top đầu trang tin và được hưởng nhiều ưu tiên nhất."
-  },
-  dayPrice: [
-    "1 nghìn 727 đồng/Ngày",
-    "454 nghìn 545 đồng",
-    "27 nghìn 272 đồng/Ngày",
-    "50 nghìn/Ngày",
-    "68 nghìn 181 đồng/Ngày",
-    "168 nghìn 181 đồng/Ngày"
+  vipDetail: [
+    {
+      name: "Tin thường",
+      content: ": Là loại tin đăng bằng chữ ",
+      color: "màu xanh.",
+      location: ", nằm dưới các loại tin VIP khác.",
+      style: {color: "blue"},
+      type: TYPE_CODE.CODE_VIP.X_NORMAL
+    },
+    {
+      name: "Vip đặc biệt",
+      content: ": Là loại tin đăng bằng chữ ",
+      color: "IN HOA MÀU ĐỎ",
+      location: ", nằm trên các loại tin VIP khác.",
+      style: {color: "red", fontWeight: "bold"},
+      type: TYPE_CODE.CODE_VIP.VIP_S0
+    },
+    {
+      name: "Tin Vip 1",
+      content: ": Là loại tin đăng bằng chữ ",
+      color: "IN HOA MÀU CAM",
+      location: ", nằm bên dưới tin VIP đặc biệt và ở trên các tin VIP 2.",
+      style: {color: "orange", fontWeight: "bold"},
+      type: TYPE_CODE.CODE_VIP.VIP_S1
+    },
+    {
+      name: "Tin Vip 2",
+      content: ": Là loại tin đăng bằng chữ ",
+      color: "thường màu cam",
+      location: " nằm bên dưới tin VIP 1 và ở trên các tin thường.",
+      style: {color: "orange"},
+      type: TYPE_CODE.CODE_VIP.VIP_S2
+    }
   ],
-  dayPriceInt: [1727, "454,545", 27272, 50000, 68181, 168181]
+  dayPrice: ["1 nghìn 727 đồng/Ngày", "27 nghìn 272 đồng/Ngày", "50 nghìn/Ngày", "68 nghìn 181 đồng/Ngày"],
+  dayPriceInt: [1727, 27272, 50000, 68181]
 }

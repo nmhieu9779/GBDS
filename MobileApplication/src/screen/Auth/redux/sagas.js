@@ -13,7 +13,14 @@ import {Api} from "./api"
 function* signIn(payload) {
   const response = yield Api.signIn(payload.payload)
   if (response.status === 200) {
-    yield AsyncStorage.setItem("accessToken", response.data.access_token)
+    yield AsyncStorage.setItem(
+      "userInfo",
+      JSON.stringify({
+        accessToken: response.data.access_token,
+        refreshToken: response.data.refresh_token,
+        tokenType: response.data.token_type
+      })
+    )
     yield put({type: SIGN_IN_SUCCESS})
   } else {
     yield put({type: SIGN_IN_FAILURE})

@@ -8,28 +8,32 @@ import SafeAreaView from "react-native-safe-area-view"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faImages} from "@fortawesome/free-regular-svg-icons"
 
-const Step4 = () => {
+const Step4 = ({onChangeData}) => {
   const [data, setData] = useState([{isSelected: true}])
 
   const selectPhotoTapped = () => {
     const options = {
       title: "Chọn Hình"
     }
-    ImagePicker.showImagePicker(options, (response) => {
-      if (response.didCancel) {
-        console.log("User cancelled photo picker")
-      } else if (response.error) {
-        console.log("ImagePicker Error: ", response.error)
-      } else if (response.customButton) {
-        console.log("User tapped custom button: ", response.customButton)
-      } else {
-        handleResponse(response)
-      }
+    ImagePicker.showImagePicker(options, ({type, uri}) => {
+      type && uri && handleResponse({type, uri})
     })
   }
 
-  const handleResponse = async (response) => {
-    setData([{uri: response.uri}, ...data])
+  const editContentType = (contentType) => {
+    let temp = contentType
+    temp = temp.replace("image/", ".")
+    return temp
+  }
+  const handleResponse = ({type, uri}) => {
+    let formData = new FormData()
+    formData.append("image", {
+      uri: uri,
+      name: `${Date.parse(new Date())}${editContentType(type)}`,
+      type: type
+    })
+
+    console.log(formData)
   }
 
   return (

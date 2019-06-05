@@ -24,17 +24,20 @@ export const step1 = StyleSheet.create({
   addressContainer: {
     flexDirection: "row",
     padding: moderateScale(5),
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: moderateScale(5)
   },
   addressTitle: {fontSize: moderateScale(16), fontWeight: "bold"},
-  addressTextInput: {
+  addressTextInputContainer: {
     flex: 1,
     borderColor: "#ccc",
     borderWidth: 0.5,
     borderRadius: 5,
     marginLeft: moderateScale(10),
-    padding: moderateScale(5)
+    padding: moderateScale(5),
+    flexDirection: "row"
   },
+  addressName: {flex: 1, marginTop: 5},
   price: {
     width: moderateScale(width / 2),
     position: "absolute",
@@ -170,11 +173,7 @@ export const step7 = StyleSheet.create({
     padding: moderateScale(5)
   },
   infoVipName: {fontWeight: "bold"},
-  textCB: {color: "blue"},
-  textCO: {color: "orange"},
-  textCR: {color: "red"},
-  textFB: {fontWeight: "bold"},
-  textCW: {color: "white"},
+  note: {color: "blue", fontWeight: "bold"},
   datePickerContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -204,13 +203,17 @@ export const step7 = StyleSheet.create({
     width: width
   },
   total: {fontSize: moderateScale(18), fontWeight: "bold", color: "red"},
-  btnPost: {
+  btnPostContainer: {
     width: moderateScale(300),
     height: moderateScale(40),
     backgroundColor: "red",
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center"
+  },
+  btnPost: {
+    fontWeight: "bold",
+    color: "white"
   }
 })
 

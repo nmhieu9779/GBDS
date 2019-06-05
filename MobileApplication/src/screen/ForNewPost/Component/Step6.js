@@ -37,7 +37,7 @@ const Step6 = () => {
           keyboardType={"numeric"}
         />
         <TextInputCustom
-          onChangeText={(text) => setEmail(email)}
+          onChangeText={(text) => setEmail(text)}
           value={email}
           width={width - moderateScale(10)}
           label={string.emailLabel}

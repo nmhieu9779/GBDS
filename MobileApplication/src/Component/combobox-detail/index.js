@@ -2,7 +2,7 @@ import React from "react"
 import ComboBox from "@src/component/combobox"
 import styles from "./styles"
 
-const ComboBoxDetail = ({is, style, data, selected, title, label, onChangeSelected, enable}) =>
+const ComboBoxDetail = ({is, style, data, selected, title, label, onChangeSelected, enable, name}) =>
   (is && (
     <ComboBox
       style={
@@ -17,6 +17,7 @@ const ComboBoxDetail = ({is, style, data, selected, title, label, onChangeSelect
       label={label}
       onChangeSelected={onChangeSelected.bind(this)}
       enable={enable}
+      name={name}
     />
   )) ||
   null

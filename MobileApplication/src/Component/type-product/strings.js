@@ -1,10 +1,12 @@
+import TYPE_CODE from "@src/common/typeCode"
+
 const strings = {
   productType: {
     title: "-- Hình thức --",
     label: "Hình thức",
     data: [
-      [{label: "Nhà đất cần mua"}, {label: "Nhà đất cần thuê"}],
-      [{label: "Nhà đất bán"}, {label: "Nhà đất cho thuê"}]
+      [{id: 0, label: "Nhà đất cần mua"}, {id: 1, label: "Nhà đất cần thuê"}],
+      [{id: 2, label: "Nhà đất bán"}, {id: 3, label: "Nhà đất cho thuê"}]
     ]
   },
   productCate: {
@@ -13,48 +15,42 @@ const strings = {
     data: [
       [
         [
-          {label: "Mua căn hộ chung cư"},
-          {label: "Mua nhà riêng"},
-          {label: "Mua nhà biệt thự, liền kề"},
-          {label: "Mua nhà mặt phố"},
-          {label: "Mua đất nền dự án"},
-          {label: "Mua đất"},
-          {label: "Mua trang trại, khu nghĩ dưỡng"},
-          {label: "Mua kho, nhà xưởng"},
-          {label: "Mua loại bất động sản khác"}
+          {id: 0, label: "Mua nhà riêng", type: TYPE_CODE.FOR_POST.HOUSE},
+          {id: 1, label: "Mua căn hộ chung cư", type: TYPE_CODE.FOR_POST.APARTMENT},
+          {id: 2, label: "Mua văn phòng", type: TYPE_CODE.FOR_POST.OFFICE},
+          {id: 3, label: "Mua mặt bằng kinh doanh", type: TYPE_CODE.FOR_POST.BUSSINESS_PREMISES},
+          {id: 4, label: "Mua nhà nghỉ, khách sạn", type: TYPE_CODE.FOR_POST.MOTEL},
+          {id: 5, label: "Mua đất", type: TYPE_CODE.FOR_POST.LAND},
+          {id: 6, label: "Mua loại bất động sản khác", type: TYPE_CODE.FOR_POST.OTHERS}
         ],
         [
-          {label: "Cần thuê căn hộ chng cư"},
-          {label: "Cần thuê nhà riêng"},
-          {label: "Cần thuê nhà mặt phố"},
-          {label: "Cần thuê nhà trọ, phòng trọ"},
-          {label: "Cần thuê văn phòng"},
-          {label: "Cần thuê cửa hàng, ki ốt"},
-          {label: "Cần thuê kho, nhà xưởng, đất"},
-          {label: "Cần thuê loại bất động sản khác"}
+          {id: 0, label: "Cần thuê nhà riêng", type: TYPE_CODE.FOR_POST.HOUSE},
+          {id: 1, label: "Cần thuê căn hộ chung cư", type: TYPE_CODE.FOR_POST.APARTMENT},
+          {id: 2, label: "Cần thuê văn phòng", type: TYPE_CODE.FOR_POST.OFFICE},
+          {id: 3, label: "Cần thuê mặt bằng kinh doanh", type: TYPE_CODE.FOR_POST.BUSSINESS_PREMISES},
+          {id: 4, label: "Cần thuê nhà nghỉ, khách sạn", type: TYPE_CODE.FOR_POST.MOTEL},
+          {id: 5, label: "Cần thuê đất", type: TYPE_CODE.FOR_POST.LAND},
+          {id: 6, label: "Cần thuê loại bất động sản khác", type: TYPE_CODE.FOR_POST.OTHERS}
         ]
       ],
       [
         [
-          {label: "Bán căn hộ chung cư"},
-          {label: "Bán nhà riêng"},
-          {label: "Bán nhà biệt thự, liền kề"},
-          {label: "Bán nhà mặt phố"},
-          {label: "Bán đất nền dự án"},
-          {label: "Bán đất"},
-          {label: "Bán trang trại, khu nghĩ dưỡng"},
-          {label: "Bán kho, nhà xưởng"},
-          {label: "Bán loại bất động sản khác"}
+          {id: 0, label: "Bán nhà riêng", type: TYPE_CODE.FOR_POST.HOUSE},
+          {id: 1, label: "Bán căn hộ chung cư", type: TYPE_CODE.FOR_POST.APARTMENT},
+          {id: 2, label: "Bán văn phòng", type: TYPE_CODE.FOR_POST.OFFICE},
+          {id: 3, label: "Bán mặt bằng kinh doanh", type: TYPE_CODE.FOR_POST.BUSSINESS_PREMISES},
+          {id: 4, label: "Bán nhà nghỉ, khách sạn", type: TYPE_CODE.FOR_POST.MOTEL},
+          {id: 5, label: "Bán đất", type: TYPE_CODE.FOR_POST.LAND},
+          {id: 6, label: "Bán loại bất động sản khác", type: TYPE_CODE.FOR_POST.OTHERS}
         ],
         [
-          {label: "Cho thuê căn hộ chng cư"},
-          {label: "Cho thuê nhà riêng"},
-          {label: "Cho thuê nhà mặt phố"},
-          {label: "Cho thuê nhà trọ, phòng trọ"},
-          {label: "Cho thuê văn phòng"},
-          {label: "Cho thuê cửa hàng, ki ốt"},
-          {label: "Cho thuê kho, nhà xưởng, đất"},
-          {label: "Cho thuê loại bất động sản khác"}
+          {id: 0, label: "Cho thuê nhà riêng", type: TYPE_CODE.FOR_POST.HOUSE},
+          {id: 1, label: "Cho thuê căn hộ chung cư", type: TYPE_CODE.FOR_POST.APARTMENT},
+          {id: 2, label: "Cho thuê văn phòng", type: TYPE_CODE.FOR_POST.OFFICE},
+          {id: 3, label: "Cho thuê mặt bằng kinh doanh", type: TYPE_CODE.FOR_POST.BUSSINESS_PREMISES},
+          {id: 4, label: "Cho thuê nhà nghỉ, khách sạn", type: TYPE_CODE.FOR_POST.MOTEL},
+          {id: 5, label: "Cho thuê đất", type: TYPE_CODE.FOR_POST.LAND},
+          {id: 6, label: "Cho thuê loại bất động sản khác", type: TYPE_CODE.FOR_POST.OTHERS}
         ]
       ]
     ]

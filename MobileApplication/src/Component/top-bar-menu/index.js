@@ -5,6 +5,7 @@ import stylesheets from "@src/common/stylesheets"
 import {TouchableOpacity, View, Platform, Text} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {moderateScale} from "@src/utilities/scale"
+import NavigationService from "@src/navigation/NavigationService"
 
 const Title = ({title}) => (
   <Text style={styles.title} numberOfLines={1}>
@@ -23,7 +24,16 @@ const TopBarMenu = ({icon, title, titleIsLeft}) => (
   <SafeAreaView style={[styles.container, stylesheets.boxShadow]}>
     {titleIsLeft && <Title title={title} />}
     <View style={[styles.itemContainer, {justifyContent: titleIsLeft ? "flex-end" : "flex-start"}]}>
-      {icon && icon.map(({icon}, index) => <Icon key={index} onPress={() => {}} icon={icon || null} />)}
+      {icon &&
+        icon.map(({icon}, index) => (
+          <Icon
+            key={index}
+            onPress={() => {
+              NavigationService.navigate("NewFeedForSale")
+            }}
+            icon={icon || null}
+          />
+        ))}
     </View>
     {!titleIsLeft && <Title title={title} />}
   </SafeAreaView>

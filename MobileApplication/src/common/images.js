@@ -1,7 +1,6 @@
 const images = {
-  logo: require("../../res/logo.png"),
-  background: require("../../res/background.jpg"),
-
+  logo: require("../../res/logoiTi.png"),
+  background: require("../../res/background.jpg")
 }
 
 export default images
