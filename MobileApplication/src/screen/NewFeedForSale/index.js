@@ -11,12 +11,12 @@ import AddFloatingButton from "@src/component/add-floating-button"
 import PostListFor from "@src/component/post-list-for"
 import {onFetchPostForSaleHome} from "./redux/actions"
 
-const NewFeedForSale = ({data, refreshing, fetchPostForSaleHome, navigation}) => {
+const NewFeedForSale = ({data, refreshing, fetchPostForSaleHome}) => {
   const [visiableFilter, setVisiableFilter] = useState(false)
   const [refreshingSate, setRefreshingState] = useState(false)
 
   useEffect(() => {
-    fetchPostForSaleHome()
+    data.length === 0 && fetchPostForSaleHome()
   }, [])
 
   useEffect(() => {
@@ -46,10 +46,7 @@ const NewFeedForSale = ({data, refreshing, fetchPostForSaleHome, navigation}) =>
   )
 }
 
-const mapStateToProps = ({newFeedForSale: {data, refreshing}}) => ({
-  data: data,
-  refreshing: refreshing
-})
+const mapStateToProps = ({newFeedForSale: {data, refreshing}}) => ({data, refreshing})
 
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -1,30 +1,25 @@
-const axios = require("axios")
+import {URL_SIGN_IN, URL_SIGN_UP} from "@src/constant/url"
+import {post} from "@src/redux/sever"
 
-function* signIn(data) {
-  const {email, password} = data
-  const url = "http://35.187.253.10:21006/api-gateway/grre-oauth/oauth/token"
-  return yield axios
-    .post(url, null, {
-      auth: {
-        username: "T-GRRE-CLIENT-MM-01",
-        password: "tgrreclientmm01"
-      },
-      params: {
-        scope: "ui",
-        grant_type: "password",
-        username: email,
-        password: password
-      }
-    })
-    .then((response) => response)
-    .catch((error) => error)
+function* signIn({email, password}) {
+  const url = URL_SIGN_IN
+  const auth = {
+    username: "T-GRRE-CLIENT-MM-01",
+    password: "tgrreclientmm01"
+  }
+  const params = {
+    scope: "ui",
+    grant_type: "password",
+    username: email,
+    password: password
+  }
+
+  return yield post({url, auth, params})
 }
-function* signUp(data) {
-  const {email, password} = data
-  let url = "http://www.mocky.io/v2/5cea755333000069107c381f"
-  return yield axios
-    .post(url)
-    .then((response) => response)
-    .catch((error) => error)
+function* signUp({email, password}) {
+  const url = URL_SIGN_UP
+  const body = {email, password}
+
+  return yield post({url, body})
 }
 export const Api = {signIn, signUp}

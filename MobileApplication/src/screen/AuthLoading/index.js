@@ -2,7 +2,10 @@ import React, {PureComponent} from "react"
 import {StyleSheet, View, Image} from "react-native"
 import AsyncStorage from "@react-native-community/async-storage"
 import images from "@src/common/images"
-import {width, height} from "@src/utilities/scale"
+import {width} from "@src/utilities/scale"
+import {connect} from "react-redux"
+import {onFetchPostForSaleHome} from "@src/screen/NewFeedForSale/redux/actions"
+import {onGetUserProfile} from "@src/screen/UserProfile/redux/actions"
 
 class AuthLoading extends PureComponent {
   constructor(props) {
@@ -11,12 +14,21 @@ class AuthLoading extends PureComponent {
   }
 
   _bootstrapAsync = async () => {
-    const userInfo = await AsyncStorage.getItem("userInfo")
-    setTimeout(() => {
-      this.props.navigation.navigate(
-        (userInfo && JSON.parse(userInfo).accessToken && "HomeStack") || "AuthStack"
-      )
-    }, 2000)
+    const userOauth = await AsyncStorage.getItem("USER_OAUTH")
+    const skipLogin = await AsyncStorage.getItem("SKIP_LOGIN")
+
+    if (skipLogin && JSON.parse(skipLogin)) {
+      this.props.fetchPostForSaleHome()
+      userOauth && this.props.getUserProfile({email: JSON.parse(userOauth).email})
+    } else {
+      this.props.navigation.navigate("AuthStack")
+    }
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.loading !== this.props.loading && !this.props.loading) {
+      this.props.navigation.navigate("HomeStack")
+    }
   }
 
   render() {
@@ -37,4 +49,24 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AuthLoading
+const mapStateToProps = (state) => ({
+  loading: state.userProfile.loading || state.newFeedForSale.loading
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPostForSaleHome: () => {
+      dispatch(onFetchPostForSaleHome())
+    },
+    getUserProfile: (payload) => {
+      dispatch(onGetUserProfile(payload))
+    }
+  }
+}
+
+const AuthLoadingContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthLoading)
+
+export default AuthLoadingContainer

@@ -1,4 +1,4 @@
-import url from "@src/constant"
+import url from "@src/constant/url"
 const axios = require("axios")
 
 function* getCity() {

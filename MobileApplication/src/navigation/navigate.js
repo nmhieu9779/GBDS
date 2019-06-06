@@ -6,8 +6,8 @@ import {createAppContainer, createSwitchNavigator} from "react-navigation"
 const AppContainer = createAppContainer(
   createSwitchNavigator(
     {
-      HomeStack: {screen: HomeStack},
       AuthLoading: {screen: AuthLoading},
+      HomeStack: {screen: HomeStack},
       AuthStack: {screen: Auth}
     },
     {

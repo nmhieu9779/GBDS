@@ -1,7 +1,7 @@
 import {
   FETCH_POST_NEED_SALE_HOME,
   FETCH_POST_NEED_SALE_HOME_SUCCESS,
-  FETCH_POST_NEED_RENT_HOME_FAILURE
+  FFETCH_POST_NEED_SALE_HOME_FAILURE
 } from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
 import {Api} from "./api"
@@ -11,7 +11,7 @@ function* fetchPostNeedSaleHome() {
   if (response.status === 200) {
     yield put({type: FETCH_POST_NEED_SALE_HOME_SUCCESS, data: response.data})
   } else {
-    yield put({type: FETCH_POST_NEED_RENT_HOME_FAILURE})
+    yield put({type: FFETCH_POST_NEED_SALE_HOME_FAILURE})
   }
 }
 

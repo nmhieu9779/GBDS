@@ -7,6 +7,7 @@ import newFeedForSale from "@src/screen/NewFeedForSale/redux/reducers"
 import newFeedForRent from "@src/screen/NewFeedForRent/redux/reducers"
 import newFeedNeedSale from "@src/screen/NewFeedNeedSale/redux/reducers"
 import newFeedNeedRent from "@src/screen/NewFeedNeedRent/redux/reducers"
+import userProfile from "@src/screen/UserProfile/redux/reducers"
 
 const allReducers = combineReducers({
   auth,
@@ -16,7 +17,8 @@ const allReducers = combineReducers({
   newFeedForSale,
   newFeedForRent,
   newFeedNeedSale,
-  newFeedNeedRent
+  newFeedNeedRent,
+  userProfile
 })
 
 export default allReducers

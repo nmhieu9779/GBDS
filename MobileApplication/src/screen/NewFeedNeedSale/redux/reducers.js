@@ -2,7 +2,7 @@ import {fromJS} from "immutable"
 import {
   FETCH_POST_NEED_SALE_HOME,
   FETCH_POST_NEED_SALE_HOME_SUCCESS,
-  FETCH_POST_NEED_RENT_HOME_FAILURE
+  FETCH_POST_NEED_SALE_HOME_FAILURE
 } from "@src/redux/actions"
 
 initStateNeedSale = {
@@ -23,7 +23,7 @@ const NewFeedNeedSaleReducers = (state = initStateNeedSale, action) => {
       newState.refreshing = false
       newState.loading = false
       break
-    case FETCH_POST_NEED_RENT_HOME_FAILURE:
+    case FETCH_POST_NEED_SALE_HOME_FAILURE:
       newState.refreshing = false
       newState.loading = false
       break
