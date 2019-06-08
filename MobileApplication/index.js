@@ -7,7 +7,7 @@ import {name as appName} from "./app.json"
 //redux
 import {createStore, applyMiddleware} from "redux"
 import {Provider} from "react-redux"
-import { composeWithDevTools } from 'redux-devtools-extension'
+import {composeWithDevTools} from "redux-devtools-extension"
 
 import allReducers from "./src/redux/reducers"
 
@@ -24,11 +24,13 @@ import ProcessHUD from "./src/component/process-hud"
 import MyMapView from "./my-map-view"
 import SelectTypePost from "./src/component/add-floating-button/select-type-post"
 import NavigationService from "./src/navigation/NavigationService"
+import Message from "./src/component/message"
 
 const App = () => (
   <Provider store={store}>
     <ProcessHUD />
     <SelectTypePost />
+    <Message />
     <AppContainer
       ref={(navigatorRef) => {
         NavigationService.setTopLevelNavigator(navigatorRef)

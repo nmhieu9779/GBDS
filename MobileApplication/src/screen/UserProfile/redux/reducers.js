@@ -3,7 +3,7 @@ import {GET_USER_PROFILE, GET_USER_PROFILE_SUCCESS, GET_USER_PROFILE_FAILURE} fr
 
 initStateUserProfile = {
   loading: false,
-  content: []
+  content: {}
 }
 
 const userProfile = (state = initStateUserProfile, action) => {

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import {View, ImageBackground, Animated} from "react-native"
+import {View, ImageBackground, Animated, TouchableOpacity, Text} from "react-native"
 import styles from "./styles"
 import string from "./string"
 import {connect} from "react-redux"
@@ -8,13 +8,14 @@ import SafeAreaView from "react-native-safe-area-view"
 import ButtonCustom from "./Component/button-custom"
 import SignIn from "./Component/sign-in"
 import SignUp from "./Component/sign-up"
-import images from "@src/common/images"
+import {images} from "@src/common/images"
+import {setItemAsyncStorage} from "@src/utilities/asyncStorage"
 
-const Auth = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigation}) => {
+const Auth = (props) => {
   const defaultSignUp = {
     fullName: "",
-    password: "123456",
-    email: "nmhieu9779@gmail.com",
+    password: "",
+    email: "",
     phone: ""
   }
   const [focusedAnim] = useState(new Animated.Value(0))
@@ -26,15 +27,15 @@ const Auth = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigation}) =>
   const [signUp, setSignUp] = useState(defaultSignUp)
 
   useEffect(() => {
-    signInSuccess && navigation.navigate("NewFeedForSale")
-  }, [signInSuccess])
+    props.signInSuccess && props.navigation.navigate("NewFeedForSale")
+  }, [props.signInSuccess])
 
   useEffect(() => {
-    signUpSuccess &&
+    props.signUpSuccess &&
       (setSignIn({email: signUp.email, password: signUp.password}),
       setSignUp(defaultSignUp),
       onPress("SignIn"))
-  }, [signUpSuccess])
+  }, [props.signUpSuccess])
 
   const getColor = (type, typeColor) => {
     color = "white"
@@ -70,12 +71,21 @@ const Auth = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigation}) =>
     }
   }
 
+  const onPressSkipLogin = async () => {
+    await setItemAsyncStorage({keyName: "IS_SKIP_SIGNIN", data: true})
+    await setItemAsyncStorage({keyName: "IS_SIGNIN", data: false})
+    await props.navigation.navigate("HomeStack")
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
         imageStyle={styles.image_style_background}
         source={images.background}
         style={styles.background_image}>
+        <TouchableOpacity onPress={() => onPressSkipLogin()} style={styles.btnSkipLogin}>
+          <Text>{"Bỏ qua"}</Text>
+        </TouchableOpacity>
         <View
           style={{
             flexDirection: "row",
@@ -104,7 +114,7 @@ const Auth = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigation}) =>
             password={signIn.password}
             onChangeText={(text, type) => setSignIn({...signIn, [type]: text})}
             onPress={() =>
-              onSignIn({
+              props.onSignIn({
                 email: signIn.email,
                 password: signIn.password
               })
@@ -120,7 +130,7 @@ const Auth = ({onSignIn, onSignUp, signInSuccess, signUpSuccess, navigation}) =>
             phone={signUp.phone}
             onChangeText={(text, type) => setSignUp({...signUp, [type]: text})}
             onPress={() =>
-              onSignUp({
+              props.onSignUp({
                 email: signUp.email,
                 password: signUp.password
               })
