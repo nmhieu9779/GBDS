@@ -20,7 +20,7 @@ const Icon = ({icon, onPress}) =>
     </TouchableOpacity>
   )) || <View style={{width: moderateScale(40)}} />
 
-const TopBarMenu = ({icon, title, titleIsLeft}) => (
+const TopBarMenu = ({icon, title, titleIsLeft, onPress}) => (
   <SafeAreaView style={[styles.container, stylesheets.boxShadow]}>
     {titleIsLeft && <Title title={title} />}
     <View style={[styles.itemContainer, {justifyContent: titleIsLeft ? "flex-end" : "flex-start"}]}>
@@ -29,7 +29,7 @@ const TopBarMenu = ({icon, title, titleIsLeft}) => (
           <Icon
             key={index}
             onPress={() => {
-              NavigationService.navigate("NewFeedForSale")
+              onPress(index)
             }}
             icon={icon || null}
           />

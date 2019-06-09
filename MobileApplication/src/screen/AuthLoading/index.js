@@ -6,6 +6,7 @@ import {width} from "@src/utilities/scale"
 import {connect} from "react-redux"
 import {onFetchPostForSaleHome} from "@src/screen/NewFeedForSale/redux/actions"
 import {onGetUserProfile, onGetUriAvatar} from "@src/screen/UserProfile/redux/actions"
+import {onShowMessage} from "@src/component/message/redux/actions"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
 class AuthLoading extends PureComponent {
@@ -30,8 +31,20 @@ class AuthLoading extends PureComponent {
     }
   }
 
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate = async (prevProps) => {
     if (prevProps.loading !== this.props.loading && !this.props.loading) {
+      let avatar = await getItemAsyncStorage("AVATAR")
+      let userProfile = await getItemAsyncStorage("USER_PROFILE")
+      let isLogin = await getItemAsyncStorage("IS_SIGNIN")
+      if (isLogin) {
+        !avatar &&
+          !userProfile &&
+          this.props.showMessage({
+            typeMessage: `WARNING_DIALONG`,
+            message:
+              "Bạn chưa câp nhập thông tin cá nhân, vui lòng cập nhập thông tin cá nhân để được sử dụng đầy đủ chức năng nhất"
+          })
+      }
       this.props.navigation.navigate("HomeStack")
     }
   }
@@ -68,6 +81,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getUriAvatar: (payload) => {
       dispatch(onGetUriAvatar(payload))
+    },
+    showMessage: (payload) => {
+      dispatch(onShowMessage(payload))
     }
   }
 }

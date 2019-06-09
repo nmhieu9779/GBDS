@@ -45,7 +45,7 @@ const HomeStack = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "EditProfile",
+    initialRouteName: "NewFeedForSale",
     tabBarComponent: TabBarBottom
   }
 )

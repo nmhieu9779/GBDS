@@ -7,7 +7,8 @@ import {
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
   SHOW_MESSAGE,
-  UN_SHOW_MESSAGE
+  UN_SHOW_MESSAGE,
+  GET_URI_AVATAR
 } from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
 import {Api} from "./api"
@@ -29,6 +30,7 @@ function* signIn(payload) {
     yield put({type: SIGN_IN_SUCCESS})
     yield put({type: UN_SHOW_MESSAGE})
     yield put({type: GET_USER_PROFILE, email: data.email})
+    yield put({type: GET_URI_AVATAR, email: data.email})
   } else {
     yield put({type: SIGN_IN_FAILURE})
     yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.error_description})

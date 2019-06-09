@@ -23,7 +23,6 @@ function* getUserProfile({email}) {
 
 function* getUriAvatar({email}) {
   const response = yield call(Api.getUriAvatar, email)
-  debugger
   if (response.status === 200) {
     yield put({type: GET_URI_AVATAR_SUCCESS, content: response.data.content})
     yield setItemAsyncStorage({keyName: "AVATAR", data: true})

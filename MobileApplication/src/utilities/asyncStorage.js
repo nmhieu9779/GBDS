@@ -9,3 +9,11 @@ export const setItemAsyncStorage = async ({keyName, data}) => {
   await AsyncStorage.removeItem(keyName)
   await AsyncStorage.setItem(keyName, JSON.stringify(data))
 }
+
+export const removeItemAsyncStorage = async ({keyName}) => {
+  await AsyncStorage.removeItem(keyName)
+}
+
+export const removeAllItemAsyncStorage = async () => {
+  await AsyncStorage.clear()
+}

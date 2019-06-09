@@ -10,6 +10,7 @@ import styles from "./styles"
 import string from "./string"
 import {formatDate} from "@src/utilities/date"
 import AvatarCirCle from "@src/component/avatar-circle"
+import {removeAllItemAsyncStorage} from "@src/utilities/asyncStorage"
 
 const ItemInfo = (props) => (
   <View style={styles.itemInfo}>
@@ -33,9 +34,19 @@ const ItemMenu = (props) => (
 )
 
 const UserProfile = (props) => {
+  const signOut = () => {
+    removeAllItemAsyncStorage()
+    props.navigation.navigate("AuthStack")
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <TopBarMenu title={"Thông tin cá nhân"} icon={[{icon: faSignOutAlt}]} titleIsLeft={true} />
+      <TopBarMenu
+        title={"Thông tin cá nhân"}
+        icon={[{icon: faSignOutAlt}]}
+        titleIsLeft={true}
+        onPress={() => signOut()}
+      />
       <ScrollView>
         <View style={styles.topContainer}>
           <AvatarCirCle avatarImageUrl={props.uriAvatar} size={40} />

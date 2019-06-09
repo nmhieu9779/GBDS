@@ -12,7 +12,8 @@ const TextInputCustom = ({
   onChangeText,
   children,
   color,
-  width
+  width,
+  marginBottom
 }) => {
   const [focusedAnim] = useState(new Animated.Value(0))
 
@@ -35,7 +36,7 @@ const TextInputCustom = ({
   }, [value])
 
   return (
-    <SafeAreaView style={[styles.container, {width}]}>
+    <SafeAreaView style={[styles.container, {width, marginBottom: marginBottom}]}>
       <TouchableWithoutFeedback onPress={focus.bind(this)}>
         <Animated.View
           style={[

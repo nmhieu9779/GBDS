@@ -108,6 +108,7 @@ const EditProfile = (props) => {
         </View>
         <View style={styles.infoContainer}>
           <TextInputCustom
+            marginBottom={moderateScale(5)}
             onChangeText={(text) => setName(text)}
             value={name}
             width={width - moderateScale(10)}
@@ -115,6 +116,7 @@ const EditProfile = (props) => {
           />
           <GenderInput gender={gender} setGender={(e) => setGender(e)} />
           <TextInputCustom
+            marginBottom={moderateScale(5)}
             onChangeText={(text) => setDescription(text)}
             value={description}
             width={width - moderateScale(10)}
@@ -150,30 +152,35 @@ const EditProfile = (props) => {
             </View>
           </View>
           <TextInputCustom
+            marginBottom={moderateScale(5)}
             onChangeText={(text) => setEmail(text)}
             value={email}
             width={width - moderateScale(10)}
             label={"Email"}
           />
           <TextInputCustom
+            marginBottom={moderateScale(5)}
             onChangeText={(text) => setPhone(text)}
             value={phone}
             width={width - moderateScale(10)}
             label={"Số điện thoại"}
           />
           <TextInputCustom
+            marginBottom={moderateScale(5)}
             onChangeText={(text) => setAddress(text)}
             value={address}
             width={width - moderateScale(10)}
             label={"Địa chỉ"}
           />
           <TextInputCustom
+            marginBottom={moderateScale(5)}
             onChangeText={(text) => setOccupation(text)}
             value={occupation}
             width={width - moderateScale(10)}
             label={"Nghề nghiệp"}
           />
           <TextInputCustom
+            marginBottom={moderateScale(5)}
             onChangeText={(text) => setOrganization(text)}
             value={organization}
             width={width - moderateScale(10)}

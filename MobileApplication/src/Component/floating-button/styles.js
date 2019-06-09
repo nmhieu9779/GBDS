@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native"
+import {StyleSheet, Platform} from "react-native"
 import {moderateScale} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
@@ -8,7 +8,14 @@ const styles = StyleSheet.create({
     right: moderateScale(20),
     backgroundColor: "white",
     borderRadius: moderateScale(30),
-    zIndex: 999
+    ...Platform.select({
+      ios: {
+        zIndex: 999
+      },
+      android: {
+        elevation: 999
+      }
+    })
   },
   floatingButtonConainer: {
     height: moderateScale(50),

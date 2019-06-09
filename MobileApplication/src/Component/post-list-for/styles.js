@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native"
+import {StyleSheet, Platform} from "react-native"
 import {moderateScale, width} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
@@ -84,8 +84,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     right: moderateScale(5),
-    zIndex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+    ...Platform.select({
+      ios: {
+        zIndex: 1
+      },
+      android: {
+        elevation: 1
+      }
+    })
   },
   priceAreaLabelContainer: {
     padding: moderateScale(5),

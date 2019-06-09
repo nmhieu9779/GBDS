@@ -10,6 +10,8 @@ import SignIn from "./Component/sign-in"
 import SignUp from "./Component/sign-up"
 import {images} from "@src/common/images"
 import {setItemAsyncStorage} from "@src/utilities/asyncStorage"
+import {onShowMessage} from "@src/component/message/redux/actions"
+import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
 const Auth = (props) => {
   const defaultSignUp = {
@@ -27,8 +29,21 @@ const Auth = (props) => {
   const [signUp, setSignUp] = useState(defaultSignUp)
 
   useEffect(() => {
-    props.signInSuccess && props.navigation.navigate("NewFeedForSale")
-  }, [props.signInSuccess])
+    !props.loading && props.signInSuccess && validateInfo()
+  }, [props.loading])
+
+  const validateInfo = async () => {
+    let avatar = await getItemAsyncStorage("AVATAR")
+    let userProfile = await getItemAsyncStorage("USER_PROFILE")
+    !avatar &&
+      !userProfile &&
+      props.showMessage({
+        typeMessage: `WARNING_DIALONG`,
+        message:
+          "Bạn chưa câp nhập thông tin cá nhân, vui lòng cập nhập thông tin cá nhân để được sử dụng đầy đủ chức năng nhất"
+      })
+    await props.navigation.navigate("NewFeedForSale")
+  }
 
   useEffect(() => {
     props.signUpSuccess &&
@@ -142,10 +157,11 @@ const Auth = (props) => {
   )
 }
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = (state) => {
   return {
-    signInSuccess: auth.signInSuccess,
-    signUpSuccess: auth.signUpSuccess
+    signInSuccess: state.auth.signInSuccess,
+    signUpSuccess: state.auth.signUpSuccess,
+    loading: state.userProfile.loading || state.newFeedForSale.loading
   }
 }
 
@@ -156,6 +172,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onSignUp: (payload) => {
       dispatch(signUp(payload))
+    },
+    showMessage: (payload) => {
+      dispatch(onShowMessage(payload))
     }
   }
 }
