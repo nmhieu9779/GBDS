@@ -1,18 +1,18 @@
 import React from "react"
 import {View, Text, Modal, TouchableOpacity} from "react-native"
-import stylesheets from "@src/common/stylesheets"
 import styles from "./styles"
 import string from "./string"
 import {connect} from "react-redux"
 import {closeSelectTypePostAction} from "./redux/actions"
 import NavigationService from "@src/navigation/NavigationService"
 import SafeAreaView from "react-native-safe-area-view"
+import Card from "@src/component/card"
 
 const SelectTypePost = ({visiable, close}) => {
   return (
     <Modal visible={visiable} transparent={true}>
       <SafeAreaView style={styles.modalContainer}>
-        <View style={[styles.typeContainer, stylesheets.boxShadow]}>
+        <Card style={styles.typeContainer}>
           <Text style={styles.modalTitle}>{string.modalTitle}</Text>
           <View style={styles.modalButtonContainer}>
             <TouchableOpacity
@@ -34,7 +34,7 @@ const SelectTypePost = ({visiable, close}) => {
               <Text style={styles.textBtn}>{string.forRent}</Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </Card>
       </SafeAreaView>
     </Modal>
   )

@@ -4,6 +4,7 @@ import styles from "./styles"
 import BottomListPost from "@src/component/bottom-list-post"
 import NavigationService from "@src/navigation/NavigationService"
 import AvatarCirCle from "@src/component/avatar-circle"
+import Card from "@src/component/card"
 
 const _renderTop = (postDate, address, title, vipType, avatar) => (
   <View style={styles.topContainer}>
@@ -87,13 +88,14 @@ const renderItem = ({
       NavigationService.navigate("ForSalePostDetail")
     }}
     activeOpacity={1}
-    key={id}
-    style={styles.postContainer}>
-    {_renderTop(postDate, address, title, vipType, avatar)}
-    {!image && _renderRequest({price, area})}
-    {_renderDescription(description)}
-    {_renderImage({image, price, area})}
-    <BottomListPost />
+    key={id}>
+    <Card style={styles.postContainer}>
+      {_renderTop(postDate, address, title, vipType, avatar)}
+      {!image && _renderRequest({price, area})}
+      {_renderDescription(description)}
+      {_renderImage({image, price, area})}
+      <BottomListPost />
+    </Card>
   </TouchableOpacity>
 )
 

@@ -11,6 +11,7 @@ import string from "./string"
 import {formatDate} from "@src/utilities/date"
 import AvatarCirCle from "@src/component/avatar-circle"
 import {removeAllItemAsyncStorage} from "@src/utilities/asyncStorage"
+import Card from "@src/component/card"
 
 const ItemInfo = (props) => (
   <View style={styles.itemInfo}>
@@ -48,28 +49,30 @@ const UserProfile = (props) => {
         onPress={() => signOut()}
       />
       <ScrollView>
-        <View style={styles.topContainer}>
+        <Card style={styles.topContainer}>
           <AvatarCirCle avatarImageUrl={props.uriAvatar} size={40} />
           <View style={styles.topNameContainer}>
             <Text style={styles.topNameText}>{props.name}</Text>
             <Text style={styles.topNameTextLabel}>{props.description}</Text>
           </View>
-        </View>
-        <View style={styles.menuContainer}>
-          <View style={styles.itemInfo}>
-            <Text style={styles.itemInfoLabel}>{"Số dư trong ví"}</Text>
-            <Text style={styles.priceText}>{"66.171 VND"}</Text>
-          </View>
-          <View style={styles.itemInfo}>
-            <Text style={styles.itemInfoLabel}>{"Loại tài khoản"}</Text>
-            <Text style={styles.checked}>{"Đã xác thực"}</Text>
-            <FontAwesomeIcon style={styles.iconChecked} color={"#1ED760"} icon={faCheckCircle} />
-          </View>
-          {props.info.map((item, index) => (
-            <ItemInfo key={index} label={item.label} content={item.content} />
-          ))}
-        </View>
-        <View style={styles.menuContainer}>
+        </Card>
+        {!props.uriAvatar && (
+          <Card style={styles.menuContainer}>
+            <View style={styles.itemInfo}>
+              <Text style={styles.itemInfoLabel}>{"Số dư trong ví"}</Text>
+              <Text style={styles.priceText}>{"66.171 VND"}</Text>
+            </View>
+            <View style={styles.itemInfo}>
+              <Text style={styles.itemInfoLabel}>{"Loại tài khoản"}</Text>
+              <Text style={styles.checked}>{"Đã xác thực"}</Text>
+              <FontAwesomeIcon style={styles.iconChecked} color={"#1ED760"} icon={faCheckCircle} />
+            </View>
+            {props.info.map((item, index) => (
+              <ItemInfo key={index} label={item.label} content={item.content} />
+            ))}
+          </Card>
+        )}
+        <Card style={styles.menuContainer}>
           <View style={styles.itemInfo}>
             <FontAwesomeIcon style={styles.iconSocial} color="#3B5998" icon={faFacebookSquare} />
             <View style={styles.socialContainer}>
@@ -81,12 +84,12 @@ const UserProfile = (props) => {
           {string.menuUser.map((item, index) => (
             <ItemMenu key={index} icon={item.icon} label={item.label} onPress={() => item.onPress()} />
           ))}
-        </View>
-        <View style={styles.menuContainer}>
+        </Card>
+        <Card style={styles.menuContainer}>
           {string.menuConfig.map((item, index) => (
             <ItemMenu key={index} icon={item.icon} label={item.label} onPress={() => item.onPress()} />
           ))}
-        </View>
+        </Card>
       </ScrollView>
     </SafeAreaView>
   )

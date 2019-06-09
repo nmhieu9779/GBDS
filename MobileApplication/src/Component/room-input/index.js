@@ -4,6 +4,7 @@ import styles from "./styles"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faTimesCircle} from "@fortawesome/free-regular-svg-icons"
 import stylesheets from "@src/common/stylesheets"
+import Card from "@src/component/card"
 
 const RoomInput = ({name, onChange, onClose}) => {
   const roomInputNumber = React.createRef()
@@ -27,7 +28,7 @@ const RoomInput = ({name, onChange, onClose}) => {
       onPress={() => {
         roomInputNumber.current.focus()
       }}>
-      <View style={[styles.container, stylesheets.boxShadow]}>
+      <Card style={styles.container}>
         <View style={styles.titleContainer}>
           <Text style={[styles.name, {flex: 1}]}>{name}</Text>
           <TouchableOpacity
@@ -96,7 +97,7 @@ const RoomInput = ({name, onChange, onClose}) => {
           />
           <Text>{" toilet"}</Text>
         </View>
-      </View>
+      </Card>
     </TouchableWithoutFeedback>
   )
 }

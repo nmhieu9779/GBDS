@@ -2,10 +2,11 @@ import React from "react"
 import {Text, View, FlatList, Image, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import string from "./string"
-import {faUserCircle, faUserPlus} from "@fortawesome/free-solid-svg-icons"
+import {faUserPlus} from "@fortawesome/free-solid-svg-icons"
 import {faThumbsUp, faComment} from "@fortawesome/free-regular-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import AvatarCirCle from "@src/component/avatar-circle"
+import Card from "@src/component/card"
 
 const _renderTop = (postDate, title, avatar) => (
   <View style={styles.topContainer}>
@@ -71,11 +72,13 @@ const _renderBottom = () => (
 )
 
 const renderItem = ({item: {avatar, description, title, price, area, address, postDate, id}}, index) => (
-  <TouchableOpacity activeOpacity={1} key={index + id} style={styles.postContainer}>
-    {_renderTop(postDate, title, avatar)}
-    {_renderRequest(price, area, address)}
-    {_renderDescription(description)}
-    {_renderBottom()}
+  <TouchableOpacity activeOpacity={1} key={index + id}>
+    <Card style={styles.postContainer}>
+      {_renderTop(postDate, title, avatar)}
+      {_renderRequest(price, area, address)}
+      {_renderDescription(description)}
+      {_renderBottom()}
+    </Card>
   </TouchableOpacity>
 )
 const keyExtractor = (item, index) => index.toString()

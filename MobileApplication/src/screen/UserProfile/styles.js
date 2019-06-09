@@ -3,8 +3,8 @@ import {moderateScale} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#D9DDE0"
+    flex: 1
+    // backgroundColor: "#D9DDE0"
   },
   topContainer: {
     flexDirection: "row",
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   topNameContainer: {marginLeft: moderateScale(5)},
   topNameText: {fontSize: moderateScale(20)},
   topNameTextLabel: {color: "rgb(144, 148, 156)"},
-  menuContainer: {backgroundColor: "white", marginTop: moderateScale(5)},
+  menuContainer: {backgroundColor: "white", marginTop: moderateScale(5), marginBottom: moderateScale(5)},
   itemInfo: {
     flexDirection: "row",
     justifyContent: "space-between",

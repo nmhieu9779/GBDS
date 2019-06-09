@@ -2,14 +2,14 @@ import React from "react"
 import {TouchableOpacity} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
-import SafeAreaViewBoxShadow from "@src/component/safe-area-view-box-shadow"
+import Card from "@src/component/card"
 
 const FloatingButton = ({icon, onPress}) => (
-  <SafeAreaViewBoxShadow style={styles.container}>
+  <Card style={styles.container}>
     <TouchableOpacity onPress={() => onPress()} style={styles.floatingButtonConainer}>
       <FontAwesomeIcon color={"white"} icon={icon} />
     </TouchableOpacity>
-  </SafeAreaViewBoxShadow>
+  </Card>
 )
 
 export default FloatingButton

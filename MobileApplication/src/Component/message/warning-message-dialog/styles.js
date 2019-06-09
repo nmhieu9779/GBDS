@@ -1,30 +1,14 @@
-import {StyleSheet, Platform} from "react-native"
-import {moderateScale, height, width} from "@src/utilities/scale"
+import {StyleSheet} from "react-native"
+import {moderateScale, width} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    backgroundColor: "rgba(0, 0, 0, 0.35)",
-    position: "absolute",
-    left: 0,
-    width: width,
-    height: height,
+    flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    ...Platform.select({
-      ios: {
-        zIndex: 10000
-      },
-      android: {
-        elevation: 10000
-      }
-    })
+    alignItems: "center"
   },
   messConatiner: {
-    width: moderateScale(width - width * 0.25),
-    borderRadius: moderateScale(5),
-    borderColor: "gray",
-    borderWidth: 0.5
+    width: moderateScale(width - width * 0.25)
   },
   btnContainer: {
     paddingTop: moderateScale(20),
@@ -55,6 +39,11 @@ const styles = StyleSheet.create({
   },
   icon: {
     margin: moderateScale(5)
+  },
+  iconClose: {
+    position: "absolute",
+    top: moderateScale(5),
+    right: moderateScale(5)
   }
 })
 

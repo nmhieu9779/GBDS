@@ -6,9 +6,9 @@ import TopBarMenu from "@src/component/top-bar-menu"
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons"
 import {styles_main as styles} from "./styles"
 import {stringMain as string} from "./string"
-import Step1 from "./Component/Step1"
-import Step2 from "./Component/Step2"
-import Step3 from "./Component/Step3"
+import Step1 from "./component/Step1"
+import Step2 from "./component/Step2"
+import Step3 from "./component/Step3"
 import {width} from "@src/utilities/scale"
 
 class NeedSalePost extends Component {
