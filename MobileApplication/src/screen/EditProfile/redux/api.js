@@ -1,10 +1,22 @@
-import {URL_UPLOAD_AVATAR} from "@src/constant/url"
-import {uploadAvatar} from "@src/redux/sever"
+import {URL_EDIT_AVATAR, URL_UPLOAD_IMAGE} from "@src/constant/url"
+import {upload, patch, post} from "@src/redux/sever"
 
-function* editAvatarProfile(formData) {
-  const url = URL_UPLOAD_AVATAR
+function* uploadImage(formData) {
+  const url = URL_UPLOAD_IMAGE
   const body = formData
-  return yield uploadAvatar({url, body})
+  return yield upload({url, body})
 }
 
-export const Api = {editAvatarProfile}
+function* uploadAvatar({avatarImageUrl, email}) {
+  const url = URL_EDIT_AVATAR
+  const body = {avatarImageUrl: avatarImageUrl, email: email}
+  return yield post({url, body})
+}
+
+function* editAvatar({avatarImageUrl, email}) {
+  const url = URL_EDIT_AVATAR
+  const body = {avatarImageUrl: avatarImageUrl, email: email}
+  return yield patch({url, body, isToken: true})
+}
+
+export const Api = {uploadImage, uploadAvatar, editAvatar}

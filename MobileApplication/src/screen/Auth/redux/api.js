@@ -18,7 +18,7 @@ function* signIn({email, password}) {
 }
 function* signUp({email, password}) {
   const url = URL_SIGN_UP
-  const body = {email, password}
+  const body = {email: email, password: password}
 
   return yield post({url, body})
 }

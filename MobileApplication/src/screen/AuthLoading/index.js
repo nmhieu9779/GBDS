@@ -5,7 +5,7 @@ import {images} from "@src/common/images"
 import {width} from "@src/utilities/scale"
 import {connect} from "react-redux"
 import {onFetchPostForSaleHome} from "@src/screen/NewFeedForSale/redux/actions"
-import {onGetUserProfile} from "@src/screen/UserProfile/redux/actions"
+import {onGetUserProfile, onGetUriAvatar} from "@src/screen/UserProfile/redux/actions"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
 class AuthLoading extends PureComponent {
@@ -21,7 +21,10 @@ class AuthLoading extends PureComponent {
 
     if (isSkipLogin) {
       this.props.fetchPostForSaleHome()
-      isLogin && this.props.getUserProfile({email: userOauth.email})
+      if (isLogin) {
+        this.props.getUserProfile({email: userOauth.email})
+        this.props.getUriAvatar({email: userOauth.email})
+      }
     } else {
       this.props.navigation.navigate("AuthStack")
     }
@@ -62,6 +65,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getUserProfile: (payload) => {
       dispatch(onGetUserProfile(payload))
+    },
+    getUriAvatar: (payload) => {
+      dispatch(onGetUriAvatar(payload))
     }
   }
 }

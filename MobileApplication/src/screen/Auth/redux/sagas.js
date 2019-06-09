@@ -1,4 +1,5 @@
 import {
+  GET_USER_PROFILE,
   SIGN_IN,
   SIGN_IN_SUCCESS,
   SIGN_IN_FAILURE,
@@ -27,6 +28,7 @@ function* signIn(payload) {
     yield setItemAsyncStorage({keyName: "IS_SIGNIN", data: true})
     yield put({type: SIGN_IN_SUCCESS})
     yield put({type: UN_SHOW_MESSAGE})
+    yield put({type: GET_USER_PROFILE, email: data.email})
   } else {
     yield put({type: SIGN_IN_FAILURE})
     yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.error_description})

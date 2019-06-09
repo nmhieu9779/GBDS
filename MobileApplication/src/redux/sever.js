@@ -8,21 +8,35 @@ const get = async ({url, params}) => {
     .catch((error) => error)
 }
 
-const post = async ({url, auth, params, body}) => {
+const post = async ({url, auth, params, body, isToken}) => {
+  let userOauth = await getItemAsyncStorage("USER_OAUTH")
   return await axios
-    .post(
-      url,
-      {...body},
-      {
-        auth: {...auth},
-        params: {...params}
+    .post(url, body, {
+      auth: {...auth},
+      params: {...params},
+      headers: {
+        Authorization: isToken ? `bearer ${userOauth.accessToken}` : ``
       }
-    )
+    })
     .then((response) => response)
     .catch((error) => error)
 }
 
-const uploadAvatar = async ({url, body}) => {
+const patch = async ({url, auth, params, body, isToken}) => {
+  let userOauth = await getItemAsyncStorage("USER_OAUTH")
+  return await axios
+    .patch(url, body, {
+      auth: {...auth},
+      params: {...params},
+      headers: {
+        Authorization: isToken ? `bearer ${userOauth.accessToken}` : ``
+      }
+    })
+    .then((response) => response)
+    .catch((error) => error)
+}
+
+const upload = async ({url, body}) => {
   let userOauth = await getItemAsyncStorage("USER_OAUTH")
   return await axios
     .post(url, body, {
@@ -36,4 +50,4 @@ const uploadAvatar = async ({url, body}) => {
     .catch((error) => error)
 }
 
-export {post, get, uploadAvatar}
+export {post, get, upload, patch}

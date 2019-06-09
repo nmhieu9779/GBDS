@@ -10,7 +10,7 @@ import TextInputCustom from "@src/component/text-input-custom"
 import {width, moderateScale} from "@src/utilities/scale"
 import {getDay, getMonth, getYear} from "@src/utilities/date"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
-import {onUploadAvatar} from "./redux/actions"
+import {onUploadImage, onUploadAvatar, onEditAvatar} from "./redux/actions"
 
 const GenderItem = (props) => (
   <TouchableOpacity
@@ -38,7 +38,6 @@ const GenderInput = (props) => {
 }
 
 const EditProfile = (props) => {
-  const [avatarImageUrl, setAvatarImageUrl] = useState("")
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [day, setDay] = useState("")
@@ -52,7 +51,6 @@ const EditProfile = (props) => {
   const [gender, setGender] = useState("")
 
   useEffect(() => {
-    setAvatarImageUrl(props.avatarImageUrl)
     setName(props.name)
     setDescription(props.description)
     setDay(getDay(props.birthdate))
@@ -67,8 +65,16 @@ const EditProfile = (props) => {
   }, [])
 
   useEffect(() => {
-    props.avatarImageUrlEdit && setAvatarImageUrl(props.avatarImageUrlEdit)
-  }, [props.avatarImageUrlEdit])
+    props.avatarImageUrl && editAvatar(props.avatarImageUrl)
+  }, [props.avatarImageUrl])
+
+  const editAvatar = async (avatarImageUrl) => {
+    let avatar = await getItemAsyncStorage("AVATAR")
+    let userOauth = await getItemAsyncStorage("USER_OAUTH")
+    avatar
+      ? props.editAvatar({avatarImageUrl: avatarImageUrl, email: userOauth.email})
+      : props.uploadAvatar({avatarImageUrl: avatarImageUrl, email: userOauth.email})
+  }
 
   const editContentType = (contentType) => {
     let temp = contentType
@@ -85,7 +91,7 @@ const EditProfile = (props) => {
       type: type
     })
     formData.append("uploadAs", `avatar/${userOauth.userId}${editContentType(type)}`)
-    props.uploadAvatar(formData)
+    props.uploadImage(formData)
   }
 
   return (
@@ -94,7 +100,7 @@ const EditProfile = (props) => {
       <ScrollView>
         <View style={styles.avatarContainer}>
           <AvatarCirCle
-            avatarImageUrl={avatarImageUrl}
+            avatarImageUrl={props.uriAvatar}
             size={80}
             enableEdit={true}
             onChange={handleResponse.bind(this)}
@@ -183,7 +189,7 @@ const EditProfile = (props) => {
 }
 
 const mapStateToProps = ({userProfile, editProfile}) => ({
-  avatarImageUrl: userProfile.content.avatarImageUrl,
+  uriAvatar: userProfile.uriAvatar,
   name: userProfile.content.name,
   description: userProfile.content.description,
   birthdate: userProfile.content.birthdate,
@@ -192,13 +198,19 @@ const mapStateToProps = ({userProfile, editProfile}) => ({
   address: userProfile.content.address,
   occupation: userProfile.content.occupation,
   organization: userProfile.content.organization,
-  avatarImageUrlEdit: editProfile.avatarImageUrl
+  avatarImageUrl: editProfile.avatarImageUrl
 })
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    uploadImage: (data) => {
+      dispatch(onUploadImage(data))
+    },
     uploadAvatar: (data) => {
       dispatch(onUploadAvatar(data))
+    },
+    editAvatar: (data) => {
+      dispatch(onEditAvatar(data))
     }
   }
 }

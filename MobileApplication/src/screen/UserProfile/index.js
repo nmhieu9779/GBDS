@@ -38,7 +38,7 @@ const UserProfile = (props) => {
       <TopBarMenu title={"Thông tin cá nhân"} icon={[{icon: faSignOutAlt}]} titleIsLeft={true} />
       <ScrollView>
         <View style={styles.topContainer}>
-          <AvatarCirCle avatarImageUrl={props.avatarImageUrl} size={40} />
+          <AvatarCirCle avatarImageUrl={props.uriAvatar} size={40} />
           <View style={styles.topNameContainer}>
             <Text style={styles.topNameText}>{props.name}</Text>
             <Text style={styles.topNameTextLabel}>{props.description}</Text>
@@ -82,7 +82,7 @@ const UserProfile = (props) => {
 }
 
 const mapStateToProps = ({userProfile}) => ({
-  avatarImageUrl: userProfile.content.avatarImageUrl,
+  uriAvatar: userProfile.uriAvatar,
   name: userProfile.content.name,
   description: userProfile.content.description,
   info: [
