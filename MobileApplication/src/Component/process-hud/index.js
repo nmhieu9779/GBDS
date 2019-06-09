@@ -19,7 +19,9 @@ const mapStateToProps = ({
   newFeedForSale,
   newFeedForRent,
   newFeedNeedSale,
-  newFeedNeedRent
+  newFeedNeedRent,
+  userProfile,
+  editProfile
 }) => ({
   loading:
     auth.loading ||
@@ -27,7 +29,9 @@ const mapStateToProps = ({
     newFeedForSale.loading ||
     newFeedForRent.loading ||
     newFeedNeedSale.loading ||
-    newFeedNeedRent.loading
+    newFeedNeedRent.loading ||
+    userProfile.loading ||
+    editProfile.loading
 })
 
 const ProcessHUDContainer = connect(mapStateToProps)(ProcessHUD)

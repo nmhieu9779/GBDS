@@ -5,7 +5,8 @@ import {
   SIGN_UP,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
-  SHOW_MESSAGE
+  SHOW_MESSAGE,
+  UN_SHOW_MESSAGE
 } from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
 import {Api} from "./api"
@@ -25,9 +26,10 @@ function* signIn(payload) {
     yield setItemAsyncStorage({keyName: "IS_SKIP_SIGNIN", data: true})
     yield setItemAsyncStorage({keyName: "IS_SIGNIN", data: true})
     yield put({type: SIGN_IN_SUCCESS})
+    yield put({type: UN_SHOW_MESSAGE})
   } else {
     yield put({type: SIGN_IN_FAILURE})
-    yield put({type: SHOW_MESSAGE})
+    yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.error_description})
   }
 }
 
@@ -35,8 +37,10 @@ function* signUp(payload) {
   const response = yield Api.signUp(payload.payload)
   if (response.status === 201) {
     yield put({type: SIGN_UP_SUCCESS})
+    yield put({type: UN_SHOW_MESSAGE})
   } else {
     yield put({type: SIGN_UP_FAILURE})
+    yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.message})
   }
 }
 

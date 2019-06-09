@@ -8,6 +8,7 @@ import NeedNewPost from "@src/screen/NeedNewPost"
 import ForSalePostDetail from "@src/screen/ForSalePostDetail"
 import UserProfile from "@src/screen/UserProfile"
 import TabBarBottom from "./component/tab-bar-bottom"
+import EditProfile from "@src/screen/EditProfile"
 
 const HomeStack = createBottomTabNavigator(
   {
@@ -37,10 +38,14 @@ const HomeStack = createBottomTabNavigator(
     ForSalePostDetail: {
       screen: ForSalePostDetail,
       navigationOptions: {tabBarVisible: false}
+    },
+    EditProfile: {
+      screen: EditProfile,
+      navigationOptions: {tabBarVisible: false}
     }
   },
   {
-    initialRouteName: "NewFeedForSale",
+    initialRouteName: "EditProfile",
     tabBarComponent: TabBarBottom
   }
 )

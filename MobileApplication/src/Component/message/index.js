@@ -4,7 +4,18 @@ import {onUnShowMessage} from "./redux/actions"
 import ErrorMessage from "./error-message"
 
 const Message = (props) => {
-  return props.isShow && <ErrorMessage />
+  return (
+    props.isShow && (
+      <ErrorMessage
+        color={"red"}
+        message={props.message}
+        onPressClose={() => {
+          props.unShowMessage()
+        }}
+        isShow={props.isShow}
+      />
+    )
+  )
 }
 
 const mapStateToProps = ({message}) => {

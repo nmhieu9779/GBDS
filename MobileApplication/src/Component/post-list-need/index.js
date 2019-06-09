@@ -5,23 +5,19 @@ import string from "./string"
 import {faUserCircle, faUserPlus} from "@fortawesome/free-solid-svg-icons"
 import {faThumbsUp, faComment} from "@fortawesome/free-regular-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
+import AvatarCirCle from "@src/component/avatar-circle"
 
 const _renderTop = (postDate, title, avatar) => (
   <View style={styles.topContainer}>
-    <View style={styles.avatarContainer}>{_renderAvtar(avatar)}</View>
+    <View style={styles.avatarContainer}>
+      <AvatarCirCle avatarImageUrl={avatar} size={40} />
+    </View>
     <View style={styles.postNameContainer}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.postDate}>{postDate}</Text>
     </View>
   </View>
 )
-
-const _renderAvtar = (avatarUrl) =>
-  avatarUrl ? (
-    <Image style={styles.avatar} source={{uri: avatarUrl}} />
-  ) : (
-    <FontAwesomeIcon icon={faUserCircle} />
-  )
 
 const _renderRequest = (price, area, address) => (
   <View style={styles.requestContainer}>

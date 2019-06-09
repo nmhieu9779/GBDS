@@ -1,15 +1,15 @@
 import React from "react"
 import {Text, View, FlatList, Image, TouchableOpacity} from "react-native"
 import styles from "./styles"
-import string from "./string"
-import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
-import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import BottomListPost from "@src/component/bottom-list-post"
 import NavigationService from "@src/navigation/NavigationService"
+import AvatarCirCle from "@src/component/avatar-circle"
 
 const _renderTop = (postDate, address, title, vipType, avatar) => (
   <View style={styles.topContainer}>
-    <View style={styles.avatarContainer}>{_renderAvtar(avatar)}</View>
+    <View style={styles.avatarContainer}>
+      <AvatarCirCle avatarImageUrl={avatar} size={40} />
+    </View>
     <View style={styles.postNameContainer}>
       {_renderTitle(title, vipType)}
       <Text style={styles.postDate}>
@@ -27,13 +27,6 @@ const _renderTitle = (title, vipType) =>
     <Text style={[styles.title, styleTitle[vipType]]}>{title.toUpperCase()}</Text>
   )) ||
   (vipType === 3 && <Text style={[styles.title, styleTitle[vipType]]}>{title.toUpperCase()}</Text>)
-
-const _renderAvtar = (avatarUrl) =>
-  avatarUrl ? (
-    <Image style={styles.avatar} source={{uri: avatarUrl}} />
-  ) : (
-    <FontAwesomeIcon size={40} icon={faUserCircle} />
-  )
 
 const _renderDescription = (description) =>
   description && (

@@ -6,6 +6,7 @@ import {faArrowLeft, faBookmark} from "@fortawesome/free-solid-svg-icons"
 import {faShareSquare, faEdit, faClock, faUser, faPaperPlane} from "@fortawesome/free-regular-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
+import AvatarCirCle from "@src/component/avatar-circle"
 
 const url =
   "https://firebasestorage.googleapis.com/v0/b/money-9779.appspot.com/o/10170804_654154574724344_267561146729865414_n.jpg?alt=media&token=aacbbdb9-abf7-4788-bedd-a4269828dd85"
@@ -30,13 +31,6 @@ const image = [
   "https://file4.batdongsan.com.vn/resize/745x510/2019/05/04/WUgtgUEF/20190504125955-c1f3.jpg",
   "https://file4.batdongsan.com.vn/resize/745x510/2019/05/04/WUgtgUEF/20190504125955-e5d6.jpg"
 ]
-
-const _renderAvtar = (avatarUrl) =>
-  avatarUrl ? (
-    <Image style={styles.avatar} source={{uri: avatarUrl}} />
-  ) : (
-    <FontAwesomeIcon size={40} icon={faUserCircle} />
-  )
 
 const _renderTableInfo = () => (
   <View style={styles.infoPostContainer}>
@@ -113,7 +107,7 @@ const ForSalePostDetail = () => {
             <FontAwesomeIcon color={"#0072bc"} icon={faShareSquare} />
           </View>
           <View style={styles.infoUserBottomContainer}>
-            {_renderAvtar(url)}
+            <AvatarCirCle avatarImageUrl={url} size={40} />
             <Text style={styles.postName} numberOfLines={3}>
               {postName}
             </Text>

@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import {Platform, TextInput, Animated, TouchableWithoutFeedback} from "react-native"
 import SafeAreaView from "react-native-safe-area-view"
 import styles from "./styles"
@@ -29,6 +29,10 @@ const TextInputCustom = ({
       toValue: isActive ? 1 : 0
     }).start()
   }
+
+  useEffect(() => {
+    value && _toggle(true)
+  }, [value])
 
   return (
     <SafeAreaView style={[styles.container, {width}]}>

@@ -6,6 +6,8 @@ import {watchNewFeedForRent} from "@src/screen/NewFeedForRent/redux/sagas"
 import {watchNewFeedNeedSale} from "@src/screen/NewFeedNeedSale/redux/sagas"
 import {watchNewFeedNeedRent} from "@src/screen/NewFeedNeedRent/redux/sagas"
 import {watchUserProfile} from "@src/screen/UserProfile/redux/sagas"
+import {watchEditProfile} from "@src/screen/EditProfile/redux/sagas"
+
 export default function* rootSaga() {
   yield all([
     watchAuth(),
@@ -14,6 +16,7 @@ export default function* rootSaga() {
     watchNewFeedForRent(),
     watchNewFeedNeedSale(),
     watchNewFeedNeedRent(),
-    watchUserProfile()
+    watchUserProfile(),
+    watchEditProfile()
   ])
 }

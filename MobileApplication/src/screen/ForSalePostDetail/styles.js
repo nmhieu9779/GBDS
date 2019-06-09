@@ -25,12 +25,6 @@ const styles = StyleSheet.create({
     padding: moderateScale(5),
     paddingTop: 0
   },
-  avatar: {
-    borderRadius: moderateScale(25),
-    width: moderateScale(50),
-    height: moderateScale(50),
-    overflow: "hidden"
-  },
   postName: {
     marginLeft: moderateScale(5),
     flex: 1,

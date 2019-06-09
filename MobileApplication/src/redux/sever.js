@@ -1,10 +1,5 @@
-import AsyncStorage from "@react-native-community/async-storage"
 const axios = require("axios")
-
-const loadAccessToken = async () => {
-  let res = await AsyncStorage.getItem("USER_OAUTH")
-  return (res && JSON.parse(res)) || null
-}
+import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
 const get = async ({url, params}) => {
   return await axios
@@ -27,4 +22,18 @@ const post = async ({url, auth, params, body}) => {
     .catch((error) => error)
 }
 
-export {post, get}
+const uploadAvatar = async ({url, body}) => {
+  let userOauth = await getItemAsyncStorage("USER_OAUTH")
+  return await axios
+    .post(url, body, {
+      headers: {
+        Authorization: `bearer ${userOauth.accessToken}`,
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data"
+      }
+    })
+    .then((response) => response)
+    .catch((error) => error)
+}
+
+export {post, get, uploadAvatar}

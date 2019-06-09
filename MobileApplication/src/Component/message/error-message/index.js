@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react"
 import {Text, Animated, TouchableWithoutFeedback} from "react-native"
-import SafeAreaView from "react-native-safe-area-view"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faTimesCircle} from "@fortawesome/free-regular-svg-icons"
 import styles from "./styles"
@@ -15,18 +14,20 @@ const ErrorMessage = (props) => {
     }).start()
   }, [])
 
+  useEffect(() => {
+    !props.isShow &&
+      Animated.timing(focusedAnim, {
+        toValue: 0
+      }).start()
+  }, [props.isShow])
+
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Animated.timing(focusedAnim, {
-          toValue: 0
-        }).start()
-      }}>
+    <TouchableWithoutFeedback onPress={props.onPressClose.bind(this)}>
       <Animated.View
         style={[
           styles.container,
           {
-            borderLeftColor: props.color || "red",
+            borderLeftColor: props.color,
             opacity: focusedAnim.interpolate({
               inputRange: [0, 1],
               outputRange: [0, 1]
@@ -34,8 +35,8 @@ const ErrorMessage = (props) => {
             top: getHeightStatusBar()
           }
         ]}>
-        <FontAwesomeIcon style={styles.icon} size={30} color={props.color || "red"} icon={faTimesCircle} />
-        <Text>{props.message || "Email hoặc mật khẩu sai, vui lòng thử lại"}</Text>
+        <FontAwesomeIcon style={styles.icon} size={30} color={props.color} icon={faTimesCircle} />
+        <Text>{props.message}</Text>
       </Animated.View>
     </TouchableWithoutFeedback>
   )

@@ -6,12 +6,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#D9DDE0"
   },
-  avatar: {
-    borderRadius: moderateScale(20),
-    width: moderateScale(40),
-    height: moderateScale(40),
-    overflow: "hidden"
-  },
   topContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -37,10 +31,12 @@ const styles = StyleSheet.create({
   priceText: {fontSize: moderateScale(25)},
   checked: {color: "#1ED760"},
   iconChecked: {marginLeft: moderateScale(3)},
-  itemInfoText: {flex: 1},
+  itemInfoText: {flex: 1, textAlign: "right"},
   iconSocial: {marginRight: moderateScale(10)},
   socialContainer: {flex: 1},
-  textManager: {color: "#4285F4"}
+  textManager: {color: "#4285F4"},
+  labelContainer: {flex: 1},
+  icon: {marginRight: moderateScale(10)}
 })
 
 export default styles

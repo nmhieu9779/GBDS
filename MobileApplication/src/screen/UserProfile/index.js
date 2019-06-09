@@ -1,24 +1,36 @@
 import React from "react"
-import {View, Text, Image, ScrollView} from "react-native"
+import {View, Text, ScrollView, TouchableOpacity} from "react-native"
 import {connect} from "react-redux"
 import SafeAreaView from "react-native-safe-area-view"
 import TopBarMenu from "@src/component/top-bar-menu"
-import {faCheckCircle, faSignOutAlt} from "@fortawesome/free-solid-svg-icons"
+import {faCheckCircle, faSignOutAlt, faChevronRight} from "@fortawesome/free-solid-svg-icons"
 import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
-import Menu from "./component/menu"
 import string from "./string"
+import {formatDate} from "@src/utilities/date"
+import AvatarCirCle from "@src/component/avatar-circle"
 
-const uri =
-  "https://scontent.fhan3-2.fna.fbcdn.net/v/t1.0-9/61450068_159072175131414_3458392844530614272_n.jpg?_nc_cat=109&_nc_oc=AQnfCIECD02FZb_QbumQ4D3x04U0MkXGdDo2KjIlHYkDHM0znarNMulwHW7fUW5FbAk&_nc_ht=scontent.fhan3-2.fna&oh=a5370ab7cfcc5118fc4eedef1001eef8&oe=5D97C9BC"
+const ItemInfo = (props) => (
+  <View style={styles.itemInfo}>
+    <Text style={styles.itemInfoLabel} numberOfLines={4}>
+      {props.label}
+    </Text>
+    <Text style={styles.itemInfoText}>
+      {(props.label === "Ngày sinh" && formatDate(props.content, "DD/MM/YYYY")) || props.content}
+    </Text>
+  </View>
+)
 
-const _renderAvtar = (avatarUrl) =>
-  avatarUrl ? (
-    <Image style={styles.avatar} source={{uri: avatarUrl}} />
-  ) : (
-    <FontAwesomeIcon icon={faUserCircle} />
-  )
+const ItemMenu = (props) => (
+  <TouchableOpacity onPress={() => props.onPress()} style={styles.itemInfo}>
+    {props.icon && <FontAwesomeIcon style={styles.icon} color="#3B5998" icon={props.icon} />}
+    <View style={styles.labelContainer}>
+      <Text>{props.label}</Text>
+    </View>
+    <FontAwesomeIcon color={"#AAB8C2"} icon={faChevronRight} />
+  </TouchableOpacity>
+)
 
 const UserProfile = (props) => {
   return (
@@ -26,10 +38,10 @@ const UserProfile = (props) => {
       <TopBarMenu title={"Thông tin cá nhân"} icon={[{icon: faSignOutAlt}]} titleIsLeft={true} />
       <ScrollView>
         <View style={styles.topContainer}>
-          {_renderAvtar(uri)}
+          <AvatarCirCle avatarImageUrl={props.avatarImageUrl} size={40} />
           <View style={styles.topNameContainer}>
             <Text style={styles.topNameText}>{props.name}</Text>
-            <Text style={styles.topNameTextLabel}>{"Trang cá nhân"}</Text>
+            <Text style={styles.topNameTextLabel}>{props.description}</Text>
           </View>
         </View>
         <View style={styles.menuContainer}>
@@ -42,21 +54,9 @@ const UserProfile = (props) => {
             <Text style={styles.checked}>{"Đã xác thực"}</Text>
             <FontAwesomeIcon style={styles.iconChecked} color={"#1ED760"} icon={faCheckCircle} />
           </View>
-          <View style={styles.itemInfo}>
-            <Text style={styles.itemInfoLabel}>{"Ngày sinh"}</Text>
-            <Text>{props.birthdate}</Text>
-          </View>
-          <View style={styles.itemInfo}>
-            <Text style={styles.itemInfoLabel}>{"Email"}</Text>
-            <Text>{props.email}</Text>
-            <FontAwesomeIcon style={styles.iconChecked} color={"#1ED760"} icon={faCheckCircle} />
-          </View>
-          <View style={[styles.itemInfo, {borderBottomWidth: 0}]}>
-            <Text style={styles.itemInfoLabel}>{"Địa chỉ"}</Text>
-            <Text style={styles.itemInfoText} numberOfLines={4}>
-              {props.address}
-            </Text>
-          </View>
+          {props.info.map((item, index) => (
+            <ItemInfo key={index} label={item.label} content={item.content} />
+          ))}
         </View>
         <View style={styles.menuContainer}>
           <View style={styles.itemInfo}>
@@ -67,10 +67,14 @@ const UserProfile = (props) => {
             </View>
             <Text style={styles.textManager}>{"QUẢN LÝ"}</Text>
           </View>
-          <Menu data={string.menuUser} />
+          {string.menuUser.map((item, index) => (
+            <ItemMenu key={index} icon={item.icon} label={item.label} onPress={() => item.onPress()} />
+          ))}
         </View>
         <View style={styles.menuContainer}>
-          <Menu data={string.menuConfig} />
+          {string.menuConfig.map((item, index) => (
+            <ItemMenu key={index} icon={item.icon} label={item.label} onPress={() => item.onPress()} />
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -78,10 +82,17 @@ const UserProfile = (props) => {
 }
 
 const mapStateToProps = ({userProfile}) => ({
+  avatarImageUrl: userProfile.content.avatarImageUrl,
   name: userProfile.content.name,
-  address: userProfile.content.address,
-  email: userProfile.content.email,
-  birthdate: userProfile.content.birthdate
+  description: userProfile.content.description,
+  info: [
+    {label: "Ngày sinh", content: userProfile.content.birthdate},
+    {label: "Email", content: userProfile.content.email},
+    {label: "Di động", content: userProfile.content.phone},
+    {label: "Địa chỉ", content: userProfile.content.address},
+    {label: "Nghề nghiệp", content: userProfile.content.occupation},
+    {label: "Cơ quan", content: userProfile.content.organization}
+  ]
 })
 
 const mapDispatchToProps = (dispatch) => {
