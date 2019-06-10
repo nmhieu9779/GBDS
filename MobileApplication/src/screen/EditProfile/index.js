@@ -8,9 +8,9 @@ import {connect} from "react-redux"
 import styles from "./styles"
 import TextInputCustom from "@src/component/text-input-custom"
 import {width, moderateScale} from "@src/utilities/scale"
-import {getDay, getMonth, getYear} from "@src/utilities/date"
+import {getDay, getMonth, getYear, formatDayMonth} from "@src/utilities/date"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
-import {onUploadImage, onUploadAvatar, onEditAvatar} from "./redux/actions"
+import {onUploadImage, onUploadAvatar, onEditAvatar, onEditProfile} from "./redux/actions"
 
 const GenderItem = (props) => (
   <TouchableOpacity
@@ -92,6 +92,23 @@ const EditProfile = (props) => {
     })
     formData.append("uploadAs", `avatar/${userOauth.userId}${editContentType(type)}`)
     props.uploadImage(formData)
+  }
+
+  const onPressSave = async () => {
+    let userOauth = await getItemAsyncStorage("USER_OAUTH")
+    let data = {
+      address: address,
+      birthdate:
+        (day && month && year && `${year}-${formatDayMonth(month)}-${formatDayMonth(day)} 00:00:00`) || null,
+      description: description,
+      email: userOauth.email,
+      gender: gender,
+      name: name,
+      occupation: occupation,
+      organization: organization,
+      phone: phone
+    }
+    props.editProfile(data)
   }
 
   return (
@@ -188,7 +205,7 @@ const EditProfile = (props) => {
           />
         </View>
       </ScrollView>
-      <TouchableOpacity activeOpacity={0.8} style={styles.btnSaveContainer}>
+      <TouchableOpacity activeOpacity={0.8} style={styles.btnSaveContainer} onPress={onPressSave.bind(this)}>
         <Text style={styles.btnSaveText}>{"LƯU"}</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -218,6 +235,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     editAvatar: (data) => {
       dispatch(onEditAvatar(data))
+    },
+    editProfile: (data) => {
+      dispatch(onEditProfile(data))
     }
   }
 }

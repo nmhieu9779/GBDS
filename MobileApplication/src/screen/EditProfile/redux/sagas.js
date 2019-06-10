@@ -8,7 +8,11 @@ import {
   EDIT_AVATAR,
   EDIT_AVATAR_SUCCESS,
   EDIT_AVATAR_FAILURE,
-  GET_URI_AVATAR
+  GET_URI_AVATAR,
+  EDIT_PROFILE,
+  EDIT_PROFILE_SUCCESS,
+  EDIT_PROFILE_FAILURE,
+  GET_USER_PROFILE
 } from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
 import {Api} from "./api"
@@ -45,8 +49,20 @@ function* editAvatar(payload) {
   }
 }
 
+function* editProfile(payload) {
+  const response = yield call(Api.editProfile, payload.data)
+  if (response.status === 200) {
+    let userOauth = yield getItemAsyncStorage("USER_OAUTH")
+    yield put({type: EDIT_PROFILE_SUCCESS})
+    yield put({type: GET_USER_PROFILE, email: userOauth.email})
+  } else {
+    yield put({type: EDIT_PROFILE_FAILURE})
+  }
+}
+
 export function* watchEditProfile() {
   yield takeLatest(UPLOAD_IMAGE, uploadImage)
   yield takeLatest(UPLOAD_AVATAR, uploadAvatar)
   yield takeLatest(EDIT_AVATAR, editAvatar)
+  yield takeLatest(EDIT_PROFILE, editProfile)
 }

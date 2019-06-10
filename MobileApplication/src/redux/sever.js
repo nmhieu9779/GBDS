@@ -37,9 +37,9 @@ const patchToken = async ({url, params, body}) => {
   let userOauth = await getItemAsyncStorage("USER_OAUTH")
   return await axios
     .patch(url, body, {
-      params: {...params},
+      params: params,
       headers: {
-        Authorization: `bearer ${userOauth.accessToken}`
+        Authorization: `Bearer ${userOauth.accessToken}`
       }
     })
     .then((response) => response)
@@ -51,7 +51,7 @@ const upload = async ({url, body}) => {
   return await axios
     .post(url, body, {
       headers: {
-        Authorization: `bearer ${userOauth.accessToken}`,
+        Authorization: `Bearer ${userOauth.accessToken}`,
         Accept: "application/json",
         "Content-Type": "multipart/form-data"
       }

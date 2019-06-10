@@ -8,7 +8,10 @@ import {
   UPLOAD_AVATAR_FAILURE,
   EDIT_AVATAR,
   EDIT_AVATAR_SUCCESS,
-  EDIT_AVATAR_FAILURE
+  EDIT_AVATAR_FAILURE,
+  EDIT_PROFILE,
+  EDIT_PROFILE_SUCCESS,
+  EDIT_PROFILE_FAILURE
 } from "@src/redux/actions"
 
 initStateEditProfile = {
@@ -46,6 +49,15 @@ const editProfile = (state = initStateEditProfile, action) => {
       newState.loading = false
       break
     case EDIT_AVATAR_FAILURE:
+      newState.loading = false
+      break
+    case EDIT_PROFILE:
+      newState.loading = true
+      break
+    case EDIT_PROFILE_SUCCESS:
+      newState.loading = false
+      break
+    case EDIT_PROFILE_FAILURE:
       newState.loading = false
       break
     default:
