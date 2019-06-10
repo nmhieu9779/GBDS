@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, width} from "@src/utilities/scale"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
 
 const COLOR = "#2E75ED"
 
@@ -11,14 +11,14 @@ const styles = StyleSheet.create({
     borderTopColor: "#d6d6d6",
     justifyContent: "space-around",
     alignItems: "center",
-    width: width,
+    width: WIDTH,
     height: moderateScale(50)
   },
   crumbContainer: {flex: 1, justifyContent: "center", alignItems: "center"},
   line: {
     height: moderateScale(10),
     position: "absolute",
-    top: moderateScale(width / 28 - 5),
+    top: moderateScale(WIDTH / 28 - 5),
     flexDirection: "row"
   },
   lengthItem: {flex: 1},
@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   crumbStyle: {
-    width: moderateScale(width / 14),
-    height: moderateScale(width / 14),
+    width: moderateScale(WIDTH / 14),
+    height: moderateScale(WIDTH / 14),
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: moderateScale(width / 7),
+    borderRadius: moderateScale(WIDTH / 7),
     backgroundColor: "white"
   },
   activeCrumbStyle: {

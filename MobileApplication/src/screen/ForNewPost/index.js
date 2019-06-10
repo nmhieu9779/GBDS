@@ -12,10 +12,10 @@ import Step5 from "./component/Step5"
 import Step6 from "./component/Step6"
 import Step7 from "./component/Step7"
 import {main as styles} from "./styles"
-import {width} from "@src/utilities/scale"
+import {WIDTH} from "@src/utilities/scale"
 import {main} from "./string"
 
-const ForNewPost = () => {
+const ForNewPost = (props) => {
   const [step, setStep] = useState(0)
   const [dataPost, setDataPost] = useState([])
   let scrollView = React.createRef()
@@ -23,7 +23,7 @@ const ForNewPost = () => {
   const onPressStepItem = (e) => {
     scrollView.current.scrollTo({
       y: 0,
-      x: e * width,
+      x: e * WIDTH,
       Animation: true
     })
     setStep(e)
@@ -34,11 +34,15 @@ const ForNewPost = () => {
 
   return (
     <SafeAreaView style={styles.for_sale_post_container}>
-      <TopBarMenu icon={[{icon: faArrowLeft}]} title={"Đăng bài mua"} />
+      <TopBarMenu
+        icon={[{icon: faArrowLeft}]}
+        title={"Đăng bài mua"}
+        onPress={() => props.navigation.goBack()}
+      />
       <ScrollView
         ref={scrollView}
         onMomentumScrollEnd={(e) => {
-          setStep(parseInt(e.nativeEvent.contentOffset.x / width + 0.1))
+          setStep(parseInt(e.nativeEvent.contentOffset.x / WIDTH + 0.1))
         }}
         pagingEnabled={true}
         horizontal={true}>

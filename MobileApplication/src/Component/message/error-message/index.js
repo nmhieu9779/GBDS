@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import {Text, Animated, TouchableWithoutFeedback} from "react-native"
+import {Text, Animated, TouchableNativeFeedback} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faTimesCircle} from "@fortawesome/free-regular-svg-icons"
 import styles from "./styles"
@@ -22,23 +22,23 @@ const ErrorMessage = (props) => {
   }, [props.isShow])
 
   return (
-    <TouchableWithoutFeedback onPress={props.onPressClose.bind(this)}>
-      <Animated.View
-        style={[
-          styles.container,
-          {
-            borderLeftColor: props.color,
-            opacity: focusedAnim.interpolate({
-              inputRange: [0, 1],
-              outputRange: [0, 1]
-            }),
-            top: getHeightStatusBar()
-          }
-        ]}>
-        <FontAwesomeIcon style={styles.icon} size={30} color={props.color} icon={faTimesCircle} />
-        <Text>{props.message}</Text>
-      </Animated.View>
-    </TouchableWithoutFeedback>
+    // <TouchableNativeFeedback onPress={props.onPressClose.bind(this)}>
+    <Animated.View
+      style={[
+        styles.container,
+        {
+          borderLeftColor: props.color,
+          opacity: focusedAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 1]
+          }),
+          top: getHeightStatusBar()
+        }
+      ]}>
+      <FontAwesomeIcon style={styles.icon} size={30} color={props.color} icon={faTimesCircle} />
+      <Text>{props.message}</Text>
+    </Animated.View>
+    // </TouchableNativeFeedback>
   )
 }
 

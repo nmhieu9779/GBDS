@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, width} from "@src/utilities/scale"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
     marginBottom: moderateScale(10)
   },
   birthdateContainer: {
-    width: width - moderateScale(10),
+    width: WIDTH - moderateScale(10),
     marginBottom: moderateScale(5)
   },
   btnSaveContainer: {
-    width: width,
+    width: WIDTH,
     padding: moderateScale(15),
     justifyContent: "center",
     alignItems: "center",

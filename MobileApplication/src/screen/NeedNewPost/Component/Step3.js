@@ -5,7 +5,7 @@ import {string_step3 as string} from "../string"
 import Header from "@src/component/header-post"
 import SafeAreaView from "react-native-safe-area-view"
 import TextInputCustom from "@src/component/text-input-custom"
-import {width, moderateScale} from "@src/utilities/scale"
+import {WIDTH, moderateScale} from "@src/utilities/scale"
 
 class Step3 extends Component {
   constructor(props) {
@@ -21,26 +21,26 @@ class Step3 extends Component {
           <TextInputCustom
             onChangeText={(text) => this.setState({name: text})}
             value={this.state.name}
-            width={width - moderateScale(10)}
+            width={WIDTH - moderateScale(10)}
             label={string.nameLabel}
           />
           <TextInputCustom
             onChangeText={(text) => this.setState({address: text})}
             value={this.state.address}
-            width={width - moderateScale(10)}
+            width={WIDTH - moderateScale(10)}
             label={string.addressLable}
           />
           <TextInputCustom
             onChangeText={(text) => this.setState({phoneNumber: text})}
             value={this.state.phoneNumber}
-            width={width - moderateScale(10)}
+            width={WIDTH - moderateScale(10)}
             label={string.phoneNumberLabel}
             keyboardType={"numeric"}
           />
           <TextInputCustom
             onChangeText={(text) => this.setState({email: text})}
             value={this.state.email}
-            width={width - moderateScale(10)}
+            width={WIDTH - moderateScale(10)}
             label={string.emailLabel}
             keyboardType={"email-address"}
           />

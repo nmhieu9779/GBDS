@@ -2,7 +2,7 @@ import React from "react"
 import {Text, View, TouchableOpacity} from "react-native"
 import SafeAreaView from "react-native-safe-area-view"
 import styles from "./styles"
-import {width} from "@src/utilities/scale"
+import {WIDTH} from "@src/utilities/scale"
 
 const {
   activeLineItem,
@@ -16,7 +16,7 @@ const {
   activeCrumbTextStyle
 } = styles
 
-const Line = ({width, children}) => <View style={[styles.line, {width: width}]}>{children}</View>
+const Line = ({WIDTH, children}) => <View style={[styles.line, {width: WIDTH}]}>{children}</View>
 
 const LineItem = ({selected, line, isFirst, isLast, isRight, isLeft}) => (
   <View
@@ -30,7 +30,7 @@ const LineItem = ({selected, line, isFirst, isLast, isRight, isLeft}) => (
 
 const Crumb = ({label, isFirst, isLast, length, selected, line, onPress}) => (
   <View style={crumbContainer}>
-    <Line width={width / length}>
+    <Line width={WIDTH / length}>
       <LineItem isFirst={isFirst} isLeft={true} selected={selected} />
       <LineItem isLast={isLast} isRight={true} line={line} />
     </Line>

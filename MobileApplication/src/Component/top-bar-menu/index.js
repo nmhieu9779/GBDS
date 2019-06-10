@@ -26,11 +26,11 @@ const TopBarMenu = ({icon, title, titleIsLeft, onPress}) => (
       {titleIsLeft && <Title title={title} />}
       <View style={[styles.itemContainer, {justifyContent: titleIsLeft ? "flex-end" : "flex-start"}]}>
         {icon &&
-          icon.map(({icon}, index) => (
+          icon.map(({icon, name}, index) => (
             <Icon
               key={index}
               onPress={() => {
-                onPress(index)
+                onPress(name)
               }}
               icon={icon || null}
             />

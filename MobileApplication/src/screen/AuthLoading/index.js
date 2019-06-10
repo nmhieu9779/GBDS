@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react"
 import {StyleSheet, View, Image} from "react-native"
 import {images} from "@src/common/images"
-import {width} from "@src/utilities/scale"
+import {WIDTH} from "@src/utilities/scale"
 import {connect} from "react-redux"
 import {onFetchPostForSaleHome} from "@src/screen/NewFeedForSale/redux/actions"
 import {onGetUserProfile, onGetUriAvatar} from "@src/screen/UserProfile/redux/actions"
@@ -51,7 +51,7 @@ class AuthLoading extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
-        <Image resizeMode={"contain"} style={{width: width - 20}} source={images.logo} />
+        <Image resizeMode={"contain"} style={{width: WIDTH - 20}} source={images.logo} />
       </View>
     )
   }

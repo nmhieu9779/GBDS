@@ -1,8 +1,8 @@
 import {StyleSheet} from "react-native"
-import {width, moderateScale, height} from "@src/utilities/scale"
+import {WIDTH, moderateScale, HEIGHT} from "@src/utilities/scale"
 
 export const step1 = StyleSheet.create({
-  container: {width: width},
+  container: {width: WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -39,7 +39,7 @@ export const step1 = StyleSheet.create({
   },
   addressName: {flex: 1, marginTop: 5},
   price: {
-    width: moderateScale(width / 2),
+    width: moderateScale(WIDTH / 2),
     position: "absolute",
     right: moderateScale(5),
     bottom: moderateScale(3)
@@ -47,7 +47,7 @@ export const step1 = StyleSheet.create({
 })
 
 export const step2 = StyleSheet.create({
-  container: {width: width},
+  container: {width: WIDTH},
   noteContent: {
     fontStyle: "italic",
     color: "gray",
@@ -57,7 +57,7 @@ export const step2 = StyleSheet.create({
   note: {color: "red"},
   textInput: {
     textAlignVertical: "top",
-    height: moderateScale(width / 2),
+    height: moderateScale(WIDTH / 2),
     margin: moderateScale(10),
     padding: moderateScale(10),
     borderWidth: 0.5,
@@ -69,7 +69,7 @@ export const step2 = StyleSheet.create({
 })
 
 export const step3 = StyleSheet.create({
-  container: {width: width},
+  container: {width: WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -79,13 +79,13 @@ export const step3 = StyleSheet.create({
     padding: moderateScale(10)
   },
   containerCombobox: {
-    width: width
+    width: WIDTH
   },
-  comboboxCombobox: {width: width},
+  comboboxCombobox: {width: WIDTH},
   labelCombobox: {fontWeight: "bold", fontSize: moderateScale(16)},
   furnitureContainer: {
     padding: moderateScale(5),
-    width: width
+    width: WIDTH
   },
   furnitureTitle: {
     fontSize: moderateScale(16),
@@ -110,7 +110,7 @@ export const step3 = StyleSheet.create({
 })
 
 export const step4 = StyleSheet.create({
-  container: {width: width},
+  container: {width: WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -130,8 +130,8 @@ export const step4 = StyleSheet.create({
     justifyContent: "space-around"
   },
   image: {
-    width: moderateScale(width / 2 - 20),
-    height: moderateScale(width / 2 - 20)
+    width: moderateScale(WIDTH / 2 - 20),
+    height: moderateScale(WIDTH / 2 - 20)
   },
   border: {
     borderWidth: 1,
@@ -146,27 +146,27 @@ export const step4 = StyleSheet.create({
 })
 
 export const step5 = StyleSheet.create({
-  container: {width: width},
+  container: {width: WIDTH},
   note: {
     fontStyle: "italic",
     color: "gray",
     padding: moderateScale(10)
   },
   map: {
-    width: width,
-    height: height / 2
+    width: WIDTH,
+    height: HEIGHT / 2
   }
 })
 
 export const step6 = StyleSheet.create({
-  container: {width: width},
+  container: {width: WIDTH},
   contentContainerStyle: {alignItems: "center"}
 })
 
 export const step7 = StyleSheet.create({
-  container: {width: width},
+  container: {width: WIDTH},
   containerCombobox: {
-    width: width
+    width: WIDTH
   },
   comboboxCombobox: {flex: 3},
   text: {
@@ -200,7 +200,7 @@ export const step7 = StyleSheet.create({
   textFooter: {
     padding: moderateScale(5),
     marginBottom: moderateScale(5),
-    width: width
+    width: WIDTH
   },
   total: {fontSize: moderateScale(18), fontWeight: "bold", color: "red"},
   btnPostContainer: {

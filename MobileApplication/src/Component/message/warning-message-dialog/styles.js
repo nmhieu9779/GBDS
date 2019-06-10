@@ -1,14 +1,13 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, width} from "@src/utilities/scale"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center"
   },
   messConatiner: {
-    width: moderateScale(width - width * 0.25)
+    width: moderateScale(WIDTH - WIDTH * 0.25)
   },
   btnContainer: {
     paddingTop: moderateScale(20),
@@ -39,11 +38,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     margin: moderateScale(5)
-  },
-  iconClose: {
-    position: "absolute",
-    top: moderateScale(5),
-    right: moderateScale(5)
   }
 })
 

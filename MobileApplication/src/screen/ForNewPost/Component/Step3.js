@@ -5,7 +5,7 @@ import SafeAreaView from "react-native-safe-area-view"
 import TextInputCustom from "@src/component/text-input-custom"
 import Header from "@src/component/header-post"
 import DirectionInput from "@src/component/direction-input"
-import {width, moderateScale} from "@src/utilities/scale"
+import {WIDTH, moderateScale} from "@src/utilities/scale"
 import {stringStep3 as string} from "../string"
 import FloorsInfo from "@src/component/floors-info"
 
@@ -34,14 +34,14 @@ const Step3 = ({onChangeData}) => {
         <TextInputCustom
           onChangeText={(text) => setWidthState(text)}
           value={widthState}
-          width={width - moderateScale(10)}
+          width={WIDTH - moderateScale(10)}
           label={string.widthLabel}
           keyboardType={"numeric"}
         />
         <TextInputCustom
           onChangeText={(text) => setLanWidth(text)}
           value={landWidth}
-          width={width - moderateScale(10)}
+          width={WIDTH - moderateScale(10)}
           label={string.landWidthLabel}
           keyboardType={"numeric"}
         />

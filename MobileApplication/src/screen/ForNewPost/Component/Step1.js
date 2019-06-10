@@ -7,7 +7,7 @@ import AddressInput from "@src/component/address-input"
 import TypeProduct from "@src/component/type-product"
 import {step1 as styles} from "../styles"
 import {stringStep1 as string} from "../string"
-import {width, moderateScale} from "@src/utilities/scale"
+import {WIDTH, moderateScale} from "@src/utilities/scale"
 
 const Step1 = ({onChangeData}) => {
   const [productTitle, setProductTitle] = useState("")
@@ -40,7 +40,7 @@ const Step1 = ({onChangeData}) => {
         <TextInputCustom
           onChangeText={(text) => setProductTitle(text)}
           value={productTitle}
-          width={width - moderateScale(10)}
+          width={WIDTH - moderateScale(10)}
           color={"red"}
           label={string.productTitle}
         />
@@ -64,7 +64,7 @@ const Step1 = ({onChangeData}) => {
         />
         <TextInputCustom
           onChangeText={(text) => setArea(text)}
-          width={width - moderateScale(10)}
+          width={WIDTH - moderateScale(10)}
           value={area}
           label={string.area}
           keyboardType={"numeric"}>
@@ -72,7 +72,7 @@ const Step1 = ({onChangeData}) => {
         </TextInputCustom>
         <TextInputCustom
           onChangeText={(text) => setPrice(text)}
-          width={width - moderateScale(10)}
+          width={WIDTH - moderateScale(10)}
           value={price}
           label={string.priceLabel}
           keyboardType={"numeric"}>

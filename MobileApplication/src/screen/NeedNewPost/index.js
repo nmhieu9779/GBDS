@@ -9,7 +9,7 @@ import {stringMain as string} from "./string"
 import Step1 from "./component/Step1"
 import Step2 from "./component/Step2"
 import Step3 from "./component/Step3"
-import {width} from "@src/utilities/scale"
+import {WIDTH} from "@src/utilities/scale"
 
 class NeedSalePost extends Component {
   constructor(props) {
@@ -20,14 +20,18 @@ class NeedSalePost extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <TopBarMenu icon={[{icon: faArrowLeft}]} title={"Đăng bài mua"} />
+        <TopBarMenu
+          icon={[{icon: faArrowLeft}]}
+          title={"Đăng bài mua"}
+          onPress={() => this.props.navigation.goBack()}
+        />
         <ScrollView
           ref={(ref) => {
             this.scrollView = ref
           }}
           onMomentumScrollEnd={(e) => {
             this.setState({
-              step: parseInt(e.nativeEvent.contentOffset.x / width + 0.1)
+              step: parseInt(e.nativeEvent.contentOffset.x / WIDTH + 0.1)
             })
           }}
           pagingEnabled={true}
@@ -50,7 +54,7 @@ class NeedSalePost extends Component {
   onPressStepItem = (e) => {
     this.scrollView.scrollTo({
       y: 0,
-      x: e * width,
+      x: e * WIDTH,
       Animation: true
     })
     this.setState({step: e})

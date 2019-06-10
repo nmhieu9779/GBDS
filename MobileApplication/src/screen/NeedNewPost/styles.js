@@ -1,19 +1,19 @@
-import {StyleSheet, Platform} from "react-native"
-import {moderateScale, width} from "@src/utilities/scale"
+import {StyleSheet} from "react-native"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
 
 export const styles_main = StyleSheet.create({
   container: {flex: 1, backgroundColor: "white"}
 })
 
 export const styles_step1 = StyleSheet.create({
-  container: {width: width},
+  container: {width: WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   }
 })
 
 export const styles_step2 = StyleSheet.create({
-  container: {width: width},
+  container: {width: WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -24,8 +24,8 @@ export const styles_step2 = StyleSheet.create({
   },
   infoPostContainer: {margin: 10},
   infoPostTextInput: {
-    height: width / 2,
-    width: width - 10,
+    height: WIDTH / 2,
+    width: WIDTH - 10,
     margin: 10,
     padding: 10,
     borderWidth: 0.5,
@@ -35,7 +35,7 @@ export const styles_step2 = StyleSheet.create({
 })
 
 export const styles_step3 = StyleSheet.create({
-  container: {width: width},
+  container: {width: WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   },

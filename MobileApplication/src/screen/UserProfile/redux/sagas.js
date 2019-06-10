@@ -15,7 +15,16 @@ function* getUserProfile({email}) {
   const response = yield call(Api.getUserProfile, email)
   if (response.status === 200) {
     yield put({type: GET_USER_PROFILE_SUCCESS, content: response.data.content})
-    yield setItemAsyncStorage({keyName: "USER_PROFILE", data: {}})
+    yield setItemAsyncStorage({
+      keyName: "USER_PROFILE",
+      // data: {
+      //   address: response.data.content.address,
+      //   name: response.data.content.name,
+      //   phone: response.data.content.phone,
+      //   email: response.data.content.email
+      // }
+      data: true
+    })
   } else {
     yield put({type: GET_USER_PROFILE_FAILURE})
     yield setItemAsyncStorage({keyName: "USER_PROFILE", data: false})

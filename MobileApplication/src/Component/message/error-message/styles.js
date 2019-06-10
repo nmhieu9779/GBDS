@@ -1,10 +1,8 @@
 import {StyleSheet, Platform} from "react-native"
-import {moderateScale, width} from "@src/utilities/scale"
-import stylesheets from "@src/common/stylesheets"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
-    ...stylesheets.boxShadow,
     flexDirection: "row",
     borderLeftWidth: moderateScale(10),
     padding: moderateScale(5),
@@ -12,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     position: "absolute",
     left: 0,
-    width: width,
+    width: WIDTH,
     ...Platform.select({
       ios: {
         zIndex: 10000

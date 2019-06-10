@@ -1,5 +1,5 @@
 import {StyleSheet, Platform} from "react-native"
-import {moderateScale, width} from "@src/utilities/scale"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(14)
   },
   image: {
-    width: width,
+    width: WIDTH,
     height: moderateScale(250)
   },
   bottomContainer: {

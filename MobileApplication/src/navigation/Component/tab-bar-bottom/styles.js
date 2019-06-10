@@ -1,9 +1,9 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, width} from "@src/utilities/scale"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
-    width: width,
+    width: WIDTH,
     backgroundColor: "#2E75ED",
     flexDirection: "row",
     justifyContent: "center",

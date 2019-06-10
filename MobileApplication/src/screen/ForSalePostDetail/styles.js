@@ -1,12 +1,12 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, width} from "@src/utilities/scale"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
   infoUserContainer: {
-    width: width,
+    width: WIDTH,
     backgroundColor: "#E8ECEF"
   },
   infoUserTopContainer: {
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     paddingRight: moderateScale(10)
   },
   imagePostItem: {
-    width: width - moderateScale(20),
+    width: WIDTH - moderateScale(20),
     height: 500,
     overflow: "hidden",
     marginBottom: moderateScale(5)

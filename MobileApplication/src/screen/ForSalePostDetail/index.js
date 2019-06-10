@@ -93,12 +93,13 @@ const _renderMenu = () => (
   </View>
 )
 
-const ForSalePostDetail = () => {
+const ForSalePostDetail = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <TopBarMenu
         icon={[{icon: faArrowLeft}]}
         title={"Cần tiền bán đất đang kinh doanh phòng trọ đường số 1, Trần Não, Q2. DT"}
+        onPress={() => props.navigation.goBack()}
       />
       <ScrollView>
         <Card style={styles.infoUserContainer}>

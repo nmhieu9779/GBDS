@@ -1,11 +1,11 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, width} from "@src/utilities/scale"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     padding: moderateScale(5),
-    width: width - 10,
+    width: WIDTH - 10,
     marginBottom: moderateScale(10),
     borderRadius: 1
   },
