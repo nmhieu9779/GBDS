@@ -7,6 +7,7 @@ import {faShareSquare, faEdit, faClock, faUser, faPaperPlane} from "@fortawesome
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
 import AvatarCirCle from "@src/component/avatar-circle"
+import Card from "@src/component/card"
 
 const url =
   "https://firebasestorage.googleapis.com/v0/b/money-9779.appspot.com/o/10170804_654154574724344_267561146729865414_n.jpg?alt=media&token=aacbbdb9-abf7-4788-bedd-a4269828dd85"
@@ -33,14 +34,14 @@ const image = [
 ]
 
 const _renderTableInfo = () => (
-  <View style={styles.infoPostContainer}>
+  <Card style={styles.infoPostContainer}>
     <View style={styles.infoPostTitleContainer}>
       <Text style={styles.infoPostTitleText}>{"Thông tin nhà đất"}</Text>
     </View>
     {data.map(({label, content}, index) => (
       <TableIcon key={index} label={label} content={content} />
     ))}
-  </View>
+  </Card>
 )
 
 const TableIcon = ({label, content}) => (
@@ -55,18 +56,18 @@ const TableIcon = ({label, content}) => (
 )
 
 const _renderContentPost = () => (
-  <View style={styles.contentPostContainer}>
+  <Card style={styles.contentPostContainer}>
     <Text style={styles.contentPostTitle}>{"Thông tin mô tả"}</Text>
     <Text>{content}</Text>
-  </View>
+  </Card>
 )
 
 const _renderImagePost = () => (
-  <View style={styles.imagePostContainer}>
+  <Card style={styles.imagePostContainer}>
     {image.map((uri, index) => (
       <Image key={index} style={styles.imagePostItem} source={{uri: uri}} />
     ))}
-  </View>
+  </Card>
 )
 
 const _renderMenu = () => (
@@ -100,7 +101,7 @@ const ForSalePostDetail = () => {
         title={"Cần tiền bán đất đang kinh doanh phòng trọ đường số 1, Trần Não, Q2. DT"}
       />
       <ScrollView>
-        <View style={styles.infoUserContainer}>
+        <Card style={styles.infoUserContainer}>
           <View style={styles.infoUserTopContainer}>
             <FontAwesomeIcon color={"#0072bc"} icon={faBookmark} />
             <Text style={styles.infoUserPostDate}>{"02-06-2019"}</Text>
@@ -113,7 +114,7 @@ const ForSalePostDetail = () => {
             </Text>
           </View>
           {_renderMenu()}
-        </View>
+        </Card>
         {_renderTableInfo()}
         {_renderContentPost()}
         {_renderImagePost()}

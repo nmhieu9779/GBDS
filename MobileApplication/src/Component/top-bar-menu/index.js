@@ -1,7 +1,6 @@
 import React from "react"
 import styles from "./styles"
 import SafeAreaView from "react-native-safe-area-view"
-import stylesheets from "@src/common/stylesheets"
 import {TouchableOpacity, View, Platform, Text} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {moderateScale} from "@src/utilities/scale"

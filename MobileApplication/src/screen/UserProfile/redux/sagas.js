@@ -9,6 +9,7 @@ import {
 import {put, takeLatest, call} from "redux-saga/effects"
 import {Api} from "./api"
 import {setItemAsyncStorage} from "@src/utilities/asyncStorage"
+import {formatUriImage} from "@src/utilities/image"
 
 function* getUserProfile({email}) {
   const response = yield call(Api.getUserProfile, email)
@@ -24,7 +25,7 @@ function* getUserProfile({email}) {
 function* getUriAvatar({email}) {
   const response = yield call(Api.getUriAvatar, email)
   if (response.status === 200) {
-    yield put({type: GET_URI_AVATAR_SUCCESS, content: response.data.content})
+    yield put({type: GET_URI_AVATAR_SUCCESS, content: formatUriImage(response.data.content)})
     yield setItemAsyncStorage({keyName: "AVATAR", data: true})
   } else {
     yield put({type: GET_URI_AVATAR_FAILURE})

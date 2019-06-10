@@ -7,7 +7,8 @@ import {
   UPLOAD_AVATAR_FAILURE,
   EDIT_AVATAR,
   EDIT_AVATAR_SUCCESS,
-  EDIT_AVATAR_FAILURE
+  EDIT_AVATAR_FAILURE,
+  GET_URI_AVATAR
 } from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
 import {Api} from "./api"
@@ -24,8 +25,7 @@ function* uploadImage(payload) {
 
 function* uploadAvatar(payload) {
   const response = yield call(Api.uploadAvatar, payload.data)
-  debugger
-  if (response.status === 200) {
+  if (response.status === 201) {
     let userOauth = yield getItemAsyncStorage("USER_OAUTH")
     yield put({type: UPLOAD_AVATAR_SUCCESS})
     yield put({type: GET_URI_AVATAR, email: userOauth.email})
@@ -35,8 +35,7 @@ function* uploadAvatar(payload) {
 }
 
 function* editAvatar(payload) {
-  const response = yield call(Api.editAvatar, {email: payload.email, avatarImageUrl: payload.avatarImageUrl})
-  debugger
+  const response = yield call(Api.editAvatar, payload.data)
   if (response.status === 200) {
     let userOauth = yield getItemAsyncStorage("USER_OAUTH")
     yield put({type: EDIT_AVATAR_SUCCESS})

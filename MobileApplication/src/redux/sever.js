@@ -8,28 +8,38 @@ const get = async ({url, params}) => {
     .catch((error) => error)
 }
 
-const post = async ({url, auth, params, body, isToken}) => {
-  let userOauth = await getItemAsyncStorage("USER_OAUTH")
+const post = async ({url, auth, params, body}) => {
   return await axios
     .post(url, body, {
       auth: {...auth},
+      params: {...params}
+    })
+    .then((response) => response)
+    .catch((error) => error)
+}
+
+const postToken = async ({url, params, body}) => {
+  let userOauth = await getItemAsyncStorage("USER_OAUTH")
+  return await axios
+    .post(url, body, {
       params: {...params},
       headers: {
-        Authorization: isToken ? `bearer ${userOauth.accessToken}` : ``
+        Authorization: `Bearer ${userOauth.accessToken}`,
+        Accept: "application/json",
+        "Content-Type": "application/json"
       }
     })
     .then((response) => response)
     .catch((error) => error)
 }
 
-const patch = async ({url, auth, params, body, isToken}) => {
+const patchToken = async ({url, params, body}) => {
   let userOauth = await getItemAsyncStorage("USER_OAUTH")
   return await axios
     .patch(url, body, {
-      auth: {...auth},
       params: {...params},
       headers: {
-        Authorization: isToken ? `bearer ${userOauth.accessToken}` : ``
+        Authorization: `bearer ${userOauth.accessToken}`
       }
     })
     .then((response) => response)
@@ -50,4 +60,4 @@ const upload = async ({url, body}) => {
     .catch((error) => error)
 }
 
-export {post, get, upload, patch}
+export {post, get, upload, patchToken, postToken}

@@ -2,14 +2,15 @@ import React from "react"
 import {View, ActivityIndicator, Text} from "react-native"
 import {connect} from "react-redux"
 import styles from "./styles"
+import Card from "@src/component/card"
 
 const ProcessHUD = ({loading}) =>
   loading && (
     <View style={styles.container}>
-      <View style={styles.indicator}>
+      <Card style={styles.indicator}>
         <ActivityIndicator color={"black"} size={"large"} />
         <Text style={styles.loadingText}>Loading...</Text>
-      </View>
+      </Card>
     </View>
   )
 

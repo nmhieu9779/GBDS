@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import {View, Text, ScrollView, TouchableOpacity} from "react-native"
 import {connect} from "react-redux"
 import SafeAreaView from "react-native-safe-area-view"
@@ -7,21 +7,27 @@ import {faCheckCircle, faSignOutAlt, faChevronRight} from "@fortawesome/free-sol
 import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
-import string from "./string"
+import {getMenuItem} from "./string"
 import {formatDate} from "@src/utilities/date"
 import AvatarCirCle from "@src/component/avatar-circle"
 import {removeAllItemAsyncStorage} from "@src/utilities/asyncStorage"
 import Card from "@src/component/card"
+import NavigationService from "@src/navigation/NavigationService"
 
 const ItemInfo = (props) => (
-  <View style={styles.itemInfo}>
+  <TouchableOpacity
+    activeOpacity={1}
+    onPress={() => {
+      NavigationService.navigate("EditProfile")
+    }}
+    style={styles.itemInfo}>
     <Text style={styles.itemInfoLabel} numberOfLines={4}>
       {props.label}
     </Text>
     <Text style={styles.itemInfoText}>
       {(props.label === "Ngày sinh" && formatDate(props.content, "DD/MM/YYYY")) || props.content}
     </Text>
-  </View>
+  </TouchableOpacity>
 )
 
 const ItemMenu = (props) => (
@@ -35,9 +41,19 @@ const ItemMenu = (props) => (
 )
 
 const UserProfile = (props) => {
+  const [menu, setMenu] = useState({menuUser: [], menuConfig: []})
+
   const signOut = () => {
     removeAllItemAsyncStorage()
     props.navigation.navigate("AuthStack")
+  }
+
+  useEffect(() => {
+    getMenu()
+  }, [])
+
+  const getMenu = () => {
+    getMenuItem().then((e) => setMenu(e))
   }
 
   return (
@@ -56,7 +72,7 @@ const UserProfile = (props) => {
             <Text style={styles.topNameTextLabel}>{props.description}</Text>
           </View>
         </Card>
-        {!props.uriAvatar && (
+        {props.uriAvatar && (
           <Card style={styles.menuContainer}>
             <View style={styles.itemInfo}>
               <Text style={styles.itemInfoLabel}>{"Số dư trong ví"}</Text>
@@ -81,12 +97,12 @@ const UserProfile = (props) => {
             </View>
             <Text style={styles.textManager}>{"QUẢN LÝ"}</Text>
           </View>
-          {string.menuUser.map((item, index) => (
+          {menu.menuUser.map((item, index) => (
             <ItemMenu key={index} icon={item.icon} label={item.label} onPress={() => item.onPress()} />
           ))}
         </Card>
         <Card style={styles.menuContainer}>
-          {string.menuConfig.map((item, index) => (
+          {menu.menuConfig.map((item, index) => (
             <ItemMenu key={index} icon={item.icon} label={item.label} onPress={() => item.onPress()} />
           ))}
         </Card>

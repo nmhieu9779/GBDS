@@ -1,6 +1,5 @@
 import React, {PureComponent} from "react"
 import {StyleSheet, View, Image} from "react-native"
-import AsyncStorage from "@react-native-community/async-storage"
 import {images} from "@src/common/images"
 import {width} from "@src/utilities/scale"
 import {connect} from "react-redux"

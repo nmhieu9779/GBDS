@@ -32,9 +32,9 @@ class NeedSalePost extends Component {
           }}
           pagingEnabled={true}
           horizontal={true}>
-          <Step1 ref={(r) => (this.step1Ref = r)} />
-          <Step2 ref={(r) => (this.step2Ref = r)} />
-          <Step3 ref={(r) => (this.step3Ref = r)} />
+          <Step1 />
+          <Step2 />
+          <Step3 />
         </ScrollView>
         <Breadcrumb
           itemSelected={this.state.step}
