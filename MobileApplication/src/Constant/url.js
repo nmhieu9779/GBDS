@@ -24,6 +24,8 @@ export const URL_GET_STREET = `${URL_ADMNU}/api/v1/streets`
 
 export const URL_GET_NEW_FEED_POST_FOR_SALE = `${URL_REMNG}/api/v1/for-sale-posts/query`
 
+export const URL_GET_NEW_FEED_POST_FOR_RENT = `${URL_REMNG}/api/v1/for-rent-posts/query`
+
 const url = {
   commingSoon: "Tính năng đang phát triển"
 }

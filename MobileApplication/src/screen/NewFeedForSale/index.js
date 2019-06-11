@@ -17,7 +17,7 @@ const NewFeedForSale = (props) => {
   const [refreshingSate, setRefreshingState] = useState(false)
 
   useEffect(() => {
-    props.nowPage === 0 && !props.loading && props.fetchPostForSale({page: 1, size: 10, init: true})
+    props.nowPage === 0 && !props.loading && props.fetchPostForSale({page: 1, size: 10})
   }, [])
 
   useEffect(() => {
