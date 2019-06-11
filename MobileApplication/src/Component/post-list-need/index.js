@@ -11,8 +11,8 @@ const Top = (props) => (
       <AvatarCirCle avatarImageUrl={props.avatar} size={40} />
     </View>
     <View style={styles.postNameContainer}>
-      <Text style={styles.title}>{props.title}</Text>
-      <Text style={styles.postDate}>{props.postDate}</Text>
+      <Text style={styles.title}>{props.title.toUpperCase()}</Text>
+      <Text style={styles.postDate}>{props.postedDate}</Text>
     </View>
   </View>
 )

@@ -1,20 +1,20 @@
-import {
-  FETCH_POST_NEED_RENT_HOME,
-  FETCH_POST_NEED_RENT_HOME_SUCCESS,
-  FETCH_POST_NEED_RENT_HOME_FAILURE
-} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
-import {Api} from "./api"
+import * as service from "./service"
 
-function* fetchPostNeedRentHome() {
-  const response = yield call(Api.fetchPostNeedRentHome)
+function* fetchPostNeedRent(action) {
+  const response = yield call(service.fetchPostNeedRent, action.params)
   if (response.status === 200) {
-    yield put({type: FETCH_POST_NEED_RENT_HOME_SUCCESS, data: response.data})
+    if (response.data.content.pageable.pageNumber === 0) {
+      yield put(actions.fetchPostNeedRentSuccess(response.data))
+    } else {
+      yield put(actions.fetchMorePostNeedRentSuccess(response.data))
+    }
   } else {
-    yield put({type: FETCH_POST_NEED_RENT_HOME_FAILURE})
+    yield put(actions.fetchPostNeedRentFailure(response.response.data))
   }
 }
 
 export function* watchNewFeedNeedRent() {
-  yield takeLatest(FETCH_POST_NEED_RENT_HOME, fetchPostNeedRentHome)
+  yield takeLatest(actions.ACTION_FETCH_POST_NEED_RENT, fetchPostNeedRent)
 }

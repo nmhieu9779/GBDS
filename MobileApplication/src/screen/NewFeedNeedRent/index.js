@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react"
 import styles from "./styles"
 import string from "./string"
 import {connect} from "react-redux"
+import {bindActionCreators} from "redux"
 import TopBarMenu from "@src/component/top-bar-menu"
 import SafeAreaView from "react-native-safe-area-view"
 import {faFilter} from "@fortawesome/free-solid-svg-icons"
@@ -9,19 +10,19 @@ import {faBell} from "@fortawesome/free-regular-svg-icons"
 import Filter from "@src/component/filter"
 import AddFloatingButton from "@src/component/add-floating-button"
 import PostListNeed from "@src/component/post-list-need"
-import {onFetchPostNeedRentHome} from "./redux/actions"
+import {fetchPostNeedRent} from "@src/redux/actions"
 
-const NewFeedNeedRent = ({data, refreshing, fetchPostNeedRentHome}) => {
+const NewFeedNeedRent = (props) => {
   const [visiableFilter, setVisiableFilter] = useState(false)
   const [refreshingSate, setRefreshingState] = useState(false)
 
   useEffect(() => {
-    fetchPostNeedRentHome()
+    props.nowPage === 0 && !props.loading && props.fetchPostNeedRent({page: 1, size: 10})
   }, [])
 
   useEffect(() => {
-    !refreshing && setRefreshingState(refreshing)
-  }, [refreshing])
+    !props.refreshing && setRefreshingState(props.refreshing)
+  }, [props.refreshing])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -36,27 +37,35 @@ const NewFeedNeedRent = ({data, refreshing, fetchPostNeedRentHome}) => {
       )}
       <AddFloatingButton />
       <PostListNeed
-        data={data}
+        data={props.data}
         onRefresh={() => {
-          fetchPostNeedRentHome()
+          props.fetchPostNeedRent({page: 1, size: 10})
         }}
         refreshing={refreshingSate}
+        loadMore={() => {
+          props.fetchPostNeedRent({page: props.nowPage + 1, size: 10, loadMore: true})
+        }}
+        totalPost={props.totalPost}
+        loading={props.loading}
       />
     </SafeAreaView>
   )
 }
 
-const mapStateToProps = ({newFeedNeedRent: {data, refreshing}}) => ({
-  data: data,
-  refreshing: refreshing
-})
+const mapStateToProps = ({newFeedNeedRent}) => {
+  return {
+    refreshing: newFeedNeedRent.refreshing,
+    data: newFeedNeedRent.response ? newFeedNeedRent.response.content.content : [],
+    nowPage: newFeedNeedRent.response ? newFeedNeedRent.response.content.pageable.pageNumber + 1 : 0,
+    totalPost: newFeedNeedRent.response && newFeedNeedRent.response.content.totalElements,
+    loading: newFeedNeedRent.loading || newFeedNeedRent.loadMore
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchPostNeedRentHome: () => {
-      dispatch(onFetchPostNeedRentHome())
-    }
-  }
+  let actionCreators = {fetchPostNeedRent}
+  let actions = bindActionCreators(actionCreators, dispatch)
+  return {...actions, dispatch}
 }
 
 const NewFeedNeedRentContainer = connect(
