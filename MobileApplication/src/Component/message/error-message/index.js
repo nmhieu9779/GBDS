@@ -1,44 +1,49 @@
-import React, {useState, useEffect} from "react"
-import {Text, Animated, TouchableNativeFeedback} from "react-native"
+import React from "react"
+import {Text, TouchableOpacity, Platform, StyleSheet, View, Animated} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faTimesCircle} from "@fortawesome/free-regular-svg-icons"
 import styles from "./styles"
-import {getHeightStatusBar} from "@src/utilities/statusBar"
+import Card from "@src/component/card"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
+import {PanGestureHandler, State} from "react-native-gesture-handler"
 
 const ErrorMessage = (props) => {
-  const [focusedAnim] = useState(new Animated.Value(0))
-
-  useEffect(() => {
-    Animated.timing(focusedAnim, {
-      toValue: 1
-    }).start()
-  }, [])
-
-  useEffect(() => {
-    !props.isShow &&
-      Animated.timing(focusedAnim, {
-        toValue: 0
-      }).start()
-  }, [props.isShow])
-
-  return (
-    // <TouchableNativeFeedback onPress={props.onPressClose.bind(this)}>
-    <Animated.View
-      style={[
-        styles.container,
-        {
-          borderLeftColor: props.color,
-          opacity: focusedAnim.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 1]
-          }),
-          top: getHeightStatusBar()
+  const cardStyle = Platform.select({
+    ios: () =>
+      StyleSheet.create({
+        container: {
+          shadowRadius: 3,
+          shadowOpacity: 0,
+          shadowOffset: {width: 0, height: 3}
         }
-      ]}>
-      <FontAwesomeIcon style={styles.icon} size={30} color={props.color} icon={faTimesCircle} />
-      <Text>{props.message}</Text>
-    </Animated.View>
-    // </TouchableNativeFeedback>
+      }),
+    android: () =>
+      StyleSheet.create({
+        container: {
+          elevation: 3
+        }
+      })
+  })()
+  return (
+    <PanGestureHandler>
+      <View
+        style={[
+          cardStyle,
+          styles.container,
+          {
+            zIndex: 1,
+            position: "absolute",
+            backgroundColor: "white",
+            top: 0,
+            left: 0
+          }
+        ]}>
+        <TouchableOpacity onPress={props.onPressClose.bind(this)}>
+          <FontAwesomeIcon style={styles.icon} size={30} color={props.color} icon={faTimesCircle} />
+          <Text>{props.message}</Text>
+        </TouchableOpacity>
+      </View>
+    </PanGestureHandler>
   )
 }
 

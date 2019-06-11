@@ -1,12 +1,7 @@
 import React, {useState, useEffect} from "react"
 import {connect} from "react-redux"
-import {
-  getProductTypeAction,
-  getProductCateAction,
-  getPriceAction,
-  getAreaAction,
-  getPriceUnitAction
-} from "./redux/actions"
+import {bindActionCreators} from "redux"
+import {getProductType, getProductCate, getPriceUnit, getArea, getPrice} from "@src/redux/actions"
 import SafeAreaView from "react-native-safe-area-view"
 import ComboBoxDetail from "@src/component/combobox-detail"
 import styles from "./styles"
@@ -50,27 +45,27 @@ const TypeProduct = ({
   const [priceName, setPriceName] = useState("")
 
   useEffect(() => {
-    productType.length === 0 && isProductType && getProductType()
-  }, [productType.length])
+    productType.length === 0 && getProductType()
+  }, [])
 
   useEffect(() => {
-    onChange({
-      productTypeId,
-      unit: priceUnitId === 0 ? "Thoả thuận" : priceUnitName,
-      type: productCateType
-    })
+    // onChange({
+    //   productTypeId,
+    //   unit: priceUnitId === 0 ? "Thoả thuận" : priceUnitName,
+    //   type: productCateType
+    // })
   }, [productTypeSelected, productCateSelected, priceUnitSelected, areaSelected, priceSelected])
 
   const getData = (selected, postTypeId) => {
     switch (postTypeId) {
       case 0:
-        getProductCate(postTypeId, selected)
+        getProductCate({postTypeId, productTypeId: selected})
         getArea()
-        getPrice(selected)
+        getPrice({productTypeId: selected})
         break
       case 1:
-        getProductCate(postTypeId, selected)
-        getPriceUnit(selected)
+        getProductCate({postTypeId, productTypeId: selected})
+        getPriceUnit({productTypeId: selected})
       default:
         break
     }
@@ -162,23 +157,15 @@ const mapStateToProps = ({typeProduct}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    getProductType: () => {
-      dispatch(getProductTypeAction())
-    },
-    getProductCate: (postTypeId, productTypeId) => {
-      dispatch(getProductCateAction(postTypeId, productTypeId))
-    },
-    getPriceUnit: (productTypeId) => {
-      dispatch(getPriceUnitAction(productTypeId))
-    },
-    getArea: () => {
-      dispatch(getAreaAction())
-    },
-    getPrice: (productTypeId) => {
-      dispatch(getPriceAction(productTypeId))
-    }
+  let actionCreators = {
+    getProductType,
+    getProductCate,
+    getPriceUnit,
+    getArea,
+    getPrice
   }
+  let actions = bindActionCreators(actionCreators, dispatch)
+  return {...actions, dispatch}
 }
 
 const TypeProductContainer = connect(

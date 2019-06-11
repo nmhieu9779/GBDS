@@ -1,18 +1,27 @@
 import ExtraDimensions from "react-native-extra-dimensions-android"
+import {Dimensions, Platform} from "react-native"
 
-export const HEIGHT = ExtraDimensions.getRealWindowHeight()
+const X_WIDTH = 375
+const X_HEIGHT = 812
 
-export const WIDTH = ExtraDimensions.getRealWindowWidth()
+const XSMAX_WIDTH = 414
+const XSMAX_HEIGHT = 896
 
-export const STATUS_BAR_HEIGHT = ExtraDimensions.getStatusBarHeight()
+let isIPhoneX = false
 
-export const SOFT_MENU_BAR_HEIGHT = ExtraDimensions.getSoftMenuBarHeight()
+const {width, height} = Dimensions.get("window")
 
-export const SMART_BAR_HEIGHT = ExtraDimensions.getSmartBarHeight()
+export const HEIGHT = Platform.OS === "android" ? ExtraDimensions.getRealWindowHeight() : height
 
-export const SOFT_MENU_BAR_ENABLED = ExtraDimensions.isSoftMenuBarEnabled()
+export const WIDTH = Platform.OS === "android" ? ExtraDimensions.getRealWindowWidth() : width
 
-//Guideline sizes are based on standard ~5" screen mobile device
+if (Platform.OS === "ios" && !Platform.isPad && !Platform.isTVOS) {
+  isIPhoneX = (WIDTH === X_WIDTH && HEIGHT === X_HEIGHT) || (WIDTH === XSMAX_WIDTH && HEIGHT === XSMAX_HEIGHT)
+}
+
+export const STATUS_BAR_HEIGHT =
+  Platform.OS === "android" ? ExtraDimensions.getStatusBarHeight() : isIPhoneX ? 44 : 20
+
 const guidelineBaseWidth = 350
 const guidelineBaseHeight = 680
 

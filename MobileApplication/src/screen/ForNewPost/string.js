@@ -1,4 +1,4 @@
-import TYPE_CODE from "@src/common/typeCode"
+import {CODE_VIP} from "@src/common/typeCode"
 
 export const main = {
   labelStep: [
@@ -69,10 +69,10 @@ export const stringStep7 = {
     title: "-- Loại tin rao --",
     label: "Loại tin rao",
     data: [
-      {id: 0, label: "Tin thường", type: TYPE_CODE.CODE_VIP.X_NORMAL},
-      {id: 1, label: "Tin VIP đặc biệt", type: TYPE_CODE.CODE_VIP.VIP_S0},
-      {id: 2, label: "Tin VIP 1", type: TYPE_CODE.CODE_VIP.VIP_S1},
-      {id: 3, label: "Tin VIP 2", type: TYPE_CODE.CODE_VIP.VIP_S2}
+      {id: 0, label: "Tin thường", type: CODE_VIP.X_NORMAL},
+      {id: 1, label: "Tin VIP đặc biệt", type: CODE_VIP.VIP_S0},
+      {id: 2, label: "Tin VIP 1", type: CODE_VIP.VIP_S1},
+      {id: 3, label: "Tin VIP 2", type: CODE_VIP.VIP_S2}
     ]
   },
   startDate: "Ngày bắt đầu",
@@ -96,7 +96,7 @@ export const stringStep7 = {
       color: "màu xanh.",
       location: ", nằm dưới các loại tin VIP khác.",
       style: {color: "blue"},
-      type: TYPE_CODE.CODE_VIP.X_NORMAL
+      type: CODE_VIP.X_NORMAL
     },
     {
       name: "Vip đặc biệt",
@@ -104,7 +104,7 @@ export const stringStep7 = {
       color: "IN HOA MÀU ĐỎ",
       location: ", nằm trên các loại tin VIP khác.",
       style: {color: "red", fontWeight: "bold"},
-      type: TYPE_CODE.CODE_VIP.VIP_S0
+      type: CODE_VIP.VIP_S0
     },
     {
       name: "Tin Vip 1",
@@ -112,7 +112,7 @@ export const stringStep7 = {
       color: "IN HOA MÀU CAM",
       location: ", nằm bên dưới tin VIP đặc biệt và ở trên các tin VIP 2.",
       style: {color: "orange", fontWeight: "bold"},
-      type: TYPE_CODE.CODE_VIP.VIP_S1
+      type: CODE_VIP.VIP_S1
     },
     {
       name: "Tin Vip 2",
@@ -120,7 +120,7 @@ export const stringStep7 = {
       color: "thường màu cam",
       location: " nằm bên dưới tin VIP 1 và ở trên các tin thường.",
       style: {color: "orange"},
-      type: TYPE_CODE.CODE_VIP.VIP_S2
+      type: CODE_VIP.VIP_S2
     }
   ],
   dayPrice: ["1 nghìn 727 đồng/Ngày", "27 nghìn 272 đồng/Ngày", "50 nghìn/Ngày", "68 nghìn 181 đồng/Ngày"],

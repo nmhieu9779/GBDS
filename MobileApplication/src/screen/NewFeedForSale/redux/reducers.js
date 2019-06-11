@@ -1,36 +1,51 @@
-import {fromJS} from "immutable"
-import {
-  FETCH_POST_FOR_SALE_HOME,
-  FETCH_POST_FOR_SALE_HOME_SUCCESS,
-  FETCH_POST_FOR_SALE_HOME_FAILURE
-} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
 
-INIT_STATE = {
+initStateNewFeedForSale = {
   loading: false,
   refreshing: false,
-  data: []
+  response: null,
+  success: false,
+  loadMore: false
 }
 
-const NewFeedForSaleReducers = (state = INIT_STATE, action) => {
-  let newState = fromJS(state).toJS()
+const newFeedForSale = (state = initStateNewFeedForSale, action) => {
   switch (action.type) {
-    case FETCH_POST_FOR_SALE_HOME:
-      newState.refreshing = true
-      newState.loading = true
-      break
-    case FETCH_POST_FOR_SALE_HOME_SUCCESS:
-      newState.data = action.data
-      newState.refreshing = false
-      newState.loading = false
-      break
-    case FETCH_POST_FOR_SALE_HOME_FAILURE:
-      newState.refreshing = false
-      newState.loading = false
-      break
+    case actions.ACTION_FETCH_POST_FOR_SALE:
+      return {
+        ...state,
+        loading: !action.params.loadMore,
+        refreshing: true,
+        success: false,
+        loadMore: action.params.loadMore
+      }
+    case actions.ACTION_FETCH_POST_FOR_SALE_SUCCESS:
+      return {
+        loading: false,
+        refreshing: false,
+        response: action.response,
+        success: true,
+        loadMore: false
+      }
+    case actions.ACTION_FETCH_POST_FOR_SALE_SUCCESS:
+      return {
+        loading: false,
+        refreshing: false,
+        response: action.error,
+        success: false,
+        loadMore: false
+      }
+    case actions.ACTION_FETCH_MORE_POST_FOR_SALE_SUCCESS:
+      let newData = state.response.content.content.concat(action.response.content.content)
+      return {
+        loading: false,
+        refreshing: false,
+        response: {...action.response, content: {...action.response.content, content: newData}},
+        success: true,
+        loadMore: false
+      }
     default:
-      break
+      return state
   }
-  return newState
 }
 
-export default NewFeedForSaleReducers
+export default newFeedForSale

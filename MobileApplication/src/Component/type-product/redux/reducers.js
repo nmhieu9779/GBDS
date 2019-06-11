@@ -1,5 +1,4 @@
-import {fromJS} from "immutable"
-import {GET_PRODUCT_TYPE, GET_PRODUCT_CATE, GET_PRICE_UNIT, GET_AREA, GET_PRICE} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
 import strings from "../strings"
 
 initStateTypeProduct = {
@@ -10,28 +9,36 @@ initStateTypeProduct = {
   price: []
 }
 
-const typeProductReducers = (state = initStateTypeProduct, action) => {
-  let newState = fromJS(state).toJS()
+const typeProduct = (state = initStateTypeProduct, action) => {
   switch (action.type) {
-    case GET_PRODUCT_TYPE:
-      newState.productType = strings.productType.data
-      break
-    case GET_PRODUCT_CATE:
-      newState.productCate = strings.productCate.data[action.postTypeId][action.productTypeId]
-      break
-    case GET_PRICE_UNIT:
-      newState.priceUnit = strings.priceUnit.data[action.productTypeId]
-      break
-    case GET_AREA:
-      newState.area = strings.area.data
-      break
-    case GET_PRICE:
-      newState.price = strings.price.data[action.productTypeId]
-      break
+    case actions.ACTION_GET_PRODUCT_TYPE:
+      return {
+        ...state,
+        productType: strings.productType.data
+      }
+    case actions.ACTION_GET_PRODUCT_CATE:
+      return {
+        ...state,
+        productCate: strings.productCate.data[action.params.postTypeId][action.params.productTypeId]
+      }
+    case actions.ACTION_GET_PRICE_UNIT:
+      return {
+        ...state,
+        priceUnit: strings.priceUnit.data[action.params.productTypeId]
+      }
+    case actions.ACTION_GET_AREA:
+      return {
+        ...state,
+        area: strings.area.data
+      }
+    case actions.ACTION_GET_PRICE:
+      return {
+        ...state,
+        price: strings.price.data[action.params.productTypeId]
+      }
     default:
-      break
+      return state
   }
-  return newState
 }
 
-export default typeProductReducers
+export default typeProduct

@@ -3,7 +3,8 @@ import {View, ImageBackground, Animated, TouchableOpacity, Text} from "react-nat
 import styles from "./styles"
 import string from "./string"
 import {connect} from "react-redux"
-import {signIn, signUp} from "./redux/actions"
+import {bindActionCreators} from "redux"
+import {signIn, signUp} from "@src/redux/actions"
 import SafeAreaView from "react-native-safe-area-view"
 import ButtonCustom from "./component/button-custom"
 import SignIn from "./component/sign-in"
@@ -35,13 +36,13 @@ const Auth = (props) => {
   const validateInfo = async () => {
     let avatar = await getItemAsyncStorage("AVATAR")
     let userProfile = await getItemAsyncStorage("USER_PROFILE")
-    !avatar &&
-      !userProfile &&
-      props.showMessage({
-        typeMessage: `WARNING_DIALONG`,
-        message:
-          "Bạn chưa câp nhập thông tin cá nhân, vui lòng cập nhập thông tin cá nhân để được sử dụng đầy đủ chức năng nhất"
-      })
+    // !avatar &&
+    //   !userProfile &&
+    // props.showMessage({
+    //   typeMessage: `WARNING_DIALONG`,
+    //   message:
+    //     "Bạn chưa câp nhập thông tin cá nhân, vui lòng cập nhập thông tin cá nhân để được sử dụng đầy đủ chức năng nhất"
+    // })
     await props.navigation.navigate("NewFeedForSale")
   }
 
@@ -129,7 +130,7 @@ const Auth = (props) => {
             password={signIn.password}
             onChangeText={(text, type) => setSignIn({...signIn, [type]: text})}
             onPress={() =>
-              props.onSignIn({
+              props.signIn({
                 email: signIn.email,
                 password: signIn.password
               })
@@ -145,7 +146,7 @@ const Auth = (props) => {
             phone={signUp.phone}
             onChangeText={(text, type) => setSignUp({...signUp, [type]: text})}
             onPress={() =>
-              props.onSignUp({
+              props.signUp({
                 email: signUp.email,
                 password: signUp.password
               })
@@ -157,26 +158,21 @@ const Auth = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({auth}) => {
   return {
-    signInSuccess: state.auth.signInSuccess,
-    signUpSuccess: state.auth.signUpSuccess,
-    loading: state.userProfile.loading || state.newFeedForSale.loading
+    signInSuccess: auth.signIn.success,
+    signInSuccess: auth.signIn.success
+    // loading: userProfile.loading || newFeedForSale.loading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    onSignIn: (payload) => {
-      dispatch(signIn(payload))
-    },
-    onSignUp: (payload) => {
-      dispatch(signUp(payload))
-    },
-    showMessage: (payload) => {
-      dispatch(onShowMessage(payload))
-    }
+  let actionCreators = {
+    signIn,
+    signUp
   }
+  let actions = bindActionCreators(actionCreators, dispatch)
+  return {...actions, dispatch}
 }
 
 const AuthContainer = connect(

@@ -1,23 +1,18 @@
-import {fromJS} from "immutable"
-import {OPEN_SELECT_TYPE_POST, CLOSE_SELECT_TYPE_POST} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
 
 initStateSelectTypePost = {
   visiable: false
 }
 
-const selectTypePostReducers = (state = initStateSelectTypePost, action) => {
-  let newState = fromJS(state).toJS()
+const selectTypePost = (state = initStateSelectTypePost, action) => {
   switch (action.type) {
-    case OPEN_SELECT_TYPE_POST:
-      newState.visiable = true
-      break
-    case CLOSE_SELECT_TYPE_POST:
-      newState.visiable = false
-      break
+    case actions.ACTION_OPEN_SELECT_TYPE_POST:
+      return {visiable: true}
+    case actions.ACTION_CLOSE_SELECT_TYPE_POST:
+      return {visiable: false}
     default:
-      break
+      return state
   }
-  return newState
 }
 
-export default selectTypePostReducers
+export default selectTypePost

@@ -1,50 +1,77 @@
-import {fromJS} from "immutable"
-import {
-  SIGN_IN,
-  SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE,
-  SIGN_UP,
-  SIGN_UP_SUCCESS,
-  SIGN_UP_FAILURE
-} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
 
 initStateAuth = {
-  loading: false,
-  signUpSuccess: false,
-  signInSuccess: false
+  signIn: {
+    loading: false,
+    response: null,
+    success: false
+  },
+  signUp: {
+    loading: false,
+    response: null,
+    success: false
+  }
 }
 
 const authReducers = (state = initStateAuth, action) => {
-  let newState = fromJS(state).toJS()
   switch (action.type) {
-    case SIGN_IN:
-      newState.signInSuccess = false
-      newState.loading = true
-      break
-    case SIGN_IN_SUCCESS:
-      newState.signInSuccess = true
-      newState.loading = false
-      break
-    case SIGN_IN_FAILURE:
-      newState.loading = false
-      newState.signInSuccess = false
-      break
-    case SIGN_UP:
-      newState.signUpSuccess = false
-      newState.loading = true
-      break
-    case SIGN_UP_SUCCESS:
-      newState.signUpSuccess = true
-      newState.loading = false
-      break
-    case SIGN_UP_FAILURE:
-      newState.signUpSuccess = false
-      newState.loading = false
-      break
+    case actions.ACTION_SIGN_IN:
+      return {
+        ...state,
+        signIn: {
+          loading: true,
+          response: null,
+          success: false
+        }
+      }
+    case actions.ACTION_SIGN_IN_SUCCESS:
+      return {
+        ...state,
+        signIn: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_SIGN_IN_FAILURE:
+      return {
+        ...state,
+        signIn: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
+    case actions.ACTION_SIGN_UP:
+      return {
+        ...state,
+        signUp: {
+          loading: true,
+          response: null,
+          success: false
+        }
+      }
+    case actions.ACTION_SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        signUp: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_SIGN_UP_FAILURE:
+      return {
+        ...state,
+        signUp: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
     default:
-      break
+      return state
   }
-  return newState
 }
 
 export default authReducers

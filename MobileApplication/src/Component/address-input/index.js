@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react"
 import {connect} from "react-redux"
+import {bindActionCreators} from "redux"
 import SafeAreaView from "react-native-safe-area-view"
 import ComboBoxDetail from "@src/component/combobox-detail"
 import styles from "./styles"
 import strings from "./strings"
-import {getCity, getDistrict, getWard, getStreet} from "./redux/actions"
+import {getCity, getDistrict, getWard, getStreet} from "@src/redux/actions"
 
 const AddressInput = ({
   city,
@@ -37,8 +38,8 @@ const AddressInput = ({
   const [streetName, setStreetName] = useState("")
 
   useEffect(() => {
-    city.length === 0 && isCity && getCity()
-  }, [city.length === 0])
+    !city && getCity()
+  }, [])
 
   useEffect(() => {
     onChangeAddress({
@@ -64,7 +65,7 @@ const AddressInput = ({
           setDistrictSelected(-1)
           setWardSelected(-1)
           setStreetSelected(-1)
-          isDistrict && getDistrict(id)
+          isDistrict && getDistrict({cityId: id})
         }}
         enable={true}
       />
@@ -81,7 +82,7 @@ const AddressInput = ({
           setDistrictName(name)
           setWardSelected(-1)
           setStreetSelected(-1)
-          isWard && getWard(cityId, id)
+          isWard && getWard({cityId, districtId: id})
         }}
         enable={citySelected !== -1}
       />
@@ -97,7 +98,7 @@ const AddressInput = ({
           setWardId(id)
           setWardName(name)
           setStreetSelected(-1)
-          isStreet && getStreet(cityId, districtId)
+          isStreet && getStreet({cityId, districtId: id})
         }}
         enable={districtSelected !== -1}
       />
@@ -120,29 +121,29 @@ const AddressInput = ({
 }
 
 const mapStateToProps = ({address}) => {
+  const formatData = (data) =>
+    data.map((item) => ({
+      id: item.id,
+      label: item.name,
+      code: item.code
+    }))
   return {
-    city: address.city,
-    district: address.district,
-    ward: address.ward,
-    street: address.street
+    city: address.city.success && formatData(address.city.response.content),
+    district: address.district.success && formatData(address.district.response.content),
+    ward: address.ward.success && formatData(address.ward.response.content),
+    street: address.street.success && formatData(address.street.response.content)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    getCity: () => {
-      dispatch(getCity())
-    },
-    getDistrict: (cityId) => {
-      dispatch(getDistrict(cityId))
-    },
-    getWard: (cityId, districtId) => {
-      dispatch(getWard({cityId, districtId}))
-    },
-    getStreet: (cityId, districtId) => {
-      dispatch(getStreet({cityId, districtId}))
-    }
+  let actionCreators = {
+    getCity,
+    getDistrict,
+    getWard,
+    getStreet
   }
+  let actions = bindActionCreators(actionCreators, dispatch)
+  return {...actions, dispatch}
 }
 
 const AddressInputContainer = connect(

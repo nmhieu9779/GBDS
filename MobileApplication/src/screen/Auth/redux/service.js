@@ -22,4 +22,4 @@ function* signUp({email, password}) {
 
   return yield post({url, body})
 }
-export const Api = {signIn, signUp}
+export {signIn, signUp}

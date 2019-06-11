@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
       ios: {
         height: moderateScale(38)
       },
-      android: {height: moderateScale(56)}
+      android: {height: moderateScale(38)}
     }),
     borderRadius: 0,
     marginBottom: moderateScale(1)
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
       ios: {
         fontSize: moderateScale(17)
       },
-      android: {fontSize: moderateScale(19)}
+      android: {fontSize: moderateScale(17)}
     }),
     fontWeight: "bold"
   },

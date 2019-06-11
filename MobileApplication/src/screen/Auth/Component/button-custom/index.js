@@ -15,7 +15,7 @@ const ButtonCustom = ({style, label, iconColor, icon, onPress, backgroundColor, 
         borderBottomRightRadius: moderateScale(borderRadius || 20)
       }
     ]}
-    onPress={() => onPress()}>
+    onPress={onPress.bind(this)}>
     {label && <Text style={[styles.text, {color: textColor}]}>{label}</Text>}
     {icon && <FontAwesomeIcon icon={icon} color={iconColor} />}
   </TouchableOpacity>

@@ -3,7 +3,7 @@ import {StyleSheet, View, Image} from "react-native"
 import {images} from "@src/common/images"
 import {WIDTH} from "@src/utilities/scale"
 import {connect} from "react-redux"
-import {onFetchPostForSaleHome} from "@src/screen/NewFeedForSale/redux/actions"
+import {fetchPostForSale} from "@src/redux/actions"
 import {onGetUserProfile, onGetUriAvatar} from "@src/screen/UserProfile/redux/actions"
 import {onShowMessage} from "@src/component/message/redux/actions"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
@@ -20,7 +20,7 @@ class AuthLoading extends PureComponent {
     let isLogin = await getItemAsyncStorage("IS_SIGNIN")
 
     if (isSkipLogin) {
-      this.props.fetchPostForSaleHome()
+      this.props.navigation.navigate("HomeStack")
       if (isLogin) {
         this.props.getUserProfile({email: userOauth.email})
         this.props.getUriAvatar({email: userOauth.email})
@@ -73,7 +73,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPostForSaleHome: () => {
-      dispatch(onFetchPostForSaleHome())
+      dispatch(fetchPostForSale({page: 1, size: 10}))
     },
     getUserProfile: (payload) => {
       dispatch(onGetUserProfile(payload))

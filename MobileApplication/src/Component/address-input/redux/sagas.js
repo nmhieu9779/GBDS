@@ -1,59 +1,46 @@
-import {
-  GET_CITY,
-  GET_CITY_SUCCESS,
-  GET_CITY_FAILURE,
-  GET_DISTRICT,
-  GET_DISTRICT_SUCCESS,
-  GET_DISTRICT_FAILURE,
-  GET_WARD,
-  GET_WARD_SUCCESS,
-  GET_WARD_FAILURE,
-  GET_STREET,
-  GET_STREET_SUCCESS,
-  GET_STREET_FAILURE
-} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
-import {Api} from "./api"
+import * as services from "./services"
 
-const formatData = (data) =>
-  data.map((item) => ({
-    id: item.id,
-    label: item.name,
-    code: item.code
-  }))
-
-function* handleResponse(response, typeSuccess, typeFailure) {
+function* getCity(action) {
+  const response = yield call(services.getCity)
   if (response.status === 200) {
-    const data = formatData(response.data.content)
-    yield put({type: typeSuccess, data})
+    yield put(actions.getCitySuccess(response.data))
   } else {
-    yield put({type: typeFailure})
+    yield put(actions.getCityFailure(response.response.data))
   }
 }
 
-function* getCity() {
-  const response = yield call(Api.getCity)
-  yield call(handleResponse, response, GET_CITY_SUCCESS, GET_CITY_FAILURE)
+function* getDistrict(action) {
+  const response = yield call(services.getDistrict, action.params)
+  if (response.status === 200) {
+    yield put(actions.getDistrictSuccess(response.data))
+  } else {
+    yield put(actions.getDistrictFailure(response.response.data))
+  }
 }
 
-function* getDistrict(payload) {
-  const response = yield call(Api.getDistrict, payload.cityId)
-  yield call(handleResponse, response, GET_DISTRICT_SUCCESS, GET_DISTRICT_FAILURE)
+function* getWard(action) {
+  const response = yield call(services.getWard, action.params)
+  if (response.status === 200) {
+    yield put(actions.getWardSuccess(response.data))
+  } else {
+    yield put(actions.getWardFailure(response.response.data))
+  }
 }
 
-function* getWard(payload) {
-  const response = yield call(Api.getWard, payload.cityId, payload.districtId)
-  yield call(handleResponse, response, GET_WARD_SUCCESS, GET_WARD_FAILURE)
-}
-
-function* getStreet(payload) {
-  const response = yield call(Api.getStreet, payload.cityId, payload.districtId)
-  yield call(handleResponse, response, GET_STREET_SUCCESS, GET_STREET_FAILURE)
+function* getStreet(action) {
+  const response = yield call(services.getStreet, action.params)
+  if (response.status === 200) {
+    yield put(actions.getStreetSuccess(response.data))
+  } else {
+    yield put(actions.getStreetFailure(response.response.data))
+  }
 }
 
 export function* watchAddress() {
-  yield takeLatest(GET_CITY, getCity)
-  yield takeLatest(GET_DISTRICT, getDistrict)
-  yield takeLatest(GET_WARD, getWard)
-  yield takeLatest(GET_STREET, getStreet)
+  yield takeLatest(actions.ACTION_GET_CITY, getCity)
+  yield takeLatest(actions.ACTION_GET_DISTRICT, getDistrict)
+  yield takeLatest(actions.ACTION_GET_WARD, getWard)
+  yield takeLatest(actions.ACTION_GET_STREET, getStreet)
 }

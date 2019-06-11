@@ -1,4 +1,4 @@
-import TYPE_CODE from "@src/common/typeCode"
+import {FOR_POST} from "@src/common/typeCode"
 
 const strings = {
   productType: {
@@ -15,42 +15,42 @@ const strings = {
     data: [
       [
         [
-          {id: 0, label: "Mua nhà riêng", type: TYPE_CODE.FOR_POST.HOUSE},
-          {id: 1, label: "Mua căn hộ chung cư", type: TYPE_CODE.FOR_POST.APARTMENT},
-          {id: 2, label: "Mua văn phòng", type: TYPE_CODE.FOR_POST.OFFICE},
-          {id: 3, label: "Mua mặt bằng kinh doanh", type: TYPE_CODE.FOR_POST.BUSSINESS_PREMISES},
-          {id: 4, label: "Mua nhà nghỉ, khách sạn", type: TYPE_CODE.FOR_POST.MOTEL},
-          {id: 5, label: "Mua đất", type: TYPE_CODE.FOR_POST.LAND},
-          {id: 6, label: "Mua loại bất động sản khác", type: TYPE_CODE.FOR_POST.OTHERS}
+          {id: 0, label: "Mua nhà riêng", type: FOR_POST.HOUSE},
+          {id: 1, label: "Mua căn hộ chung cư", type: FOR_POST.APARTMENT},
+          {id: 2, label: "Mua văn phòng", type: FOR_POST.OFFICE},
+          {id: 3, label: "Mua mặt bằng kinh doanh", type: FOR_POST.BUSSINESS_PREMISES},
+          {id: 4, label: "Mua nhà nghỉ, khách sạn", type: FOR_POST.MOTEL},
+          {id: 5, label: "Mua đất", type: FOR_POST.LAND},
+          {id: 6, label: "Mua loại bất động sản khác", type: FOR_POST.OTHERS}
         ],
         [
-          {id: 0, label: "Cần thuê nhà riêng", type: TYPE_CODE.FOR_POST.HOUSE},
-          {id: 1, label: "Cần thuê căn hộ chung cư", type: TYPE_CODE.FOR_POST.APARTMENT},
-          {id: 2, label: "Cần thuê văn phòng", type: TYPE_CODE.FOR_POST.OFFICE},
-          {id: 3, label: "Cần thuê mặt bằng kinh doanh", type: TYPE_CODE.FOR_POST.BUSSINESS_PREMISES},
-          {id: 4, label: "Cần thuê nhà nghỉ, khách sạn", type: TYPE_CODE.FOR_POST.MOTEL},
-          {id: 5, label: "Cần thuê đất", type: TYPE_CODE.FOR_POST.LAND},
-          {id: 6, label: "Cần thuê loại bất động sản khác", type: TYPE_CODE.FOR_POST.OTHERS}
+          {id: 0, label: "Cần thuê nhà riêng", type: FOR_POST.HOUSE},
+          {id: 1, label: "Cần thuê căn hộ chung cư", type: FOR_POST.APARTMENT},
+          {id: 2, label: "Cần thuê văn phòng", type: FOR_POST.OFFICE},
+          {id: 3, label: "Cần thuê mặt bằng kinh doanh", type: FOR_POST.BUSSINESS_PREMISES},
+          {id: 4, label: "Cần thuê nhà nghỉ, khách sạn", type: FOR_POST.MOTEL},
+          {id: 5, label: "Cần thuê đất", type: FOR_POST.LAND},
+          {id: 6, label: "Cần thuê loại bất động sản khác", type: FOR_POST.OTHERS}
         ]
       ],
       [
         [
-          {id: 0, label: "Bán nhà riêng", type: TYPE_CODE.FOR_POST.HOUSE},
-          {id: 1, label: "Bán căn hộ chung cư", type: TYPE_CODE.FOR_POST.APARTMENT},
-          {id: 2, label: "Bán văn phòng", type: TYPE_CODE.FOR_POST.OFFICE},
-          {id: 3, label: "Bán mặt bằng kinh doanh", type: TYPE_CODE.FOR_POST.BUSSINESS_PREMISES},
-          {id: 4, label: "Bán nhà nghỉ, khách sạn", type: TYPE_CODE.FOR_POST.MOTEL},
-          {id: 5, label: "Bán đất", type: TYPE_CODE.FOR_POST.LAND},
-          {id: 6, label: "Bán loại bất động sản khác", type: TYPE_CODE.FOR_POST.OTHERS}
+          {id: 0, label: "Bán nhà riêng", type: FOR_POST.HOUSE},
+          {id: 1, label: "Bán căn hộ chung cư", type: FOR_POST.APARTMENT},
+          {id: 2, label: "Bán văn phòng", type: FOR_POST.OFFICE},
+          {id: 3, label: "Bán mặt bằng kinh doanh", type: FOR_POST.BUSSINESS_PREMISES},
+          {id: 4, label: "Bán nhà nghỉ, khách sạn", type: FOR_POST.MOTEL},
+          {id: 5, label: "Bán đất", type: FOR_POST.LAND},
+          {id: 6, label: "Bán loại bất động sản khác", type: FOR_POST.OTHERS}
         ],
         [
-          {id: 0, label: "Cho thuê nhà riêng", type: TYPE_CODE.FOR_POST.HOUSE},
-          {id: 1, label: "Cho thuê căn hộ chung cư", type: TYPE_CODE.FOR_POST.APARTMENT},
-          {id: 2, label: "Cho thuê văn phòng", type: TYPE_CODE.FOR_POST.OFFICE},
-          {id: 3, label: "Cho thuê mặt bằng kinh doanh", type: TYPE_CODE.FOR_POST.BUSSINESS_PREMISES},
-          {id: 4, label: "Cho thuê nhà nghỉ, khách sạn", type: TYPE_CODE.FOR_POST.MOTEL},
-          {id: 5, label: "Cho thuê đất", type: TYPE_CODE.FOR_POST.LAND},
-          {id: 6, label: "Cho thuê loại bất động sản khác", type: TYPE_CODE.FOR_POST.OTHERS}
+          {id: 0, label: "Cho thuê nhà riêng", type: FOR_POST.HOUSE},
+          {id: 1, label: "Cho thuê căn hộ chung cư", type: FOR_POST.APARTMENT},
+          {id: 2, label: "Cho thuê văn phòng", type: FOR_POST.OFFICE},
+          {id: 3, label: "Cho thuê mặt bằng kinh doanh", type: FOR_POST.BUSSINESS_PREMISES},
+          {id: 4, label: "Cho thuê nhà nghỉ, khách sạn", type: FOR_POST.MOTEL},
+          {id: 5, label: "Cho thuê đất", type: FOR_POST.LAND},
+          {id: 6, label: "Cho thuê loại bất động sản khác", type: FOR_POST.OTHERS}
         ]
       ]
     ]

@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 1000,
     ...Platform.select({
       android: {
-        elevation: 50
-      }
+        elevation: 10
+      },
+      ios: {zIndex: 10}
     })
   },
   indicator: {

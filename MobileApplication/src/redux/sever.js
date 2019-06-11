@@ -11,8 +11,8 @@ const get = async ({url, params}) => {
 const post = async ({url, auth, params, body}) => {
   return await axios
     .post(url, body, {
-      auth: {...auth},
-      params: {...params}
+      auth: auth,
+      params: params
     })
     .then((response) => response)
     .catch((error) => error)

@@ -1,74 +1,141 @@
-import {fromJS} from "immutable"
-import {
-  GET_CITY,
-  GET_CITY_SUCCESS,
-  GET_CITY_FAILURE,
-  GET_DISTRICT,
-  GET_DISTRICT_SUCCESS,
-  GET_DISTRICT_FAILURE,
-  GET_WARD,
-  GET_WARD_SUCCESS,
-  GET_WARD_FAILURE,
-  GET_STREET,
-  GET_STREET_SUCCESS,
-  GET_STREET_FAILURE
-} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
 
 initStateAddress = {
-  loading: false,
-  city: [],
-  district: [],
-  ward: [],
-  street: []
+  city: {
+    loading: false,
+    response: null,
+    success: false
+  },
+  district: {
+    loading: false,
+    response: null,
+    success: false
+  },
+  ward: {
+    loading: false,
+    response: null,
+    success: false
+  },
+  street: {
+    loading: false,
+    response: null,
+    success: false
+  }
 }
 
 const addressReducers = (state = initStateAddress, action) => {
-  let newState = fromJS(state).toJS()
   switch (action.type) {
-    case GET_CITY:
-      newState.loading = true
-      break
-    case GET_DISTRICT:
-      newState.loading = true
-      break
-    case GET_WARD:
-      newState.loading = true
-      break
-    case GET_STREET:
-      newState.loading = true
-      break
-    case GET_CITY_SUCCESS:
-      newState.city = action.data
-      newState.loading = false
-      break
-    case GET_DISTRICT_SUCCESS:
-      newState.district = action.data
-      newState.loading = false
-      break
-    case GET_WARD_SUCCESS:
-      newState.ward = action.data
-      newState.loading = false
-      break
-    case GET_STREET_SUCCESS:
-      newState.street = action.data
-      newState.loading = false
-      break
-    case GET_CITY_FAILURE:
-      newState.loading = false
-      break
-    case GET_DISTRICT_FAILURE:
-      newState.loading = false
-      break
-    case GET_WARD_FAILURE:
-      newState.loading = false
-      break
-    case GET_STREET_FAILURE:
-      newState.loading = false
-      break
+    case actions.ACTION_GET_CITY:
+      return {
+        ...state,
+        city: {
+          loading: true,
+          response: null,
+          success: false
+        }
+      }
+    case actions.ACTION_GET_CITY_SUCCESS:
+      return {
+        ...state,
+        city: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_GET_CITY_FAILURE:
+      return {
+        ...state,
+        city: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
+    case actions.ACTION_GET_DISTRICT:
+      return {
+        ...state,
+        district: {
+          loading: true,
+          response: null,
+          success: false
+        }
+      }
+    case actions.ACTION_GET_DISTRICT_SUCCESS:
+      return {
+        ...state,
+        district: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_GET_DISTRICT_FAILURE:
+      return {
+        ...state,
+        district: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
+    case actions.ACTION_GET_WARD:
+      return {
+        ...state,
+        ward: {
+          loading: true,
+          response: null,
+          success: false
+        }
+      }
+    case actions.ACTION_GET_WARD_SUCCESS:
+      return {
+        ...state,
+        ward: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_GET_WARD_FAILURE:
+      return {
+        ...state,
+        ward: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
+    case actions.ACTION_GET_STREET:
+      return {
+        ...state,
+        street: {
+          loading: true,
+          response: null,
+          success: false
+        }
+      }
+    case actions.ACTION_GET_STREET_SUCCESS:
+      return {
+        ...state,
+        street: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_GET_STREET_FAILURE:
+      return {
+        ...state,
+        street: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
     default:
-      break
+      return state
   }
-  return newState
 }
 
 export default addressReducers

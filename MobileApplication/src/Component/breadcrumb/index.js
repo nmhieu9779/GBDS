@@ -16,7 +16,7 @@ const {
   activeCrumbTextStyle
 } = styles
 
-const Line = ({WIDTH, children}) => <View style={[styles.line, {width: WIDTH}]}>{children}</View>
+const Line = ({width, children}) => <View style={[styles.line, {width: width}]}>{children}</View>
 
 const LineItem = ({selected, line, isFirst, isLast, isRight, isLeft}) => (
   <View

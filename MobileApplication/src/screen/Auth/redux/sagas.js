@@ -1,54 +1,44 @@
-import {
-  GET_USER_PROFILE,
-  SIGN_IN,
-  SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE,
-  SIGN_UP,
-  SIGN_UP_SUCCESS,
-  SIGN_UP_FAILURE,
-  SHOW_MESSAGE,
-  UN_SHOW_MESSAGE,
-  GET_URI_AVATAR
-} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
+import * as services from "./service"
 import {put, takeLatest, call} from "redux-saga/effects"
-import {Api} from "./api"
 import {setItemAsyncStorage} from "@src/utilities/asyncStorage"
 
-function* signIn(payload) {
-  const response = yield Api.signIn(payload.payload)
+function* signIn(action) {
+  const response = yield call(services.signIn, action.params)
   if (response.status === 200) {
     const data = {
       accessToken: response.data.access_token,
       refreshToken: response.data.refresh_token,
       tokenType: response.data.token_type,
       userId: response.data.user_id,
-      email: payload.payload.email.toLowerCase()
+      email: action.params.email.toLowerCase()
     }
     yield setItemAsyncStorage({keyName: "USER_OAUTH", data: data})
     yield setItemAsyncStorage({keyName: "IS_SKIP_SIGNIN", data: true})
     yield setItemAsyncStorage({keyName: "IS_SIGNIN", data: true})
-    yield put({type: SIGN_IN_SUCCESS})
-    yield put({type: UN_SHOW_MESSAGE})
-    yield put({type: GET_USER_PROFILE, email: data.email})
-    yield put({type: GET_URI_AVATAR, email: data.email})
+    yield put(actions.signInSuccess(response.data))
+    // yield put({type: UN_SHOW_MESSAGE})
+    // yield put({type: GET_USER_PROFILE, email: data.email})
+    // yield put({type: GET_URI_AVATAR, email: data.email})
   } else {
-    yield put({type: SIGN_IN_FAILURE})
-    yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.error_description})
+    yield put(actions.signInFailure(response.response.data))
+    // yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.error_description})
   }
 }
 
-function* signUp(payload) {
-  const response = yield Api.signUp(payload.payload)
+function* signUp(action) {
+  const response = yield call(services.signUp, action.params)
+  debugger
   if (response.status === 201) {
-    yield put({type: SIGN_UP_SUCCESS})
-    yield put({type: UN_SHOW_MESSAGE})
+    yield put(actions.signUpSuccess(response.data))
+    // yield put({type: UN_SHOW_MESSAGE})
   } else {
-    yield put({type: SIGN_UP_FAILURE})
-    yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.message})
+    yield put(actions.signUpFailure(response.response.data))
+    // yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.message})
   }
 }
 
 export function* watchAuth() {
-  yield takeLatest(SIGN_IN, signIn)
-  yield takeLatest(SIGN_UP, signUp)
+  yield takeLatest(actions.ACTION_SIGN_IN, signIn)
+  yield takeLatest(actions.ACTION_SIGN_UP, signUp)
 }
