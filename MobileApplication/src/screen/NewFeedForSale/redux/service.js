@@ -1,5 +1,5 @@
 import {URL_GET_NEW_FEED_POST_FOR_SALE} from "@src/constant/url"
-import {post} from "@src/redux/sever"
+import {post} from "@src/redux/server"
 
 function* fetchPostForSale(param) {
   const url = URL_GET_NEW_FEED_POST_FOR_SALE

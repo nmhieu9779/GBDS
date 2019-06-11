@@ -97,9 +97,17 @@ const fetchMorePostForRentSuccess = (response) => ({type: ACTION_FETCH_MORE_POST
 const ACTION_FETCH_POST_FOR_RENT_FAILURE = `[NEW_FEED_FOR_RENT] FETCH_POST_FOR_RENT_FAILURE`
 const fetchPostForRentFailure = (error) => ({type: ACTION_FETCH_POST_FOR_RENT_FAILURE, error})
 
-export const FETCH_POST_NEED_SALE_HOME = `FETCH_POST_NEED_SALE_HOME`
-export const FETCH_POST_NEED_SALE_HOME_SUCCESS = `FETCH_POST_NEED_SALE_HOME_SUCCESS`
-export const FETCH_POST_NEED_SALE_HOME_FAILURE = `FETCH_POST_NEED_SALE_HOME_FAILURE`
+const ACTION_FETCH_POST_NEED_BUY = `[NEW_FEED_NEED_BUY] FETCH_POST_NEED_BUY`
+const fetchPostNeedBuy = (params) => ({type: ACTION_FETCH_POST_NEED_BUY, params})
+
+const ACTION_FETCH_POST_NEED_BUY_SUCCESS = `[NEW_FEED_NEED_BUY] FETCH_POST_NEED_BUY_SUCCESS`
+const fetchPostNeedBuySuccess = (response) => ({type: ACTION_FETCH_POST_NEED_BUY_SUCCESS, response})
+
+const ACTION_FETCH_MORE_POST_NEED_BUY_SUCCESS = `[NEW_FEED_NEED_BUY] FETCH_MORE_POST_NEED_BUY_SUCCESS`
+const fetchMorePostNeedBuySuccess = (response) => ({type: ACTION_FETCH_MORE_POST_NEED_BUY_SUCCESS, response})
+
+const ACTION_FETCH_POST_NEED_BUY_FAILURE = `[NEW_FEED_NEED_BUY] FETCH_POST_NEED_BUY_FAILURE`
+const fetchPostNeedBuyFailure = (error) => ({type: ACTION_FETCH_POST_NEED_BUY_FAILURE, error})
 
 export const FETCH_POST_NEED_RENT_HOME = `FETCH_POST_NEED_RENT_HOME`
 export const FETCH_POST_NEED_RENT_HOME_SUCCESS = `FETCH_POST_NEED_RENT_HOME_SUCCESS`
@@ -205,5 +213,14 @@ export {
   fetchPostForRent,
   fetchPostForRentSuccess,
   fetchPostForRentFailure,
-  fetchMorePostForRentSuccess
+  fetchMorePostForRentSuccess,
+  //Fetch Post Need Buy
+  ACTION_FETCH_POST_NEED_BUY,
+  ACTION_FETCH_POST_NEED_BUY_SUCCESS,
+  ACTION_FETCH_POST_NEED_BUY_FAILURE,
+  ACTION_FETCH_MORE_POST_NEED_BUY_SUCCESS,
+  fetchPostNeedBuy,
+  fetchPostNeedBuySuccess,
+  fetchPostNeedBuyFailure,
+  fetchMorePostNeedBuySuccess
 }

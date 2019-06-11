@@ -1,5 +1,5 @@
 import {URL_GET_CITY, URL_GET_DISTRICT, URL_GET_WARD, URL_GET_STREET} from "@src/constant/url"
-import {get} from "@src/redux/sever"
+import {get} from "@src/redux/server"
 
 function* getCity() {
   const url = URL_GET_CITY

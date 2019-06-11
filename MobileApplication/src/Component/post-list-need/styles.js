@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   postContainer: {
-    marginBottom: moderateScale(5),
+    margin: moderateScale(5),
+    marginTop: 0,
     backgroundColor: "white"
   },
   avatarContainer: {

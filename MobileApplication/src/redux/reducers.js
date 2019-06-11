@@ -5,7 +5,7 @@ import typeProduct from "@src/component/type-product/redux/reducers"
 import selectTypePost from "@src/component/add-floating-button/redux/reducers"
 import newFeedForSale from "@src/screen/NewFeedForSale/redux/reducers"
 import newFeedForRent from "@src/screen/NewFeedForRent/redux/reducers"
-import newFeedNeedSale from "@src/screen/NewFeedNeedSale/redux/reducers"
+import newFeedNeedBuy from "@src/screen/NewFeedNeedBuy/redux/reducers"
 import newFeedNeedRent from "@src/screen/NewFeedNeedRent/redux/reducers"
 import userProfile from "@src/screen/UserProfile/redux/reducers"
 import message from "@src/component/message/redux/reducers"
@@ -18,7 +18,7 @@ const allReducers = combineReducers({
   selectTypePost,
   newFeedForSale,
   newFeedForRent,
-  newFeedNeedSale,
+  newFeedNeedBuy,
   newFeedNeedRent,
   userProfile,
   message,

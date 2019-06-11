@@ -19,7 +19,7 @@ const mapStateToProps = ({
   address,
   newFeedForSale,
   newFeedForRent,
-  newFeedNeedSale,
+  newFeedNeedBuy,
   newFeedNeedRent,
   userProfile,
   editProfile
@@ -29,7 +29,7 @@ const mapStateToProps = ({
     address.loading ||
     newFeedForSale.loading ||
     newFeedForRent.loading ||
-    newFeedNeedSale.loading ||
+    newFeedNeedBuy.loading ||
     newFeedNeedRent.loading ||
     userProfile.loading ||
     editProfile.loading

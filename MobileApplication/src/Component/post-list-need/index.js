@@ -1,98 +1,91 @@
-import React from "react"
-import {Text, View, FlatList, Image, TouchableOpacity} from "react-native"
+import React, {memo} from "react"
+import {Text, View, FlatList, TouchableOpacity} from "react-native"
 import styles from "./styles"
-import string from "./string"
-import {faUserPlus} from "@fortawesome/free-solid-svg-icons"
-import {faThumbsUp, faComment} from "@fortawesome/free-regular-svg-icons"
-import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import AvatarCirCle from "@src/component/avatar-circle"
 import Card from "@src/component/card"
+import BottomListPost from "@src/component/bottom-list-post"
 
-const _renderTop = (postDate, title, avatar) => (
+const Top = (props) => (
   <View style={styles.topContainer}>
     <View style={styles.avatarContainer}>
-      <AvatarCirCle avatarImageUrl={avatar} size={40} />
+      <AvatarCirCle avatarImageUrl={props.avatar} size={40} />
     </View>
     <View style={styles.postNameContainer}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.postDate}>{postDate}</Text>
+      <Text style={styles.title}>{props.title}</Text>
+      <Text style={styles.postDate}>{props.postDate}</Text>
     </View>
   </View>
 )
 
-const _renderRequest = (price, area, address) => (
+const Request = (props) => (
   <View style={styles.requestContainer}>
     <View style={styles.requestItem}>
       <Text style={styles.requestLabel}>{"Giá: "}</Text>
-      <Text style={styles.requestContent}>{price}</Text>
+      <Text style={styles.requestContent}>{props.price}</Text>
     </View>
     <View style={styles.requestItem}>
       <Text style={styles.requestLabel}>{"Diện tích: "}</Text>
-      <Text style={styles.requestContent}>{area}</Text>
+      <Text style={styles.requestContent}>{props.area}</Text>
     </View>
     <View style={styles.requestItem}>
       <Text style={styles.requestLabel}>{"Địa chỉ: "}</Text>
       <Text style={styles.requestContent} numberOfLines={2}>
-        {address}
+        {props.address}
       </Text>
     </View>
   </View>
 )
 
-const _renderDescription = (description) =>
-  description && (
+const Description = (props) =>
+  props.description && (
     <View style={styles.descriptionContainer}>
       <Text style={styles.description} numberOfLines={4}>
-        {description}
+        {props.description}
       </Text>
     </View>
   )
 
-const _renderBottom = () => (
-  <View style={styles.bottomContainer}>
-    <TouchableOpacity style={styles.btnBottom}>
-      <View style={styles.itemsBtn}>
-        <FontAwesomeIcon style={styles.itemsBtnIcon} icon={faThumbsUp} />
-        <Text>{"Thích"}</Text>
-      </View>
+const Item = memo(({props}) => {
+  return (
+    <TouchableOpacity onPress={() => {}} activeOpacity={1}>
+      <Card style={styles.postContainer}>
+        <Top postedDate={props.postedDate} title={props.title} avatar={props.avatar} />
+        <Request price={props.price} area={props.area} address={props.address} />
+        <Description description={props.description} />
+        <BottomListPost />
+      </Card>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.btnBottom}>
-      <View style={styles.itemsBtn}>
-        <FontAwesomeIcon style={styles.itemsBtnIcon} icon={faComment} />
-        <Text>{"Bình luận"}</Text>
-      </View>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.btnBottom}>
-      <View style={styles.itemsBtn}>
-        <FontAwesomeIcon style={styles.itemsBtnIcon} icon={faUserPlus} />
-        <Text>{"Đăng ký"}</Text>
-      </View>
-    </TouchableOpacity>
-  </View>
-)
+  )
+})
 
-const renderItem = ({item: {avatar, description, title, price, area, address, postDate, id}}, index) => (
-  <TouchableOpacity activeOpacity={1} key={index + id}>
-    <Card style={styles.postContainer}>
-      {_renderTop(postDate, title, avatar)}
-      {_renderRequest(price, area, address)}
-      {_renderDescription(description)}
-      {_renderBottom()}
-    </Card>
-  </TouchableOpacity>
-)
 const keyExtractor = (item, index) => index.toString()
 
-const PostListNeed = ({data, onRefresh, refreshing}) => (
-  <View style={{flex: 1, backgroundColor: "#D9DDE0"}}>
-    <FlatList
-      refreshing={refreshing}
-      onRefresh={onRefresh.bind(this)}
-      renderItem={renderItem.bind(this)}
-      data={data}
-      keyExtractor={keyExtractor.bind(this)}
-    />
-  </View>
-)
+const PostListNeed = ({data, onRefresh, refreshing, onPress, loadMore, totalPost, loading}) => {
+  let onEndReachedCalledDuringMomentum = true
+
+  const onEndReached = () => {
+    if (data.length < totalPost && !loading && !onEndReachedCalledDuringMomentum) {
+      loadMore()
+      onEndReachedCalledDuringMomentum = true
+    }
+  }
+
+  return (
+    <View style={{flex: 1}}>
+      <FlatList
+        refreshing={refreshing}
+        onRefresh={onRefresh.bind(this)}
+        renderItem={(item) => <Item props={item.item} />}
+        data={data}
+        keyExtractor={keyExtractor.bind(this)}
+        onEndReached={onEndReached.bind(this)}
+        onEndReachedThreshold={0.5}
+        onMomentumScrollBegin={() => {
+          onEndReachedCalledDuringMomentum = false
+        }}
+      />
+    </View>
+  )
+}
 
 export default PostListNeed

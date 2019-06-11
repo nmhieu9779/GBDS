@@ -1,5 +1,5 @@
 import {URL_EDIT_PROFILE, URL_UPLOAD_IMAGE} from "@src/constant/url"
-import {upload, patchToken, postToken} from "@src/redux/sever"
+import {upload, patchToken, postToken} from "@src/redux/server"
 
 function* uploadImage(formData) {
   const url = URL_UPLOAD_IMAGE

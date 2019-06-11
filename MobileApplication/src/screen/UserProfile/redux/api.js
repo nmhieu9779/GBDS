@@ -1,5 +1,5 @@
 import {URL_GET_USER_PROFILE, URL_GET_URI_AVATAR} from "@src/constant/url"
-import {get} from "@src/redux/sever"
+import {get} from "@src/redux/server"
 
 function* getUserProfile(email) {
   const url = URL_GET_USER_PROFILE

@@ -11,7 +11,7 @@ import Step2 from "./component/Step2"
 import Step3 from "./component/Step3"
 import {WIDTH} from "@src/utilities/scale"
 
-class NeedSalePost extends Component {
+class NeedBuyPost extends Component {
   constructor(props) {
     super(props)
     this.state = {step: 0}
@@ -61,4 +61,4 @@ class NeedSalePost extends Component {
   }
 }
 
-export default NeedSalePost
+export default NeedBuyPost

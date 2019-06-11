@@ -1,7 +1,7 @@
 import {createBottomTabNavigator} from "react-navigation"
 import NewFeedForSale from "@src/screen/NewFeedForSale"
 import NewFeedForRent from "@src/screen/NewFeedForRent"
-import NewFeedNeedSale from "@src/screen/NewFeedNeedSale"
+import NewFeedNeedBuy from "@src/screen/NewFeedNeedBuy"
 import NewFeedNeedRent from "@src/screen/NewFeedNeedRent"
 import ForNewPost from "@src/screen/ForNewPost"
 import NeedNewPost from "@src/screen/NeedNewPost"
@@ -18,8 +18,8 @@ const HomeStack = createBottomTabNavigator(
     NewFeedForRent: {
       screen: NewFeedForRent
     },
-    NewFeedNeedSale: {
-      screen: NewFeedNeedSale
+    NewFeedNeedBuy: {
+      screen: NewFeedNeedBuy
     },
     NewFeedNeedRent: {
       screen: NewFeedNeedRent
