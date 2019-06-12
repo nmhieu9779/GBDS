@@ -12,7 +12,6 @@ import SignUp from "./component/sign-up"
 import {images} from "@src/common/images"
 import {setItemAsyncStorage} from "@src/utilities/asyncStorage"
 import {onShowMessage} from "@src/component/message/redux/actions"
-import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
 const Auth = (props) => {
   const defaultSignUp = {
@@ -34,15 +33,12 @@ const Auth = (props) => {
   }, [props.loading])
 
   const validateInfo = async () => {
-    let avatar = await getItemAsyncStorage("AVATAR")
-    let userProfile = await getItemAsyncStorage("USER_PROFILE")
-    // !avatar &&
-    //   !userProfile &&
-    // props.showMessage({
-    //   typeMessage: `WARNING_DIALONG`,
-    //   message:
-    //     "Bạn chưa câp nhập thông tin cá nhân, vui lòng cập nhập thông tin cá nhân để được sử dụng đầy đủ chức năng nhất"
-    // })
+    props.isNewProfile &&
+      props.onShowMessage({
+        typeMessage: `WARNING_DIALONG`,
+        message:
+          "Bạn chưa câp nhập thông tin cá nhân, vui lòng cập nhập thông tin cá nhân để được sử dụng đầy đủ chức năng nhất"
+      })
     await props.navigation.navigate("NewFeedForSale")
   }
 
@@ -158,18 +154,20 @@ const Auth = (props) => {
   )
 }
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = (state) => {
   return {
-    signInSuccess: auth.signIn.success,
-    signInSuccess: auth.signIn.success
-    // loading: userProfile.loading || newFeedForSale.loading
+    signInSuccess: state.auth.signIn.success,
+    signUpSuccess: state.auth.signUp.success,
+    isNewProfile: !state.userProfile.userProfile.success && !state.userProfile.uriAvatar.success,
+    loading: state.userProfile.userProfile.loading || state.userProfile.uriAvatar.loading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   let actionCreators = {
     signIn,
-    signUp
+    signUp,
+    onShowMessage
   }
   let actions = bindActionCreators(actionCreators, dispatch)
   return {...actions, dispatch}

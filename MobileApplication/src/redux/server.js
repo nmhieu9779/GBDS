@@ -3,7 +3,7 @@ import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
 const get = async ({url, params}) => {
   return await axios
-    .get(url, {params})
+    .get(url, {params: params})
     .then((response) => response)
     .catch((error) => error)
 }
@@ -22,7 +22,7 @@ const postToken = async ({url, params, body}) => {
   let userOauth = await getItemAsyncStorage("USER_OAUTH")
   return await axios
     .post(url, body, {
-      params: {...params},
+      params: params,
       headers: {
         Authorization: `Bearer ${userOauth.accessToken}`,
         Accept: "application/json",

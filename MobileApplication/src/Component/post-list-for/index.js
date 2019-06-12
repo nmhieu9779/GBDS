@@ -10,19 +10,19 @@ import {CODE_VIP} from "@src/common/typeCode"
 const PRIORITY_NORMAL = [CODE_VIP.X_NORMAL, CODE_VIP.VIP_S2]
 
 const Top = (props) => {
-  let color = "black"
+  let style = {}
   switch (props.priority) {
     case CODE_VIP.X_NORMAL:
-      color = "blue"
+      style = {color: "blue"}
       break
     case CODE_VIP.VIP_S0:
-      color = "red"
+      style = {color: "red", fontWeight: "bold"}
       break
     case CODE_VIP.VIP_S1:
-      color = "orange"
+      style = {color: "orange", fontWeight: "bold"}
       break
     case CODE_VIP.VIP_S2:
-      color = "orange"
+      style = {color: "orange"}
       break
     default:
       break
@@ -34,7 +34,7 @@ const Top = (props) => {
         <AvatarCirCle avatarImageUrl={props.avatar} size={40} />
       </View>
       <View style={styles.postNameContainer}>
-        <Text style={[styles.title, {color: color}]}>
+        <Text style={[styles.title, style]}>
           {PRIORITY_NORMAL.findIndex((e) => e === props.priority) === -1
             ? props.title.toUpperCase()
             : props.title.toLowerCase()}

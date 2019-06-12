@@ -3,8 +3,7 @@ import {StyleSheet, View, Image} from "react-native"
 import {images} from "@src/common/images"
 import {WIDTH} from "@src/utilities/scale"
 import {connect} from "react-redux"
-import {fetchPostForSale} from "@src/redux/actions"
-import {onGetUserProfile, onGetUriAvatar} from "@src/screen/UserProfile/redux/actions"
+import {fetchPostForSale, getUserProfile, getUriAvatar} from "@src/redux/actions"
 import {onShowMessage} from "@src/component/message/redux/actions"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
@@ -76,10 +75,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(fetchPostForSale({page: 1, size: 10}))
     },
     getUserProfile: (payload) => {
-      dispatch(onGetUserProfile(payload))
+      dispatch(getUserProfile(payload))
     },
     getUriAvatar: (payload) => {
-      dispatch(onGetUriAvatar(payload))
+      dispatch(getUriAvatar(payload))
     },
     showMessage: (payload) => {
       dispatch(onShowMessage(payload))

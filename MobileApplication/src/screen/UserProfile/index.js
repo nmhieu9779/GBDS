@@ -14,21 +14,23 @@ import {removeAllItemAsyncStorage} from "@src/utilities/asyncStorage"
 import Card from "@src/component/card"
 import NavigationService from "@src/navigation/NavigationService"
 
-const ItemInfo = (props) => (
-  <TouchableOpacity
-    activeOpacity={1}
-    onPress={() => {
-      NavigationService.navigate("EditProfile")
-    }}
-    style={styles.itemInfo}>
-    <Text style={styles.itemInfoLabel} numberOfLines={4}>
-      {props.label}
-    </Text>
-    <Text style={styles.itemInfoText}>
-      {(props.label === "Ngày sinh" && formatDate(props.content, "DD/MM/YYYY")) || props.content}
-    </Text>
-  </TouchableOpacity>
-)
+const ItemInfo = (props) => {
+  return (
+    <TouchableOpacity
+      activeOpacity={1}
+      onPress={() => {
+        NavigationService.navigate("EditProfile")
+      }}
+      style={styles.itemInfo}>
+      <Text style={styles.itemInfoLabel} numberOfLines={4}>
+        {props.label}
+      </Text>
+      <Text style={styles.itemInfoText}>
+        {(props.label === "Ngày sinh" && formatDate(props.content, "DD/MM/YYYY")) || props.content}
+      </Text>
+    </TouchableOpacity>
+  )
+}
 
 const ItemMenu = (props) => (
   <TouchableOpacity onPress={() => props.onPress()} style={styles.itemInfo}>
@@ -67,27 +69,28 @@ const UserProfile = (props) => {
       <ScrollView>
         <Card style={styles.topContainer}>
           <AvatarCirCle avatarImageUrl={props.uriAvatar} size={40} />
-          <View style={styles.topNameContainer}>
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => NavigationService.navigate("EditProfile")}
+            style={styles.topNameContainer}>
             <Text style={styles.topNameText}>{props.name}</Text>
             <Text style={styles.topNameTextLabel}>{props.description}</Text>
-          </View>
+          </TouchableOpacity>
         </Card>
-        {props.uriAvatar && (
-          <Card style={styles.menuContainer}>
-            <View style={styles.itemInfo}>
-              <Text style={styles.itemInfoLabel}>{"Số dư trong ví"}</Text>
-              <Text style={styles.priceText}>{"66.171 VND"}</Text>
-            </View>
-            <View style={styles.itemInfo}>
-              <Text style={styles.itemInfoLabel}>{"Loại tài khoản"}</Text>
-              <Text style={styles.checked}>{"Đã xác thực"}</Text>
-              <FontAwesomeIcon style={styles.iconChecked} color={"#1ED760"} icon={faCheckCircle} />
-            </View>
-            {props.info.map((item, index) => (
-              <ItemInfo key={index} label={item.label} content={item.content} />
-            ))}
-          </Card>
-        )}
+        <Card style={styles.menuContainer}>
+          <View style={styles.itemInfo}>
+            <Text style={styles.itemInfoLabel}>{"Số dư trong ví"}</Text>
+            <Text style={styles.priceText}>{"66.171 VND"}</Text>
+          </View>
+          <View style={styles.itemInfo}>
+            <Text style={styles.itemInfoLabel}>{"Loại tài khoản"}</Text>
+            <Text style={styles.checked}>{"Đã xác thực"}</Text>
+            <FontAwesomeIcon style={styles.iconChecked} color={"#1ED760"} icon={faCheckCircle} />
+          </View>
+          {props.info.map(
+            (item, index) => item && <ItemInfo key={index} label={item.label} content={item.content} />
+          )}
+        </Card>
         <Card style={styles.menuContainer}>
           <View style={styles.itemInfo}>
             <FontAwesomeIcon style={styles.iconSocial} color="#3B5998" icon={faFacebookSquare} />
@@ -111,19 +114,26 @@ const UserProfile = (props) => {
   )
 }
 
-const mapStateToProps = ({userProfile}) => ({
-  uriAvatar: userProfile.uriAvatar,
-  name: userProfile.content.name,
-  description: userProfile.content.description,
-  info: [
-    {label: "Ngày sinh", content: userProfile.content.birthdate},
-    {label: "Email", content: userProfile.content.email},
-    {label: "Di động", content: userProfile.content.phone},
-    {label: "Địa chỉ", content: userProfile.content.address},
-    {label: "Nghề nghiệp", content: userProfile.content.occupation},
-    {label: "Cơ quan", content: userProfile.content.organization}
-  ]
-})
+const mapStateToProps = (state) => {
+  const userProfile = state.userProfile.userProfile.success
+    ? state.userProfile.userProfile.response.content
+    : {}
+  return {
+    uriAvatar: state.userProfile.uriAvatar.success
+      ? state.userProfile.uriAvatar.response.content
+      : userProfile.avatarImageUrl,
+    name: userProfile.name ? userProfile.name : "Bạn chưa cập nhật thông tin",
+    description: userProfile.name ? userProfile.description : "Click để cập nhật thông tin",
+    info: [
+      userProfile.birthdate && {label: "Ngày sinh", content: userProfile.birthdate},
+      userProfile.email && {label: "Email", content: userProfile.email},
+      userProfile.phone && {label: "Di động", content: userProfile.phone},
+      userProfile.address && {label: "Địa chỉ", content: userProfile.address},
+      userProfile.occupation && {label: "Nghề nghiệp", content: userProfile.occupation},
+      userProfile.organization && {label: "Cơ quan", content: userProfile.organization}
+    ]
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {}

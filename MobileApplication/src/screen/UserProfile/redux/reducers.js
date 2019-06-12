@@ -1,46 +1,95 @@
-import {fromJS} from "immutable"
-import {
-  GET_USER_PROFILE,
-  GET_USER_PROFILE_SUCCESS,
-  GET_USER_PROFILE_FAILURE,
-  GET_URI_AVATAR,
-  GET_URI_AVATAR_SUCCESS,
-  GET_URI_AVATAR_FAILURE
-} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
 
 initStateUserProfile = {
-  loading: false,
-  content: {},
-  uriAvatar: null
+  userProfile: {
+    loading: false,
+    response: null,
+    success: false
+  },
+  uriAvatar: {
+    loading: false,
+    response: null,
+    success: false
+  }
 }
 
 const userProfile = (state = initStateUserProfile, action) => {
-  let newState = fromJS(state).toJS()
   switch (action.type) {
-    case GET_USER_PROFILE:
-      newState.loading = true
-      break
-    case GET_USER_PROFILE_SUCCESS:
-      newState.content = action.content
-      newState.loading = false
-      break
-    case GET_USER_PROFILE_FAILURE:
-      newState.loading = false
-      break
-    case GET_URI_AVATAR:
-      newState.loading = true
-      break
-    case GET_URI_AVATAR_SUCCESS:
-      newState.uriAvatar = action.content
-      newState.loading = false
-      break
-    case GET_URI_AVATAR_FAILURE:
-      newState.loading = false
-      break
+    case actions.ACTION_GET_USER_PROFILE:
+      return {
+        ...state,
+        userProfile: {
+          ...state.userProfile,
+          loading: true,
+          success: false
+        }
+      }
+    case actions.ACTION_GET_USER_PROFILE_SUCCESS:
+      return {
+        ...state,
+        userProfile: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_GET_USER_PROFILE_FAILURE:
+      return {
+        ...state,
+        userProfile: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
+    case actions.ACTION_RESET_USER_PROFILE:
+      return {
+        ...state,
+        userProfile: {
+          loading: false,
+          response: null,
+          success: false
+        }
+      }
+    case actions.ACTION_GET_URI_AVATAR:
+      return {
+        ...state,
+        uriAvatar: {
+          ...state.uriAvatar,
+          loading: true,
+          success: false
+        }
+      }
+    case actions.ACTION_GET_URI_AVATAR_SUCCESS:
+      return {
+        ...state,
+        uriAvatar: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_GET_URI_AVATAR_FAILURE:
+      return {
+        ...state,
+        uriAvatar: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
+    case actions.ACTION_RESET_URI_AVATAR:
+      return {
+        ...state,
+        uriAvatar: {
+          loading: false,
+          response: null,
+          success: false
+        }
+      }
     default:
-      break
+      return state
   }
-  return newState
 }
 
 export default userProfile

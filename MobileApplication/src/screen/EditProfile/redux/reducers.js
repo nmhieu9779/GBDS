@@ -1,69 +1,77 @@
-import {fromJS} from "immutable"
-import {
-  UPLOAD_IMAGE,
-  UPLOAD_IMAGE_SUCCESS,
-  UPLOAD_IMAGE_FAILURE,
-  UPLOAD_AVATAR,
-  UPLOAD_AVATAR_SUCCESS,
-  UPLOAD_AVATAR_FAILURE,
-  EDIT_AVATAR,
-  EDIT_AVATAR_SUCCESS,
-  EDIT_AVATAR_FAILURE,
-  EDIT_PROFILE,
-  EDIT_PROFILE_SUCCESS,
-  EDIT_PROFILE_FAILURE
-} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
 
 initStateEditProfile = {
-  loading: false,
-  avatarImageUrl: null
+  uploadImage: {
+    loading: false,
+    response: null,
+    success: false
+  },
+  editProfile: {
+    loading: false,
+    response: null,
+    success: false
+  }
 }
 
 const editProfile = (state = initStateEditProfile, action) => {
-  let newState = fromJS(state).toJS()
   switch (action.type) {
-    case UPLOAD_IMAGE:
-      newState.loading = true
-      newState.avatarImageUrl = null
-      break
-    case UPLOAD_IMAGE_SUCCESS:
-      newState.loading = false
-      newState.avatarImageUrl = action.uri
-      break
-    case UPLOAD_IMAGE_FAILURE:
-      newState.loading = false
-      break
-    case UPLOAD_AVATAR:
-      newState.loading = true
-      break
-    case UPLOAD_AVATAR_SUCCESS:
-      newState.loading = false
-      break
-    case UPLOAD_AVATAR_FAILURE:
-      newState.loading = false
-      break
-    case EDIT_AVATAR:
-      newState.loading = true
-      break
-    case EDIT_AVATAR_SUCCESS:
-      newState.loading = false
-      break
-    case EDIT_AVATAR_FAILURE:
-      newState.loading = false
-      break
-    case EDIT_PROFILE:
-      newState.loading = true
-      break
-    case EDIT_PROFILE_SUCCESS:
-      newState.loading = false
-      break
-    case EDIT_PROFILE_FAILURE:
-      newState.loading = false
-      break
+    case actions.ACTION_UPLOAD_IMAGE:
+      return {
+        ...state,
+        uploadImage: {
+          loading: true,
+          response: null,
+          success: false
+        }
+      }
+    case actions.ACTION_UPLOAD_IMAGE_SUCCESS:
+      return {
+        ...state,
+        uploadImage: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_UPLOAD_IMAGE_FAILURE:
+      return {
+        ...state,
+        uploadImage: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
+    case actions.ACTION_EDIT_PROFILE:
+      return {
+        ...state,
+        editProfile: {
+          loading: true,
+          response: null,
+          success: false
+        }
+      }
+    case actions.ACTION_EDIT_PROFILE_SUCCESS:
+      return {
+        ...state,
+        editProfile: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_EDIT_PROFILE_FAILURE:
+      return {
+        ...state,
+        editProfile: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
     default:
-      break
+      return state
   }
-  return newState
 }
 
 export default editProfile

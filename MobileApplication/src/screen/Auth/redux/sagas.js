@@ -17,9 +17,8 @@ function* signIn(action) {
     yield setItemAsyncStorage({keyName: "IS_SKIP_SIGNIN", data: true})
     yield setItemAsyncStorage({keyName: "IS_SIGNIN", data: true})
     yield put(actions.signInSuccess(response.data))
-    // yield put({type: UN_SHOW_MESSAGE})
-    // yield put({type: GET_USER_PROFILE, email: data.email})
-    // yield put({type: GET_URI_AVATAR, email: data.email})
+    yield put(actions.getUserProfile({email: data.email}))
+    yield put(actions.getUriAvatar({email: data.email}))
   } else {
     yield put(actions.signInFailure(response.response.data))
     // yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.error_description})
@@ -28,7 +27,6 @@ function* signIn(action) {
 
 function* signUp(action) {
   const response = yield call(services.signUp, action.params)
-  debugger
   if (response.status === 201) {
     yield put(actions.signUpSuccess(response.data))
     // yield put({type: UN_SHOW_MESSAGE})

@@ -32,8 +32,6 @@ const Step4 = ({onChangeData}) => {
       name: `${Date.parse(new Date())}${editContentType(type)}`,
       type: type
     })
-
-    console.log(formData)
   }
 
   return (

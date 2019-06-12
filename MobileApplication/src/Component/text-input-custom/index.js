@@ -83,6 +83,7 @@ const TextInputCustom = ({
         onFocus={onFocus.bind(this)}
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
+        editable={editable}
       />
       {children}
       <Animated.View

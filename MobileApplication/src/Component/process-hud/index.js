@@ -25,14 +25,20 @@ const mapStateToProps = ({
   editProfile
 }) => ({
   loading:
-    auth.loading ||
-    address.loading ||
+    auth.signIn.loading ||
+    auth.signUp.loading ||
+    address.city.loading ||
+    address.district.loading ||
+    address.ward.loading ||
+    address.street.loading ||
     newFeedForSale.loading ||
     newFeedForRent.loading ||
     newFeedNeedBuy.loading ||
     newFeedNeedRent.loading ||
-    userProfile.loading ||
-    editProfile.loading
+    userProfile.userProfile.loading ||
+    userProfile.uriAvatar.loading ||
+    editProfile.uploadImage.loading ||
+    editProfile.editProfile.loading
 })
 
 const ProcessHUDContainer = connect(mapStateToProps)(ProcessHUD)

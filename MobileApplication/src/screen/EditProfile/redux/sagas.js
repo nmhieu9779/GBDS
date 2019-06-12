@@ -1,68 +1,29 @@
-import {
-  UPLOAD_IMAGE,
-  UPLOAD_IMAGE_SUCCESS,
-  UPLOAD_IMAGE_FAILURE,
-  UPLOAD_AVATAR,
-  UPLOAD_AVATAR_SUCCESS,
-  UPLOAD_AVATAR_FAILURE,
-  EDIT_AVATAR,
-  EDIT_AVATAR_SUCCESS,
-  EDIT_AVATAR_FAILURE,
-  GET_URI_AVATAR,
-  EDIT_PROFILE,
-  EDIT_PROFILE_SUCCESS,
-  EDIT_PROFILE_FAILURE,
-  GET_USER_PROFILE
-} from "@src/redux/actions"
+import * as actions from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
-import {Api} from "./api"
+import * as service from "./service"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
-function* uploadImage(payload) {
-  const response = yield call(Api.uploadImage, payload.data)
+function* uploadImage(action) {
+  const response = yield call(service.uploadImage, action.params)
   if (response.status === 200) {
-    yield put({type: UPLOAD_IMAGE_SUCCESS, uri: response.data.content})
+    yield put(actions.uploadImageSuccess(response.data))
   } else {
-    yield put({type: UPLOAD_IMAGE_FAILURE})
+    yield put(actions.uploadImageFailure(response.response.data))
   }
 }
 
-function* uploadAvatar(payload) {
-  const response = yield call(Api.uploadAvatar, payload.data)
-  if (response.status === 201) {
-    let userOauth = yield getItemAsyncStorage("USER_OAUTH")
-    yield put({type: UPLOAD_AVATAR_SUCCESS})
-    yield put({type: GET_URI_AVATAR, email: userOauth.email})
+function* editProfile(action) {
+  const response = yield call(service.editProfile, action.params)
+  if (action.params.isCreate ? response.status === 201 : response.status === 200) {
+    yield put(actions.editProfileSuccess(response.data))
+    yield put(actions.getUserProfile({email: response.data.content.email}))
+    yield put(actions.getUriAvatar({email: response.data.content.email}))
   } else {
-    yield put({type: UPLOAD_AVATAR_FAILURE})
-  }
-}
-
-function* editAvatar(payload) {
-  const response = yield call(Api.editAvatar, payload.data)
-  if (response.status === 200) {
-    let userOauth = yield getItemAsyncStorage("USER_OAUTH")
-    yield put({type: EDIT_AVATAR_SUCCESS})
-    yield put({type: GET_URI_AVATAR, email: userOauth.email})
-  } else {
-    yield put({type: EDIT_AVATAR_FAILURE})
-  }
-}
-
-function* editProfile(payload) {
-  const response = yield call(Api.editProfile, payload.data)
-  if (response.status === 200) {
-    let userOauth = yield getItemAsyncStorage("USER_OAUTH")
-    yield put({type: EDIT_PROFILE_SUCCESS})
-    yield put({type: GET_USER_PROFILE, email: userOauth.email})
-  } else {
-    yield put({type: EDIT_PROFILE_FAILURE})
+    yield put(actions.editProfileFailure(response.response.data))
   }
 }
 
 export function* watchEditProfile() {
-  yield takeLatest(UPLOAD_IMAGE, uploadImage)
-  yield takeLatest(UPLOAD_AVATAR, uploadAvatar)
-  yield takeLatest(EDIT_AVATAR, editAvatar)
-  yield takeLatest(EDIT_PROFILE, editProfile)
+  yield takeLatest(actions.ACTION_UPLOAD_IMAGE, uploadImage)
+  yield takeLatest(actions.ACTION_EDIT_PROFILE, editProfile)
 }

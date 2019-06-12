@@ -5,12 +5,13 @@ import TopBarMenu from "@src/component/top-bar-menu"
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons"
 import AvatarCirCle from "@src/component/avatar-circle"
 import {connect} from "react-redux"
+import {bindActionCreators} from "redux"
 import styles from "./styles"
 import TextInputCustom from "@src/component/text-input-custom"
 import {WIDTH, moderateScale} from "@src/utilities/scale"
 import {getDay, getMonth, getYear, formatDayMonth} from "@src/utilities/date"
+import {uploadImage, editProfile} from "@src/redux/actions"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
-import {onUploadImage, onUploadAvatar, onEditAvatar, onEditProfile} from "./redux/actions"
 
 const GenderItem = (props) => (
   <TouchableOpacity
@@ -51,30 +52,33 @@ const EditProfile = (props) => {
   const [gender, setGender] = useState("")
 
   useEffect(() => {
+    initState()
+  }, [])
+
+  const initState = async () => {
+    const userOauth = await getItemAsyncStorage("USER_OAUTH")
+
     setName(props.name)
     setDescription(props.description)
     setDay(getDay(props.birthdate))
     setMonth(getMonth(props.birthdate))
     setYear(getYear(props.birthdate))
-    setEmail(props.email)
+    setEmail(props.email || userOauth.email)
     setPhone(props.phone)
     setAddress(props.address)
     setOccupation(props.occupation)
     setOrganization(props.organization)
     setGender(props.gender)
-  }, [])
+  }
 
   useEffect(() => {
-    props.avatarImageUrl && editAvatar(props.avatarImageUrl)
-  }, [props.avatarImageUrl])
-
-  const editAvatar = async (avatarImageUrl) => {
-    let avatar = await getItemAsyncStorage("AVATAR")
-    let userOauth = await getItemAsyncStorage("USER_OAUTH")
-    avatar
-      ? props.editAvatar({avatarImageUrl: avatarImageUrl, email: userOauth.email})
-      : props.uploadAvatar({avatarImageUrl: avatarImageUrl, email: userOauth.email})
-  }
+    props.uploadImageSuccess &&
+      !props.editProfileSuccess &&
+      props.editProfile({
+        body: {avatarImageUrl: props.avatarImageUrl, email: props.email || email},
+        isCreate: props.isNewProfile
+      })
+  }, [props.uploadImageSuccess])
 
   const editContentType = (contentType) => {
     let temp = contentType
@@ -83,32 +87,36 @@ const EditProfile = (props) => {
   }
 
   const handleResponse = async ({type, uri}) => {
-    let userOauth = await getItemAsyncStorage("USER_OAUTH")
     let formData = new FormData()
     formData.append("file", {
       uri: uri,
       name: `avatar${editContentType(type)}`,
       type: type
     })
-    formData.append("uploadAs", `avatar/${userOauth.userId}${editContentType(type)}`)
+    formData.append(
+      "uploadAs",
+      `avatar/${props.id ? props.id : Date.parse(new Date())}${editContentType(type)}`
+    )
     props.uploadImage(formData)
   }
 
-  const onPressSave = async () => {
-    let userOauth = await getItemAsyncStorage("USER_OAUTH")
-    let data = {
+  const onPressSave = () => {
+    let body = {
       address: address,
       birthdate:
         (day && month && year && `${year}-${formatDayMonth(month)}-${formatDayMonth(day)} 00:00:00`) || null,
       description: description,
-      email: userOauth.email,
+      email: props.email,
       gender: gender,
       name: name,
       occupation: occupation,
       organization: organization,
       phone: phone
     }
-    props.editProfile(data)
+    props.editProfile({
+      body: body,
+      isCreate: props.isNewProfile
+    })
   }
 
   return (
@@ -178,6 +186,7 @@ const EditProfile = (props) => {
             value={email}
             width={WIDTH - moderateScale(10)}
             label={"Email"}
+            editable={false}
           />
           <TextInputCustom
             marginBottom={moderateScale(5)}
@@ -216,34 +225,36 @@ const EditProfile = (props) => {
   )
 }
 
-const mapStateToProps = ({userProfile, editProfile}) => ({
-  uriAvatar: userProfile.uriAvatar,
-  name: userProfile.content.name,
-  description: userProfile.content.description,
-  birthdate: userProfile.content.birthdate,
-  email: userProfile.content.email,
-  phone: userProfile.content.phone,
-  address: userProfile.content.address,
-  occupation: userProfile.content.occupation,
-  organization: userProfile.content.organization,
-  avatarImageUrl: editProfile.avatarImageUrl
-})
+const mapStateToProps = (state) => {
+  const userProfile = state.userProfile.userProfile.success
+    ? state.userProfile.userProfile.response.content
+    : {}
+  const editProfile = state.editProfile
+  return {
+    uriAvatar: state.userProfile.uriAvatar.success
+      ? state.userProfile.uriAvatar.response.content
+      : userProfile.avatarImageUrl,
+    name: userProfile.name,
+    description: userProfile.name,
+    birthdate: userProfile.birthdate,
+    email: userProfile.email,
+    phone: userProfile.phone,
+    address: userProfile.address,
+    occupation: userProfile.occupation,
+    organization: userProfile.organization,
+    isNewProfile: !state.userProfile.userProfile.success && !state.userProfile.uriAvatar.success,
+    id: userProfile.id,
+    uploadImageSuccess: editProfile.uploadImage.success,
+    avatarImageUrl: editProfile.uploadImage.success && editProfile.uploadImage.response.content,
+    editProfileSuccess: editProfile.editProfile.success,
+    gender: userProfile.gender
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    uploadImage: (data) => {
-      dispatch(onUploadImage(data))
-    },
-    uploadAvatar: (data) => {
-      dispatch(onUploadAvatar(data))
-    },
-    editAvatar: (data) => {
-      dispatch(onEditAvatar(data))
-    },
-    editProfile: (data) => {
-      dispatch(onEditProfile(data))
-    }
-  }
+  let actionCreators = {uploadImage, editProfile}
+  let actions = bindActionCreators(actionCreators, dispatch)
+  return {...actions, dispatch}
 }
 
 const EditProfileContainer = connect(

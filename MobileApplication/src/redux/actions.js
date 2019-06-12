@@ -124,36 +124,50 @@ const fetchMorePostNeedRentSuccess = (response) => ({
 const ACTION_FETCH_POST_NEED_RENT_FAILURE = `[NEW_FEED_NEED_RENT] FETCH_POST_NEED_RENT_FAILURE`
 const fetchPostNeedRentFailure = (error) => ({type: ACTION_FETCH_POST_NEED_RENT_FAILURE, error})
 
-export const FETCH_POST_NEED_RENT_HOME = `FETCH_POST_NEED_RENT_HOME`
-export const FETCH_POST_NEED_RENT_HOME_SUCCESS = `FETCH_POST_NEED_RENT_HOME_SUCCESS`
-export const FETCH_POST_NEED_RENT_HOME_FAILURE = `FETCH_POST_NEED_RENT_HOME_FAILURE`
+const ACTION_GET_USER_PROFILE = `[USER_PROFILE] ACTION_GET_USER_PROFILE`
+const getUserProfile = (params) => ({type: ACTION_GET_USER_PROFILE, params})
 
-export const GET_USER_PROFILE = `GET_USER_PROFILE`
-export const GET_USER_PROFILE_SUCCESS = `GET_USER_PROFILE_SUCCESS`
-export const GET_USER_PROFILE_FAILURE = `GET_USER_PROFILE_FAILURE`
+const ACTION_GET_USER_PROFILE_SUCCESS = `[USER_PROFILE] ACTION_GET_USER_PROFILE_SUCCESS`
+const getUserProfileSuccess = (response) => ({type: ACTION_GET_USER_PROFILE_SUCCESS, response})
+
+const ACTION_GET_USER_PROFILE_FAILURE = `[USER_PROFILE] ACTION_GET_USER_PROFILE_FAILURE`
+const getUserProfileFailure = (error) => ({type: ACTION_GET_USER_PROFILE_FAILURE, error})
+
+const ACTION_RESET_USER_PROFILE = `[USER_PROFILE] ACTION_RESET_USER_PROFILE`
+const resetUserProfile = () => ({type: ACTION_RESET_USER_PROFILE})
+
+const ACTION_GET_URI_AVATAR = `[USER_PROFILE] ACTION_GET_URI_AVATAR`
+const getUriAvatar = (params) => ({type: ACTION_GET_URI_AVATAR, params})
+
+const ACTION_GET_URI_AVATAR_SUCCESS = `[USER_PROFILE] ACTION_GET_URI_AVATAR_SUCCESS`
+const getUriAvatarSuccess = (response) => ({type: ACTION_GET_URI_AVATAR_SUCCESS, response})
+
+const ACTION_GET_URI_AVATAR_FAILURE = `[USER_PROFILE] ACTION_GET_URI_AVATAR_FAILURE`
+const getUriAvatarFailure = (error) => ({type: ACTION_GET_URI_AVATAR_FAILURE, error})
+
+const ACTION_RESET_URI_AVATAR = `[USER_PROFILE] ACTION_RESET_URI_AVATAR`
+const resetUriAvatar = () => ({type: ACTION_RESET_URI_AVATAR})
+
+const ACTION_UPLOAD_IMAGE = `[EDIT_PROFILE] UPLOAD_IMAGE`
+const uploadImage = (params) => ({type: ACTION_UPLOAD_IMAGE, params})
+
+const ACTION_UPLOAD_IMAGE_SUCCESS = `[EDIT_PROFILE] UPLOAD_IMAGE_SUCCESS`
+const uploadImageSuccess = (response) => ({type: ACTION_UPLOAD_IMAGE_SUCCESS, response})
+
+const ACTION_UPLOAD_IMAGE_FAILURE = `[EDIT_PROFILE] UPLOAD_IMAGE_FAILURE`
+const uploadImageFailure = (error) => ({type: ACTION_UPLOAD_IMAGE_FAILURE, error})
+
+const ACTION_EDIT_PROFILE = `[EDIT_PROFILE] EDIT_PROFILE`
+const editProfile = (params) => ({type: ACTION_EDIT_PROFILE, params})
+
+const ACTION_EDIT_PROFILE_SUCCESS = `[EDIT_PROFILE] EDIT_PROFILE_SUCCESS`
+const editProfileSuccess = (response) => ({type: ACTION_EDIT_PROFILE_SUCCESS, response})
+
+const ACTION_EDIT_PROFILE_FAILURE = `[EDIT_PROFILE] EDIT_PROFILE_FAILURE`
+const editProfileFailure = (error) => ({type: ACTION_EDIT_PROFILE_FAILURE, error})
 
 export const SHOW_MESSAGE = `SHOW_MESSAGE`
 export const UN_SHOW_MESSAGE = `UN_SHOW_MESSAGE`
-
-export const UPLOAD_IMAGE = `UPLOAD_IMAGE`
-export const UPLOAD_IMAGE_SUCCESS = `UPLOAD_IMAGE_SUCCESS`
-export const UPLOAD_IMAGE_FAILURE = `UPLOAD_IMAGE_FAILURE`
-
-export const UPLOAD_AVATAR = `UPLOAD_AVATAR`
-export const UPLOAD_AVATAR_SUCCESS = `UPLOAD_AVATAR_SUCCESS`
-export const UPLOAD_AVATAR_FAILURE = `UPLOAD_AVATAR_FAILURE`
-
-export const EDIT_AVATAR = `EDIT_AVATAR`
-export const EDIT_AVATAR_SUCCESS = `EDIT_AVATAR_SUCCESS`
-export const EDIT_AVATAR_FAILURE = `EDIT_AVATAR_FAILURE`
-
-export const GET_URI_AVATAR = `GET_URI_AVATAR`
-export const GET_URI_AVATAR_SUCCESS = `GET_URI_AVATAR_SUCCESS`
-export const GET_URI_AVATAR_FAILURE = `GET_URI_AVATAR_FAILURE`
-
-export const EDIT_PROFILE = `EDIT_PROFILE`
-export const EDIT_PROFILE_SUCCESS = `EDIT_PROFILE_SUCCESS`
-export const EDIT_PROFILE_FAILURE = `EDIT_PROFILE_FAILURE`
 
 export {
   //SignIn
@@ -246,5 +260,35 @@ export {
   fetchPostNeedRent,
   fetchPostNeedRentSuccess,
   fetchPostNeedRentFailure,
-  fetchMorePostNeedRentSuccess
+  fetchMorePostNeedRentSuccess,
+  //User Profile
+  ACTION_GET_USER_PROFILE,
+  ACTION_GET_USER_PROFILE_SUCCESS,
+  ACTION_GET_USER_PROFILE_FAILURE,
+  ACTION_RESET_USER_PROFILE,
+  getUserProfile,
+  getUserProfileSuccess,
+  getUserProfileFailure,
+  resetUserProfile,
+  ACTION_GET_URI_AVATAR,
+  ACTION_GET_URI_AVATAR_SUCCESS,
+  ACTION_GET_URI_AVATAR_FAILURE,
+  ACTION_RESET_URI_AVATAR,
+  getUriAvatar,
+  getUriAvatarSuccess,
+  getUriAvatarFailure,
+  resetUriAvatar,
+  //Edit Profile
+  ACTION_UPLOAD_IMAGE,
+  ACTION_UPLOAD_IMAGE_SUCCESS,
+  ACTION_UPLOAD_IMAGE_FAILURE,
+  uploadImage,
+  uploadImageSuccess,
+  uploadImageFailure,
+  ACTION_EDIT_PROFILE,
+  ACTION_EDIT_PROFILE_SUCCESS,
+  ACTION_EDIT_PROFILE_FAILURE,
+  editProfile,
+  editProfileSuccess,
+  editProfileFailure
 }

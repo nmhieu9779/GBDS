@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   },
   postContainer: {
     margin: moderateScale(5),
-    marginTop: 0,
+    marginTop: moderateScale(2.5),
+    marginBottom: moderateScale(2.5),
     backgroundColor: "white"
   },
   avatarContainer: {
