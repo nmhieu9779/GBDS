@@ -30,19 +30,19 @@ const styles = StyleSheet.create({
     flex: 1,
     fontWeight: "bold"
   },
-  infoPostContainer: {margin: moderateScale(10)},
+  infoPostContainer: {margin: moderateScale(5), paddingBottom: moderateScale(5)},
   infoPostTitleContainer: {
-    borderBottomColor: "gray",
+    borderBottomColor: "#D4D7D8",
     borderBottomWidth: moderateScale(1)
   },
   infoPostTitleText: {
     textAlign: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    padding: moderateScale(5)
   },
   infoPostItemComtainer: {
-    borderColor: "gray",
-    borderWidth: moderateScale(1),
-    borderTopWidth: 0,
+    borderBottomColor: "#D4D7D8",
+    borderBottomWidth: moderateScale(0.7),
     flexDirection: "row"
   },
   infoPostItemLabelContainer: {
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-start",
     padding: moderateScale(5),
-    borderRightColor: "gray",
-    borderRightWidth: moderateScale(1)
+    borderRightColor: "#D4D7D8",
+    borderRightWidth: moderateScale(0.7)
   },
   infoPostItemLabelText: {color: "#146EB4", fontWeight: "bold"},
   infoPostItemContentContainer: {
@@ -61,7 +61,10 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     padding: moderateScale(5)
   },
-  contentPostContainer: {paddingLeft: moderateScale(10), paddingRight: moderateScale(10)},
+  contentPostContainer: {
+    padding: moderateScale(10),
+    margin: moderateScale(5)
+  },
   contentPostTitle: {
     fontSize: moderateScale(20),
     fontWeight: "bold",
@@ -69,9 +72,9 @@ const styles = StyleSheet.create({
     marginBottom: moderateScale(5)
   },
   imagePostContainer: {
-    marginTop: moderateScale(20),
-    paddingLeft: moderateScale(10),
-    paddingRight: moderateScale(10)
+    margin: moderateScale(5),
+    paddingLeft: moderateScale(5),
+    paddingRight: moderateScale(5)
   },
   imagePostItem: {
     width: WIDTH - moderateScale(20),
