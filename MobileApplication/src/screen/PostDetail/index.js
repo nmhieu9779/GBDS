@@ -1,4 +1,6 @@
 import React from "react"
+import {connect} from "react-redux"
+import {bindActionCreators} from "redux"
 import {View, Text, Image, ScrollView, TouchableOpacity, TextInput} from "react-native"
 import SafeAreaView from "react-native-safe-area-view"
 import TopBarMenu from "@src/component/top-bar-menu"
@@ -70,7 +72,7 @@ const _renderImagePost = () => (
   </Card>
 )
 
-const _renderMenu = () => (
+const Menu = () => (
   <View style={styles.menuContainer}>
     <TouchableOpacity style={styles.menuItemContainer}>
       <View style={styles.menuItem}>
@@ -93,14 +95,10 @@ const _renderMenu = () => (
   </View>
 )
 
-const ForSalePostDetail = (props) => {
+const PostDetail = (props) => {
   return (
     <SafeAreaView style={styles.container}>
-      <TopBarMenu
-        icon={[{icon: faArrowLeft}]}
-        title={"Cần tiền bán đất đang kinh doanh phòng trọ đường số 1, Trần Não, Q2. DT"}
-        onPress={() => props.navigation.goBack()}
-      />
+      <TopBarMenu icon={[{icon: faArrowLeft}]} title={props.name} onPress={() => props.navigation.goBack()} />
       <ScrollView>
         <Card style={styles.infoUserContainer}>
           <View style={styles.infoUserTopContainer}>
@@ -111,10 +109,10 @@ const ForSalePostDetail = (props) => {
           <View style={styles.infoUserBottomContainer}>
             <AvatarCirCle avatarImageUrl={url} size={40} />
             <Text style={styles.postName} numberOfLines={3}>
-              {postName}
+              {props.name}
             </Text>
           </View>
-          {_renderMenu()}
+          <Menu />
         </Card>
         {_renderTableInfo()}
         {_renderContentPost()}
@@ -128,4 +126,20 @@ const ForSalePostDetail = (props) => {
   )
 }
 
-export default ForSalePostDetail
+const mapStateToProps = (state) => {
+  const postDetail = state.postDetail.success ? state.postDetail.response.content : {}
+  return {
+    name: postDetail.name
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  let actionCreators = {}
+  let actions = bindActionCreators(actionCreators, dispatch)
+  return {...actions, dispatch}
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostDetail)

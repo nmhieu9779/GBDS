@@ -26,3 +26,8 @@ export const URL_GET_NEW_FEED_POST_FOR_SALE = `${URL_REMNG}/api/v1/for-sale-post
 export const URL_GET_NEW_FEED_POST_FOR_RENT = `${URL_REMNG}/api/v1/for-rent-posts/query`
 export const URL_GET_NEW_FEED_POST_NEED_BUY = `${URL_REMNG}/api/v1/buy-demand-posts/query`
 export const URL_GET_NEW_FEED_POST_NEED_RENT = `${URL_REMNG}/api/v1/rent-demand-posts/query`
+
+export const URL_GET_DETAIL_POST_FOR_SALE = `${URL_REMNG}/api/v1/for-sale-posts`
+export const URL_GET_DETAIL_POST_FOR_RENT = `${URL_REMNG}/api/v1/for-rent-posts`
+export const URL_GET_DETAIL_POST_NEED_BUY = `${URL_REMNG}/api/v1/buy-demand-posts`
+export const URL_GET_DETAIL_POST_NEED_RENT = `${URL_REMNG}/api/v1/rent-demand-posts`

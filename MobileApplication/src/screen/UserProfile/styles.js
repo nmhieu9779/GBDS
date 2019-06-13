@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   topNameContainer: {marginLeft: moderateScale(5)},
   topNameText: {fontSize: moderateScale(20)},
   topNameTextLabel: {color: "rgb(144, 148, 156)"},
-  menuContainer: {backgroundColor: "white", marginTop: moderateScale(5), marginBottom: moderateScale(5)},
+  menuContainer: {backgroundColor: "white", margin: moderateScale(5)},
   itemInfo: {
     flexDirection: "row",
     justifyContent: "space-between",

@@ -10,7 +10,7 @@ import {faBell} from "@fortawesome/free-regular-svg-icons"
 import Filter from "@src/component/filter"
 import AddFloatingButton from "@src/component/add-floating-button"
 import PostListFor from "@src/component/post-list-for"
-import {fetchPostForSale} from "@src/redux/actions"
+import {fetchPostForSale, getDetailPost} from "@src/redux/actions"
 
 const NewFeedForSale = (props) => {
   const [visiableFilter, setVisiableFilter] = useState(false)
@@ -47,6 +47,9 @@ const NewFeedForSale = (props) => {
         }}
         totalPost={props.totalPost}
         loading={props.loading}
+        onPress={(id) => {
+          props.getDetailPost({id: id, type: "FOR_SALE"})
+        }}
       />
     </SafeAreaView>
   )
@@ -63,7 +66,7 @@ const mapStateToProps = ({newFeedForSale}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  let actionCreators = {fetchPostForSale}
+  let actionCreators = {fetchPostForSale, getDetailPost}
   let actions = bindActionCreators(actionCreators, dispatch)
   return {...actions, dispatch}
 }

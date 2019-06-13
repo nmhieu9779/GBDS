@@ -1,9 +1,9 @@
 const axios = require("axios")
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
-const get = async ({url, params}) => {
+const get = async ({url, params, auth}) => {
   return await axios
-    .get(url, {params: params})
+    .get(url, {auth: auth, params: params})
     .then((response) => response)
     .catch((error) => error)
 }

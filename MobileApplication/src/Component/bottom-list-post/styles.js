@@ -3,7 +3,9 @@ import {moderateScale} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   bottomContainer: {
-    marginTop: moderateScale(10),
+    borderTopWidth: 0.4,
+    borderTopColor: "#606770",
+    paddingTop: moderateScale(10),
     flexDirection: "row"
   },
   btnBottom: {

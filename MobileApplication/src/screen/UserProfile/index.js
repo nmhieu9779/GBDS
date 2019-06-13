@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import {View, Text, ScrollView, TouchableOpacity} from "react-native"
 import {connect} from "react-redux"
+import {bindActionCreators} from "redux"
 import SafeAreaView from "react-native-safe-area-view"
 import TopBarMenu from "@src/component/top-bar-menu"
 import {faCheckCircle, faSignOutAlt, faChevronRight} from "@fortawesome/free-solid-svg-icons"
@@ -10,9 +11,10 @@ import styles from "./styles"
 import {getMenuItem} from "./string"
 import {formatDate} from "@src/utilities/date"
 import AvatarCirCle from "@src/component/avatar-circle"
-import {removeAllItemAsyncStorage} from "@src/utilities/asyncStorage"
+import {removeAllItemAsyncStorage, getItemAsyncStorage} from "@src/utilities/asyncStorage"
 import Card from "@src/component/card"
 import NavigationService from "@src/navigation/NavigationService"
+import {resetUserProfile, resetUriAvatar, resetSignIn} from "@src/redux/actions"
 
 const ItemInfo = (props) => {
   return (
@@ -45,9 +47,15 @@ const ItemMenu = (props) => (
 const UserProfile = (props) => {
   const [menu, setMenu] = useState({menuUser: [], menuConfig: []})
 
-  const signOut = () => {
-    removeAllItemAsyncStorage()
-    props.navigation.navigate("AuthStack")
+  const signOut = async () => {
+    let isSignIn = await getItemAsyncStorage("IS_SIGNIN")
+    if (isSignIn) {
+      props.resetUserProfile()
+      props.resetUriAvatar()
+      props.resetSignIn()
+      removeAllItemAsyncStorage()
+      getMenu()
+    }
   }
 
   useEffect(() => {
@@ -136,7 +144,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  let actionCreators = {resetUserProfile, resetUriAvatar, resetSignIn}
+  let actions = bindActionCreators(actionCreators, dispatch)
+  return {...actions, dispatch}
 }
 
 const UserProfileContainer = connect(

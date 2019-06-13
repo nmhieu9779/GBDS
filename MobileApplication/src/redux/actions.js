@@ -7,6 +7,9 @@ const signInSuccess = (response) => ({type: ACTION_SIGN_IN_SUCCESS, response})
 const ACTION_SIGN_IN_FAILURE = `[AUTH] SIGN_IN_FAILURE`
 const signInFailure = (error) => ({type: ACTION_SIGN_IN_FAILURE, error})
 
+const ACTION_RESET_SIGN_IN = `[AUTH] RESET_SIGN_IN`
+const resetSignIn = () => ({type: ACTION_RESET_SIGN_IN})
+
 const ACTION_SIGN_UP = `[AUTH] SIGN_UP`
 const signUp = (params) => ({type: ACTION_SIGN_UP, params})
 
@@ -166,6 +169,15 @@ const editProfileSuccess = (response) => ({type: ACTION_EDIT_PROFILE_SUCCESS, re
 const ACTION_EDIT_PROFILE_FAILURE = `[EDIT_PROFILE] EDIT_PROFILE_FAILURE`
 const editProfileFailure = (error) => ({type: ACTION_EDIT_PROFILE_FAILURE, error})
 
+const ACTION_GET_DETAIL_POST = `[DETAIL POST] GET_DETAIL_POST`
+const getDetailPost = (params) => ({type: ACTION_GET_DETAIL_POST, params})
+
+const ACTION_GET_DETAIL_POST_SUCCESS = `[DETAIL POST] GET_DETAIL_POST_SUCCESS`
+const getDetailPostSuccess = (response) => ({type: ACTION_GET_DETAIL_POST_SUCCESS, response})
+
+const ACTION_GET_DETAIL_POST_FAILURE = `[DETAIL POST] GET_DETAIL_POST_FAILURE`
+const getDetailPostFailure = (error) => ({type: ACTION_GET_DETAIL_POST_FAILURE, error})
+
 export const SHOW_MESSAGE = `SHOW_MESSAGE`
 export const UN_SHOW_MESSAGE = `UN_SHOW_MESSAGE`
 
@@ -174,9 +186,11 @@ export {
   ACTION_SIGN_IN,
   ACTION_SIGN_IN_SUCCESS,
   ACTION_SIGN_IN_FAILURE,
+  ACTION_RESET_SIGN_IN,
   signIn,
   signInSuccess,
   signInFailure,
+  resetSignIn,
   //SignUp
   ACTION_SIGN_UP,
   ACTION_SIGN_UP_SUCCESS,
@@ -290,5 +304,12 @@ export {
   ACTION_EDIT_PROFILE_FAILURE,
   editProfile,
   editProfileSuccess,
-  editProfileFailure
+  editProfileFailure,
+  //Detail post
+  ACTION_GET_DETAIL_POST,
+  ACTION_GET_DETAIL_POST_SUCCESS,
+  ACTION_GET_DETAIL_POST_FAILURE,
+  getDetailPost,
+  getDetailPostSuccess,
+  getDetailPostFailure
 }

@@ -2,7 +2,6 @@ import React, {memo} from "react"
 import {Text, View, FlatList, Image, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import BottomListPost from "@src/component/bottom-list-post"
-import NavigationService from "@src/navigation/NavigationService"
 import AvatarCirCle from "@src/component/avatar-circle"
 import Card from "@src/component/card"
 import {CODE_VIP} from "@src/common/typeCode"
@@ -39,9 +38,7 @@ const Top = (props) => {
             ? props.title.toUpperCase()
             : props.title.toLowerCase()}
         </Text>
-        <Text style={styles.postDate}>
-          {props.postedDate} {" - "} {props.address}
-        </Text>
+        <Text style={styles.postDate}>{`${props.postedDate} - ${props.address}`}</Text>
       </View>
     </View>
   )
@@ -56,17 +53,20 @@ const Description = (props) =>
     </View>
   )
 
-const Images = (props) =>
-  (props.images.length !== 0 && (
-    <View>
-      <PriceArea price={props.price} area={props.area} />
-      <Image
-        style={styles.image}
-        source={{uri: props.images[parseInt(Math.random() * props.images.length)]}}
-      />
-    </View>
-  )) ||
-  null
+const Images = (props) => {
+  return (
+    (props.images.length !== 0 && (
+      <View>
+        <PriceArea price={props.price} area={props.area} />
+        <Image
+          style={styles.image}
+          source={{uri: props.images[parseInt(Math.random() * props.images.length)]}}
+        />
+      </View>
+    )) ||
+    null
+  )
+}
 
 const PriceArea = (props) => (
   <View style={styles.priceAreaContainer}>
@@ -92,13 +92,12 @@ const Request = (props) => (
   </View>
 )
 
-const Item = memo(({props}) => {
+const Item = memo(({props, onPressPost}) => {
+  const onPress = () => (e) => {
+    onPressPost(props.id)
+  }
   return (
-    <TouchableOpacity
-      onPress={() => {
-        NavigationService.navigate("ForSalePostDetail")
-      }}
-      activeOpacity={1}>
+    <TouchableOpacity onPress={onPress()} activeOpacity={1}>
       <Card style={styles.postContainer}>
         <Top
           postedDate={props.postedDate}
@@ -133,7 +132,7 @@ const PostListFor = ({data, onRefresh, refreshing, onPress, loadMore, totalPost,
       <FlatList
         refreshing={refreshing}
         onRefresh={onRefresh.bind(this)}
-        renderItem={(item) => <Item props={item.item} />}
+        renderItem={(item) => <Item props={item.item} onPressPost={onPress.bind(this)} />}
         data={data}
         keyExtractor={keyExtractor.bind(this)}
         onEndReached={onEndReached.bind(this)}

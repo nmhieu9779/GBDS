@@ -10,6 +10,7 @@ import newFeedNeedRent from "@src/screen/NewFeedNeedRent/redux/reducers"
 import userProfile from "@src/screen/UserProfile/redux/reducers"
 import message from "@src/component/message/redux/reducers"
 import editProfile from "@src/screen/EditProfile/redux/reducers"
+import postDetail from "@src/screen/PostDetail/redux/reducers"
 
 const allReducers = combineReducers({
   auth,
@@ -22,7 +23,8 @@ const allReducers = combineReducers({
   newFeedNeedRent,
   userProfile,
   message,
-  editProfile
+  editProfile,
+  postDetail
 })
 
 export default allReducers

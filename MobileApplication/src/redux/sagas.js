@@ -7,6 +7,7 @@ import {watchNewFeedNeedBuy} from "@src/screen/NewFeedNeedBuy/redux/sagas"
 import {watchNewFeedNeedRent} from "@src/screen/NewFeedNeedRent/redux/sagas"
 import {watchUserProfile} from "@src/screen/UserProfile/redux/sagas"
 import {watchEditProfile} from "@src/screen/EditProfile/redux/sagas"
+import {watchPostDetail} from "@src/screen/PostDetail/redux/sagas"
 
 export default function* rootSaga() {
   yield all([
@@ -17,6 +18,7 @@ export default function* rootSaga() {
     watchNewFeedNeedBuy(),
     watchNewFeedNeedRent(),
     watchUserProfile(),
-    watchEditProfile()
+    watchEditProfile(),
+    watchPostDetail()
   ])
 }

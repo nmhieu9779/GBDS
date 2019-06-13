@@ -2,6 +2,7 @@ import * as actions from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
 import * as service from "./service"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
+import {showToast} from "@src/utilities/toast"
 
 function* uploadImage(action) {
   const response = yield call(service.uploadImage, action.params)
@@ -18,8 +19,10 @@ function* editProfile(action) {
     yield put(actions.editProfileSuccess(response.data))
     yield put(actions.getUserProfile({email: response.data.content.email}))
     yield put(actions.getUriAvatar({email: response.data.content.email}))
+    showToast("Cập nhật thông tin thành công", "#ffffff", "#0EA854")
   } else {
     yield put(actions.editProfileFailure(response.response.data))
+    showToast("Cập nhật thông tin thất bại", "#ffffff", "#E0002C")
   }
 }
 

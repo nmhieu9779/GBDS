@@ -42,6 +42,15 @@ const authReducers = (state = initStateAuth, action) => {
           success: false
         }
       }
+    case actions.ACTION_RESET_SIGN_IN:
+      return {
+        ...state,
+        signIn: {
+          loading: false,
+          response: null,
+          success: false
+        }
+      }
     case actions.ACTION_SIGN_UP:
       return {
         ...state,

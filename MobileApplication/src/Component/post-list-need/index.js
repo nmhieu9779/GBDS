@@ -45,9 +45,12 @@ const Description = (props) =>
     </View>
   )
 
-const Item = memo(({props}) => {
+const Item = memo(({props, onPressPost}) => {
+  const onPress = () => (e) => {
+    onPressPost(props.id)
+  }
   return (
-    <TouchableOpacity onPress={() => {}} activeOpacity={1}>
+    <TouchableOpacity onPress={onPress()} activeOpacity={1}>
       <Card style={styles.postContainer}>
         <Top postedDate={props.postedDate} title={props.title} avatar={props.avatar} />
         <Request price={props.price} area={props.area} address={props.address} />

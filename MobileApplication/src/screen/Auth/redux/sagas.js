@@ -2,6 +2,7 @@ import * as actions from "@src/redux/actions"
 import * as services from "./service"
 import {put, takeLatest, call} from "redux-saga/effects"
 import {setItemAsyncStorage} from "@src/utilities/asyncStorage"
+import {showToast} from "@src/utilities/toast"
 
 function* signIn(action) {
   const response = yield call(services.signIn, action.params)
@@ -19,9 +20,10 @@ function* signIn(action) {
     yield put(actions.signInSuccess(response.data))
     yield put(actions.getUserProfile({email: data.email}))
     yield put(actions.getUriAvatar({email: data.email}))
+    showToast("Đăng nhập thành công", "#ffffff", "#0EA854")
   } else {
     yield put(actions.signInFailure(response.response.data))
-    // yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.error_description})
+    showToast(response.response.data.error_description, "#ffffff", "#E0002C")
   }
 }
 
@@ -29,10 +31,10 @@ function* signUp(action) {
   const response = yield call(services.signUp, action.params)
   if (response.status === 201) {
     yield put(actions.signUpSuccess(response.data))
-    // yield put({type: UN_SHOW_MESSAGE})
+    showToast("Đăng ký thành công", "#ffffff", "#0EA854")
   } else {
     yield put(actions.signUpFailure(response.response.data))
-    // yield put({type: SHOW_MESSAGE, typeMessage: "ERROR", message: response.response.data.message})
+    showToast(response.response.data.content, "#ffffff", "#E0002C")
   }
 }
 

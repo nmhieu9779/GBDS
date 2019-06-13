@@ -28,6 +28,7 @@
     "react-native-maps": "^0.24.0",
     "react-native-modal": "^11.0.1",
     "react-native-svg": "^9.4.0",
+    "react-native-toast-native": "^1.2.1",
     "react-navigation": "^3.11.0",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",

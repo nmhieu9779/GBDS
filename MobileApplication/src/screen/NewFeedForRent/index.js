@@ -47,6 +47,9 @@ const NewFeedForRent = (props) => {
         }}
         totalPost={props.totalPost}
         loading={props.loading}
+        onPress={(id) => {
+          props.getDetailPost({id: id, type: "FOR_RENT"})
+        }}
       />
     </SafeAreaView>
   )

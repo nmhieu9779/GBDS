@@ -1,5 +1,5 @@
 import {URL_SIGN_IN, URL_SIGN_UP} from "@src/constant/url"
-import {post} from "@src/redux/server"
+import {post, get} from "@src/redux/server"
 
 function* signIn({email, password}) {
   const url = URL_SIGN_IN
@@ -14,7 +14,7 @@ function* signIn({email, password}) {
     password: password
   }
 
-  return yield post({url, auth, params})
+  return yield get({url, auth, params})
 }
 function* signUp({email, password}) {
   const url = URL_SIGN_UP
