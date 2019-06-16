@@ -59,7 +59,8 @@ const NewFeedNeedBuy = (props) => {
   )
 }
 
-const mapStateToProps = ({newFeedNeedBuy}) => {
+const mapStateToProps = (state) => {
+  const newFeedNeedBuy = state.newFeedNeedBuy
   return {
     refreshing: newFeedNeedBuy.refreshing,
     data: newFeedNeedBuy.response ? newFeedNeedBuy.response.content.content : [],

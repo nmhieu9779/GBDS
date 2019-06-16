@@ -59,7 +59,8 @@ const NewFeedForRent = (props) => {
   )
 }
 
-const mapStateToProps = ({newFeedForRent}) => {
+const mapStateToProps = (state) => {
+  const newFeedForRent = state.newFeedForRent
   return {
     refreshing: newFeedForRent.refreshing,
     data: newFeedForRent.response ? newFeedForRent.response.content.content : [],

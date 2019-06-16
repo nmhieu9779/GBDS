@@ -59,7 +59,8 @@ const NewFeedNeedRent = (props) => {
   )
 }
 
-const mapStateToProps = ({newFeedNeedRent}) => {
+const mapStateToProps = (state) => {
+  const newFeedNeedRent = state.newFeedNeedRent
   return {
     refreshing: newFeedNeedRent.refreshing,
     data: newFeedNeedRent.response ? newFeedNeedRent.response.content.content : [],
@@ -71,7 +72,7 @@ const mapStateToProps = ({newFeedNeedRent}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  let actionCreators = {fetchPostNeedRent, getDetailPost}
+  let actionCreators = {fetchPostNeedRent, getDetailPost, interactivePost}
   let actions = bindActionCreators(actionCreators, dispatch)
   return {...actions, dispatch}
 }
