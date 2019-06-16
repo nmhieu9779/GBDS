@@ -10,6 +10,11 @@ initStateEditProfile = {
     loading: false,
     response: null,
     success: false
+  },
+  changePassword: {
+    loading: false,
+    response: null,
+    success: false
   }
 }
 
@@ -78,6 +83,34 @@ const editProfile = (state = initStateEditProfile, action) => {
           success: false
         }
       }
+    case actions.ACTION_CHANGE_PASSWORD:
+      return {
+        ...state,
+        changePassword: {
+          loading: true,
+          response: null,
+          success: false
+        }
+      }
+    case actions.ACTION_CHANGE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        changePassword: {
+          loading: false,
+          response: action.response,
+          success: true
+        }
+      }
+    case actions.ACTION_CHANGE_PASSWORD_FAILURE:
+      return {
+        ...state,
+        changePassword: {
+          loading: false,
+          response: action.error,
+          success: false
+        }
+      }
+
     default:
       return state
   }

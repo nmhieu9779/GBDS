@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import {View, Text, ScrollView, TouchableOpacity} from "react-native"
+import {View, Text, ScrollView, TouchableOpacity, TextInput} from "react-native"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import SafeAreaView from "react-native-safe-area-view"
@@ -14,7 +14,51 @@ import AvatarCirCle from "@src/component/avatar-circle"
 import {removeAllItemAsyncStorage, getItemAsyncStorage} from "@src/utilities/asyncStorage"
 import Card from "@src/component/card"
 import NavigationService from "@src/navigation/NavigationService"
-import {resetUserProfile, resetUriAvatar, resetSignIn} from "@src/redux/actions"
+import {resetUserProfile, resetUriAvatar, resetSignIn, changePassword} from "@src/redux/actions"
+import Modal from "react-native-modal"
+import {HEIGHT} from "@src/utilities/scale"
+
+const ChangePassword = (props) => {
+  const [oldPassword, setOldPassword] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+
+  useEffect(() => {
+    if (!props.isVisiable) {
+      setNewPassword("")
+      setOldPassword("")
+    }
+  }, [props.isVisiable])
+
+  return (
+    <Modal
+      isVisible={props.isVisiable}
+      style={styles.modalContainer}
+      deviceHeight={HEIGHT}
+      onBackdropPress={props.onPressClose.bind(this)}>
+      <Card style={styles.modalContentContainer}>
+        <TextInput
+          style={styles.modalInput}
+          placeholder={"Mật khẩu cũ"}
+          value={oldPassword}
+          onChangeText={(text) => setOldPassword(text)}
+          secureTextEntry={true}
+        />
+        <TextInput
+          style={styles.modalInput}
+          placeholder={"Mật khẩu mới"}
+          value={newPassword}
+          onChangeText={(text) => setNewPassword(text)}
+          secureTextEntry={true}
+        />
+        <TouchableOpacity
+          onPress={props.onChangePassword({newPassword: newPassword, oldPassword: oldPassword})}
+          style={styles.modalBtnContainer}>
+          <Text style={styles.modalBtnText}>{"Đổi mật khẩu"}</Text>
+        </TouchableOpacity>
+      </Card>
+    </Modal>
+  )
+}
 
 const ItemInfo = (props) => {
   return (
@@ -46,6 +90,7 @@ const ItemMenu = (props) => (
 
 const UserProfile = (props) => {
   const [menu, setMenu] = useState({menuUser: [], menuConfig: []})
+  const [isVisiableChangePassword, setIsVisiableChangePassword] = useState(false)
 
   const signOut = async () => {
     let isSignIn = await getItemAsyncStorage("IS_SIGNIN")
@@ -62,6 +107,21 @@ const UserProfile = (props) => {
     setMenu(getMenuItem(props.signInSuccess))
   }, [])
 
+  const onPressMenu = (label) => () => {
+    if (props.signInSuccess) {
+      switch (label) {
+        case "Đổi mật khẩu":
+          setIsVisiableChangePassword(true)
+          break
+
+        default:
+          break
+      }
+    } else {
+      NavigationService.navigate("AuthStack")
+    }
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <TopBarMenu
@@ -71,6 +131,14 @@ const UserProfile = (props) => {
         onPress={() => signOut()}
       />
       <ScrollView>
+        <ChangePassword
+          isVisiable={isVisiableChangePassword}
+          onPressClose={() => setIsVisiableChangePassword(false)}
+          onChangePassword={(params) => () => {
+            props.changePassword({...params, email: props.email})
+            setIsVisiableChangePassword(false)
+          }}
+        />
         <Card style={styles.topContainer}>
           <AvatarCirCle avatarImageUrl={props.uriAvatar} size={40} />
           <TouchableOpacity
@@ -105,12 +173,12 @@ const UserProfile = (props) => {
             <Text style={styles.textManager}>{"QUẢN LÝ"}</Text>
           </View>
           {menu.menuUser.map((item, index) => (
-            <ItemMenu key={index} icon={item.icon} label={item.label} onPress={() => item.onPress()} />
+            <ItemMenu key={index} icon={item.icon} label={item.label} onPress={onPressMenu(item.label)} />
           ))}
         </Card>
         <Card style={styles.menuContainer}>
           {menu.menuConfig.map((item, index) => (
-            <ItemMenu key={index} icon={item.icon} label={item.label} onPress={() => item.onPress()} />
+            <ItemMenu key={index} icon={item.icon} label={item.label} onPress={onPressMenu(item.label)} />
           ))}
         </Card>
       </ScrollView>
@@ -136,12 +204,13 @@ const mapStateToProps = (state) => {
       userProfile.occupation && {label: "Nghề nghiệp", content: userProfile.occupation},
       userProfile.organization && {label: "Cơ quan", content: userProfile.organization}
     ],
-    signInSuccess: state.auth.signIn.success
+    signInSuccess: state.auth.signIn.success,
+    email: state.auth.signIn.success && state.auth.signIn.response.email
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  let actionCreators = {resetUserProfile, resetUriAvatar, resetSignIn}
+  let actionCreators = {resetUserProfile, resetUriAvatar, resetSignIn, changePassword}
   let actions = bindActionCreators(actionCreators, dispatch)
   return {...actions, dispatch}
 }

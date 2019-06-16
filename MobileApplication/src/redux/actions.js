@@ -175,6 +175,15 @@ const editProfileSuccess = (response) => ({type: ACTION_EDIT_PROFILE_SUCCESS, re
 const ACTION_EDIT_PROFILE_FAILURE = `[EDIT_PROFILE] EDIT_PROFILE_FAILURE`
 const editProfileFailure = (error) => ({type: ACTION_EDIT_PROFILE_FAILURE, error})
 
+const ACTION_CHANGE_PASSWORD = `[EDIT_PROFILE] ACTION_CHANGE_PASSWORD`
+const changePassword = (params) => ({type: ACTION_CHANGE_PASSWORD, params})
+
+const ACTION_CHANGE_PASSWORD_SUCCESS = `[EDIT_PROFILE] ACTION_CHANGE_PASSWORD_SUCCESS`
+const changePasswordSuccess = (response) => ({type: ACTION_CHANGE_PASSWORD_SUCCESS, response})
+
+const ACTION_CHANGE_PASSWORD_FAILURE = `[EDIT_PROFILE] ACTION_CHANGE_PASSWORD_FAILURE`
+const changePasswordFailure = (error) => ({type: ACTION_CHANGE_PASSWORD_FAILURE, error})
+
 const ACTION_GET_DETAIL_POST = `[DETAIL POST] GET_DETAIL_POST`
 const getDetailPost = (params) => ({type: ACTION_GET_DETAIL_POST, params})
 
@@ -324,6 +333,12 @@ export {
   editProfile,
   editProfileSuccess,
   editProfileFailure,
+  ACTION_CHANGE_PASSWORD,
+  ACTION_CHANGE_PASSWORD_SUCCESS,
+  ACTION_CHANGE_PASSWORD_FAILURE,
+  changePassword,
+  changePasswordSuccess,
+  changePasswordFailure,
   //Detail post
   ACTION_GET_DETAIL_POST,
   ACTION_GET_DETAIL_POST_SUCCESS,

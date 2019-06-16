@@ -27,7 +27,19 @@ function* editProfile(action) {
   }
 }
 
+function* changePassword(action) {
+  const response = yield call(service.changePassword, action.params)
+  if (response.status === 200) {
+    yield put(actions.changePasswordSuccess(response.data))
+    showToast("Đổi mật khẩu thành công", "#ffffff", "#0EA854")
+  } else {
+    yield put(actions.changePasswordFailure(response.response.data))
+    showToast("Đổi mật khẩu thất bại", "#ffffff", "#E0002C")
+  }
+}
+
 export function* watchEditProfile() {
   yield takeLatest(actions.ACTION_UPLOAD_IMAGE, uploadImage)
   yield takeLatest(actions.ACTION_EDIT_PROFILE, editProfile)
+  yield takeLatest(actions.ACTION_CHANGE_PASSWORD, changePassword)
 }

@@ -14,6 +14,7 @@ export const URL_SIGN_UP = `${URL_OAUTH}/api/v1/users`
 export const URL_GET_USER_PROFILE = `${URL_PFMNG}/api/v1/profiles`
 export const URL_GET_URI_AVATAR = `${URL_PFMNG}/api/v1/profiles/avaurl`
 export const URL_EDIT_PROFILE = `${URL_PFMNG}/api/v1/profiles`
+export const URL_CHANGE_PASSWORD = `${URL_OAUTH}/api/v1/users`
 
 export const URL_UPLOAD_IMAGE = `${URL_FLUPL}/api/v1/storages/upload`
 

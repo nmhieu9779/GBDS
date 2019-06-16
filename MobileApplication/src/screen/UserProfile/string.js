@@ -7,54 +7,33 @@ export const getMenuItem = (signInSuccess) => {
     menuUser: [
       {
         icon: faClock,
-        label: "Mới xem",
-        onPress: () => {
-          signInSuccess ? alert("abc") : NavigationService.navigate("AuthStack")
-        }
+        label: "Mới xem"
       },
       {
         icon: faHistory,
-        label: "Các bài đã đăng",
-        onPress: () => {
-          signInSuccess ? alert("abc") : NavigationService.navigate("AuthStack")
-        }
+        label: "Các bài đã đăng"
       },
       {
         icon: faBookmark,
-        label: "Các bài đã lưu",
-        onPress: () => {
-          signInSuccess ? alert("abc") : NavigationService.navigate("AuthStack")
-        }
+        label: "Các bài đã lưu"
       },
       {
         icon: faBell,
-        label: "Thông báo",
-        onPress: () => {
-          signInSuccess ? alert("abc") : NavigationService.navigate("AuthStack")
-        }
+        label: "Thông báo"
       }
     ],
     menuConfig: [
       {
         icon: faLifeRing,
-        label: "Trợ giúp",
-        onPress: () => {
-          signInSuccess ? alert("abc") : NavigationService.navigate("AuthStack")
-        }
+        label: "Trợ giúp"
       },
       {
         icon: faCog,
-        label: "Cài đặt",
-        onPress: () => {
-          signInSuccess ? alert("abc") : NavigationService.navigate("AuthStack")
-        }
+        label: "Cài đặt"
       },
       {
         icon: faUnlockAlt,
-        label: "Đổi mật khẩu",
-        onPress: () => {
-          signInSuccess ? alert("abc") : NavigationService.navigate("AuthStack")
-        }
+        label: "Đổi mật khẩu"
       }
     ]
   }

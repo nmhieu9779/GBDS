@@ -1,4 +1,4 @@
-import {URL_EDIT_PROFILE, URL_UPLOAD_IMAGE} from "@src/constant/url"
+import {URL_EDIT_PROFILE, URL_UPLOAD_IMAGE, URL_CHANGE_PASSWORD} from "@src/constant/url"
 import {upload, patchToken, postToken} from "@src/redux/server"
 
 function* uploadImage(formData) {
@@ -17,4 +17,9 @@ function* editProfile(params) {
   }
 }
 
-export {uploadImage, editProfile}
+function* changePassword(params) {
+  const url = URL_CHANGE_PASSWORD
+  const body = params
+  return yield patchToken({url, body})
+}
+export {uploadImage, editProfile, changePassword}

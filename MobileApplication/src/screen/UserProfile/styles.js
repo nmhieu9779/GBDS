@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {moderateScale, WIDTH} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
   container: {
@@ -36,7 +36,29 @@ const styles = StyleSheet.create({
   socialContainer: {flex: 1},
   textManager: {color: "#4285F4"},
   labelContainer: {flex: 1},
-  icon: {marginRight: moderateScale(10)}
+  icon: {marginRight: moderateScale(10)},
+  modalContainer: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  modalContentContainer: {padding: moderateScale(20), width: (WIDTH * 2) / 3},
+  modalInput: {
+    width: "100%",
+    borderBottomColor: "gray",
+    borderBottomWidth: moderateScale(0.5),
+    paddingTop: moderateScale(5),
+    paddingBottom: moderateScale(5)
+  },
+  modalBtnContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: moderateScale(5),
+    backgroundColor: "#3B5998",
+    padding: moderateScale(10),
+    marginTop: moderateScale(10)
+  },
+  modalBtnText: {color: "white", fontWeight: "bold"}
 })
 
 export default styles
