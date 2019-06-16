@@ -1,5 +1,5 @@
 import * as actions from "@src/redux/actions"
-import {put, takeLatest, call} from "redux-saga/effects"
+import {put, takeLatest, call, takeEvery} from "redux-saga/effects"
 import * as service from "./service"
 import NavigationService from "@src/navigation/NavigationService"
 
@@ -13,6 +13,16 @@ function* getDetailPost(action) {
   }
 }
 
+function* interactivePost(action) {
+  const response = yield call(service.interactivePost, action.params)
+  if (response.status === 200) {
+    yield put(actions.interactivePostSuccess(response.data))
+  } else {
+    yield put(actions.interactivePostFailure(response.response.data))
+  }
+}
+
 export function* watchPostDetail() {
   yield takeLatest(actions.ACTION_GET_DETAIL_POST, getDetailPost)
+  yield takeEvery(actions.ACTION_INTERACTIVE_POST, interactivePost)
 }

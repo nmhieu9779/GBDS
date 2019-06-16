@@ -2,18 +2,17 @@ import React from "react"
 import {Text, View, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import {faUserPlus} from "@fortawesome/free-solid-svg-icons"
-import {faComment} from "@fortawesome/free-regular-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faBell} from "@fortawesome/free-regular-svg-icons"
 
 const BottomListPost = (props) => {
-  const color = !props.choose ? "rgb(32, 120, 244)" : "#606770"
+  const color = props.isFollow ? "rgb(32, 120, 244)" : "#606770"
   return (
     <View style={styles.bottomContainer}>
-      <TouchableOpacity style={styles.btnBottom}>
+      <TouchableOpacity onPress={props.onPressFollow} style={styles.btnBottom}>
         <View style={styles.itemsBtn}>
           <FontAwesomeIcon style={styles.itemsBtnIcon} color={color} icon={faBell} />
-          <Text style={{color: color}}>{"Thông báo"}</Text>
+          <Text style={{color: color}}>{"Theo dõi"}</Text>
         </View>
       </TouchableOpacity>
       {/* <TouchableOpacity style={styles.btnBottom}>

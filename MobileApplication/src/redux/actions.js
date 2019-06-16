@@ -10,6 +10,9 @@ const signInFailure = (error) => ({type: ACTION_SIGN_IN_FAILURE, error})
 const ACTION_RESET_SIGN_IN = `[AUTH] RESET_SIGN_IN`
 const resetSignIn = () => ({type: ACTION_RESET_SIGN_IN})
 
+const ACTION_GET_INFO_SIGN_IN = `[AUTH] GET_INFO_SIGN_IN`
+const getInfoSignIn = (params) => ({type: ACTION_GET_INFO_SIGN_IN, params})
+
 const ACTION_SIGN_UP = `[AUTH] SIGN_UP`
 const signUp = (params) => ({type: ACTION_SIGN_UP, params})
 
@@ -181,6 +184,15 @@ const getDetailPostSuccess = (response) => ({type: ACTION_GET_DETAIL_POST_SUCCES
 const ACTION_GET_DETAIL_POST_FAILURE = `[DETAIL POST] GET_DETAIL_POST_FAILURE`
 const getDetailPostFailure = (error) => ({type: ACTION_GET_DETAIL_POST_FAILURE, error})
 
+const ACTION_INTERACTIVE_POST = `[DETAIL POST] INTERACTIVE`
+const interactivePost = (params) => ({type: ACTION_INTERACTIVE_POST, params})
+
+const ACTION_INTERACTIVE_POST_SUCCESS = `[DETAIL POST] INTERACTIVE_SUCCESS`
+const interactivePostSuccess = (response) => ({type: ACTION_INTERACTIVE_POST_SUCCESS, response})
+
+const ACTION_INTERACTIVE_POST_FAILURE = `[DETAIL POST] INTERACTIVE_FAILURE`
+const interactivePostFailure = (error) => ({type: ACTION_INTERACTIVE_POST_FAILURE, error})
+
 export const SHOW_MESSAGE = `SHOW_MESSAGE`
 export const UN_SHOW_MESSAGE = `UN_SHOW_MESSAGE`
 
@@ -190,10 +202,12 @@ export {
   ACTION_SIGN_IN_SUCCESS,
   ACTION_SIGN_IN_FAILURE,
   ACTION_RESET_SIGN_IN,
+  ACTION_GET_INFO_SIGN_IN,
   signIn,
   signInSuccess,
   signInFailure,
   resetSignIn,
+  getInfoSignIn,
   //SignUp
   ACTION_SIGN_UP,
   ACTION_SIGN_UP_SUCCESS,
@@ -316,5 +330,11 @@ export {
   ACTION_GET_DETAIL_POST_FAILURE,
   getDetailPost,
   getDetailPostSuccess,
-  getDetailPostFailure
+  getDetailPostFailure,
+  ACTION_INTERACTIVE_POST,
+  ACTION_INTERACTIVE_POST_SUCCESS,
+  ACTION_INTERACTIVE_POST_FAILURE,
+  interactivePost,
+  interactivePostSuccess,
+  interactivePostFailure
 }

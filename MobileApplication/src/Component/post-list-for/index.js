@@ -1,4 +1,4 @@
-import React, {memo} from "react"
+import React, {memo, useState, useEffect} from "react"
 import {Text, View, FlatList, Image, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import BottomListPost from "@src/component/bottom-list-post"
@@ -92,10 +92,14 @@ const Request = (props) => (
   </View>
 )
 
-const Item = memo(({props, onPressPost}) => {
+const Item = memo(({props, onPressPost, onPressFollow, isFollow}) => {
+  const [follow, setFollow] = useState()
   const onPress = () => (e) => {
     onPressPost(props.id)
   }
+  useEffect(() => {
+    setFollow(isFollow)
+  }, [])
   return (
     <TouchableOpacity onPress={onPress()} activeOpacity={1}>
       <Card style={styles.postContainer}>
@@ -109,7 +113,13 @@ const Item = memo(({props, onPressPost}) => {
         {props.images.length === 0 && <Request price={props.price} area={props.area} />}
         <Description description={props.description} />
         <Images images={props.images} price={props.price} area={props.area} />
-        <BottomListPost />
+        <BottomListPost
+          onPressFollow={() => {
+            setFollow(!follow)
+            onPressFollow(!follow)
+          }}
+          isFollow={follow}
+        />
       </Card>
     </TouchableOpacity>
   )
@@ -117,7 +127,17 @@ const Item = memo(({props, onPressPost}) => {
 
 const keyExtractor = (item, index) => index.toString()
 
-const PostListFor = ({data, onRefresh, refreshing, onPress, loadMore, totalPost, loading}) => {
+const PostListFor = ({
+  data,
+  onRefresh,
+  refreshing,
+  onPress,
+  loadMore,
+  totalPost,
+  loading,
+  onPressFollow,
+  email
+}) => {
   let onEndReachedCalledDuringMomentum = true
 
   const onEndReached = () => {
@@ -132,7 +152,20 @@ const PostListFor = ({data, onRefresh, refreshing, onPress, loadMore, totalPost,
       <FlatList
         refreshing={refreshing}
         onRefresh={onRefresh.bind(this)}
-        renderItem={(item) => <Item props={item.item} onPressPost={onPress.bind(this)} />}
+        renderItem={(item) => (
+          <Item
+            props={item.item}
+            onPressPost={onPress.bind(this)}
+            onPressFollow={(follow) =>
+              onPressFollow({
+                email: email,
+                id: item.item.id,
+                follow: follow
+              })
+            }
+            isFollow={item.item.emailsOfFollowers.findIndex((e) => e === email) !== -1}
+          />
+        )}
         data={data}
         keyExtractor={keyExtractor.bind(this)}
         onEndReached={onEndReached.bind(this)}

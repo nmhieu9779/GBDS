@@ -18,6 +18,13 @@ const post = async ({url, auth, params, body}) => {
     .catch((error) => error)
 }
 
+const patch = async ({url}) => {
+  return await axios
+    .patch(url)
+    .then((response) => response)
+    .catch((error) => error)
+}
+
 const postToken = async ({url, params, body}) => {
   let userOauth = await getItemAsyncStorage("USER_OAUTH")
   return await axios
@@ -60,4 +67,4 @@ const upload = async ({url, body}) => {
     .catch((error) => error)
 }
 
-export {post, get, upload, patchToken, postToken}
+export {post, get, upload, patchToken, postToken, patch}

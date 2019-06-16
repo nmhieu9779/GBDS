@@ -118,9 +118,9 @@ const PostDetail = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  if (state.postDetail.success) {
-    if (["FOR_SALE", "FOR_RENT"].findIndex((e) => e === state.postDetail.response.type) !== -1) {
-      const postDetail = state.postDetail.response.content
+  if (state.postDetail.postDetail.success) {
+    if (["FOR_SALE", "FOR_RENT"].findIndex((e) => e === state.postDetail.postDetail.response.type) !== -1) {
+      const postDetail = state.postDetail.postDetail.response.content
       const address = postDetail.property.address
       const details = postDetail.property.details
       const contact = postDetail.property.additionContactInfo
@@ -130,7 +130,7 @@ const mapStateToProps = (state) => {
         content: `${item.room} phòng, ${item.bedroom} phòng ngủ, ${item.bathroom} toilet`
       }))
       return {
-        success: state.postDetail.success,
+        success: state.postDetail.postDetail.success,
         name: postDetail.name,
         avatarImageUrl: postDetail.avatar,
         createdDate: postDetail.createdDate,
@@ -164,11 +164,13 @@ const mapStateToProps = (state) => {
           state.userProfile.success &&
           state.userProfile.userProfile.response.content.email === postDetail.user
       }
-    } else if (["NEED_BUY", "NEED_RENT"].findIndex((e) => e === state.postDetail.response.type) !== -1) {
-      const postDetail = state.postDetail.response.content
+    } else if (
+      ["NEED_BUY", "NEED_RENT"].findIndex((e) => e === state.postDetail.postDetail.response.type) !== -1
+    ) {
+      const postDetail = state.postDetail.postDetail.response.content
       const contact = postDetail.additionContactInfo
       return {
-        success: state.postDetail.success,
+        success: state.postDetail.postDetail.success,
         name: postDetail.name,
         avatarImageUrl: postDetail.avatar,
         createdDate: postDetail.createdDate,
@@ -197,7 +199,7 @@ const mapStateToProps = (state) => {
     }
   } else {
     return {
-      success: state.postDetail.success
+      success: state.postDetail.postDetail.success
     }
   }
 }

@@ -10,7 +10,7 @@ import {faBell} from "@fortawesome/free-regular-svg-icons"
 import Filter from "@src/component/filter"
 import AddFloatingButton from "@src/component/add-floating-button"
 import PostListNeed from "@src/component/post-list-need"
-import {fetchPostNeedRent, getDetailPost} from "@src/redux/actions"
+import {fetchPostNeedRent, getDetailPost, interactivePost} from "@src/redux/actions"
 
 const NewFeedNeedRent = (props) => {
   const [visiableFilter, setVisiableFilter] = useState(false)
@@ -50,6 +50,10 @@ const NewFeedNeedRent = (props) => {
         onPress={(id) => {
           props.getDetailPost({id: id, type: "NEED_RENT"})
         }}
+        onPressFollow={(params) => {
+          props.interactivePost(params)
+        }}
+        email={props.email}
       />
     </SafeAreaView>
   )
@@ -61,7 +65,8 @@ const mapStateToProps = ({newFeedNeedRent}) => {
     data: newFeedNeedRent.response ? newFeedNeedRent.response.content.content : [],
     nowPage: newFeedNeedRent.response ? newFeedNeedRent.response.content.pageable.pageNumber + 1 : 0,
     totalPost: newFeedNeedRent.response && newFeedNeedRent.response.content.totalElements,
-    loading: newFeedNeedRent.loading || newFeedNeedRent.loadMore
+    loading: newFeedNeedRent.loading || newFeedNeedRent.loadMore,
+    email: state.auth.signIn.success && state.auth.signIn.response.email
   }
 }
 

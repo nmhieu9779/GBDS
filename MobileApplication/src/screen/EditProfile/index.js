@@ -11,7 +11,6 @@ import TextInputCustom from "@src/component/text-input-custom"
 import {WIDTH, moderateScale} from "@src/utilities/scale"
 import {getDay, getMonth, getYear, formatDayMonth} from "@src/utilities/date"
 import {uploadImage, editProfile} from "@src/redux/actions"
-import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
 const GenderItem = (props) => (
   <TouchableOpacity
@@ -55,15 +54,13 @@ const EditProfile = (props) => {
     initState()
   }, [])
 
-  const initState = async () => {
-    const userOauth = await getItemAsyncStorage("USER_OAUTH")
-
+  const initState = () => {
     setName(props.name)
     setDescription(props.description)
     setDay(getDay(props.birthdate))
     setMonth(getMonth(props.birthdate))
     setYear(getYear(props.birthdate))
-    setEmail(props.email || userOauth.email)
+    setEmail(props.email)
     setPhone(props.phone)
     setAddress(props.address)
     setOccupation(props.occupation)
@@ -236,7 +233,7 @@ const mapStateToProps = (state) => {
     name: userProfile.name,
     description: userProfile.name,
     birthdate: userProfile.birthdate,
-    email: userProfile.email,
+    email: state.auth.signIn.success && state.auth.signIn.response.email,
     phone: userProfile.phone,
     address: userProfile.address,
     occupation: userProfile.occupation,

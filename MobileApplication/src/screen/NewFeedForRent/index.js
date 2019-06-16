@@ -10,7 +10,7 @@ import {faBell} from "@fortawesome/free-regular-svg-icons"
 import Filter from "@src/component/filter"
 import AddFloatingButton from "@src/component/add-floating-button"
 import PostListFor from "@src/component/post-list-for"
-import {fetchPostForRent, getDetailPost} from "@src/redux/actions"
+import {fetchPostForRent, getDetailPost, interactivePost} from "@src/redux/actions"
 
 const NewFeedForRent = (props) => {
   const [visiableFilter, setVisiableFilter] = useState(false)
@@ -50,6 +50,10 @@ const NewFeedForRent = (props) => {
         onPress={(id) => {
           props.getDetailPost({id: id, type: "FOR_RENT"})
         }}
+        onPressFollow={(params) => {
+          props.interactivePost(params)
+        }}
+        email={props.email}
       />
     </SafeAreaView>
   )
@@ -61,12 +65,13 @@ const mapStateToProps = ({newFeedForRent}) => {
     data: newFeedForRent.response ? newFeedForRent.response.content.content : [],
     nowPage: newFeedForRent.response ? newFeedForRent.response.content.pageable.pageNumber + 1 : 0,
     totalPost: newFeedForRent.response && newFeedForRent.response.content.totalElements,
-    loading: newFeedForRent.loading || newFeedForRent.loadMore
+    loading: newFeedForRent.loading || newFeedForRent.loadMore,
+    email: state.auth.signIn.success && state.auth.signIn.response.email
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  let actionCreators = {fetchPostForRent, getDetailPost}
+  let actionCreators = {fetchPostForRent, getDetailPost, interactivePost}
   let actions = bindActionCreators(actionCreators, dispatch)
   return {...actions, dispatch}
 }

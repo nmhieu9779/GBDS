@@ -54,17 +54,13 @@ const UserProfile = (props) => {
       props.resetUriAvatar()
       props.resetSignIn()
       removeAllItemAsyncStorage()
-      getMenu()
+      setMenu(getMenuItem(false))
     }
   }
 
   useEffect(() => {
-    getMenu()
+    setMenu(getMenuItem(props.signInSuccess))
   }, [])
-
-  const getMenu = () => {
-    getMenuItem().then((e) => setMenu(e))
-  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -139,7 +135,8 @@ const mapStateToProps = (state) => {
       userProfile.address && {label: "Địa chỉ", content: userProfile.address},
       userProfile.occupation && {label: "Nghề nghiệp", content: userProfile.occupation},
       userProfile.organization && {label: "Cơ quan", content: userProfile.organization}
-    ]
+    ],
+    signInSuccess: state.auth.signIn.success
   }
 }
 

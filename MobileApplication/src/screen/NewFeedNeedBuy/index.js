@@ -10,7 +10,7 @@ import {faBell} from "@fortawesome/free-regular-svg-icons"
 import Filter from "@src/component/filter"
 import AddFloatingButton from "@src/component/add-floating-button"
 import PostListNeed from "@src/component/post-list-need"
-import {fetchPostNeedBuy, getDetailPost} from "@src/redux/actions"
+import {fetchPostNeedBuy, getDetailPost, interactivePost} from "@src/redux/actions"
 
 const NewFeedNeedBuy = (props) => {
   const [visiableFilter, setVisiableFilter] = useState(false)
@@ -50,6 +50,10 @@ const NewFeedNeedBuy = (props) => {
         onPress={(id) => {
           props.getDetailPost({id: id, type: "NEED_BUY"})
         }}
+        onPressFollow={(params) => {
+          props.interactivePost(params)
+        }}
+        email={props.email}
       />
     </SafeAreaView>
   )
@@ -61,12 +65,13 @@ const mapStateToProps = ({newFeedNeedBuy}) => {
     data: newFeedNeedBuy.response ? newFeedNeedBuy.response.content.content : [],
     nowPage: newFeedNeedBuy.response ? newFeedNeedBuy.response.content.pageable.pageNumber + 1 : 0,
     totalPost: newFeedNeedBuy.response && newFeedNeedBuy.response.content.totalElements,
-    loading: newFeedNeedBuy.loading || newFeedNeedBuy.loadMore
+    loading: newFeedNeedBuy.loading || newFeedNeedBuy.loadMore,
+    email: state.auth.signIn.success && state.auth.signIn.response.email
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  let actionCreators = {fetchPostNeedBuy, getDetailPost}
+  let actionCreators = {fetchPostNeedBuy, getDetailPost, interactivePost}
   let actions = bindActionCreators(actionCreators, dispatch)
   return {...actions, dispatch}
 }

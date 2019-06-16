@@ -17,7 +17,7 @@ function* signIn(action) {
     yield setItemAsyncStorage({keyName: "USER_OAUTH", data: data})
     yield setItemAsyncStorage({keyName: "IS_SKIP_SIGNIN", data: true})
     yield setItemAsyncStorage({keyName: "IS_SIGNIN", data: true})
-    yield put(actions.signInSuccess(response.data))
+    yield put(actions.signInSuccess(data))
     yield put(actions.getUserProfile({email: data.email}))
     yield put(actions.getUriAvatar({email: data.email}))
     showToast("Đăng nhập thành công", "#ffffff", "#0EA854")

@@ -45,17 +45,27 @@ const Description = (props) =>
     </View>
   )
 
-const Item = memo(({props, onPressPost}) => {
+const Item = memo(({props, onPressPost, onPressFollow, isFollow}) => {
+  const [follow, setFollow] = useState()
   const onPress = () => (e) => {
     onPressPost(props.id)
   }
+  useEffect(() => {
+    setFollow(isFollow)
+  }, [])
   return (
     <TouchableOpacity onPress={onPress()} activeOpacity={1}>
       <Card style={styles.postContainer}>
         <Top postedDate={props.postedDate} title={props.title} avatar={props.avatar} />
         <Request price={props.price} area={props.area} address={props.address} />
         <Description description={props.description} />
-        <BottomListPost />
+        <BottomListPost
+          onPressFollow={() => {
+            setFollow(!follow)
+            onPressFollow(!follow)
+          }}
+          isFollow={follow}
+        />
       </Card>
     </TouchableOpacity>
   )
@@ -63,7 +73,17 @@ const Item = memo(({props, onPressPost}) => {
 
 const keyExtractor = (item, index) => index.toString()
 
-const PostListNeed = ({data, onRefresh, refreshing, onPress, loadMore, totalPost, loading}) => {
+const PostListNeed = ({
+  data,
+  onRefresh,
+  refreshing,
+  onPress,
+  loadMore,
+  totalPost,
+  loading,
+  onPressFollow,
+  email
+}) => {
   let onEndReachedCalledDuringMomentum = true
 
   const onEndReached = () => {
@@ -78,7 +98,20 @@ const PostListNeed = ({data, onRefresh, refreshing, onPress, loadMore, totalPost
       <FlatList
         refreshing={refreshing}
         onRefresh={onRefresh.bind(this)}
-        renderItem={(item) => <Item props={item.item} onPressPost={onPress.bind(this)} />}
+        renderItem={(item) => (
+          <Item
+            props={item.item}
+            onPressPost={onPress.bind(this)}
+            onPressFollow={(follow) =>
+              onPressFollow({
+                email: email,
+                id: item.item.id,
+                follow: follow
+              })
+            }
+            isFollow={item.item.emailsOfFollowers.findIndex((e) => e === email) !== -1}
+          />
+        )}
         data={data}
         keyExtractor={keyExtractor.bind(this)}
         onEndReached={onEndReached.bind(this)}

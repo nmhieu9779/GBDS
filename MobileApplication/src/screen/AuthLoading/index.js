@@ -3,7 +3,8 @@ import {StyleSheet, View, Image} from "react-native"
 import {images} from "@src/common/images"
 import {WIDTH} from "@src/utilities/scale"
 import {connect} from "react-redux"
-import {fetchPostForSale, getUserProfile, getUriAvatar} from "@src/redux/actions"
+import {bindActionCreators} from "redux"
+import {fetchPostForSale, getUserProfile, getUriAvatar, getInfoSignIn} from "@src/redux/actions"
 import {onShowMessage} from "@src/component/message/redux/actions"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 
@@ -19,30 +20,28 @@ class AuthLoading extends PureComponent {
     let isLogin = await getItemAsyncStorage("IS_SIGNIN")
 
     if (isSkipLogin) {
-      this.props.navigation.navigate("HomeStack")
       if (isLogin) {
-        this.props.getUserProfile({email: userOauth.email})
-        this.props.getUriAvatar({email: userOauth.email})
+        this.props.getInfoSignIn(userOauth)
+      } else {
+        this.props.navigation.navigate("HomeStack")
       }
     } else {
       this.props.navigation.navigate("AuthStack")
     }
   }
 
-  componentDidUpdate = async (prevProps) => {
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.success !== this.props.success && this.props.success) {
+      this.props.getUserProfile({email: this.props.email})
+      this.props.getUriAvatar({email: this.props.email})
+    }
     if (prevProps.loading !== this.props.loading && !this.props.loading) {
-      let avatar = await getItemAsyncStorage("AVATAR")
-      let userProfile = await getItemAsyncStorage("USER_PROFILE")
-      let isLogin = await getItemAsyncStorage("IS_SIGNIN")
-      if (isLogin) {
-        !avatar &&
-          !userProfile &&
-          this.props.showMessage({
-            typeMessage: `WARNING_DIALONG`,
-            message:
-              "Bạn chưa câp nhập thông tin cá nhân, vui lòng cập nhập thông tin cá nhân để được sử dụng đầy đủ chức năng nhất"
-          })
-      }
+      this.props.newUser &&
+        this.props.onShowMessage({
+          typeMessage: `WARNING_DIALONG`,
+          message:
+            "Bạn chưa câp nhập thông tin cá nhân, vui lòng cập nhập thông tin cá nhân để được sử dụng đầy đủ chức năng nhất"
+        })
       this.props.navigation.navigate("HomeStack")
     }
   }
@@ -65,25 +64,19 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = (state) => ({
-  loading: state.userProfile.loading || state.newFeedForSale.loading
-})
+const mapStateToProps = (state) => {
+  return {
+    success: state.auth.signIn.success,
+    email: state.auth.signIn.success && state.auth.signIn.response.email,
+    loading: state.userProfile.userProfile.loading || state.userProfile.uriAvatar.loading,
+    newUser: !state.userProfile.userProfile.success || !state.userProfile.uriAvatar.success
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchPostForSaleHome: () => {
-      dispatch(fetchPostForSale({page: 1, size: 10}))
-    },
-    getUserProfile: (payload) => {
-      dispatch(getUserProfile(payload))
-    },
-    getUriAvatar: (payload) => {
-      dispatch(getUriAvatar(payload))
-    },
-    showMessage: (payload) => {
-      dispatch(onShowMessage(payload))
-    }
-  }
+  let actionCreators = {getUserProfile, getUriAvatar, getInfoSignIn, onShowMessage}
+  let actions = bindActionCreators(actionCreators, dispatch)
+  return {...actions, dispatch}
 }
 
 const AuthLoadingContainer = connect(

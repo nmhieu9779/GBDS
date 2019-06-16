@@ -40,7 +40,8 @@ const mapStateToProps = ({
     userProfile.uriAvatar.loading ||
     editProfile.uploadImage.loading ||
     editProfile.editProfile.loading ||
-    postDetail.loading
+    postDetail.postDetail.loading ||
+    postDetail.interactivePost.loading
 })
 
 const ProcessHUDContainer = connect(mapStateToProps)(ProcessHUD)

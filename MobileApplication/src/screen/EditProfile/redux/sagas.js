@@ -1,7 +1,6 @@
 import * as actions from "@src/redux/actions"
 import {put, takeLatest, call} from "redux-saga/effects"
 import * as service from "./service"
-import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
 import {showToast} from "@src/utilities/toast"
 
 function* uploadImage(action) {
