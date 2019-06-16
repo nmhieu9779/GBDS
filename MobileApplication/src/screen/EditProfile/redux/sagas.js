@@ -19,9 +19,11 @@ function* editProfile(action) {
     yield put(actions.editProfileSuccess(response.data))
     yield put(actions.getUserProfile({email: response.data.content.email}))
     yield put(actions.getUriAvatar({email: response.data.content.email}))
+    yield put(actions.resetUploadImage())
     showToast("Cập nhật thông tin thành công", "#ffffff", "#0EA854")
   } else {
     yield put(actions.editProfileFailure(response.response.data))
+    yield put(actions.resetUploadImage())
     showToast("Cập nhật thông tin thất bại", "#ffffff", "#E0002C")
   }
 }

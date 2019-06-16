@@ -42,6 +42,15 @@ const editProfile = (state = initStateEditProfile, action) => {
           success: false
         }
       }
+    case actions.ACTION_RESET_UPLOAD_IMAGE:
+      return {
+        ...state,
+        uploadImage: {
+          loading: false,
+          response: null,
+          success: false
+        }
+      }
     case actions.ACTION_EDIT_PROFILE:
       return {
         ...state,

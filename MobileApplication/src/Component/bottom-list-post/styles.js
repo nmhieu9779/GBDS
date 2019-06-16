@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flex: 1,
     paddingLeft: moderateScale(8),
-    paddingRight: moderateScale(8)
+    paddingRight: moderateScale(8),
+    justifyContent: "center"
   },
   itemsBtn: {
     flexDirection: "row",

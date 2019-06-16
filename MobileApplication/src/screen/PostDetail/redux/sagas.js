@@ -6,7 +6,7 @@ import NavigationService from "@src/navigation/NavigationService"
 function* getDetailPost(action) {
   const response = yield call(service.getDetailPost, action.params)
   if (response.status === 200) {
-    yield put(actions.getDetailPostSuccess(response.data))
+    yield put(actions.getDetailPostSuccess({...response.data, type: action.params.type}))
     yield NavigationService.navigate("PostDetail")
   } else {
     yield put(actions.getDetailPostFailure(response.response.data))

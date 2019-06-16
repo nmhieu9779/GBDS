@@ -16,12 +16,12 @@ const BottomListPost = (props) => {
           <Text style={{color: color}}>{"Thông báo"}</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.btnBottom}>
+      {/* <TouchableOpacity style={styles.btnBottom}>
         <View style={styles.itemsBtn}>
           <FontAwesomeIcon style={styles.itemsBtnIcon} color={"#606770"} icon={faComment} />
           <Text style={{color: "#606770"}}>{"Bình luận"}</Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity style={styles.btnBottom}>
         <View style={styles.itemsBtn}>
           <FontAwesomeIcon style={styles.itemsBtnIcon} color={"#606770"} icon={faUserPlus} />

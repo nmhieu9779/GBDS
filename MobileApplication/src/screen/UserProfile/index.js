@@ -86,7 +86,7 @@ const UserProfile = (props) => {
           </TouchableOpacity>
         </Card>
         <Card style={styles.menuContainer}>
-          <View style={styles.itemInfo}>
+          {/* <View style={styles.itemInfo}>
             <Text style={styles.itemInfoLabel}>{"Số dư trong ví"}</Text>
             <Text style={styles.priceText}>{"66.171 VND"}</Text>
           </View>
@@ -94,7 +94,7 @@ const UserProfile = (props) => {
             <Text style={styles.itemInfoLabel}>{"Loại tài khoản"}</Text>
             <Text style={styles.checked}>{"Đã xác thực"}</Text>
             <FontAwesomeIcon style={styles.iconChecked} color={"#1ED760"} icon={faCheckCircle} />
-          </View>
+          </View> */}
           {props.info.map(
             (item, index) => item && <ItemInfo key={index} label={item.label} content={item.content} />
           )}

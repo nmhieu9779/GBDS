@@ -160,6 +160,9 @@ const uploadImageSuccess = (response) => ({type: ACTION_UPLOAD_IMAGE_SUCCESS, re
 const ACTION_UPLOAD_IMAGE_FAILURE = `[EDIT_PROFILE] UPLOAD_IMAGE_FAILURE`
 const uploadImageFailure = (error) => ({type: ACTION_UPLOAD_IMAGE_FAILURE, error})
 
+const ACTION_RESET_UPLOAD_IMAGE = `[EDIT_PROFILE] RESET_UPLOAD_IMAGE`
+const resetUploadImage = () => ({type: ACTION_RESET_UPLOAD_IMAGE})
+
 const ACTION_EDIT_PROFILE = `[EDIT_PROFILE] EDIT_PROFILE`
 const editProfile = (params) => ({type: ACTION_EDIT_PROFILE, params})
 
@@ -296,9 +299,11 @@ export {
   ACTION_UPLOAD_IMAGE,
   ACTION_UPLOAD_IMAGE_SUCCESS,
   ACTION_UPLOAD_IMAGE_FAILURE,
+  ACTION_RESET_UPLOAD_IMAGE,
   uploadImage,
   uploadImageSuccess,
   uploadImageFailure,
+  resetUploadImage,
   ACTION_EDIT_PROFILE,
   ACTION_EDIT_PROFILE_SUCCESS,
   ACTION_EDIT_PROFILE_FAILURE,

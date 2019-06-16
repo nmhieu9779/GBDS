@@ -10,7 +10,7 @@ import {faBell} from "@fortawesome/free-regular-svg-icons"
 import Filter from "@src/component/filter"
 import AddFloatingButton from "@src/component/add-floating-button"
 import PostListNeed from "@src/component/post-list-need"
-import {fetchPostNeedRent} from "@src/redux/actions"
+import {fetchPostNeedRent, getDetailPost} from "@src/redux/actions"
 
 const NewFeedNeedRent = (props) => {
   const [visiableFilter, setVisiableFilter] = useState(false)
@@ -66,7 +66,7 @@ const mapStateToProps = ({newFeedNeedRent}) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  let actionCreators = {fetchPostNeedRent}
+  let actionCreators = {fetchPostNeedRent, getDetailPost}
   let actions = bindActionCreators(actionCreators, dispatch)
   return {...actions, dispatch}
 }

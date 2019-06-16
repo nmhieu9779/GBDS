@@ -73,7 +73,6 @@ const EditProfile = (props) => {
 
   useEffect(() => {
     props.uploadImageSuccess &&
-      !props.editProfileSuccess &&
       props.editProfile({
         body: {avatarImageUrl: props.avatarImageUrl, email: props.email || email},
         isCreate: props.isNewProfile
@@ -106,7 +105,7 @@ const EditProfile = (props) => {
       birthdate:
         (day && month && year && `${year}-${formatDayMonth(month)}-${formatDayMonth(day)} 00:00:00`) || null,
       description: description,
-      email: props.email,
+      email: props.email || email,
       gender: gender,
       name: name,
       occupation: occupation,

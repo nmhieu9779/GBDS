@@ -1,4 +1,4 @@
-import {faHistory, faCog} from "@fortawesome/free-solid-svg-icons"
+import {faHistory, faCog, faUnlockAlt} from "@fortawesome/free-solid-svg-icons"
 import {faClock, faBell, faLifeRing, faBookmark} from "@fortawesome/free-regular-svg-icons"
 import NavigationService from "@src/navigation/NavigationService"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
@@ -47,6 +47,13 @@ export const getMenuItem = async () => {
       {
         icon: faCog,
         label: "Cài đặt",
+        onPress: () => {
+          isSignIn ? alert("abc") : NavigationService.navigate("AuthStack")
+        }
+      },
+      {
+        icon: faUnlockAlt,
+        label: "Đổi mật khẩu",
         onPress: () => {
           isSignIn ? alert("abc") : NavigationService.navigate("AuthStack")
         }

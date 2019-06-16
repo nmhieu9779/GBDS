@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
   imagePostContainer: {
     margin: moderateScale(5),
     paddingLeft: moderateScale(5),
-    paddingRight: moderateScale(5)
+    paddingRight: moderateScale(5),
+    paddingTop: moderateScale(5)
   },
   imagePostItem: {
     width: WIDTH - moderateScale(20),

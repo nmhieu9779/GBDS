@@ -25,7 +25,7 @@ import MyMapView from "./my-map-view"
 import SelectTypePost from "./src/component/add-floating-button/select-type-post"
 import NavigationService from "./src/navigation/NavigationService"
 import Message from "./src/component/message"
-
+console.disableYellowBox = true
 const App = () => (
   <Provider store={store}>
     <ProcessHUD />

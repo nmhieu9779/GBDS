@@ -16,9 +16,9 @@ const TableInfo = (props) => (
     <View style={styles.infoPostTitleContainer}>
       <Text style={styles.infoPostTitleText}>{"Thông tin nhà đất"}</Text>
     </View>
-    {props.info.map(({label, content}, index) => (
-      <TableIcon key={index} label={label} content={content} />
-    ))}
+    {props.info.map(
+      (item, index) => item && <TableIcon key={index} label={item.label} content={item.content} />
+    )}
   </Card>
 )
 
@@ -27,9 +27,9 @@ const TableContact = (props) => (
     <View style={styles.infoPostTitleContainer}>
       <Text style={styles.infoPostTitleText}>{`Thông tin liên hệ`}</Text>
     </View>
-    {props.contact.map(({label, content}, index) => (
-      <TableIcon key={index} label={label} content={content} />
-    ))}
+    {props.contact.map(
+      (item, index) => item && <TableIcon key={index} label={item.label} content={item.content} />
+    )}
   </Card>
 )
 
@@ -83,6 +83,7 @@ const Menu = () => (
 )
 
 const PostDetail = (props) => {
+  console.log(props)
   return (
     <SafeAreaView style={styles.container}>
       <TopBarMenu icon={[{icon: faArrowLeft}]} title={props.name} onPress={() => props.navigation.goBack()} />
@@ -102,10 +103,10 @@ const PostDetail = (props) => {
             </View>
             {props.isUserPost && <Menu />}
           </Card>
-          <TableInfo info={props.info} />
-          <TableContact contact={props.contact} />
-          <ContentPost content={props.content} />
-          <ImagePost images={props.images} />
+          {props.info && <TableInfo info={props.info} />}
+          {props.contact && <TableContact contact={props.contact} />}
+          {props.content && <ContentPost content={props.content} />}
+          {props.images && <ImagePost images={props.images} />}
         </ScrollView>
       )}
       <View style={styles.commentContainer}>
@@ -118,48 +119,81 @@ const PostDetail = (props) => {
 
 const mapStateToProps = (state) => {
   if (state.postDetail.success) {
-    const postDetail = state.postDetail.response.content
-    const address = postDetail.property.address
-    const details = postDetail.property.details
-    const contact = postDetail.property.additionContactInfo
-    const images = postDetail.property.images
-    const floors = postDetail.property.details.floors.map((item) => ({
-      label: item.index === 0 ? `Tầng trệt` : `Tầng ${item.index}`,
-      content: `${item.room} phòng, ${item.bedroom} phòng ngủ, ${item.bathroom} toilet`
-    }))
-    return {
-      success: state.postDetail.success,
-      name: postDetail.name,
-      avatarImageUrl: postDetail.avatar,
-      createdDate: postDetail.createdDate,
-      info: [
-        {
-          label: "Địa chỉ",
-          content: `${address.number}, ${address.street.prefix} ${address.street.name}, ${
-            address.ward.prefix
-          } ${address.ward.name}, ${address.district.prefix} ${address.district.name}, ${
-            address.province.name
-          },`
-        },
-        postDetail.totalCost && {label: "Giá", content: postDetail.totalCost},
-        postDetail.property.area && {label: "Diện tích", content: postDetail.property.area},
-        details.frontSide && {label: "Mặt tiền", content: `${details.frontSide} m`},
-        details.wayIn && {label: "Đường vào", content: `${details.wayIn} m`},
-        details.direction && {label: "Hướng nhà", content: `${details.direction}`},
-        details.balconyDirection && {label: "Hướng ban công", content: `${details.balconyDirection}`},
-        ...floors,
-        details.furniture && {label: "Nội thất khác", content: `${details.furniture}`}
-      ],
-      contact: [
-        contact.name && {label: "Họ tên", content: contact.name},
-        contact.address && {label: "Địa chỉ", content: contact.address},
-        contact.phone && {label: "Di động", content: contact.phone},
-        contact.email && {label: "Email", content: contact.email}
-      ],
-      content: postDetail.description,
-      images: [...images.frontSide, ...images.wayIn, ...images.furnitures, ...images.others],
-      isUserPost:
-        state.userProfile.success && state.userProfile.userProfile.response.content.email === postDetail.user
+    if (["FOR_SALE", "FOR_RENT"].findIndex((e) => e === state.postDetail.response.type) !== -1) {
+      const postDetail = state.postDetail.response.content
+      const address = postDetail.property.address
+      const details = postDetail.property.details
+      const contact = postDetail.property.additionContactInfo
+      const images = postDetail.property.images
+      const floors = postDetail.property.details.floors.map((item) => ({
+        label: item.index === 0 ? `Tầng trệt` : `Tầng ${item.index}`,
+        content: `${item.room} phòng, ${item.bedroom} phòng ngủ, ${item.bathroom} toilet`
+      }))
+      return {
+        success: state.postDetail.success,
+        name: postDetail.name,
+        avatarImageUrl: postDetail.avatar,
+        createdDate: postDetail.createdDate,
+        info: [
+          {
+            label: "Địa chỉ",
+            content: `${address.number}, ${address.street.prefix} ${address.street.name}, ${
+              address.ward.prefix
+            } ${address.ward.name}, ${address.district.prefix} ${address.district.name}, ${
+              address.province.name
+            },`
+          },
+          postDetail.totalCost && {label: "Giá", content: postDetail.totalCost},
+          postDetail.property.area && {label: "Diện tích", content: postDetail.property.area},
+          details.frontSide && {label: "Mặt tiền", content: `${details.frontSide} m`},
+          details.wayIn && {label: "Đường vào", content: `${details.wayIn} m`},
+          details.direction && {label: "Hướng nhà", content: `${details.direction}`},
+          details.balconyDirection && {label: "Hướng ban công", content: `${details.balconyDirection}`},
+          ...floors,
+          details.furniture && {label: "Nội thất khác", content: `${details.furniture}`}
+        ],
+        contact: [
+          contact.name && {label: "Họ tên", content: contact.name},
+          contact.address && {label: "Địa chỉ", content: contact.address},
+          contact.phone && {label: "Di động", content: contact.phone},
+          contact.email && {label: "Email", content: contact.email}
+        ],
+        content: postDetail.description,
+        images: [...images.frontSide, ...images.wayIn, ...images.furnitures, ...images.others],
+        isUserPost:
+          state.userProfile.success &&
+          state.userProfile.userProfile.response.content.email === postDetail.user
+      }
+    } else if (["NEED_BUY", "NEED_RENT"].findIndex((e) => e === state.postDetail.response.type) !== -1) {
+      const postDetail = state.postDetail.response.content
+      const contact = postDetail.additionContactInfo
+      return {
+        success: state.postDetail.success,
+        name: postDetail.name,
+        avatarImageUrl: postDetail.avatar,
+        createdDate: postDetail.createdDate,
+        info: [
+          {
+            label: "Địa chỉ",
+            content: `${postDetail.district.prefix} ${postDetail.district.name}, ${postDetail.province.name},`
+          },
+          postDetail.totalCost && {
+            label: "Giá",
+            content: `${postDetail.totalCost}`
+          },
+          postDetail.area && {label: "Diện tích", content: `${postDetail.area}`}
+        ],
+        contact: [
+          contact.name && {label: "Họ tên", content: contact.name},
+          contact.address && {label: "Địa chỉ", content: contact.address},
+          contact.phone && {label: "Di động", content: contact.phone},
+          contact.email && {label: "Email", content: contact.email}
+        ],
+        content: postDetail.description,
+        isUserPost:
+          state.userProfile.success &&
+          state.userProfile.userProfile.response.content.email === postDetail.user
+      }
     }
   } else {
     return {

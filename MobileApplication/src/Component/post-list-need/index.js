@@ -78,7 +78,7 @@ const PostListNeed = ({data, onRefresh, refreshing, onPress, loadMore, totalPost
       <FlatList
         refreshing={refreshing}
         onRefresh={onRefresh.bind(this)}
-        renderItem={(item) => <Item props={item.item} />}
+        renderItem={(item) => <Item props={item.item} onPressPost={onPress.bind(this)} />}
         data={data}
         keyExtractor={keyExtractor.bind(this)}
         onEndReached={onEndReached.bind(this)}
