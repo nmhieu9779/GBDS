@@ -45,20 +45,17 @@ const Description = (props) =>
     </View>
   )
 
-const Item = memo(({props, onPressPost, onPressFollow, isFollow}) => {
-  const [follow, setFollow] = useState()
-  const onPress = () => (e) => {
-    onPressPost(props.id)
+const Item = memo(({item, onPressPost, onPressFollow, isFollow}) => {
+  const [follow, setFollow] = useState(isFollow)
+  const onPress = () => {
+    onPressPost(item.id)
   }
-  useEffect(() => {
-    setFollow(isFollow)
-  }, [])
   return (
-    <TouchableOpacity onPress={onPress()} activeOpacity={1}>
+    <TouchableOpacity onPress={onPress.bind()} activeOpacity={1}>
       <Card style={styles.postContainer}>
-        <Top postedDate={props.postedDate} title={props.title} avatar={props.avatar} />
-        <Request price={props.price} area={props.area} address={props.address} />
-        <Description description={props.description} />
+        <Top postedDate={item.postedDate} title={item.title} avatar={item.avatar} />
+        <Request price={item.price || item.priceByMonth} area={item.area} address={item.address} />
+        <Description description={item.description} />
         <BottomListPost
           onPressFollow={() => {
             setFollow(!follow)
@@ -97,11 +94,11 @@ const PostListNeed = ({
     <View style={{flex: 1}}>
       <FlatList
         refreshing={refreshing}
-        onRefresh={onRefresh.bind(this)}
+        onRefresh={onRefresh.bind()}
         renderItem={(item) => (
           <Item
-            props={item.item}
-            onPressPost={onPress.bind(this)}
+            item={item.item}
+            onPressPost={onPress.bind()}
             onPressFollow={(follow) =>
               onPressFollow({
                 email: email,
@@ -113,8 +110,8 @@ const PostListNeed = ({
           />
         )}
         data={data}
-        keyExtractor={keyExtractor.bind(this)}
-        onEndReached={onEndReached.bind(this)}
+        keyExtractor={keyExtractor.bind()}
+        onEndReached={onEndReached.bind()}
         onEndReachedThreshold={0.5}
         onMomentumScrollBegin={() => {
           onEndReachedCalledDuringMomentum = false

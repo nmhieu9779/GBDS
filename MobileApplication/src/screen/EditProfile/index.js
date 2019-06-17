@@ -38,35 +38,17 @@ const GenderInput = (props) => {
 }
 
 const EditProfile = (props) => {
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
-  const [day, setDay] = useState("")
-  const [month, setMonth] = useState("")
-  const [year, setYear] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-  const [address, setAddress] = useState("")
-  const [occupation, setOccupation] = useState("")
-  const [organization, setOrganization] = useState("")
-  const [gender, setGender] = useState("")
-
-  useEffect(() => {
-    initState()
-  }, [])
-
-  const initState = () => {
-    setName(props.name)
-    setDescription(props.description)
-    setDay(getDay(props.birthdate))
-    setMonth(getMonth(props.birthdate))
-    setYear(getYear(props.birthdate))
-    setEmail(props.email)
-    setPhone(props.phone)
-    setAddress(props.address)
-    setOccupation(props.occupation)
-    setOrganization(props.organization)
-    setGender(props.gender)
-  }
+  const [name, setName] = useState(props.name)
+  const [description, setDescription] = useState(props.description)
+  const [day, setDay] = useState(getDay(props.birthdate))
+  const [month, setMonth] = useState(getMonth(props.birthdate))
+  const [year, setYear] = useState(getYear(props.birthdate))
+  const [email, setEmail] = useState(props.email)
+  const [phone, setPhone] = useState(props.phone)
+  const [address, setAddress] = useState(props.address)
+  const [occupation, setOccupation] = useState(props.occupation)
+  const [organization, setOrganization] = useState(props.organization)
+  const [gender, setGender] = useState(props.gender)
 
   useEffect(() => {
     props.uploadImageSuccess &&

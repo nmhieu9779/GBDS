@@ -20,7 +20,11 @@ const RoomInput = ({name, onChange, onClose}) => {
   }
 
   const _onBlur = (e) => {
-    onChange({room: parseInt(roomNumber), bedRoom: parseInt(bedRoomNumber), bathRoom: parseInt(toiletNumber)})
+    onChange({
+      room: roomNumber ? parseInt(roomNumber) : 0,
+      bedRoom: bedRoomNumber ? parseInt(bedRoomNumber) : 0,
+      bathRoom: toiletNumber ? parseInt(toiletNumber) : 0
+    })
   }
 
   return (
@@ -103,7 +107,3 @@ const RoomInput = ({name, onChange, onClose}) => {
 }
 
 export default RoomInput
-
-{
-  /*  */
-}

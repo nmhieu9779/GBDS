@@ -42,16 +42,23 @@ const FloorsInfo = ({onChange}) => {
   )
 
   useEffect(() => {
-    onChange({floors: {...roomNumber}})
+    let data = roomNumber.map((item) => ({
+      description: item.description,
+      index: item.index,
+      bathRoom: item.data.bathRoom,
+      bedRoom: item.data.bedRoom,
+      room: item.data.room
+    }))
+    onChange({floors: data})
   }, [date])
 
   return (
     <>
       <FlatList
         data={roomNumber}
-        keyExtractor={_keyExtractor.bind(this)}
+        keyExtractor={_keyExtractor.bind()}
         extraData={date}
-        renderItem={_renderItem.bind(this)}
+        renderItem={_renderItem.bind()}
       />
       <TouchableOpacity
         style={styles.btnAdd}

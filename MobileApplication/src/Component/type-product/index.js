@@ -6,140 +6,154 @@ import SafeAreaView from "react-native-safe-area-view"
 import ComboBoxDetail from "@src/component/combobox-detail"
 import styles from "./styles"
 import strings from "./strings"
+import {cleanObject} from "@src/utilities/clean-object"
 
-const TypeProduct = ({
-  productType,
-  isProductType,
-  getProductType,
-  productCate,
-  isProductCate,
-  getProductCate,
-  priceUnit,
-  isPriceUnit,
-  getPriceUnit,
-  area,
-  isArea,
-  getArea,
-  price,
-  isPrice,
-  getPrice,
-  style,
-  postTypeId,
-  onChange
-}) => {
-  const [productTypeSelected, setProductTypeSelected] = useState(-1)
-  const [productCateSelected, setProductCateSelected] = useState(-1)
-  const [priceUnitSelected, setPriceUnitSelected] = useState(-1)
-  const [areaSelected, setAreaSelected] = useState(-1)
-  const [priceSelected, setPriceSelected] = useState(-1)
-
-  const [productTypeId, setProductTypeId] = useState(-1)
-  const [priceUnitId, setPriceUnitId] = useState(-1)
-
-  const [productCateType, setProductCateType] = useState("")
-
-  const [productTypeName, setProductTypeName] = useState("")
-  const [productCateName, setProductCateName] = useState("")
-  const [priceUnitName, setPriceUnitName] = useState("")
-  const [areaName, setAreaName] = useState("")
-  const [priceName, setPriceName] = useState("")
+const TypeProduct = (props) => {
+  const defaultState = {
+    id: null,
+    name: "",
+    type: null,
+    selected: -1
+  }
+  const [productType, setProductType] = useState(defaultState)
+  const [productCate, setProductCate] = useState(defaultState)
+  const [priceUnit, setPriceUnit] = useState(defaultState)
+  const [area, setArea] = useState(defaultState)
+  const [price, setPrice] = useState(defaultState)
 
   useEffect(() => {
-    productType.length === 0 && getProductType()
+    props.productType.length === 0 && props.getProductType()
   }, [])
 
   useEffect(() => {
-    // onChange({
-    //   productTypeId,
-    //   unit: priceUnitId === 0 ? "Thoả thuận" : priceUnitName,
-    //   type: productCateType
-    // })
-  }, [productTypeSelected, productCateSelected, priceUnitSelected, areaSelected, priceSelected])
+    const data = cleanObject({
+      productType: props.isProductType && productType,
+      productCate: props.isProductCate && productCate,
+      priceUnit: props.isPriceUnit && priceUnit,
+      area: props.isArea && area,
+      price: props.isPrice && price
+    })
+    props.onChange(data)
+  }, [productType, productCate, priceUnit, area, price])
 
-  const getData = (selected, postTypeId) => {
+  getData = (selected, postTypeId) => {
     switch (postTypeId) {
       case 0:
-        getProductCate({postTypeId, productTypeId: selected})
-        getArea()
-        getPrice({productTypeId: selected})
+        props.getProductCate({postTypeId, productTypeId: selected})
+        props.getArea()
+        props.getPrice({productTypeId: selected})
         break
       case 1:
-        getProductCate({postTypeId, productTypeId: selected})
-        getPriceUnit({productTypeId: selected})
+        props.getProductCate({postTypeId, productTypeId: selected})
+        props.getPriceUnit({productTypeId: selected})
+      default:
+        break
+    }
+  }
+
+  const onChangeSelected = ({id, name, type, selected, stateName}) => {
+    switch (stateName) {
+      case "TYPE":
+        setProductType({
+          ...productType,
+          id: id,
+          name: name,
+          type: type,
+          selected: selected
+        })
+        getData(selected, props.postTypeId)
+        break
+      case "CATE":
+        setProductCate({
+          ...productCate,
+          id: id,
+          name: name,
+          type: type,
+          selected: selected
+        })
+        break
+      case "UNIT":
+        setPriceUnit({
+          ...priceUnit,
+          id: id,
+          name: name,
+          type: type,
+          selected: selected
+        })
+        break
+      case "AREA":
+        setArea({
+          ...area,
+          id: id,
+          name: name,
+          type: type,
+          selected: selected
+        })
+        break
+      case "PRICE":
+        setPrice({
+          ...price,
+          id: id,
+          name: name,
+          type: type,
+          selected: selected
+        })
+        break
       default:
         break
     }
   }
 
   return (
-    <SafeAreaView style={[styles.container, style]}>
+    <SafeAreaView style={[styles.container, props.style]}>
       <ComboBoxDetail
-        is={isProductType}
-        data={productType[postTypeId]}
-        selected={productTypeSelected}
+        is={props.isProductType}
+        data={props.productType[props.postTypeId]}
+        selected={productType.selected}
         title={strings.productType.title}
         label={strings.productType.label}
-        name={productTypeName}
-        onChangeSelected={({id, name, selected}) => {
-          setProductTypeSelected(selected)
-          setProductTypeId(id)
-          setProductTypeName(name)
-          getData(selected, postTypeId)
-        }}
+        name={productType.name}
+        onChangeSelected={(e) => onChangeSelected({...e, stateName: "TYPE"})}
         enable={true}
       />
       <ComboBoxDetail
-        is={isProductCate}
-        data={productCate}
-        selected={productCateSelected}
+        is={props.isProductCate}
+        data={props.productCate}
+        selected={productCate.selected}
         title={strings.productCate.title}
         label={strings.productCate.label}
-        name={productCateName}
-        onChangeSelected={({name, type, selected}) => {
-          setProductCateSelected(selected)
-          setProductCateName(name)
-          setProductCateType(type)
-        }}
+        name={productCate.name}
+        onChangeSelected={(e) => onChangeSelected({...e, stateName: "CATE"})}
         enable={true}
       />
       <ComboBoxDetail
-        is={isPriceUnit}
+        is={props.isPriceUnit}
         style={{}}
-        data={priceUnit}
-        selected={priceUnitSelected}
-        name={priceUnitName}
+        data={props.priceUnit}
+        selected={priceUnit.selected}
+        name={priceUnit.name}
         title={strings.priceUnit.title}
-        onChangeSelected={({id, name, selected}) => {
-          setPriceUnitSelected(selected)
-          setPriceUnitName(name)
-          setPriceUnitId(id)
-        }}
+        onChangeSelected={(e) => onChangeSelected({...e, stateName: "UNIT"})}
         enable={true}
       />
       <ComboBoxDetail
-        is={isArea}
-        data={area}
-        selected={areaSelected}
+        is={props.isArea}
+        data={props.area}
+        selected={area.selected}
         title={strings.area.title}
         label={strings.area.label}
-        name={areaName}
-        onChangeSelected={({name, selected}) => {
-          setAreaSelected(selected)
-          setAreaName(name)
-        }}
+        name={area.name}
+        onChangeSelected={(e) => onChangeSelected({...e, stateName: "AREA"})}
         enable={true}
       />
       <ComboBoxDetail
-        is={isPrice}
-        data={price}
-        selected={priceSelected}
+        is={props.isPrice}
+        data={props.price}
+        selected={price.selected}
         title={strings.price.title}
         label={strings.price.label}
-        name={priceName}
-        onChangeSelected={({name, selected}) => {
-          setPriceSelected(selected)
-          setPriceName(name)
-        }}
+        name={price.name}
+        onChangeSelected={(e) => onChangeSelected({...e, stateName: "PRICE"})}
         enable={true}
       />
     </SafeAreaView>

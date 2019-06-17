@@ -9,9 +9,14 @@ const Step2 = ({onChangeData}) => {
   const [value, setValue] = useState("")
 
   const pushData = () =>
-    onChangeData({
-      description: value
-    })
+    onChangeData(
+      {
+        step2: {
+          description: value
+        }
+      },
+      [value]
+    )
 
   return (
     <SafeAreaView style={styles.container}>

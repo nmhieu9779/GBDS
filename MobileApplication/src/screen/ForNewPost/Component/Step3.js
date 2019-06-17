@@ -18,11 +18,13 @@ const Step3 = ({onChangeData}) => {
 
   useEffect(() => {
     onChangeData({
-      ...floorsInfo,
-      wayIn: parseInt(landWidth),
-      frontSide: parseInt(widthState),
-      furniture: other,
-      ...direction
+      step3: {
+        ...floorsInfo,
+        landWidth: parseInt(landWidth),
+        widthState: parseInt(widthState),
+        other: other,
+        direction
+      }
     })
   }, [widthState, landWidth, other, floorsInfo, direction])
 

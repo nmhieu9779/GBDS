@@ -23,7 +23,8 @@ const mapStateToProps = ({
   newFeedNeedRent,
   userProfile,
   editProfile,
-  postDetail
+  postDetail,
+  postFor
 }) => ({
   loading:
     auth.signIn.loading ||
@@ -42,7 +43,9 @@ const mapStateToProps = ({
     editProfile.editProfile.loading ||
     editProfile.changePassword.loading ||
     postDetail.postDetail.loading ||
-    postDetail.interactivePost.loading
+    postDetail.interactivePost.loading ||
+    postFor.postFor.loading ||
+    postFor.uploadPostFor.loading
 })
 
 const ProcessHUDContainer = connect(mapStateToProps)(ProcessHUD)

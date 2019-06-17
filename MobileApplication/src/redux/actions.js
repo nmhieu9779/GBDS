@@ -202,6 +202,24 @@ const interactivePostSuccess = (response) => ({type: ACTION_INTERACTIVE_POST_SUC
 const ACTION_INTERACTIVE_POST_FAILURE = `[DETAIL POST] INTERACTIVE_FAILURE`
 const interactivePostFailure = (error) => ({type: ACTION_INTERACTIVE_POST_FAILURE, error})
 
+const ACTION_UPLOAD_POST_FOR = `[POST FOR] UPLOAD_POST_FOR`
+const uploadPostFor = (params) => ({type: ACTION_UPLOAD_POST_FOR, params})
+
+const ACTION_UPLOAD_POST_FOR_SUCCESS = `[POST FOR] UPLOAD_POST_FOR_SUCCESS`
+const uploadPostForSuccess = (response) => ({type: ACTION_UPLOAD_POST_FOR_SUCCESS, response})
+
+const ACTION_UPLOAD_POST_FOR_FAILURE = `[POST FOR] UPLOAD_POST_FOR_FAILURE`
+const uploadPostForFailure = (error) => ({type: ACTION_UPLOAD_POST_FOR_FAILURE, error})
+
+const ACTION_POST_FOR = `[POST FOR] POST_FOR`
+const postFor = (params) => ({type: ACTION_POST_FOR, params})
+
+const ACTION_POST_FOR_SUCCESS = `[POST FOR] POST_FOR_SUCCESS`
+const postForSuccess = (response) => ({type: ACTION_POST_FOR_SUCCESS, response})
+
+const ACTION_POST_FOR_FAILURE = `[POST FOR] POST_FOR_FAILURE`
+const postForFailure = (error) => ({type: ACTION_POST_FOR_FAILURE, error})
+
 export const SHOW_MESSAGE = `SHOW_MESSAGE`
 export const UN_SHOW_MESSAGE = `UN_SHOW_MESSAGE`
 
@@ -351,5 +369,18 @@ export {
   ACTION_INTERACTIVE_POST_FAILURE,
   interactivePost,
   interactivePostSuccess,
-  interactivePostFailure
+  interactivePostFailure,
+  //Post For
+  ACTION_UPLOAD_POST_FOR,
+  ACTION_UPLOAD_POST_FOR_SUCCESS,
+  ACTION_UPLOAD_POST_FOR_FAILURE,
+  uploadPostFor,
+  uploadPostForSuccess,
+  uploadPostForFailure,
+  ACTION_POST_FOR,
+  ACTION_POST_FOR_SUCCESS,
+  ACTION_POST_FOR_FAILURE,
+  postFor,
+  postForSuccess,
+  postForFailure
 }

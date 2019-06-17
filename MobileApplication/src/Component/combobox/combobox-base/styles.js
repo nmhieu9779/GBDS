@@ -2,6 +2,7 @@ import {StyleSheet} from "react-native"
 import {moderateScale} from "@src/utilities/scale"
 
 const styles = StyleSheet.create({
+  modalContainer: {justifyContent: "flex-end", margin: 0},
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -23,10 +24,6 @@ const styles = StyleSheet.create({
   },
   container_item: {
     backgroundColor: "white"
-  },
-  area_tranparent_item: {
-    backgroundColor: "rgba(0, 0, 0, 0.25)",
-    flex: 1
   },
   itemContainer_item: {
     height: moderateScale(40),

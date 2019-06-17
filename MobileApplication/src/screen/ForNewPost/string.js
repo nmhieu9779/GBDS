@@ -123,6 +123,6 @@ export const stringStep7 = {
       type: CODE_VIP.VIP_S2
     }
   ],
-  dayPrice: ["1 nghìn 727 đồng/Ngày", "27 nghìn 272 đồng/Ngày", "50 nghìn/Ngày", "68 nghìn 181 đồng/Ngày"],
+  dayPrice: ["1 nghìn 727 đồng/Ngày", "68 nghìn 181 đồng/Ngày", "50 nghìn/Ngày", "27 nghìn 272 đồng/Ngày"],
   dayPriceInt: [1727, 27272, 50000, 68181]
 }

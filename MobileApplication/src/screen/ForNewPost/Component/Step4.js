@@ -8,7 +8,7 @@ import SafeAreaView from "react-native-safe-area-view"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faImages} from "@fortawesome/free-regular-svg-icons"
 
-const Step4 = ({onChangeData}) => {
+const Step4 = ({images, onChangeData, onUpload}) => {
   const [data, setData] = useState([{isSelected: true}])
 
   const selectPhotoTapped = () => {
@@ -27,11 +27,14 @@ const Step4 = ({onChangeData}) => {
   }
   const handleResponse = ({type, uri}) => {
     let formData = new FormData()
-    formData.append("image", {
+    formData.append("files", {
       uri: uri,
       name: `${Date.parse(new Date())}${editContentType(type)}`,
       type: type
     })
+    formData.append("floor", "-1")
+    formData.append("uploadAs", "PROPERTY_IMAGES_OTHERS")
+    onUpload(formData)
   }
 
   return (
@@ -41,19 +44,14 @@ const Step4 = ({onChangeData}) => {
         <Text style={styles.note}>{string.note}</Text>
         <Text style={styles.suggest}>{string.suggest}</Text>
         <View style={styles.imageContainer}>
-          {data.map(
-            (item, index) =>
-              (item.isSelected && (
-                <TouchableOpacity
-                  key={index}
-                  style={[styles.image, styles.center, styles.border]}
-                  onPress={selectPhotoTapped.bind(this)}>
-                  <FontAwesomeIcon size={50} icon={faImages} color={"#C9D9CB"} />
-                  <Text>{string.image}</Text>
-                </TouchableOpacity>
-              )) ||
-              (item.uri && <Image key={index} style={styles.image} source={{uri: item.uri}} />)
-          )}
+          {images &&
+            images.map((item, index) => <Image key={index} style={styles.image} source={{uri: item}} />)}
+          <TouchableOpacity
+            style={[styles.image, styles.center, styles.border]}
+            onPress={selectPhotoTapped.bind(this)}>
+            <FontAwesomeIcon size={50} icon={faImages} color={"#C9D9CB"} />
+            <Text>{string.image}</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>

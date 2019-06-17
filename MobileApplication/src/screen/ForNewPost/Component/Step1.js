@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useRef} from "react"
 import {Text, View, TextInput, ScrollView, TouchableWithoutFeedback} from "react-native"
 import TextInputCustom from "@src/component/text-input-custom"
 import Header from "@src/component/header-post"
@@ -13,28 +13,30 @@ const Step1 = ({onChangeData}) => {
   const [productTitle, setProductTitle] = useState("")
   const [area, setArea] = useState("")
   const [price, setPrice] = useState("")
-  const [addressId, setAddressId] = useState({})
-  const [typeProductId, setTypeProductId] = useState({})
+  const [address, setAddress] = useState(null)
+  const [typeProduct, setTypeProduct] = useState(null)
   const [addressName, setAddressName] = useState("")
   const [homeNumber, setHomeNumber] = useState("")
-  let textInputAddress = React.createRef()
+  let textInputAddress = useRef(null)
 
   useEffect(() => {
     pushData()
-  }, [productTitle, area, price, addressId, homeNumber, typeProductId])
+  }, [productTitle, area, price, address, homeNumber, typeProduct])
 
   const pushData = () =>
     onChangeData({
-      name: productTitle,
-      number: homeNumber,
-      ...addressId,
-      area: parseInt(area),
-      ...typeProductId,
-      totalCost: parseInt(price)
+      step1: {
+        productTitle: productTitle,
+        homeNumber: homeNumber,
+        address,
+        area: parseInt(area),
+        typeProduct,
+        price: parseInt(price)
+      }
     })
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Header text={string.header} />
       <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         <TextInputCustom
@@ -48,8 +50,8 @@ const Step1 = ({onChangeData}) => {
           isProductType={true}
           isProductCate={true}
           postTypeId={1}
-          onChange={({productTypeId, type}) => {
-            setTypeProductId({...typeProductId, productTypeId, type})
+          onChange={(data) => {
+            setTypeProduct({...typeProduct, ...data})
           }}
         />
         <AddressInput
@@ -57,9 +59,9 @@ const Step1 = ({onChangeData}) => {
           isDistrict={true}
           isWard={true}
           isStreet={true}
-          onChangeAddress={({address, name}) => {
-            setAddressId(address)
-            setAddressName(name)
+          onChangeAddress={(e) => {
+            setAddress({...address, ...e.data})
+            setAddressName(e.name)
           }}
         />
         <TextInputCustom
@@ -79,8 +81,8 @@ const Step1 = ({onChangeData}) => {
           <TypeProduct
             isPriceUnit={true}
             style={styles.price}
-            onChange={({unit}) => {
-              setTypeProductId({...typeProductId, unit})
+            onChange={(data) => {
+              setTypeProduct({...typeProduct, ...data})
             }}
           />
         </TextInputCustom>
@@ -106,7 +108,7 @@ const Step1 = ({onChangeData}) => {
           </TouchableWithoutFeedback>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }
 export default Step1

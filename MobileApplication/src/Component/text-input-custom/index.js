@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from "react"
-import {Platform, TextInput, Animated, TouchableWithoutFeedback} from "react-native"
-import SafeAreaView from "react-native-safe-area-view"
+import React, {useState, useEffect, useRef} from "react"
+import {Platform, TextInput, Animated, TouchableWithoutFeedback, View} from "react-native"
 import styles from "./styles"
 
 const TextInputCustom = ({
@@ -15,9 +14,9 @@ const TextInputCustom = ({
   width,
   marginBottom
 }) => {
-  const [focusedAnim] = useState(new Animated.Value(0))
+  const [focusedAnim] = useState(() => (value ? new Animated.Value(1) : new Animated.Value(0)))
 
-  let textInput = React.createRef()
+  let textInput = useRef(null)
 
   const focus = () => editable && textInput.current.focus()
 
@@ -31,12 +30,8 @@ const TextInputCustom = ({
     }).start()
   }
 
-  useEffect(() => {
-    value && _toggle(true)
-  }, [value])
-
   return (
-    <SafeAreaView style={[styles.container, {width, marginBottom: marginBottom}]}>
+    <View style={[styles.container, {width, marginBottom: marginBottom}]}>
       <TouchableWithoutFeedback onPress={focus.bind(this)}>
         <Animated.View
           style={[
@@ -98,7 +93,7 @@ const TextInputCustom = ({
           }
         ]}
       />
-    </SafeAreaView>
+    </View>
   )
 }
 
