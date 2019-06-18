@@ -1,8 +1,7 @@
 import React, {useState, useEffect, useRef} from "react"
-import {Text, View, TextInput, ScrollView, TouchableWithoutFeedback} from "react-native"
+import {Text, View, TextInput, ScrollView, TouchableWithoutFeedback, Platform} from "react-native"
 import TextInputCustom from "@src/component/text-input-custom"
 import Header from "@src/component/header-post"
-import SafeAreaView from "react-native-safe-area-view"
 import AddressInput from "@src/component/address-input"
 import TypeProduct from "@src/component/type-product"
 import {step1 as styles} from "../styles"
@@ -86,10 +85,6 @@ const Step1 = ({onChangeData}) => {
             }}
           />
         </TextInputCustom>
-        {/* <View style={styles.priceContainer}>
-          <Text style={styles.priceTitle}>{string.priceTitle}</Text>
-          <Text style={styles.priceContent}>100000</Text>
-        </View> */}
         <View style={styles.addressContainer}>
           <Text style={styles.addressTitle}>{string.addressTitle}</Text>
           <TouchableWithoutFeedback onPress={() => textInputAddress.current.focus()}>
@@ -99,6 +94,14 @@ const Step1 = ({onChangeData}) => {
                 multiline={true}
                 value={homeNumber}
                 onChangeText={(text) => setHomeNumber(text)}
+                style={{
+                  ...Platform.select({
+                    android: {
+                      paddingTop: 0,
+                      paddingBottom: 0
+                    }
+                  })
+                }}
               />
               <Text style={styles.addressName}>
                 {homeNumber && ", "}

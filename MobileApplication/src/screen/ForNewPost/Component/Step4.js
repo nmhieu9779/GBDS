@@ -7,6 +7,7 @@ import ImagePicker from "react-native-image-picker"
 import SafeAreaView from "react-native-safe-area-view"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faImages} from "@fortawesome/free-regular-svg-icons"
+import ImageResizer from "react-native-image-resizer"
 
 const Step4 = ({images, onChangeData, onUpload}) => {
   const [data, setData] = useState([{isSelected: true}])

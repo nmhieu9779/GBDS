@@ -16,9 +16,9 @@ function* uploadPostFor(action) {
 
 function* postFor(action) {
   const response = yield call(service.postFor, action.params)
-  debugger
-  if (response.status === 200) {
+  if (response.status === 201) {
     yield put(actions.postForSuccess(response.data))
+    showToast("Đăng bài viết thành công.", "#ffffff", "#0EA854")
   } else {
     yield put(actions.postForFailure(response.response.data))
   }

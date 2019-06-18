@@ -45,7 +45,7 @@ const HomeStack = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "NewFeedForSale",
+    initialRouteName: "ForNewPost",
     tabBarComponent: TabBarBottom
   }
 )

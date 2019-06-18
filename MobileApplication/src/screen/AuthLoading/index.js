@@ -36,12 +36,12 @@ class AuthLoading extends PureComponent {
       this.props.getUriAvatar({email: this.props.email})
     }
     if (prevProps.loading !== this.props.loading && !this.props.loading) {
-      this.props.newUser &&
-        this.props.onShowMessage({
-          typeMessage: `WARNING_DIALONG`,
-          message:
-            "Bạn chưa câp nhập thông tin cá nhân, vui lòng cập nhập thông tin cá nhân để được sử dụng đầy đủ chức năng nhất"
-        })
+      // this.props.newUser &&
+      //   this.props.onShowMessage({
+      //     typeMessage: `WARNING_DIALONG`,
+      //     message:
+      //       "Bạn chưa câp nhập thông tin cá nhân, vui lòng cập nhập thông tin cá nhân để được sử dụng đầy đủ chức năng nhất"
+      //   })
       this.props.navigation.navigate("HomeStack")
     }
   }

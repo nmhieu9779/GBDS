@@ -46,10 +46,10 @@ const ForNewPost = (props) => {
       priority: dataPost.step7.vipType.type,
       property: {
         additionContactInfo: {
-          address: dataPost.step6.address,
-          email: dataPost.step6.email,
-          name: dataPost.step6.name,
-          phone: dataPost.step6.phoneNumber
+          address: dataPost.step6.address || props.step6.address,
+          email: dataPost.step6.email || props.step6.email,
+          name: dataPost.step6.name || props.step6.name,
+          phone: dataPost.step6.phoneNumber || props.step6.phone
         },
         address: {
           district: dataPost.step1.address.district.id,
@@ -75,68 +75,10 @@ const ForNewPost = (props) => {
         type: dataPost.step1.typeProduct.productCate.type
       },
       state: "OPEN",
-      totalCost: dataPost.step1.price,
+      totalCost: parseInt(dataPost.step1.price),
       unit: dataPost.step1.typeProduct.name,
       user: props.email
     }
-    // const data = {
-    //   description: "Ndiwbc",
-    //   id: id,
-    //   name: "Hiếu bán nhà :3",
-    //   priority: "VIP_S0",
-    //   property: {
-    //     additionContactInfo: {
-    //       address: "Bla vla",
-    //       email: "hieu@a.b",
-    //       name: "Nguyễn minh hiếu",
-    //       phone: "0706216519"
-    //     },
-    //     address: {
-    //       district: 3,
-    //       number: "15/2",
-    //       project: "",
-    //       province: 1,
-    //       street: 1099,
-    //       ward: 29
-    //     },
-    //     area: 16,
-    //     details: {
-    //       balconyDirection: "Tây",
-    //       direction: "Đông",
-    //       elevator: true,
-    //       floors: [
-    //         {
-    //           description: "Tầng trệt",
-    //           index: 0,
-    //           bathRoom: 2,
-    //           bedRoom: 1,
-    //           room: 8
-    //         },
-    //         {
-    //           description: "Tầng 1",
-    //           index: 1,
-    //           bathRoom: 0,
-    //           bedRoom: 1,
-    //           room: 5
-    //         }
-    //       ],
-    //       frontSide: 11,
-    //       furniture: "K cóa",
-    //       wayIn: 12
-    //     },
-    //     images: {
-    //       others: [
-    //         "https://s3-ap-southeast-1.amazonaws.com/t-grre-storage/617d1389-4afd-4427-a…fc49c6246/property/images/others/25f463e5-8b10-4254-8736-79b54429331c.jpeg",
-    //         "https://s3-ap-southeast-1.amazonaws.com/t-grre-storage/617d1389-4afd-4427-a…fc49c6246/property/images/others/25ec70d5-f66d-49f9-9d67-c3da77faf6ba.jpeg",
-    //         "https://s3-ap-southeast-1.amazonaws.com/t-grre-storage/617d1389-4afd-4427-a…fc49c6246/property/images/others/1f7b9b32-020b-4b58-87e2-05383ebff272.jpeg",
-    //         "https://s3-ap-southeast-1.amazonaws.com/t-grre-storage/617d1389-4afd-4427-a…fc49c6246/property/images/others/dae68518-8e75-46ab-9ecf-34359344a74d.jpeg"
-    //       ]
-    //     },
-    //     type: "OFFICE"
-    //   },
-    //   state: "OPEN",
-    //   totalCost: 50
-    // }
     props.postFor({body: data, type: dataPost.step1.typeProduct.productType.id === 2 ? "SALE" : "RENT"})
   }
 
@@ -190,7 +132,7 @@ const mapStateToProps = (state) => {
     step4: {
       images: state.postFor.uploadPostFor.response && state.postFor.uploadPostFor.response.content
     },
-    email: userProfile.phone
+    email: state.auth.signIn.success && state.auth.signIn.response.email
   }
 }
 
