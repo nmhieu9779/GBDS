@@ -1,4 +1,4 @@
-import React, {memo, useState, useEffect} from "react"
+import React, {memo, useState} from "react"
 import {Text, View, FlatList, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import AvatarCirCle from "@src/component/avatar-circle"

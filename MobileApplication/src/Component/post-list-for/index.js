@@ -1,10 +1,11 @@
-import React, {memo, useState, useEffect} from "react"
-import {Text, View, FlatList, Image, TouchableOpacity} from "react-native"
+import React, {memo, useState} from "react"
+import {Text, View, FlatList, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import BottomListPost from "@src/component/bottom-list-post"
 import AvatarCirCle from "@src/component/avatar-circle"
 import Card from "@src/component/card"
 import {CODE_VIP} from "@src/common/typeCode"
+import FastImage from "react-native-fast-image"
 
 const PRIORITY_NORMAL = [CODE_VIP.X_NORMAL, CODE_VIP.VIP_S2]
 
@@ -58,7 +59,7 @@ const Images = (props) => {
     (props.images.length !== 0 && (
       <View>
         <PriceArea price={props.price} area={props.area} />
-        <Image
+        <FastImage
           style={styles.image}
           source={{uri: props.images[parseInt(Math.random() * props.images.length)]}}
         />

@@ -1,7 +1,7 @@
 import React from "react"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
-import {View, Text, Image, ScrollView, TouchableOpacity, TextInput} from "react-native"
+import {View, Text, ScrollView, TouchableOpacity, TextInput} from "react-native"
 import SafeAreaView from "react-native-safe-area-view"
 import TopBarMenu from "@src/component/top-bar-menu"
 import {faArrowLeft, faBookmark} from "@fortawesome/free-solid-svg-icons"
@@ -10,6 +10,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
 import AvatarCirCle from "@src/component/avatar-circle"
 import Card from "@src/component/card"
+import FastImage from "react-native-fast-image"
 
 const TableInfo = (props) => (
   <Card style={styles.infoPostContainer}>
@@ -54,7 +55,7 @@ const ContentPost = (props) => (
 const ImagePost = (props) => (
   <Card style={styles.imagePostContainer}>
     {props.images.map((uri, index) => (
-      <Image key={index} style={styles.imagePostItem} source={{uri: uri}} />
+      <FastImage key={index} style={styles.imagePostItem} source={{uri: uri}} />
     ))}
   </Card>
 )

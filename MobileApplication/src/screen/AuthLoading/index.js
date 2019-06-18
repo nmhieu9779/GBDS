@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react"
-import {StyleSheet, View, Image} from "react-native"
+import {StyleSheet, View} from "react-native"
 import {images} from "@src/common/images"
 import {WIDTH} from "@src/utilities/scale"
 import {connect} from "react-redux"
@@ -7,6 +7,7 @@ import {bindActionCreators} from "redux"
 import {fetchPostForSale, getUserProfile, getUriAvatar, getInfoSignIn} from "@src/redux/actions"
 import {onShowMessage} from "@src/component/message/redux/actions"
 import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
+import FastImage from "react-native-fast-image"
 
 class AuthLoading extends PureComponent {
   constructor(props) {
@@ -49,7 +50,7 @@ class AuthLoading extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
-        <Image resizeMode={"contain"} style={{width: WIDTH - 20}} source={images.logo} />
+        <FastImage resizeMode={"contain"} style={{width: WIDTH - 20}} source={images.logo} />
       </View>
     )
   }

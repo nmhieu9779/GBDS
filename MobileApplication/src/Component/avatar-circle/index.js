@@ -1,9 +1,10 @@
 import React from "react"
-import {Image, TouchableOpacity} from "react-native"
+import {TouchableOpacity} from "react-native"
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {moderateScale} from "@src/utilities/scale"
 import ImagePicker from "react-native-image-picker"
+import FastImage from "react-native-fast-image"
 
 const AvatarCirCle = (props) => {
   const selectPhotoTapped = () => {
@@ -22,7 +23,7 @@ const AvatarCirCle = (props) => {
         props.enableEdit && selectPhotoTapped()
       }}>
       {props.avatarImageUrl ? (
-        <Image
+        <FastImage
           style={{
             width: moderateScale(props.size),
             height: moderateScale(props.size),
