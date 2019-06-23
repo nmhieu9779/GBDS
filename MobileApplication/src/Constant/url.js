@@ -37,6 +37,13 @@ export const URL_GET_DETAIL_POST_NEED_RENT = `${URL_REMNG}/api/v1/rent-demand-po
 
 export const URL_FOLLOW_POST = `${URL_REMNG}/api/v1/posts/subscribe`
 export const URL_UN_FOLLOW_POST = `${URL_REMNG}/api/v1/posts/unsubscribe`
+export const URL_CLOSE_POST = `${URL_REMNG}/api/v1/posts/close`
+export const URL_OPEN_POST = `${URL_REMNG}/api/v1/posts/open`
+
+export const URL_DELETE_POST_FOR_SALE = `${URL_REMNG}/api/v1/for-sale-posts`
+export const URL_DELETE_POST_FOR_RENT = `${URL_REMNG}/api/v1/for-rent-posts`
+export const URL_DELETE_POST_NEED_BUY = `${URL_REMNG}/api/v1/buy-demand-posts`
+export const URL_DELETE_POST_NEED_RENT = `${URL_REMNG}/api/v1/rent-demand-posts`
 
 export const URL_UPLOAD_POST_FOR = `${URL_REMNG}/api/v1/file-upload`
 export const URL_POST_FOR_SALE = `${URL_REMNG}/api/v1/for-sale-posts`

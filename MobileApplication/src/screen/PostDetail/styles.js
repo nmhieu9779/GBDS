@@ -79,31 +79,45 @@ const styles = StyleSheet.create({
   },
   imagePostItem: {
     width: scale.WIDTH - scale.moderateScale(20),
-    height: 500,
+    height: scale.moderateScale(500),
     overflow: "hidden",
     marginBottom: scale.moderateScale(5)
   },
   commentContainer: {
-    padding: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
+    padding: scale.moderateScale(5),
+    paddingLeft: scale.moderateScale(10),
+    paddingRight: scale.moderateScale(10),
     flexDirection: "row",
     alignItems: "center"
   },
   textInputComment: {
     backgroundColor: "#E8ECEF",
-    height: 30,
-    borderRadius: 15,
+    height: scale.moderateScale(30),
+    borderRadius: scale.moderateScale(15),
     padding: 0,
-    paddingLeft: 5,
-    paddingRight: 5,
+    paddingLeft: scale.moderateScale(5),
+    paddingRight: scale.moderateScale(5),
     flex: 1
   },
-  iconComment: {marginLeft: 5},
-  menuContainer: {flexDirection: "row", marginBottom: 5, marginLeft: 5},
-  menuItemContainer: {alignItems: "center", marginRight: 5},
-  menuItem: {flexDirection: "row", borderRadius: 5, backgroundColor: "#2E75ED", padding: 5},
-  menuItemText: {color: "white", marginLeft: 3}
+  iconComment: {marginLeft: scale.moderateScale(5)},
+  menuContainer: {
+    flexDirection: "row",
+    marginBottom: scale.moderateScale(5),
+    marginLeft: scale.moderateScale(5),
+    flexWrap: "wrap"
+  },
+  menuItemContainer: {
+    alignItems: "center",
+    marginRight: scale.moderateScale(5),
+    marginBottom: scale.moderateScale(5)
+  },
+  menuItem: {
+    flexDirection: "row",
+    borderRadius: scale.moderateScale(5),
+    backgroundColor: "#2E75ED",
+    padding: scale.moderateScale(5)
+  },
+  menuItemText: {color: "white", marginLeft: scale.moderateScale(3)}
 })
 
 export default styles

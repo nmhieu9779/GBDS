@@ -202,6 +202,36 @@ const interactivePostSuccess = (response) => ({type: ACTION_INTERACTIVE_POST_SUC
 const ACTION_INTERACTIVE_POST_FAILURE = `[DETAIL POST] INTERACTIVE_FAILURE`
 const interactivePostFailure = (error) => ({type: ACTION_INTERACTIVE_POST_FAILURE, error})
 
+const ACTION_CLOSE_POST = `[DETAIL POST] CLOSE_POST`
+const closePost = (params) => ({type: ACTION_CLOSE_POST, params})
+
+const ACTION_CLOSE_POST_SUCCESS = `[DETAIL POST] CLOSE_POST_SUCCESS`
+const closePostSuccess = (response) => ({type: ACTION_CLOSE_POST_SUCCESS, response})
+
+const ACTION_CLOSE_POST_FAILURE = `[DETAIL POST] CLOSE_POST_FAILURE`
+const closePostFailure = (error) => ({type: ACTION_CLOSE_POST_FAILURE, error})
+
+const ACTION_OPEN_POST = `[DETAIL POST] OPEN_POST`
+const openPost = (params) => ({type: ACTION_OPEN_POST, params})
+
+const ACTION_OPEN_POST_SUCCESS = `[DETAIL POST] OPEN_POST_SUCCESS`
+const openPostSuccess = (response) => ({type: ACTION_OPEN_POST_SUCCESS, response})
+
+const ACTION_OPEN_POST_FAILURE = `[DETAIL POST] OPEN_POST_FAILURE`
+const openPostFailure = (error) => ({type: ACTION_OPEN_POST_FAILURE, error})
+
+const ACTION_DELETE_POST = `[DETAIL POST] DELETE_POST`
+const deletePost = (params) => ({type: ACTION_DELETE_POST, params})
+
+const ACTION_DELETE_POST_SUCCESS = `[DETAIL POST] DELETE_POST_SUCCESS`
+const deletePostSuccess = (response) => ({type: ACTION_DELETE_POST_SUCCESS, response})
+
+const ACTION_DELETE_POST_FAILURE = `[DETAIL POST] DELETE_POST_FAILURE`
+const deletePostFailure = (error) => ({type: ACTION_DELETE_POST_FAILURE, error})
+
+const ACTION_RESET_POST_DETAIL = `[DETAIL POST] RESET_POST_DETAIL`
+const resetPostDetail = () => ({type: ACTION_RESET_POST_DETAIL})
+
 const ACTION_UPLOAD_POST_FOR = `[POST FOR] UPLOAD_POST_FOR`
 const uploadPostFor = (params) => ({type: ACTION_UPLOAD_POST_FOR, params})
 
@@ -394,6 +424,26 @@ export {
   interactivePost,
   interactivePostSuccess,
   interactivePostFailure,
+  ACTION_CLOSE_POST,
+  ACTION_CLOSE_POST_SUCCESS,
+  ACTION_CLOSE_POST_FAILURE,
+  closePost,
+  closePostSuccess,
+  closePostFailure,
+  ACTION_OPEN_POST,
+  ACTION_OPEN_POST_SUCCESS,
+  ACTION_OPEN_POST_FAILURE,
+  openPost,
+  openPostSuccess,
+  openPostFailure,
+  ACTION_DELETE_POST,
+  ACTION_DELETE_POST_SUCCESS,
+  ACTION_DELETE_POST_FAILURE,
+  deletePost,
+  deletePostSuccess,
+  deletePostFailure,
+  ACTION_RESET_POST_DETAIL,
+  resetPostDetail,
   //Post For
   ACTION_UPLOAD_POST_FOR,
   ACTION_UPLOAD_POST_FOR_SUCCESS,

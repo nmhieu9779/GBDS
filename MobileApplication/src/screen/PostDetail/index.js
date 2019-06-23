@@ -1,10 +1,10 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import {View, Text, ScrollView, TouchableOpacity, TextInput} from "react-native"
 import SafeAreaView from "react-native-safe-area-view"
 import TopBarMenu from "@src/component/top-bar-menu"
-import {faArrowLeft, faBookmark} from "@fortawesome/free-solid-svg-icons"
+import {faArrowLeft, faBookmark, faLockOpen, faLock, faTrash} from "@fortawesome/free-solid-svg-icons"
 import {faShareSquare, faEdit, faClock, faUser, faPaperPlane} from "@fortawesome/free-regular-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
@@ -12,7 +12,7 @@ import AvatarCirCle from "@src/component/avatar-circle"
 import Card from "@src/component/card"
 import FastImage from "react-native-fast-image"
 import {NavigationActions} from "react-navigation"
-import {postNeed, postFor} from "@src/redux/actions"
+import {postNeed, postFor, closePost, openPost, deletePost, resetPostDetail} from "@src/redux/actions"
 import {date} from "@src/utilities"
 
 const TableInfo = (props) => (
@@ -77,6 +77,20 @@ const Menu = (props) => (
         <Text style={styles.menuItemText}>{"Đăng lại"}</Text>
       </View>
     </TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => (props.isOpen ? props.closePost() : props.openPost())}
+      style={styles.menuItemContainer}>
+      <View style={styles.menuItem}>
+        <FontAwesomeIcon color={"white"} icon={props.isOpen ? faLock : faLockOpen} />
+        <Text style={styles.menuItemText}>{props.isOpen ? "Đóng bài viết" : "Mở bài viết"}</Text>
+      </View>
+    </TouchableOpacity>
+    <TouchableOpacity onPress={props.deletePost.bind()} style={styles.menuItemContainer}>
+      <View style={styles.menuItem}>
+        <FontAwesomeIcon color={"white"} icon={faTrash} />
+        <Text style={styles.menuItemText}>{"Xoá bài viết"}</Text>
+      </View>
+    </TouchableOpacity>
     <TouchableOpacity style={styles.menuItemContainer}>
       <View style={styles.menuItem}>
         <FontAwesomeIcon color={"white"} icon={faUser} />
@@ -87,6 +101,13 @@ const Menu = (props) => (
 )
 
 const PostDetail = (props) => {
+  useEffect(() => {
+    if (props.actionSuccess) {
+      props.navigation.goBack()
+      props.resetPostDetail()
+    }
+  }, [props.actionSuccess])
+
   return (
     <SafeAreaView style={styles.container}>
       <TopBarMenu icon={[{icon: faArrowLeft}]} title={props.name} onPress={() => props.navigation.goBack()} />
@@ -130,6 +151,19 @@ const PostDetail = (props) => {
                         type: props.fieldx.step1.typeProduct.productType.type,
                         isNew: false
                       })
+                }
+                isOpen={props.isOpen}
+                closePost={() => {
+                  props.closePost({id: props.id})
+                }}
+                openPost={() => {
+                  props.openPost({id: props.id})
+                }}
+                deletePost={() =>
+                  props.deletePost({
+                    id: props.id,
+                    type: `${props.postType}_${props.fieldx.step1.typeProduct.productType.type}`
+                  })
                 }
               />
             )}
@@ -199,7 +233,12 @@ const mapStateToProps = (state) => {
         screen: "ForNewPost",
         postType: "FOR",
         fieldx: postDetail.fieldx && {...JSON.parse(postDetail.fieldx), step: 0},
-        id: postDetail.id
+        id: postDetail.id,
+        isOpen: postDetail.state === "OPEN",
+        actionSuccess:
+          state.postDetail.closePost.success ||
+          state.postDetail.openPost.success ||
+          state.postDetail.deletePost.success
       }
     } else if (
       ["NEED_BUY", "NEED_RENT"].findIndex((e) => e === state.postDetail.postDetail.response.type) !== -1
@@ -235,7 +274,12 @@ const mapStateToProps = (state) => {
         screen: "NeedNewPost",
         postType: "NEED",
         fieldx: postDetail.fieldx && {...JSON.parse(postDetail.fieldx), id: postDetail.id},
-        id: postDetail.id
+        id: postDetail.id,
+        isOpen: postDetail.state === "OPEN",
+        actionSuccess:
+          state.postDetail.closePost.success ||
+          state.postDetail.openPost.success ||
+          state.postDetail.deletePost.success
       }
     }
   } else {
@@ -246,7 +290,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  let actionCreators = {postNeed, postFor}
+  let actionCreators = {postNeed, postFor, closePost, openPost, deletePost, resetPostDetail}
   let actions = bindActionCreators(actionCreators, dispatch)
   return {...actions, dispatch}
 }
