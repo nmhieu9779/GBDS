@@ -1,5 +1,5 @@
 import {StyleSheet, Platform} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
@@ -9,15 +9,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     ...Platform.select({
       ios: {
-        height: moderateScale(38)
+        height: scale.moderateScale(38)
       },
-      android: {height: moderateScale(38)}
+      android: {height: scale.moderateScale(38)}
     }),
     borderRadius: 0,
-    marginBottom: moderateScale(1)
+    marginBottom: scale.moderateScale(1)
   },
   icon: {
-    margin: moderateScale(10)
+    margin: scale.moderateScale(10)
   },
   title: {
     flex: 1,
@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
     ...Platform.select({
       ios: {
-        fontSize: moderateScale(17)
+        fontSize: scale.moderateScale(17)
       },
-      android: {fontSize: moderateScale(17)}
+      android: {fontSize: scale.moderateScale(17)}
     }),
     fontWeight: "bold"
   },

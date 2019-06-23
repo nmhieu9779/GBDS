@@ -1,65 +1,68 @@
-import React, {useState, useEffect} from "react"
+import React, {memo} from "react"
 import {Text, ScrollView, View, TextInput} from "react-native"
 import {step3 as styles} from "../styles"
-import SafeAreaView from "react-native-safe-area-view"
 import TextInputCustom from "@src/component/text-input-custom"
 import Header from "@src/component/header-post"
 import DirectionInput from "@src/component/direction-input"
-import {WIDTH, moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 import {stringStep3 as string} from "../string"
 import FloorsInfo from "@src/component/floors-info"
 
-const Step3 = ({onChangeData}) => {
-  const [widthState, setWidthState] = useState("")
-  const [landWidth, setLanWidth] = useState("")
-  const [other, setOther] = useState("")
-  const [floorsInfo, setFloorsInfo] = useState({})
-  const [direction, setDriection] = useState({})
+const Step3 = (props) => {
+  const onChangeText = (stateName, data) => {
+    props.onChangeData({[stateName]: {value: data}})
+  }
 
-  useEffect(() => {
-    onChangeData({
-      step3: {
-        ...floorsInfo,
-        landWidth: parseInt(landWidth),
-        widthState: parseInt(widthState),
-        other: other,
-        direction
-      }
-    })
-  }, [widthState, landWidth, other, floorsInfo, direction])
+  const onChangeSelected = (stateName, data) => {
+    props.onChangeData({[stateName]: data})
+  }
+
+  const onChangeRoom = (stateName, data) => {
+    props.onChangeRoom({[stateName]: data})
+  }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Header text={string.header} />
       <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         <Text style={styles.suggest}>{string.suggest}</Text>
         <TextInputCustom
-          onChangeText={(text) => setWidthState(text)}
-          value={widthState}
-          width={WIDTH - moderateScale(10)}
+          onChangeText={onChangeText.bind(this, "frontSide")}
+          value={props.frontSide}
+          width={scale.WIDTH - scale.moderateScale(10)}
           label={string.widthLabel}
           keyboardType={"numeric"}
         />
         <TextInputCustom
-          onChangeText={(text) => setLanWidth(text)}
-          value={landWidth}
-          width={WIDTH - moderateScale(10)}
+          onChangeText={onChangeText.bind(this, "wayIn")}
+          value={props.wayIn}
+          width={scale.WIDTH - scale.moderateScale(10)}
           label={string.landWidthLabel}
           keyboardType={"numeric"}
         />
-        <DirectionInput onChangeData={(data) => setDriection(data)} />
-        <FloorsInfo onChange={(data) => setFloorsInfo(data)} />
+        <DirectionInput
+          isDirection={true}
+          isBaconDirection={true}
+          onChangeSelected={onChangeSelected.bind(this, "direction")}
+          direction={props.direction.direction}
+          balconyDirection={props.direction.balconyDirection}
+        />
+        <FloorsInfo
+          roomNumber={props.roomNumber}
+          onChangeRoom={onChangeRoom.bind(this, "floors")}
+          onAddNewRoom={props.onAddNewRoom.bind()}
+        />
         <View style={styles.furnitureContainer}>
           <Text style={styles.furnitureTitle}>{string.furnitureTitle}</Text>
           <TextInput
             style={styles.furnitureInput}
             multiline={true}
-            value={other}
-            onChangeText={(text) => setOther(text)}
+            value={props.furniture}
+            onChangeText={onChangeText.bind(this, "furniture")}
           />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }
 

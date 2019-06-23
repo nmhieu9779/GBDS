@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, WIDTH} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
@@ -7,37 +7,37 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   messConatiner: {
-    width: moderateScale(WIDTH - WIDTH * 0.25)
+    width: scale.moderateScale(scale.WIDTH - scale.WIDTH * 0.25)
   },
   btnContainer: {
-    paddingTop: moderateScale(20),
-    paddingBottom: moderateScale(20),
-    paddingLeft: moderateScale(10),
-    paddingRight: moderateScale(10),
+    paddingTop: scale.moderateScale(20),
+    paddingBottom: scale.moderateScale(20),
+    paddingLeft: scale.moderateScale(10),
+    paddingRight: scale.moderateScale(10),
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F3822D",
-    borderBottomLeftRadius: moderateScale(5),
-    borderBottomRightRadius: moderateScale(5)
+    borderBottomLeftRadius: scale.moderateScale(5),
+    borderBottomRightRadius: scale.moderateScale(5)
   },
   btnText: {
     fontWeight: "bold",
     color: "white",
-    fontSize: moderateScale(20)
+    fontSize: scale.moderateScale(20)
   },
   content: {
-    padding: moderateScale(10),
+    padding: scale.moderateScale(10),
     backgroundColor: "white"
   },
   topContainer: {
     backgroundColor: "#F3822D",
     flexDirection: "row",
     alignItems: "center",
-    borderTopLeftRadius: moderateScale(5),
-    borderTopRightRadius: moderateScale(5)
+    borderTopLeftRadius: scale.moderateScale(5),
+    borderTopRightRadius: scale.moderateScale(5)
   },
   icon: {
-    margin: moderateScale(5)
+    margin: scale.moderateScale(5)
   }
 })
 

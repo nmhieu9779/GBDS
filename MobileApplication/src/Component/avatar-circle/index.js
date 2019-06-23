@@ -2,7 +2,7 @@ import React from "react"
 import {TouchableOpacity} from "react-native"
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 import ImagePicker from "react-native-image-picker"
 import FastImage from "react-native-fast-image"
 
@@ -25,10 +25,10 @@ const AvatarCirCle = (props) => {
       {props.avatarImageUrl ? (
         <FastImage
           style={{
-            width: moderateScale(props.size),
-            height: moderateScale(props.size),
+            width: scale.moderateScale(props.size),
+            height: scale.moderateScale(props.size),
             overflow: "hidden",
-            borderRadius: moderateScale(props.size / 2)
+            borderRadius: scale.moderateScale(props.size / 2)
           }}
           source={{uri: props.avatarImageUrl}}
         />

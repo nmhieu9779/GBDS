@@ -45,7 +45,7 @@ const Description = (props) =>
     </View>
   )
 
-const Item = memo(({item, onPressPost, onPressFollow, isFollow}) => {
+const Item = ({item, onPressPost, onPressFollow, isFollow}) => {
   const [follow, setFollow] = useState(isFollow)
   const onPress = () => {
     onPressPost(item.id)
@@ -66,7 +66,7 @@ const Item = memo(({item, onPressPost, onPressFollow, isFollow}) => {
       </Card>
     </TouchableOpacity>
   )
-})
+}
 
 const keyExtractor = (item, index) => index.toString()
 

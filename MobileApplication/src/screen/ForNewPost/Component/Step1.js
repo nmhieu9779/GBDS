@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react"
+import React, {useRef} from "react"
 import {Text, View, TextInput, ScrollView, TouchableWithoutFeedback, Platform} from "react-native"
 import TextInputCustom from "@src/component/text-input-custom"
 import Header from "@src/component/header-post"
@@ -6,110 +6,75 @@ import AddressInput from "@src/component/address-input"
 import TypeProduct from "@src/component/type-product"
 import {step1 as styles} from "../styles"
 import {stringStep1 as string} from "../string"
-import {WIDTH, moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
-const Step1 = ({onChangeData}) => {
-  const [productTitle, setProductTitle] = useState("")
-  const [area, setArea] = useState("")
-  const [price, setPrice] = useState("")
-  const [address, setAddress] = useState(null)
-  const [typeProduct, setTypeProduct] = useState(null)
-  const [addressName, setAddressName] = useState("")
-  const [homeNumber, setHomeNumber] = useState("")
-  let textInputAddress = useRef(null)
+const Step1 = (props) => {
+  const onChangeText = (stateName, data) => {
+    props.onChangeData({[stateName]: {value: data}})
+  }
 
-  useEffect(() => {
-    pushData()
-  }, [productTitle, area, price, address, homeNumber, typeProduct])
-
-  const pushData = () =>
-    onChangeData({
-      step1: {
-        productTitle: productTitle,
-        homeNumber: homeNumber,
-        address,
-        area: parseInt(area),
-        typeProduct,
-        price: parseInt(price)
-      }
-    })
+  const onChangeSelected = (stateName, data) => {
+    props.onChangeData({[stateName]: data})
+  }
 
   return (
     <View style={styles.container}>
       <Header text={string.header} />
       <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         <TextInputCustom
-          onChangeText={(text) => setProductTitle(text)}
-          value={productTitle}
-          width={WIDTH - moderateScale(10)}
+          onChangeText={onChangeText.bind(this, "name")}
+          value={props.name}
+          width={scale.WIDTH - scale.moderateScale(10)}
           color={"red"}
           label={string.productTitle}
         />
         <TypeProduct
           isProductType={true}
           isProductCate={true}
-          postTypeId={1}
-          onChange={(data) => {
-            setTypeProduct({...typeProduct, ...data})
-          }}
+          postTypeId={props.postTypeId}
+          onChangeSelected={onChangeSelected.bind(this, "typeProduct")}
+          otherKey={{priceUnit: true}}
+          productType={props.typeProduct.productType}
+          productCate={props.typeProduct.productCate}
         />
         <AddressInput
           isCity={true}
           isDistrict={true}
           isWard={true}
           isStreet={true}
-          onChangeAddress={(e) => {
-            setAddress({...address, ...e.data})
-            setAddressName(e.name)
-          }}
+          onChangeSelected={onChangeSelected.bind(this, "address")}
+          city={props.address.city}
+          district={props.address.district}
+          ward={props.address.ward}
+          street={props.address.street}
         />
         <TextInputCustom
-          onChangeText={(text) => setArea(text)}
-          width={WIDTH - moderateScale(10)}
-          value={area}
+          onChangeText={onChangeText.bind(this, "area")}
+          width={scale.WIDTH - scale.moderateScale(10)}
+          value={props.area}
           label={string.area}
           keyboardType={"numeric"}>
           <Text style={styles.area}>{string.areaString}</Text>
         </TextInputCustom>
         <TextInputCustom
-          onChangeText={(text) => setPrice(text)}
-          width={WIDTH - moderateScale(10)}
-          value={price}
+          onChangeText={onChangeText.bind(this, "price")}
+          width={scale.WIDTH - scale.moderateScale(10)}
+          value={props.price}
           label={string.priceLabel}
           keyboardType={"numeric"}>
           <TypeProduct
             isPriceUnit={true}
             style={styles.price}
-            onChange={(data) => {
-              setTypeProduct({...typeProduct, ...data})
-            }}
+            onChangeSelected={onChangeSelected.bind(this, "typeProduct")}
+            priceUnit={props.typeProduct.priceUnit}
           />
         </TextInputCustom>
-        <View style={styles.addressContainer}>
-          <Text style={styles.addressTitle}>{string.addressTitle}</Text>
-          <TouchableWithoutFeedback onPress={() => textInputAddress.current.focus()}>
-            <View style={styles.addressTextInputContainer}>
-              <TextInput
-                ref={textInputAddress}
-                multiline={true}
-                value={homeNumber}
-                onChangeText={(text) => setHomeNumber(text)}
-                style={{
-                  ...Platform.select({
-                    android: {
-                      paddingTop: 0,
-                      paddingBottom: 0
-                    }
-                  })
-                }}
-              />
-              <Text style={styles.addressName}>
-                {homeNumber && ", "}
-                {addressName}
-              </Text>
-            </View>
-          </TouchableWithoutFeedback>
-        </View>
+        <TextInputCustom
+          onChangeText={onChangeText.bind(this, "number")}
+          width={scale.WIDTH - scale.moderateScale(10)}
+          value={props.number}
+          label={string.number}
+        />
       </ScrollView>
     </View>
   )

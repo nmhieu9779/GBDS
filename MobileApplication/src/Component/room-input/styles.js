@@ -1,13 +1,13 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, WIDTH} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
-    padding: moderateScale(5),
-    width: WIDTH - 10,
-    marginBottom: moderateScale(10),
-    borderRadius: 1
+    padding: scale.moderateScale(5),
+    width: scale.WIDTH - 10,
+    marginBottom: scale.moderateScale(10),
+    borderRadius: 5
   },
   titleContainer: {
     flexDirection: "row",
@@ -19,9 +19,9 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     padding: 0,
     textAlign: "center",
-    borderRadius: moderateScale(5)
+    borderRadius: scale.moderateScale(5)
   },
-  name: {fontSize: moderateScale(18), fontWeight: "bold", color: "red"},
+  name: {fontSize: scale.moderateScale(18), fontWeight: "bold", color: "red"},
   infoContainer: {flexDirection: "row", alignItems: "center"}
 })
 

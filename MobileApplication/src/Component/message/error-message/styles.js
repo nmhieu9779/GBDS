@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, WIDTH} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
@@ -8,11 +8,11 @@ const styles = StyleSheet.create({
     // width: WIDTH,
     // alignItems: "center",
     // flexDirection: "row",
-    // borderLeftWidth: moderateScale(10),
-    // padding: moderateScale(5),
+    // borderLeftWidth: scale.moderateScale(10),
+    // padding: scale.moderateScale(5),
     // backgroundColor: "white"
   },
-  icon: {marginRight: moderateScale(5)}
+  icon: {marginRight: scale.moderateScale(5)}
 })
 
 export default styles

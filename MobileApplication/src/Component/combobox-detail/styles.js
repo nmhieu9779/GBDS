@@ -1,9 +1,9 @@
 import {StyleSheet} from "react-native"
-import {WIDTH} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   containerCombobox: {
-    width: WIDTH
+    width: scale.WIDTH
   },
   combobox: {flex: 2}
 })

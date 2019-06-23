@@ -1,13 +1,13 @@
 import {StyleSheet, Platform} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 1,
     borderBottomColor: "#b9c1ca",
     ...Platform.select({
-      ios: {height: moderateScale(51)},
-      android: {height: moderateScale(52)}
+      ios: {height: scale.moderateScale(51)},
+      android: {height: scale.moderateScale(52)}
     }),
     margin: 0,
     padding: 0
@@ -15,21 +15,21 @@ const styles = StyleSheet.create({
   labelContainer: {
     position: "absolute"
   },
-  label: {fontSize: moderateScale(16), fontWeight: "bold"},
+  label: {fontSize: scale.moderateScale(16), fontWeight: "bold"},
   input: {
     position: "absolute",
-    bottom: moderateScale(3),
+    bottom: scale.moderateScale(3),
     ...Platform.select({
       ios: {
-        paddingTop: moderateScale(5),
-        paddingBottom: moderateScale(5)
+        paddingTop: scale.moderateScale(5),
+        paddingBottom: scale.moderateScale(5)
       },
       android: {
         padding: 0
       }
     }),
-    paddingLeft: moderateScale(15),
-    paddingRight: moderateScale(15),
+    paddingLeft: scale.moderateScale(15),
+    paddingRight: scale.moderateScale(15),
     margin: 0,
     opacity: 0.9
   },
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: moderateScale(1)
+    height: scale.moderateScale(1)
   }
 })
 

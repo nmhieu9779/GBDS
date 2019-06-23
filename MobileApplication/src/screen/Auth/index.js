@@ -10,7 +10,7 @@ import ButtonCustom from "./component/button-custom"
 import SignIn from "./component/sign-in"
 import SignUp from "./component/sign-up"
 import {images} from "@src/common/images"
-import {setItemAsyncStorage} from "@src/utilities/asyncStorage"
+import {asyncStorage} from "@src/utilities"
 import {onShowMessage} from "@src/component/message/redux/actions"
 
 const Auth = (props) => {
@@ -84,8 +84,8 @@ const Auth = (props) => {
   }
 
   const onPressSkipLogin = async () => {
-    await setItemAsyncStorage({keyName: "IS_SKIP_SIGNIN", data: true})
-    await setItemAsyncStorage({keyName: "IS_SIGNIN", data: false})
+    await asyncStorage.setItemAsyncStorage({keyName: "IS_SKIP_SIGNIN", data: true})
+    await asyncStorage.setItemAsyncStorage({keyName: "IS_SIGNIN", data: false})
     await props.navigation.navigate("HomeStack")
   }
 

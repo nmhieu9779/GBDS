@@ -26,7 +26,7 @@ const newFeedNeedRent = (state = initStateNewFeedNeedRent, action) => {
         success: true,
         loadMore: false
       }
-    case actions.ACTION_FETCH_POST_NEED_RENT_SUCCESS:
+    case actions.ACTION_FETCH_POST_NEED_RENT_FAILURE:
       return {
         loading: false,
         refreshing: false,

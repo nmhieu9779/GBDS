@@ -9,14 +9,13 @@ import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
 import {getMenuItem} from "./string"
-import {formatDate} from "@src/utilities/date"
 import AvatarCirCle from "@src/component/avatar-circle"
-import {removeAllItemAsyncStorage, getItemAsyncStorage} from "@src/utilities/asyncStorage"
+import {asyncStorage, scale, date} from "@src/utilities"
 import Card from "@src/component/card"
 import NavigationService from "@src/navigation/NavigationService"
 import {resetUserProfile, resetUriAvatar, resetSignIn, changePassword} from "@src/redux/actions"
 import Modal from "react-native-modal"
-import {HEIGHT} from "@src/utilities/scale"
+import {toast} from "@src/utilities"
 
 const ChangePassword = (props) => {
   const [oldPassword, setOldPassword] = useState("")
@@ -33,7 +32,7 @@ const ChangePassword = (props) => {
     <Modal
       isVisible={props.isVisiable}
       style={styles.modalContainer}
-      deviceHeight={HEIGHT}
+      deviceHeight={scale.HEIGHT}
       onBackdropPress={props.onPressClose.bind(this)}>
       <Card style={styles.modalContentContainer}>
         <TextInput
@@ -72,7 +71,7 @@ const ItemInfo = (props) => {
         {props.label}
       </Text>
       <Text style={styles.itemInfoText}>
-        {(props.label === "Ngày sinh" && formatDate(props.content, "DD/MM/YYYY")) || props.content}
+        {(props.label === "Ngày sinh" && date.formatDate(props.content, "DD/MM/YYYY")) || props.content}
       </Text>
     </TouchableOpacity>
   )
@@ -93,12 +92,12 @@ const UserProfile = (props) => {
   const [isVisiableChangePassword, setIsVisiableChangePassword] = useState(false)
 
   const signOut = async () => {
-    let isSignIn = await getItemAsyncStorage("IS_SIGNIN")
+    let isSignIn = await asyncStorage.getItemAsyncStorage("IS_SIGNIN")
     if (isSignIn) {
       props.resetUserProfile()
       props.resetUriAvatar()
       props.resetSignIn()
-      removeAllItemAsyncStorage()
+      asyncStorage.removeAllItemAsyncStorage()
       setMenu(getMenuItem(false))
     }
   }
@@ -115,6 +114,7 @@ const UserProfile = (props) => {
           break
 
         default:
+          props.isNewProfile && toast.showToast("Bạn chưa câp nhập thông tin cá nhân", "#ffffff", "#E0002C")
           break
       }
     } else {
@@ -205,7 +205,8 @@ const mapStateToProps = (state) => {
       userProfile.organization && {label: "Cơ quan", content: userProfile.organization}
     ],
     signInSuccess: state.auth.signIn.success,
-    email: state.auth.signIn.success && state.auth.signIn.response.email
+    email: state.auth.signIn.success && state.auth.signIn.response.email,
+    isNewProfile: !state.userProfile.userProfile.success && !state.userProfile.uriAvatar.success
   }
 }
 

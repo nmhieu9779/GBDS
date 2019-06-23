@@ -5,7 +5,8 @@ initStateNewFeedForRent = {
   refreshing: false,
   response: null,
   success: false,
-  loadMore: false
+  loadMore: false,
+  error: null
 }
 
 const newFeedForRent = (state = initStateNewFeedForRent, action) => {
@@ -16,7 +17,8 @@ const newFeedForRent = (state = initStateNewFeedForRent, action) => {
         loading: !action.params.loadMore,
         refreshing: true,
         success: false,
-        loadMore: action.params.loadMore
+        loadMore: action.params.loadMore,
+        error: null
       }
     case actions.ACTION_FETCH_POST_FOR_RENT_SUCCESS:
       return {
@@ -26,11 +28,11 @@ const newFeedForRent = (state = initStateNewFeedForRent, action) => {
         success: true,
         loadMore: false
       }
-    case actions.ACTION_FETCH_POST_FOR_RENT_SUCCESS:
+    case actions.ACTION_FETCH_POST_FOR_RENT_FAILURE:
       return {
         loading: false,
         refreshing: false,
-        response: action.error,
+        error: action.error,
         success: false,
         loadMore: false
       }

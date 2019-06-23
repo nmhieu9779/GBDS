@@ -1,15 +1,15 @@
 import {StyleSheet, Platform} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#f0f0f0",
     flexDirection: "row",
     alignItems: "center",
-    padding: moderateScale(10)
+    padding: scale.moderateScale(10)
   },
   icon: {
-    marginRight: moderateScale(10)
+    marginRight: scale.moderateScale(10)
   },
   input: {
     flex: 1,

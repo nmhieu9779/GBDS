@@ -1,19 +1,19 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, WIDTH} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 export const styles_main = StyleSheet.create({
   container: {flex: 1, backgroundColor: "white"}
 })
 
 export const styles_step1 = StyleSheet.create({
-  container: {width: WIDTH},
+  container: {width: scale.WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   }
 })
 
 export const styles_step2 = StyleSheet.create({
-  container: {width: WIDTH},
+  container: {width: scale.WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -24,8 +24,9 @@ export const styles_step2 = StyleSheet.create({
   },
   infoPostContainer: {margin: 10},
   infoPostTextInput: {
-    height: WIDTH / 2,
-    width: WIDTH - 10,
+    textAlignVertical: "top",
+    height: scale.WIDTH / 2,
+    width: scale.WIDTH - 10,
     margin: 10,
     padding: 10,
     borderWidth: 0.5,
@@ -35,14 +36,14 @@ export const styles_step2 = StyleSheet.create({
 })
 
 export const styles_step3 = StyleSheet.create({
-  container: {width: WIDTH},
+  container: {width: scale.WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   },
-  footer: {marginTop: moderateScale(100), alignItems: "center"},
+  footer: {marginTop: scale.moderateScale(100), alignItems: "center"},
   btnPost: {
-    width: moderateScale(300),
-    height: moderateScale(40),
+    width: scale.moderateScale(300),
+    height: scale.moderateScale(40),
     backgroundColor: "red",
     borderRadius: 5,
     justifyContent: "center",

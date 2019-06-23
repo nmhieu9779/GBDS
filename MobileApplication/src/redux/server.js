@@ -1,5 +1,5 @@
 const axios = require("axios")
-import {getItemAsyncStorage} from "@src/utilities/asyncStorage"
+import {asyncStorage} from "@src/utilities"
 
 const get = async ({url, params, auth}) => {
   return await axios
@@ -26,7 +26,7 @@ const patch = async ({url}) => {
 }
 
 const postToken = async ({url, params, body}) => {
-  let userOauth = await getItemAsyncStorage("USER_OAUTH")
+  let userOauth = await asyncStorage.getItemAsyncStorage("USER_OAUTH")
   return await axios
     .post(url, body, {
       params: params,
@@ -41,7 +41,7 @@ const postToken = async ({url, params, body}) => {
 }
 
 const patchToken = async ({url, params, body}) => {
-  let userOauth = await getItemAsyncStorage("USER_OAUTH")
+  let userOauth = await asyncStorage.getItemAsyncStorage("USER_OAUTH")
   return await axios
     .patch(url, body, {
       params: params,
@@ -54,7 +54,7 @@ const patchToken = async ({url, params, body}) => {
 }
 
 const upload = async ({url, body}) => {
-  let userOauth = await getItemAsyncStorage("USER_OAUTH")
+  let userOauth = await asyncStorage.getItemAsyncStorage("USER_OAUTH")
   return await axios
     .post(url, body, {
       headers: {
@@ -67,4 +67,16 @@ const upload = async ({url, body}) => {
     .catch((error) => error)
 }
 
-export {post, get, upload, patchToken, postToken, patch}
+const deleteToken = async ({url}) => {
+  let userOauth = await asyncStorage.getItemAsyncStorage("USER_OAUTH")
+  return await axios
+    .delete(url, {
+      headers: {
+        Authorization: `Bearer ${userOauth.accessToken}`
+      }
+    })
+    .then((response) => response)
+    .catch((error) => error)
+}
+
+export {post, get, upload, patchToken, postToken, patch, deleteToken}

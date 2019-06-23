@@ -1,11 +1,11 @@
 import {StyleSheet} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
     fontWeight: "bold",
-    fontSize: moderateScale(20),
-    padding: moderateScale(10)
+    fontSize: scale.moderateScale(20),
+    padding: scale.moderateScale(10)
   }
 })
 

@@ -1,52 +1,54 @@
-import React, {useState} from "react"
-import {ScrollView} from "react-native"
+import React, {memo} from "react"
+import {ScrollView, View} from "react-native"
 import {styles_step1 as styles} from "../styles"
 import {string_step1 as string} from "../string"
 import AddressInput from "@src/component/address-input"
 import TypeProduct from "@src/component/type-product"
 import Header from "@src/component/header-post"
-import SafeAreaView from "react-native-safe-area-view"
 
 const Step1 = (props) => {
-  const [addressId, setAddressId] = useState({})
-  const [addressName, setAddressName] = useState("")
-  const [typeProductId, setTypeProductId] = useState({})
-
-  console.log(typeProductId)
+  const onChangeSelected = (stateName, data) => {
+    props.onChangeSelected({[stateName]: data})
+  }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Header text={string.header} />
       <ScrollView contentContainerStyle={styles.contentContainerStyle}>
         <TypeProduct
           isProductType={true}
           isProductCate={true}
-          postTypeId={0}
-          onChange={({productTypeId, type}) => {
-            setTypeProductId({...typeProductId, productTypeId, type})
-          }}
+          postTypeId={props.postTypeId}
+          onChangeSelected={onChangeSelected.bind(this, "typeProduct")}
+          productType={props.typeProduct.productType}
+          productCate={props.typeProduct.productCate}
+          otherKey={{area: true, price: true}}
         />
         <AddressInput
           isCity={true}
           isDistrict={true}
-          isWard={true}
-          isStreet={true}
-          onChangeAddress={({address, name}) => {
-            setAddressId(address)
-            setAddressName(name)
-          }}
+          onChangeSelected={onChangeSelected.bind(this, "address")}
+          city={props.address.city}
+          district={props.address.district}
         />
         <TypeProduct
           isArea={true}
           isPrice={true}
-          postTypeId={0}
-          onChange={({productTypeId, type}) => {
-            setTypeProductId({...typeProductId, productTypeId, type})
-          }}
+          postTypeId={props.postTypeId}
+          onChangeSelected={onChangeSelected.bind(this, "typeProduct")}
+          area={props.typeProduct.area}
+          price={props.typeProduct.price}
         />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   )
 }
 
 export default Step1
+// (prevProps, nextProps) =>
+//   prevProps.typeProduct.productType.selected === nextProps.typeProduct.productType.selected &&
+//   prevProps.typeProduct.productCate.selected === nextProps.typeProduct.productCate.selected &&
+//   prevProps.typeProduct.area.selected === nextProps.typeProduct.area.selected &&
+//   prevProps.typeProduct.price.selected === nextProps.typeProduct.price.selected &&
+//   prevProps.address.city.selected === nextProps.address.city.selected &&
+//   prevProps.address.district.selected === nextProps.address.district.selected

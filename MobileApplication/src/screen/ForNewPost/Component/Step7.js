@@ -1,29 +1,19 @@
-import React, {useState, useEffect} from "react"
+import React, {memo} from "react"
 import {View, Text, ScrollView, TouchableOpacity} from "react-native"
 import {stringStep7 as string} from "../string"
 import {step7 as styles} from "../styles"
 import Header from "@src/component/header-post"
-import SafeAreaView from "react-native-safe-area-view"
-import ComboBoxDetail from "@src/component/combobox-detail"
-import DatePicker from "react-native-datepicker"
-import moment from "moment"
+import ComboBox from "@src/component/combobox"
 
 const Step7 = (props) => {
-  const [vipType, setVipType] = useState({id: null, name: "", type: null, selected: -1})
-  const [startDate, setStartDate] = useState(moment(new Date()))
+  const styleCBB = {
+    container: styles.containerCombobox,
+    combobox: styles.combobox
+  }
 
-  useEffect(() => {
-    pushData()
-  }, [vipType, startDate])
-
-  const pushData = () =>
-    props.onChangeData({
-      step7: {
-        vipType,
-        startDate
-      }
-    })
-
+  const onChangeSelected = (stateName, data) => {
+    props.onChangeData({[stateName]: data})
+  }
   const _vipDetail = ({data, type}) =>
     data.map(
       (item) =>
@@ -38,53 +28,32 @@ const Step7 = (props) => {
     )
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Header text={string.header} />
       <ScrollView>
-        <ComboBoxDetail
-          is={true}
+        <ComboBox
+          style={styleCBB}
           data={string.vipType.data}
-          selected={vipType.selected}
+          selected={props.vipType.selected}
           title={string.vipType.title}
           label={string.vipType.label}
-          name={vipType.name}
-          onChangeSelected={(e) => {
-            setVipType({...e})
-          }}
+          onChangeSelected={onChangeSelected.bind(this, "vipType")}
           enable={true}
+          name={props.vipType.name}
         />
-        {_vipDetail({data: string.vipDetail, type: vipType.type})}
-        <View style={styles.datePickerContainer}>
-          <Text style={styles.datePickerLabel}>{string.startDate}</Text>
-          <DatePicker
-            style={styles.datePicker}
-            date={startDate}
-            mode={string.datePicker.mode}
-            placeholder={string.startDate}
-            format={string.datePicker.format}
-            confirmBtnText={string.datePicker.confirmBtnText}
-            cancelBtnText={string.datePicker.cancelBtnText}
-            customStyles={{
-              dateIcon: styles.dateIcon,
-              dateInput: styles.dateInput
-            }}
-            onDateChange={(dateStr, date) => {
-              setStartDate(date)
-            }}
-          />
-        </View>
+        {_vipDetail({data: string.vipDetail, type: props.vipType.type})}
         <Text style={styles.text}>
           {string.latestPrice}
-          <Text style={styles.note}>{string.dayPrice[vipType.selected]}</Text>
+          <Text style={styles.note}>{string.dayPrice[props.vipType.selected]}</Text>
         </Text>
         <Text style={styles.suggest}>{string.suggest}</Text>
       </ScrollView>
-      <SafeAreaView style={styles.footer}>
+      <View style={styles.footer}>
         <TouchableOpacity onPress={props.onPress.bind()} style={styles.btnPostContainer}>
-          <Text style={styles.btnPost}>{string.post}</Text>
+          <Text style={styles.btnPost}>{props.isNew ? string.post : "Chỉnh sửa"}</Text>
         </TouchableOpacity>
-      </SafeAreaView>
-    </SafeAreaView>
+      </View>
+    </View>
   )
 }
 

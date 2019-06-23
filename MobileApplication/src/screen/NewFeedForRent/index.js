@@ -35,7 +35,7 @@ const NewFeedForRent = (props) => {
           }}
         />
       )}
-      <AddFloatingButton />
+      <AddFloatingButton screen={"NewFeedForRent"} />
       <PostListFor
         data={props.data}
         onRefresh={() => {
@@ -54,6 +54,7 @@ const NewFeedForRent = (props) => {
           props.interactivePost(params)
         }}
         email={props.email}
+        isNewProfile={props.isNewProfile}
       />
     </SafeAreaView>
   )
@@ -64,10 +65,11 @@ const mapStateToProps = (state) => {
   return {
     refreshing: newFeedForRent.refreshing,
     data: newFeedForRent.response ? newFeedForRent.response.content.content : [],
-    nowPage: newFeedForRent.response ? newFeedForRent.response.content.pageable.pageNumber + 1 : 0,
-    totalPost: newFeedForRent.response && newFeedForRent.response.content.totalElements,
+    nowPage: newFeedForRent.success ? newFeedForRent.response.content.pageable.pageNumber + 1 : 0,
+    totalPost: newFeedForRent.success && newFeedForRent.response.content.totalElements,
     loading: newFeedForRent.loading || newFeedForRent.loadMore,
-    email: state.auth.signIn.success && state.auth.signIn.response.email
+    email: state.auth.signIn.success && state.auth.signIn.response.email,
+    isNewProfile: !state.userProfile.userProfile.success && !state.userProfile.uriAvatar.success
   }
 }
 

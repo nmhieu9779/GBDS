@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   modalContainer: {justifyContent: "flex-end", margin: 0},
@@ -12,21 +12,21 @@ const styles = StyleSheet.create({
   },
   selected: {
     flex: 1,
-    padding: moderateScale(5),
-    paddingLeft: moderateScale(10)
+    padding: scale.moderateScale(5),
+    paddingLeft: scale.moderateScale(10)
   },
   iconContainer: {
     justifyContent: "center",
     alignItems: "center",
     borderLeftColor: "#ccc",
     borderLeftWidth: 0.5,
-    padding: moderateScale(5)
+    padding: scale.moderateScale(5)
   },
   container_item: {
     backgroundColor: "white"
   },
   itemContainer_item: {
-    height: moderateScale(40),
+    height: scale.moderateScale(40),
     justifyContent: "center",
     alignItems: "center",
     borderBottomColor: "#ccc",
@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
   },
   header_item: {
     opacity: 0.8,
-    fontSize: moderateScale(20)
+    fontSize: scale.moderateScale(20)
   },
   itemLabel_item: {
-    fontSize: moderateScale(18),
+    fontSize: scale.moderateScale(18),
     color: "blue"
   }
 })

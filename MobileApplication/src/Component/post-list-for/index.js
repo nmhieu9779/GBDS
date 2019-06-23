@@ -1,11 +1,12 @@
 import React, {memo, useState} from "react"
-import {Text, View, FlatList, TouchableOpacity} from "react-native"
+import {Text, View, FlatList, TouchableOpacity, RefreshControl, ActivityIndicator} from "react-native"
 import styles from "./styles"
 import BottomListPost from "@src/component/bottom-list-post"
 import AvatarCirCle from "@src/component/avatar-circle"
 import Card from "@src/component/card"
 import {CODE_VIP} from "@src/common/typeCode"
 import FastImage from "react-native-fast-image"
+import {toast} from "@src/utilities"
 
 const PRIORITY_NORMAL = [CODE_VIP.X_NORMAL, CODE_VIP.VIP_S2]
 
@@ -46,13 +47,13 @@ const Top = (props) => {
 }
 
 const Description = (props) =>
-  props.description && (
+  props.description ? (
     <View style={styles.descriptionContainer}>
       <Text style={styles.description} numberOfLines={4}>
         {props.description}
       </Text>
     </View>
-  )
+  ) : null
 
 const Images = (props) => {
   return (
@@ -93,11 +94,12 @@ const Request = (props) => (
   </View>
 )
 
-const Item = memo(({item, onPressPost, onPressFollow, isFollow}) => {
+const Item = ({item, onPressPost, onPressFollow, isFollow, isNewProfile}) => {
   const [follow, setFollow] = useState(isFollow)
   const onPress = () => {
     onPressPost(item.id)
   }
+
   return (
     <TouchableOpacity onPress={onPress.bind()} activeOpacity={1}>
       <Card style={styles.postContainer}>
@@ -113,15 +115,19 @@ const Item = memo(({item, onPressPost, onPressFollow, isFollow}) => {
         <Images images={item.images} price={item.price || item.priceByMonth} area={item.area} />
         <BottomListPost
           onPressFollow={() => {
-            setFollow(!follow)
-            onPressFollow(!follow)
+            if (isNewProfile) {
+              toast.showToast("Bạn chưa câp nhập thông tin cá nhân", "#ffffff", "#E0002C")
+            } else {
+              setFollow(!follow)
+              onPressFollow(!follow)
+            }
           }}
           isFollow={follow}
         />
       </Card>
     </TouchableOpacity>
   )
-})
+}
 
 const keyExtractor = (item, index) => index.toString()
 
@@ -134,7 +140,8 @@ const PostListFor = ({
   totalPost,
   loading,
   onPressFollow,
-  email
+  email,
+  isNewProfile
 }) => {
   let onEndReachedCalledDuringMomentum = true
 
@@ -162,6 +169,7 @@ const PostListFor = ({
               })
             }
             isFollow={item.item.emailsOfFollowers.findIndex((e) => e === email) !== -1}
+            isNewProfile={isNewProfile}
           />
         )}
         data={data}

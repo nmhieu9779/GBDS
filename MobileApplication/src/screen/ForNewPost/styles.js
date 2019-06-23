@@ -1,8 +1,8 @@
-import {StyleSheet} from "react-native"
-import {WIDTH, moderateScale, HEIGHT} from "@src/utilities/scale"
+import {StyleSheet, Platform} from "react-native"
+import {scale} from "@src/utilities"
 
 export const step1 = StyleSheet.create({
-  container: {width: WIDTH},
+  container: {width: scale.WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -11,118 +11,118 @@ export const step1 = StyleSheet.create({
   },
   area: {
     position: "absolute",
-    right: moderateScale(5),
-    bottom: moderateScale(3)
+    right: scale.moderateScale(5),
+    bottom: scale.moderateScale(3)
   },
   priceContainer: {
     flexDirection: "row",
-    padding: moderateScale(5),
+    padding: scale.moderateScale(5),
     alignItems: "center"
   },
-  priceTitle: {fontSize: moderateScale(16), fontWeight: "bold"},
-  priceContent: {color: "red", marginLeft: moderateScale(10), flex: 1},
+  priceTitle: {fontSize: scale.moderateScale(16), fontWeight: "bold"},
+  priceContent: {color: "red", marginLeft: scale.moderateScale(10), flex: 1},
   addressContainer: {
     flexDirection: "row",
-    padding: moderateScale(5),
+    padding: scale.moderateScale(5),
     alignItems: "center",
-    marginTop: moderateScale(5)
+    marginTop: scale.moderateScale(5)
   },
-  addressTitle: {fontSize: moderateScale(16), fontWeight: "bold"},
+  addressTitle: {fontSize: scale.moderateScale(16), fontWeight: "bold", marginRight: scale.moderateScale(5)},
   addressTextInputContainer: {
     flex: 1,
     borderColor: "#ccc",
     borderWidth: 0.5,
     borderRadius: 5,
-    marginLeft: moderateScale(10),
-    padding: moderateScale(5),
+    marginLeft: scale.moderateScale(10),
+    padding: scale.moderateScale(5),
     flexDirection: "row"
   },
   addressName: {flex: 1, marginTop: 5},
   price: {
-    width: moderateScale(WIDTH / 2),
+    width: scale.moderateScale(scale.WIDTH / 2),
     position: "absolute",
-    right: moderateScale(5),
-    bottom: moderateScale(3)
+    right: scale.moderateScale(5),
+    bottom: scale.moderateScale(3)
   }
 })
 
 export const step2 = StyleSheet.create({
-  container: {width: WIDTH},
+  container: {width: scale.WIDTH},
   noteContent: {
     fontStyle: "italic",
     color: "gray",
     textAlign: "right",
-    paddingRight: moderateScale(10)
+    paddingRight: scale.moderateScale(10)
   },
   note: {color: "red"},
   textInput: {
     textAlignVertical: "top",
-    height: moderateScale(WIDTH / 2),
-    margin: moderateScale(10),
-    padding: moderateScale(10),
+    height: scale.moderateScale(scale.WIDTH / 2),
+    margin: scale.moderateScale(10),
+    padding: scale.moderateScale(10),
     borderWidth: 0.5,
     borderColor: "#ccc",
-    borderRadius: moderateScale(10)
+    borderRadius: scale.moderateScale(10)
   },
-  suggest: {padding: moderateScale(5)},
+  suggest: {padding: scale.moderateScale(5)},
   suggestOther: {color: "red"}
 })
 
 export const step3 = StyleSheet.create({
-  container: {width: WIDTH},
+  container: {width: scale.WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   },
   suggest: {
     fontStyle: "italic",
     color: "gray",
-    padding: moderateScale(10)
+    padding: scale.moderateScale(10)
   },
   containerCombobox: {
-    width: WIDTH
+    width: scale.WIDTH
   },
-  comboboxCombobox: {width: WIDTH},
-  labelCombobox: {fontWeight: "bold", fontSize: moderateScale(16)},
+  comboboxCombobox: {width: scale.WIDTH},
+  labelCombobox: {fontWeight: "bold", fontSize: scale.moderateScale(16)},
   furnitureContainer: {
-    padding: moderateScale(5),
-    width: WIDTH
+    padding: scale.moderateScale(5),
+    width: scale.WIDTH
   },
   furnitureTitle: {
-    fontSize: moderateScale(16),
+    fontSize: scale.moderateScale(16),
     fontWeight: "bold",
-    marginBottom: moderateScale(5)
+    marginBottom: scale.moderateScale(5)
   },
   furnitureInput: {
     borderColor: "#ccc",
     borderWidth: 0.5,
     borderRadius: 10,
-    padding: moderateScale(5)
+    padding: scale.moderateScale(5)
   },
   btnAdd: {
     justifyContent: "center",
     borderWidth: 0.5,
     borderColor: "#ccc",
-    borderRadius: moderateScale(5),
-    padding: moderateScale(5),
+    borderRadius: scale.moderateScale(5),
+    padding: scale.moderateScale(5),
     flexDirection: "row",
     alignItems: "center"
   }
 })
 
 export const step4 = StyleSheet.create({
-  container: {width: WIDTH},
+  container: {width: scale.WIDTH},
   contentContainerStyle: {
     alignItems: "center"
   },
   note: {
     fontStyle: "italic",
     color: "gray",
-    padding: moderateScale(10)
+    padding: scale.moderateScale(10)
   },
   suggest: {
     fontStyle: "italic",
     color: "gray",
-    padding: moderateScale(10)
+    padding: scale.moderateScale(10)
   },
   imageContainer: {
     flexDirection: "row",
@@ -130,8 +130,8 @@ export const step4 = StyleSheet.create({
     justifyContent: "space-around"
   },
   image: {
-    width: moderateScale(WIDTH / 2 - 20),
-    height: moderateScale(WIDTH / 2 - 20)
+    width: scale.moderateScale(scale.WIDTH / 2 - 20),
+    height: scale.moderateScale(scale.WIDTH / 2 - 20)
   },
   border: {
     borderWidth: 1,
@@ -142,70 +142,79 @@ export const step4 = StyleSheet.create({
   center: {
     justifyContent: "center",
     alignItems: "center"
+  },
+  trashIcon: {
+    position: "absolute",
+    top: 5,
+    right: 5,
+    backgroundColor: "white",
+    ...Platform.select({ios: {zIndex: 1}, android: {elevation: 1}}),
+    padding: scale.moderateScale(10),
+    borderRadius: scale.moderateScale(20)
   }
 })
 
 export const step5 = StyleSheet.create({
-  container: {width: WIDTH},
+  container: {width: scale.WIDTH},
   note: {
     fontStyle: "italic",
     color: "gray",
-    padding: moderateScale(10)
+    padding: scale.moderateScale(10)
   },
   map: {
-    width: WIDTH,
-    height: HEIGHT / 2
+    width: scale.WIDTH,
+    height: scale.HEIGHT / 2
   }
 })
 
 export const step6 = StyleSheet.create({
-  container: {width: WIDTH},
+  container: {width: scale.WIDTH},
   contentContainerStyle: {alignItems: "center"}
 })
 
 export const step7 = StyleSheet.create({
-  container: {width: WIDTH},
   containerCombobox: {
-    width: WIDTH
+    width: scale.WIDTH
   },
-  comboboxCombobox: {flex: 3},
+  combobox: {flex: 2},
+  container: {width: scale.WIDTH},
   text: {
-    padding: moderateScale(5)
+    padding: scale.moderateScale(5)
   },
   infoVipName: {fontWeight: "bold"},
   note: {color: "blue", fontWeight: "bold"},
   datePickerContainer: {
     flexDirection: "row",
     alignItems: "center",
-    padding: moderateScale(5)
+    padding: scale.moderateScale(5)
   },
   datePickerLabel: {flex: 1},
   datePicker: {flex: 3},
   dateIcon: {
     position: "absolute",
     right: 0,
-    top: moderateScale(4),
+    top: scale.moderateScale(4),
     marginRight: 0
   },
   dateInput: {
-    marginRight: moderateScale(36),
+    marginRight: scale.moderateScale(36),
     borderRadius: 5
   },
   suggest: {
     fontStyle: "italic",
     color: "gray",
-    padding: moderateScale(10)
+    padding: scale.moderateScale(10)
   },
-  footer: {marginBottom: moderateScale(100), alignItems: "center"},
+  footer: {marginBottom: scale.moderateScale(100), alignItems: "center"},
   textFooter: {
-    padding: moderateScale(5),
-    marginBottom: moderateScale(5),
-    width: WIDTH
+    padding: scale.moderateScale(5),
+    marginBottom: scale.moderateScale(5),
+    width: scale.WIDTH
   },
-  total: {fontSize: moderateScale(18), fontWeight: "bold", color: "red"},
+  total: {fontSize: scale.moderateScale(18), fontWeight: "bold", color: "red"},
   btnPostContainer: {
-    width: moderateScale(300),
-    height: moderateScale(40),
+    width: scale.moderateScale(300),
+    height: scale.moderateScale(40),
     backgroundColor: "red",
     borderRadius: 5,
     justifyContent: "center",

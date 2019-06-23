@@ -1,10 +1,10 @@
 import {StyleSheet} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: "#4285F4",
-    padding: moderateScale(10),
+    padding: scale.moderateScale(10),
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     alignItems: "center"
@@ -12,35 +12,35 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontWeight: "bold",
     color: "white",
-    fontSize: moderateScale(18)
+    fontSize: scale.moderateScale(18)
   },
   topContainer: {
-    padding: moderateScale(10),
+    padding: scale.moderateScale(10),
     paddingBottom: 0,
-    marginBottom: moderateScale(12),
+    marginBottom: scale.moderateScale(12),
     flexDirection: "row"
   },
   postContainer: {
-    margin: moderateScale(5),
-    marginTop: moderateScale(2.5),
-    marginBottom: moderateScale(2.5),
+    margin: scale.moderateScale(5),
+    marginTop: scale.moderateScale(2.5),
+    marginBottom: scale.moderateScale(2.5),
     backgroundColor: "white"
   },
   avatarContainer: {
-    paddingRight: moderateScale(8)
+    paddingRight: scale.moderateScale(8)
   },
   postNameContainer: {flex: 1},
   title: {
-    fontSize: moderateScale(14)
+    fontSize: scale.moderateScale(14)
   },
   postDate: {
     color: "rgb(144, 148, 156);",
-    fontSize: moderateScale(12)
+    fontSize: scale.moderateScale(12)
   },
   requestContainer: {
-    marginBottom: moderateScale(8),
-    paddingLeft: moderateScale(10),
-    paddingRight: moderateScale(10)
+    marginBottom: scale.moderateScale(8),
+    paddingLeft: scale.moderateScale(10),
+    paddingRight: scale.moderateScale(10)
   },
   requestItem: {
     flexDirection: "row"
@@ -50,46 +50,46 @@ const styles = StyleSheet.create({
     flex: 1
   },
   descriptionContainer: {
-    marginTop: moderateScale(8),
-    marginBottom: moderateScale(8),
-    paddingLeft: moderateScale(10),
-    paddingRight: moderateScale(10)
+    marginTop: scale.moderateScale(8),
+    marginBottom: scale.moderateScale(8),
+    paddingLeft: scale.moderateScale(10),
+    paddingRight: scale.moderateScale(10)
   },
   description: {
-    fontSize: moderateScale(14)
+    fontSize: scale.moderateScale(14)
   },
   bottomContainer: {
-    marginTop: moderateScale(10),
+    marginTop: scale.moderateScale(10),
     flexDirection: "row"
   },
   btnBottom: {
     flexDirection: "row",
     flex: 1,
-    paddingLeft: moderateScale(8),
-    paddingRight: moderateScale(8)
+    paddingLeft: scale.moderateScale(8),
+    paddingRight: scale.moderateScale(8)
   },
   itemsBtn: {
     flexDirection: "row",
-    padding: moderateScale(8),
-    paddingTop: moderateScale(6),
+    padding: scale.moderateScale(8),
+    paddingTop: scale.moderateScale(6),
     alignItems: "center",
     justifyContent: "center"
   },
   itemsBtnIcon: {
-    marginRight: moderateScale(4)
+    marginRight: scale.moderateScale(4)
   },
   footer: {
     width: "100%",
-    borderBottomLeftRadius: moderateScale(20),
-    borderBottomRightRadius: moderateScale(20),
+    borderBottomLeftRadius: scale.moderateScale(20),
+    borderBottomRightRadius: scale.moderateScale(20),
     backgroundColor: "transparent",
-    marginBottom: moderateScale(10),
+    marginBottom: scale.moderateScale(10),
     alignItems: "center",
     borderColor: "#ccc",
-    borderWidth: moderateScale(0.5),
+    borderWidth: scale.moderateScale(0.5),
     borderTopWidth: 0
   },
-  footerText: {fontWeight: "bold", fontSize: moderateScale(18)}
+  footerText: {fontWeight: "bold", fontSize: scale.moderateScale(18)}
 })
 
 export default styles

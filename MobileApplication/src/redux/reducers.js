@@ -12,6 +12,7 @@ import message from "@src/component/message/redux/reducers"
 import editProfile from "@src/screen/EditProfile/redux/reducers"
 import postDetail from "@src/screen/PostDetail/redux/reducers"
 import postFor from "@src/screen/ForNewPost/redux/reducers"
+import postNeed from "@src/screen/NeedNewPost/redux/reducers"
 
 const allReducers = combineReducers({
   auth,
@@ -26,7 +27,8 @@ const allReducers = combineReducers({
   message,
   editProfile,
   postDetail,
-  postFor
+  postFor,
+  postNeed
 })
 
 export default allReducers

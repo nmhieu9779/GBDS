@@ -1,48 +1,48 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, WIDTH} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
   infoUserContainer: {
-    width: WIDTH,
+    width: scale.WIDTH,
     backgroundColor: "#E8ECEF"
   },
   infoUserTopContainer: {
     flexDirection: "row",
-    padding: moderateScale(5),
+    padding: scale.moderateScale(5),
     paddingBottom: 0,
-    marginBottom: moderateScale(5)
+    marginBottom: scale.moderateScale(5)
   },
   infoUserPostDate: {
     flex: 1,
-    marginLeft: moderateScale(5),
+    marginLeft: scale.moderateScale(5),
     color: "#0072bc"
   },
   infoUserBottomContainer: {
     flexDirection: "row",
-    padding: moderateScale(5),
+    padding: scale.moderateScale(5),
     paddingTop: 0
   },
   postName: {
-    marginLeft: moderateScale(5),
+    marginLeft: scale.moderateScale(5),
     flex: 1,
     fontWeight: "bold"
   },
-  infoPostContainer: {margin: moderateScale(5), paddingBottom: moderateScale(5)},
+  infoPostContainer: {margin: scale.moderateScale(5), paddingBottom: scale.moderateScale(5)},
   infoPostTitleContainer: {
     borderBottomColor: "#D4D7D8",
-    borderBottomWidth: moderateScale(1)
+    borderBottomWidth: scale.moderateScale(1)
   },
   infoPostTitleText: {
     textAlign: "center",
     fontWeight: "bold",
-    padding: moderateScale(5)
+    padding: scale.moderateScale(5)
   },
   infoPostItemComtainer: {
     borderBottomColor: "#D4D7D8",
-    borderBottomWidth: moderateScale(0.7),
+    borderBottomWidth: scale.moderateScale(0.7),
     flexDirection: "row"
   },
   infoPostItemLabelContainer: {
@@ -50,38 +50,38 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F2F2",
     justifyContent: "center",
     alignItems: "flex-start",
-    padding: moderateScale(5),
+    padding: scale.moderateScale(5),
     borderRightColor: "#D4D7D8",
-    borderRightWidth: moderateScale(0.7)
+    borderRightWidth: scale.moderateScale(0.7)
   },
   infoPostItemLabelText: {color: "#146EB4", fontWeight: "bold"},
   infoPostItemContentContainer: {
     flex: 4,
     justifyContent: "center",
     alignItems: "flex-start",
-    padding: moderateScale(5)
+    padding: scale.moderateScale(5)
   },
   contentPostContainer: {
-    padding: moderateScale(10),
-    margin: moderateScale(5)
+    padding: scale.moderateScale(10),
+    margin: scale.moderateScale(5)
   },
   contentPostTitle: {
-    fontSize: moderateScale(20),
+    fontSize: scale.moderateScale(20),
     fontWeight: "bold",
     color: "#8e8e8e",
-    marginBottom: moderateScale(5)
+    marginBottom: scale.moderateScale(5)
   },
   imagePostContainer: {
-    margin: moderateScale(5),
-    paddingLeft: moderateScale(5),
-    paddingRight: moderateScale(5),
-    paddingTop: moderateScale(5)
+    margin: scale.moderateScale(5),
+    paddingLeft: scale.moderateScale(5),
+    paddingRight: scale.moderateScale(5),
+    paddingTop: scale.moderateScale(5)
   },
   imagePostItem: {
-    width: WIDTH - moderateScale(20),
+    width: scale.WIDTH - scale.moderateScale(20),
     height: 500,
     overflow: "hidden",
-    marginBottom: moderateScale(5)
+    marginBottom: scale.moderateScale(5)
   },
   commentContainer: {
     padding: 5,

@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
@@ -11,13 +11,13 @@ const styles = StyleSheet.create({
   },
   image_style_background: {opacity: 0.5},
   btnSkipLogin: {
-    padding: moderateScale(5),
+    padding: scale.moderateScale(5),
     position: "absolute",
-    top: moderateScale(10),
-    right: moderateScale(20),
+    top: scale.moderateScale(10),
+    right: scale.moderateScale(20),
     borderColor: "gray",
-    borderWidth: moderateScale(0.5),
-    borderRadius: moderateScale(99)
+    borderWidth: scale.moderateScale(0.5),
+    borderRadius: scale.moderateScale(99)
   }
 })
 

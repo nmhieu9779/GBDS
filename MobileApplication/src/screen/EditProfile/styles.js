@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, WIDTH} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
@@ -14,27 +14,27 @@ const styles = StyleSheet.create({
   },
   birthdateInputItemContainer: {
     flexDirection: "row",
-    marginLeft: moderateScale(15)
+    marginLeft: scale.moderateScale(15)
   },
   inputBirthdate: {
-    padding: moderateScale(5),
+    padding: scale.moderateScale(5),
     borderColor: "gray",
     borderWidth: 0.5,
-    borderRadius: moderateScale(5),
-    width: moderateScale(100)
+    borderRadius: scale.moderateScale(5),
+    width: scale.moderateScale(100)
   },
   labelBirthdate: {
     fontWeight: "bold",
-    fontSize: moderateScale(16),
-    marginBottom: moderateScale(10)
+    fontSize: scale.moderateScale(16),
+    marginBottom: scale.moderateScale(10)
   },
   birthdateContainer: {
-    width: WIDTH - moderateScale(10),
-    marginBottom: moderateScale(5)
+    width: scale.WIDTH - scale.moderateScale(10),
+    marginBottom: scale.moderateScale(5)
   },
   btnSaveContainer: {
-    width: WIDTH,
-    padding: moderateScale(15),
+    width: scale.WIDTH,
+    padding: scale.moderateScale(15),
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#24C8EC"
@@ -42,14 +42,14 @@ const styles = StyleSheet.create({
   btnSaveText: {
     fontWeight: "bold",
     color: "white",
-    fontSize: moderateScale(20)
+    fontSize: scale.moderateScale(20)
   },
   genderItemContainer: {
-    padding: moderateScale(5),
+    padding: scale.moderateScale(5),
     borderColor: "gray",
     borderWidth: 0.5,
-    borderRadius: moderateScale(5),
-    width: moderateScale(100),
+    borderRadius: scale.moderateScale(5),
+    width: scale.moderateScale(100),
     justifyContent: "center",
     alignItems: "center"
   }

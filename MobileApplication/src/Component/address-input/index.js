@@ -1,114 +1,110 @@
-import React, {useState, useEffect} from "react"
+import React from "react"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
-import SafeAreaView from "react-native-safe-area-view"
-import ComboBoxDetail from "@src/component/combobox-detail"
 import styles from "./styles"
 import strings from "./strings"
 import {getCity, getDistrict, getWard, getStreet} from "@src/redux/actions"
-import {cleanObject} from "@src/utilities/clean-object"
+import {View} from "react-native"
+import ComboBox from "@src/component/combobox"
+import {cleanObject} from "@src/utilities"
 
 const AddressInput = (props) => {
-  const defaultState = {
-    id: null,
-    name: "",
-    type: null,
-    selected: -1
+  const styleCBB = {
+    container: styles.containerCombobox,
+    combobox: styles.combobox
   }
-  const [city, setCity] = useState(defaultState)
-  const [district, setDistrict] = useState(defaultState)
-  const [ward, setWard] = useState(defaultState)
-  const [street, setStreet] = useState(defaultState)
 
-  useEffect(() => {
-    !props.city && props.getCity()
-  }, [])
+  const defaultParams = {selected: -1, name: "", type: ""}
 
-  useEffect(() => {
-    props.onChangeAddress({
-      data: cleanObject({
-        city: props.isCity && city,
-        district: props.isDistrict && district,
-        ward: props.isWard && ward,
-        street: props.isStreet && street
-      }),
-      name: `${street.name}${street.name && ", "}${ward.name}${ward.name && ", "}${
-        district.name
-      }${district.name && ", "} ${city.name}`
-    })
-  }, [city, district, ward, street])
-
-  const onChangeSelected = ({id, name, type, selected, stateName}) => {
+  const onChangeSelected = (stateName, data) => {
+    let params = {}
     switch (stateName) {
-      case "CITY":
-        setCity({...city, id: id, name: name, type: type, selected: selected})
-        setDistrict(defaultState)
-        setWard(defaultState)
-        setStreet(defaultState)
-        props.isDistrict && props.getDistrict({cityId: id})
+      case "city":
+        props.isDistrict && props.getDistrict({cityId: data.id})
+        params = {
+          city: data,
+          district: props.isDistrict && defaultParams,
+          ward: props.isWard && defaultParams,
+          street: props.isStreet && defaultParams
+        }
         break
-      case "DISTRICT":
-        setDistrict({...district, id: id, name: name, type: type, selected: selected})
-        setWard(defaultState)
-        setStreet(defaultState)
-        props.isWard && props.getWard({cityId: city.id, districtId: id})
+      case "district":
+        props.isWard && props.getWard({cityId: props.city.id, districtId: data.id})
+        params = {
+          district: data,
+          ward: props.isWard && defaultParams,
+          street: props.isStreet && defaultParams
+        }
         break
-      case "WARD":
-        setWard({...ward, id: id, name: name, type: type, selected: selected})
-        setStreet(defaultState)
-        props.isStreet && props.getStreet({cityId: city.id, districtId: district.id})
+      case "ward":
+        props.isStreet && props.getStreet({cityId: props.city.id, districtId: props.district.id})
+        params = {
+          ward: data,
+          street: props.isStreet && defaultParams
+        }
         break
-      case "STREET":
-        setStreet({...ward, id: id, name: name, type: type, selected: selected})
+      case "street":
+        params = {
+          street: data
+        }
         break
       default:
         break
     }
+    props.onChangeSelected(cleanObject(params))
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ComboBoxDetail
-        is={props.isCity}
-        data={props.city}
-        selected={city.selected}
-        title={strings.city.title}
-        label={strings.city.label}
-        name={city.name}
-        onChangeSelected={(e) => onChangeSelected({...e, stateName: "CITY"})}
-        enable={true}
-      />
-      <ComboBoxDetail
-        is={props.isDistrict}
-        data={props.district}
-        selected={district.selected}
-        title={strings.district.title}
-        label={strings.district.label}
-        name={district.name}
-        onChangeSelected={(e) => onChangeSelected({...e, stateName: "DISTRICT"})}
-        enable={city.elected !== -1}
-      />
-      <ComboBoxDetail
-        is={props.isWard}
-        data={props.ward}
-        selected={ward.selected}
-        title={strings.ward.title}
-        label={strings.ward.label}
-        name={ward.name}
-        onChangeSelected={(e) => onChangeSelected({...e, stateName: "WARD"})}
-        enable={district.selected !== -1}
-      />
-      <ComboBoxDetail
-        is={props.isStreet}
-        data={props.street}
-        selected={street.selected}
-        title={strings.street.title}
-        label={strings.street.label}
-        name={street.name}
-        onChangeSelected={(e) => onChangeSelected({...e, stateName: "STREET"})}
-        enable={ward.selected !== -1}
-      />
-    </SafeAreaView>
+    <View style={styles.container}>
+      {props.isCity && (
+        <ComboBox
+          style={styleCBB}
+          data={props.dataCity}
+          selected={props.city.selected}
+          title={strings.city.title}
+          label={strings.city.label}
+          onChangeSelected={onChangeSelected.bind(this, "city")}
+          enable={true}
+          name={props.city.name}
+        />
+      )}
+      {props.isDistrict && (
+        <ComboBox
+          style={styleCBB}
+          data={props.dataDistrict}
+          selected={props.district.selected}
+          title={strings.district.title}
+          label={strings.district.label}
+          onChangeSelected={onChangeSelected.bind(this, "district")}
+          enable={true}
+          name={props.district.name}
+        />
+      )}
+      {props.isWard && (
+        <ComboBox
+          style={styleCBB}
+          data={props.dataWard}
+          selected={props.ward.selected}
+          title={strings.ward.title}
+          label={strings.ward.label}
+          onChangeSelected={onChangeSelected.bind(this, "ward")}
+          enable={true}
+          name={props.ward.name}
+        />
+      )}
+      {props.isStreet && (
+        <ComboBox
+          style={styleCBB}
+          data={props.dataStreet}
+          selected={props.street.selected}
+          title={strings.street.title}
+          label={strings.street.label}
+          onChangeSelected={onChangeSelected.bind(this, "street")}
+          enable={true}
+          name={props.street.name}
+        />
+      )}
+    </View>
   )
 }
 
@@ -120,10 +116,10 @@ const mapStateToProps = ({address}) => {
       type: item.code
     }))
   return {
-    city: address.city.success && formatData(address.city.response.content),
-    district: address.district.success && formatData(address.district.response.content),
-    ward: address.ward.success && formatData(address.ward.response.content),
-    street: address.street.success && formatData(address.street.response.content)
+    dataCity: address.city.success && formatData(address.city.response.content),
+    dataDistrict: address.district.success && formatData(address.district.response.content),
+    dataWard: address.ward.success && formatData(address.ward.response.content),
+    dataStreet: address.street.success && formatData(address.street.response.content)
   }
 }
 

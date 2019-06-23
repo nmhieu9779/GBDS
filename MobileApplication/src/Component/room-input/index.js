@@ -1,31 +1,20 @@
-import React, {useState} from "react"
+import React, {useRef} from "react"
 import {Text, TextInput, TouchableWithoutFeedback, View, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faTimesCircle} from "@fortawesome/free-regular-svg-icons"
-import stylesheets from "@src/common/stylesheets"
 import Card from "@src/component/card"
 
-const RoomInput = ({name, onChange, onClose}) => {
-  const roomInputNumber = React.createRef()
-  const bedRoomInputNumber = React.createRef()
-  const toiletInputNumber = React.createRef()
-
-  const [roomNumber, setRoomNumber] = useState("0")
-  const [bedRoomNumber, setBedRoomNumber] = useState("0")
-  const [toiletNumber, setToiletNumber] = useState("0")
+const RoomInput = ({name, onChange, onClose, room}) => {
+  const roomInputNumber = useRef(null)
+  const bedRoomInputNumber = useRef(null)
+  const toiletInputNumber = useRef(null)
 
   const _onSubmitEditing = (component) => {
     component.current.focus()
   }
 
-  const _onBlur = (e) => {
-    onChange({
-      room: roomNumber ? parseInt(roomNumber) : 0,
-      bedRoom: bedRoomNumber ? parseInt(bedRoomNumber) : 0,
-      bathRoom: toiletNumber ? parseInt(toiletNumber) : 0
-    })
-  }
+  onChangeText = (stateName, text) => onChange({...room, [stateName]: text})
 
   return (
     <TouchableWithoutFeedback
@@ -49,18 +38,13 @@ const RoomInput = ({name, onChange, onClose}) => {
             style={styles.textInput}
             keyboardType={"numeric"}
             returnKeyType={"next"}
-            value={roomNumber}
+            value={room.room}
             onSubmitEditing={() => _onSubmitEditing(bedRoomInputNumber)}
-            onFocus={() => {
-              setRoomNumber("")
-            }}
-            onChangeText={(text) => {
-              setRoomNumber(text)
-            }}
+            onChangeText={onChangeText.bind(this, "room")}
             onBlur={() => {
-              !roomNumber && setRoomNumber("0")
-              _onBlur()
+              !room.room && onChangeText("room", "0")
             }}
+            placeholder={"0"}
           />
           <Text>{" phòng gồm: "}</Text>
           <TextInput
@@ -68,36 +52,26 @@ const RoomInput = ({name, onChange, onClose}) => {
             style={styles.textInput}
             keyboardType={"numeric"}
             returnKeyType={"next"}
-            value={bedRoomNumber}
+            value={room.bedRoom}
             onSubmitEditing={() => _onSubmitEditing(toiletInputNumber)}
-            onFocus={() => {
-              setBedRoomNumber("")
-            }}
-            onChangeText={(text) => {
-              setBedRoomNumber(text)
-            }}
+            onChangeText={onChangeText.bind(this, "bedRoom")}
             onBlur={() => {
-              !bedRoomNumber && setBedRoomNumber("0")
-              _onBlur()
+              !room.bedRoom && onChangeText("bedRoom", "0")
             }}
+            placeholder={"0"}
           />
           <Text>{" phòng ngủ "}</Text>
           <TextInput
             ref={toiletInputNumber}
             style={styles.textInput}
             keyboardType={"numeric"}
-            value={toiletNumber}
+            value={room.bathRoom}
             returnKeyType={"done"}
-            onFocus={() => {
-              setToiletNumber("")
-            }}
-            onChangeText={(text) => {
-              setToiletNumber(text)
-            }}
+            onChangeText={onChangeText.bind(this, "bathRoom")}
             onBlur={() => {
-              !toiletNumber && setToiletNumber("0")
-              _onBlur()
+              !room.bathRoom && onChangeText("bathRoom", "0")
             }}
+            placeholder={"0"}
           />
           <Text>{" toilet"}</Text>
         </View>

@@ -14,7 +14,7 @@ const string = {
       {label: "Đông-Nam"}
     ]
   },
-  baconDirection: {
+  balconyDirection: {
     title: "-- Hướng ban công --",
     label: "Hướng ban công",
     data: [

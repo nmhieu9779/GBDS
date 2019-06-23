@@ -3,7 +3,7 @@ import styles from "./styles"
 import SafeAreaView from "react-native-safe-area-view"
 import {TouchableOpacity, View, Platform, Text} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 import Card from "@src/component/card"
 
 const Title = ({title}) => (
@@ -15,9 +15,13 @@ const Title = ({title}) => (
 const Icon = ({icon, onPress}) =>
   (icon && (
     <TouchableOpacity style={styles.icon} onPress={() => onPress()}>
-      <FontAwesomeIcon color={"white"} size={moderateScale(Platform.OS === "ios" ? 20 : 20)} icon={icon} />
+      <FontAwesomeIcon
+        color={"white"}
+        size={scale.moderateScale(Platform.OS === "ios" ? 20 : 20)}
+        icon={icon}
+      />
     </TouchableOpacity>
-  )) || <View style={{width: moderateScale(40)}} />
+  )) || <View style={{width: scale.moderateScale(40)}} />
 
 const TopBarMenu = ({icon, title, titleIsLeft, onPress}) => (
   <SafeAreaView>

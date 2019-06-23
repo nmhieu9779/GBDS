@@ -9,6 +9,7 @@ import {watchUserProfile} from "@src/screen/UserProfile/redux/sagas"
 import {watchEditProfile} from "@src/screen/EditProfile/redux/sagas"
 import {watchPostDetail} from "@src/screen/PostDetail/redux/sagas"
 import {watchPostFor} from "@src/screen/ForNewPost/redux/sagas"
+import {watchPostNeed} from "@src/screen/NeedNewPost/redux/sagas"
 
 export default function* rootSaga() {
   yield all([
@@ -21,6 +22,7 @@ export default function* rootSaga() {
     watchUserProfile(),
     watchEditProfile(),
     watchPostDetail(),
-    watchPostFor()
+    watchPostFor(),
+    watchPostNeed()
   ])
 }

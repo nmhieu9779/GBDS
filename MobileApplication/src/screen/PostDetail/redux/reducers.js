@@ -11,13 +11,13 @@ const postDetail = (state = initStatePostDetail, action) => {
       return {...state, postDetail: {loading: true, response: null, success: false}}
     case actions.ACTION_GET_DETAIL_POST_SUCCESS:
       return {...state, postDetail: {loading: false, response: action.response, success: true}}
-    case actions.ACTION_GET_DETAIL_POST_SUCCESS:
+    case actions.ACTION_GET_DETAIL_POST_FAILURE:
       return {...state, postDetail: {loading: false, response: action.error, success: false}}
     case actions.ACTION_INTERACTIVE_POST:
       return {...state, interactivePost: {loading: true, response: null, success: false}}
     case actions.ACTION_INTERACTIVE_POST_SUCCESS:
       return {...state, interactivePost: {loading: false, response: action.response, success: true}}
-    case actions.ACTION_INTERACTIVE_POST_SUCCESS:
+    case actions.ACTION_INTERACTIVE_POST_FAILURE:
       return {...state, interactivePost: {loading: false, response: action.error, success: false}}
     default:
       return state

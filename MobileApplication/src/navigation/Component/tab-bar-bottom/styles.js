@@ -1,14 +1,14 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, WIDTH} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
-    width: WIDTH,
+    width: scale.WIDTH,
     backgroundColor: "#2E75ED",
     flexDirection: "row",
     justifyContent: "center",
-    paddingTop: moderateScale(5),
-    paddingBottom: moderateScale(3)
+    paddingTop: scale.moderateScale(5),
+    paddingBottom: scale.moderateScale(3)
   },
   btnContainer: {
     flex: 1,

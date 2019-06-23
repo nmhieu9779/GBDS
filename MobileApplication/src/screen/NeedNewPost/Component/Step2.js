@@ -1,38 +1,43 @@
-import React, {Component} from "react"
+import React, {memo} from "react"
 import {Text, View, TextInput, ScrollView} from "react-native"
 import {styles_step2 as styles} from "../styles"
 import {string_step2 as string} from "../string"
 import TextInputCustom from "@src/component/text-input-custom"
 import Header from "@src/component/header-post"
-import SafeAreaView from "react-native-safe-area-view"
-import {WIDTH, moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
-class Step2 extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
+const Step2 = (props) => {
+  onChangeText = (stateName, text) => {
+    let params = {[stateName]: {value: text}}
+    props.onChangeText(params)
   }
 
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Header text={string.header} />
-        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-          <TextInputCustom
-            onChangeText={(text) => this.setState({productTitle: text})}
-            value={this.state.productTitle}
-            width={WIDTH - moderateScale(10)}
-            color={"red"}
-            label={string.productTitle}
+  return (
+    <View style={styles.container}>
+      <Header text={string.header} />
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <TextInputCustom
+          onChangeText={onChangeText.bind(this, "productTitle")}
+          value={props.productTitle}
+          width={scale.WIDTH - scale.moderateScale(10)}
+          color={"red"}
+          label={string.productTitle}
+        />
+        <View style={styles.infoPostContainer}>
+          <Text style={styles.infoPostLabel}>{string.infoPostLabel}</Text>
+          <TextInput
+            style={styles.infoPostTextInput}
+            value={props.description}
+            multiline={true}
+            onChangeText={onChangeText.bind(this, "description")}
           />
-          <View style={styles.infoPostContainer}>
-            <Text style={styles.infoPostLabel}>{string.infoPostLabel}</Text>
-            <TextInput style={styles.infoPostTextInput} multiline={true} />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    )
-  }
+        </View>
+      </ScrollView>
+    </View>
+  )
 }
 
 export default Step2
+// (prevProps, nextProps) =>
+//   prevProps.productTitle.value === nextProps.productTitle.value &&
+//   prevProps.description.value === nextProps.description.value

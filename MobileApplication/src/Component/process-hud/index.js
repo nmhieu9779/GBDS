@@ -45,7 +45,8 @@ const mapStateToProps = ({
     postDetail.postDetail.loading ||
     postDetail.interactivePost.loading ||
     postFor.postFor.loading ||
-    postFor.uploadPostFor.loading
+    postFor.uploadPostFor.loading ||
+    postFor.deleteImagePost.loading
 })
 
 const ProcessHUDContainer = connect(mapStateToProps)(ProcessHUD)

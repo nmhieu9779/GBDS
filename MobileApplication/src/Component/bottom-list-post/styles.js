@@ -1,29 +1,29 @@
 import {StyleSheet} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   bottomContainer: {
     borderTopWidth: 0.4,
     borderTopColor: "#606770",
-    paddingTop: moderateScale(10),
+    paddingTop: scale.moderateScale(10),
     flexDirection: "row"
   },
   btnBottom: {
     flexDirection: "row",
     flex: 1,
-    paddingLeft: moderateScale(8),
-    paddingRight: moderateScale(8),
+    paddingLeft: scale.moderateScale(8),
+    paddingRight: scale.moderateScale(8),
     justifyContent: "center"
   },
   itemsBtn: {
     flexDirection: "row",
-    padding: moderateScale(8),
-    paddingTop: moderateScale(6),
+    padding: scale.moderateScale(8),
+    paddingTop: scale.moderateScale(6),
     alignItems: "center",
     justifyContent: "center"
   },
   itemsBtnIcon: {
-    marginRight: moderateScale(4)
+    marginRight: scale.moderateScale(4)
   }
 })
 

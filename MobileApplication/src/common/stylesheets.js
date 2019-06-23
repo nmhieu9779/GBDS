@@ -1,11 +1,11 @@
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 import {Platform} from "react-native"
 
 const stylesheets = {
   boxShadow: {
     shadowOffset: {
       width: 0,
-      height: moderateScale(1)
+      height: scale.moderateScale(1)
     },
     shadowOpacity: 0.2,
     ...Platform.select({

@@ -1,16 +1,16 @@
 import {StyleSheet} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: moderateScale(5)
+    padding: scale.moderateScale(5)
   },
   labelContainer: {
     flex: 1,
-    paddingRight: moderateScale(5)
+    paddingRight: scale.moderateScale(5)
   }
 })
 

@@ -1,49 +1,49 @@
-import React, {useState, useEffect} from "react"
-import SafeAreaView from "react-native-safe-area-view"
-import ComboBoxDetail from "@src/component/combobox-detail"
+import React, {memo} from "react"
 import styles from "./styles"
 import string from "./string"
+import ComboBox from "@src/component/combobox"
+import {cleanObject} from "@src/utilities"
+import {View} from "react-native"
+import strings from "./string"
 
-const DirectionInput = ({onChangeData}) => {
-  const [homeDirectionSelected, setHomeDirectionSelected] = useState(-1)
-  const [baconDirectionSelected, setBaconDirectionSelected] = useState(-1)
+const DirectionInput = (props) => {
+  const styleCBB = {
+    container: styles.containerCombobox,
+    combobox: styles.combobox
+  }
 
-  const [homeDirectionName, setHomeDirectionName] = useState("")
-  const [baconDirectionName, setBaconDirectionName] = useState("")
-
-  useEffect(() => {
-    onChangeData({direction: homeDirectionName, balconyDirection: baconDirectionName})
-  }, [homeDirectionSelected, baconDirectionSelected])
+  const onChangeSelected = (stateName, data) => {
+    let params = {[stateName]: data}
+    props.onChangeSelected(cleanObject(params))
+  }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ComboBoxDetail
-        is={true}
-        data={string.homeDirection.data}
-        selected={homeDirectionSelected}
-        title={string.homeDirection.title}
-        label={string.homeDirection.label}
-        name={homeDirectionName}
-        onChangeSelected={({selected, name}) => {
-          setHomeDirectionSelected(selected)
-          setHomeDirectionName(name)
-        }}
-        enable={true}
-      />
-      <ComboBoxDetail
-        is={true}
-        data={string.baconDirection.data}
-        selected={baconDirectionSelected}
-        title={string.baconDirection.title}
-        label={string.baconDirection.label}
-        name={baconDirectionName}
-        onChangeSelected={({selected, name}) => {
-          setBaconDirectionSelected(selected)
-          setBaconDirectionName(name)
-        }}
-        enable={true}
-      />
-    </SafeAreaView>
+    <View style={styles.container}>
+      {props.isDirection && (
+        <ComboBox
+          style={styleCBB}
+          data={string.homeDirection.data}
+          selected={props.direction.selected}
+          title={strings.homeDirection.title}
+          label={strings.homeDirection.label}
+          onChangeSelected={onChangeSelected.bind(this, "direction")}
+          enable={true}
+          name={props.direction.name}
+        />
+      )}
+      {props.isBaconDirection && (
+        <ComboBox
+          style={styleCBB}
+          data={string.balconyDirection.data}
+          selected={props.balconyDirection.selected}
+          title={strings.balconyDirection.title}
+          label={strings.balconyDirection.label}
+          onChangeSelected={onChangeSelected.bind(this, "balconyDirection")}
+          enable={true}
+          name={props.balconyDirection.name}
+        />
+      )}
+    </View>
   )
 }
 

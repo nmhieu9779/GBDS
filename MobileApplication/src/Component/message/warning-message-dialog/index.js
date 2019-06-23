@@ -5,14 +5,14 @@ import {faExclamationTriangle} from "@fortawesome/free-solid-svg-icons"
 import styles from "./styles"
 import Modal from "react-native-modal"
 import Card from "@src/component/card"
-import {HEIGHT} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const WarningMessageDialog = (props) => {
   return (
     <Modal
       isVisible={true}
       style={styles.container}
-      deviceHeight={HEIGHT}
+      deviceHeight={scale.HEIGHT}
       onBackdropPress={props.onPressClose.bind(this)}>
       <Card style={styles.messConatiner}>
         <View style={styles.topContainer}>

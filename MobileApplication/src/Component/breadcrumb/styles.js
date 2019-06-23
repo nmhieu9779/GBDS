@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native"
-import {moderateScale, WIDTH} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const COLOR = "#2E75ED"
 
@@ -11,14 +11,14 @@ const styles = StyleSheet.create({
     borderTopColor: "#d6d6d6",
     justifyContent: "space-around",
     alignItems: "center",
-    width: WIDTH,
-    height: moderateScale(50)
+    width: scale.WIDTH,
+    height: scale.moderateScale(50)
   },
   crumbContainer: {flex: 1, justifyContent: "center", alignItems: "center"},
   line: {
-    height: moderateScale(10),
+    height: scale.moderateScale(10),
     position: "absolute",
-    top: moderateScale(WIDTH / 28 - 5),
+    top: scale.moderateScale(scale.WIDTH / 28 - 5),
     flexDirection: "row"
   },
   lengthItem: {flex: 1},
@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   crumbStyle: {
-    width: moderateScale(WIDTH / 14),
-    height: moderateScale(WIDTH / 14),
+    width: scale.moderateScale(scale.WIDTH / 14),
+    height: scale.moderateScale(scale.WIDTH / 14),
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: moderateScale(WIDTH / 7),
+    borderRadius: scale.moderateScale(scale.WIDTH / 7),
     backgroundColor: "white"
   },
   activeCrumbStyle: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   crumbTextStyle: {
     color: COLOR,
-    fontSize: moderateScale(20)
+    fontSize: scale.moderateScale(20)
   },
   activeCrumbTextStyle: {
     color: "white",

@@ -11,6 +11,9 @@ import styles from "./styles"
 import AvatarCirCle from "@src/component/avatar-circle"
 import Card from "@src/component/card"
 import FastImage from "react-native-fast-image"
+import {NavigationActions} from "react-navigation"
+import {postNeed, postFor} from "@src/redux/actions"
+import {date} from "@src/utilities"
 
 const TableInfo = (props) => (
   <Card style={styles.infoPostContainer}>
@@ -60,18 +63,18 @@ const ImagePost = (props) => (
   </Card>
 )
 
-const Menu = () => (
+const Menu = (props) => (
   <View style={styles.menuContainer}>
-    <TouchableOpacity style={styles.menuItemContainer}>
+    <TouchableOpacity onPress={props.onEditPost.bind()} style={styles.menuItemContainer}>
       <View style={styles.menuItem}>
         <FontAwesomeIcon color={"white"} icon={faEdit} />
         <Text style={styles.menuItemText}>{"Chỉnh sửa"}</Text>
       </View>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.menuItemContainer}>
+    <TouchableOpacity onPress={props.onReupPost.bind()} style={styles.menuItemContainer}>
       <View style={styles.menuItem}>
         <FontAwesomeIcon color={"white"} icon={faClock} />
-        <Text style={styles.menuItemText}>{"Gia hạn"}</Text>
+        <Text style={styles.menuItemText}>{"Đăng lại"}</Text>
       </View>
     </TouchableOpacity>
     <TouchableOpacity style={styles.menuItemContainer}>
@@ -84,7 +87,6 @@ const Menu = () => (
 )
 
 const PostDetail = (props) => {
-  console.log(props)
   return (
     <SafeAreaView style={styles.container}>
       <TopBarMenu icon={[{icon: faArrowLeft}]} title={props.name} onPress={() => props.navigation.goBack()} />
@@ -102,7 +104,35 @@ const PostDetail = (props) => {
                 {props.name}
               </Text>
             </View>
-            {props.isUserPost && <Menu />}
+            {props.isUserPost && (
+              <Menu
+                onEditPost={() =>
+                  props.navigation.navigate({
+                    routeName: [props.screen].toString(),
+                    params: props.fieldx
+                  })
+                }
+                onReupPost={() =>
+                  props.postType === "NEED"
+                    ? props.postNeed({
+                        body: {
+                          createdDate: `${date.formatDate(new Date(), "YYYY-MM-DD HH:mm:ss")}`,
+                          id: props.id
+                        },
+                        type: props.fieldx.step1.typeProduct.productType.type,
+                        isNew: false
+                      })
+                    : props.postFor({
+                        body: {
+                          createdDate: `${date.formatDate(new Date(), "YYYY-MM-DD HH:mm:ss")}`,
+                          id: props.id
+                        },
+                        type: props.fieldx.step1.typeProduct.productType.type,
+                        isNew: false
+                      })
+                }
+              />
+            )}
           </Card>
           {props.info && <TableInfo info={props.info} />}
           {props.contact && <TableContact contact={props.contact} />}
@@ -144,26 +174,32 @@ const mapStateToProps = (state) => {
               address.province.name
             },`
           },
-          postDetail.totalCost && {label: "Giá", content: postDetail.totalCost},
-          postDetail.property.area && {label: "Diện tích", content: postDetail.property.area},
-          details.frontSide && {label: "Mặt tiền", content: `${details.frontSide} m`},
-          details.wayIn && {label: "Đường vào", content: `${details.wayIn} m`},
-          details.direction && {label: "Hướng nhà", content: `${details.direction}`},
-          details.balconyDirection && {label: "Hướng ban công", content: `${details.balconyDirection}`},
+          postDetail.totalCost ? {label: "Giá", content: postDetail.totalCost} : false,
+          postDetail.property.area ? {label: "Diện tích", content: postDetail.property.area} : false,
+          details.frontSide ? {label: "Mặt tiền", content: `${details.frontSide} m`} : false,
+          details.wayIn ? {label: "Đường vào", content: `${details.wayIn} m`} : false,
+          details.direction ? {label: "Hướng nhà", content: `${details.direction}`} : false,
+          details.balconyDirection
+            ? {label: "Hướng ban công", content: `${details.balconyDirection}`}
+            : false,
           ...floors,
-          details.furniture && {label: "Nội thất khác", content: `${details.furniture}`}
+          details.furniture ? {label: "Nội thất khác", content: `${details.furniture}`} : false
         ],
         contact: [
-          contact.name && {label: "Họ tên", content: contact.name},
-          contact.address && {label: "Địa chỉ", content: contact.address},
-          contact.phone && {label: "Di động", content: contact.phone},
-          contact.email && {label: "Email", content: contact.email}
+          contact.name ? {label: "Họ tên", content: contact.name} : false,
+          contact.address ? {label: "Địa chỉ", content: contact.address} : false,
+          contact.phone ? {label: "Di động", content: contact.phone} : false,
+          contact.email ? {label: "Email", content: contact.email} : false
         ],
         content: postDetail.description,
         images: [...images.frontSide, ...images.wayIn, ...images.furnitures, ...images.others],
         isUserPost:
-          state.userProfile.success &&
-          state.userProfile.userProfile.response.content.email === postDetail.user
+          state.userProfile.userProfile.success &&
+          state.userProfile.userProfile.response.content.email === postDetail.user,
+        screen: "ForNewPost",
+        postType: "FOR",
+        fieldx: postDetail.fieldx && {...JSON.parse(postDetail.fieldx), step: 0},
+        id: postDetail.id
       }
     } else if (
       ["NEED_BUY", "NEED_RENT"].findIndex((e) => e === state.postDetail.postDetail.response.type) !== -1
@@ -194,8 +230,12 @@ const mapStateToProps = (state) => {
         ],
         content: postDetail.description,
         isUserPost:
-          state.userProfile.success &&
-          state.userProfile.userProfile.response.content.email === postDetail.user
+          state.userProfile.userProfile.success &&
+          state.userProfile.userProfile.response.content.email === postDetail.user,
+        screen: "NeedNewPost",
+        postType: "NEED",
+        fieldx: postDetail.fieldx && {...JSON.parse(postDetail.fieldx), id: postDetail.id},
+        id: postDetail.id
       }
     }
   } else {
@@ -206,7 +246,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  let actionCreators = {}
+  let actionCreators = {postNeed, postFor}
   let actions = bindActionCreators(actionCreators, dispatch)
   return {...actions, dispatch}
 }

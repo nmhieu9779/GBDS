@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react"
+import React, {useState, useEffect, useRef, memo} from "react"
 import {Platform, TextInput, Animated, TouchableWithoutFeedback, View} from "react-native"
 import styles from "./styles"
 
@@ -98,3 +98,4 @@ const TextInputCustom = ({
 }
 
 export default TextInputCustom
+// (prevProps, nextProps) => prevProps.value === nextProps.value && prevProps.children === nextProps.children

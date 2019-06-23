@@ -74,7 +74,7 @@ const ACTION_GET_PRICE = `[TYPE_PRODUCT] GET_PRICE`
 const getPrice = (params) => ({type: ACTION_GET_PRICE, params})
 
 const ACTION_OPEN_SELECT_TYPE_POST = `[TYPE_POST] OPEN_SELECT_TYPE_POST`
-const openSelectTypePost = () => ({type: ACTION_OPEN_SELECT_TYPE_POST})
+const openSelectTypePost = (params) => ({type: ACTION_OPEN_SELECT_TYPE_POST, params})
 
 const ACTION_CLOSE_SELECT_TYPE_POST = `[TYPE_POST] CLOSE_SELECT_TYPE_POST`
 const closeSelectTypePost = () => ({type: ACTION_CLOSE_SELECT_TYPE_POST})
@@ -211,6 +211,15 @@ const uploadPostForSuccess = (response) => ({type: ACTION_UPLOAD_POST_FOR_SUCCES
 const ACTION_UPLOAD_POST_FOR_FAILURE = `[POST FOR] UPLOAD_POST_FOR_FAILURE`
 const uploadPostForFailure = (error) => ({type: ACTION_UPLOAD_POST_FOR_FAILURE, error})
 
+const ACTION_DELETE_IMAGE_POST = `[POST FOR] DELETE_IMAGE_POST`
+const deleteImagePost = (params) => ({type: ACTION_DELETE_IMAGE_POST, params})
+
+const ACTION_DELETE_IMAGE_POST_SUCCESS = `[POST FOR] DELETE_IMAGE_POST_SUCCESS`
+const deleteImagePostSuccess = (response) => ({type: ACTION_DELETE_IMAGE_POST_SUCCESS, response})
+
+const ACTION_DELETE_IMAGE_POST_FAILURE = `[POST FOR] DELETE_IMAGE_POST_FAILURE`
+const deleteImagePostFailure = (error) => ({type: ACTION_DELETE_IMAGE_POST_FAILURE, error})
+
 const ACTION_POST_FOR = `[POST FOR] POST_FOR`
 const postFor = (params) => ({type: ACTION_POST_FOR, params})
 
@@ -219,6 +228,21 @@ const postForSuccess = (response) => ({type: ACTION_POST_FOR_SUCCESS, response})
 
 const ACTION_POST_FOR_FAILURE = `[POST FOR] POST_FOR_FAILURE`
 const postForFailure = (error) => ({type: ACTION_POST_FOR_FAILURE, error})
+
+const ACTION_RESET_INFO_POST_FOR = `[POST FOR] RESET_INFO_POST_FOR`
+const resetInfoPostFor = () => ({type: ACTION_RESET_INFO_POST_FOR})
+
+const ACTION_POST_NEED = `[POST NEED] POST_NEED`
+const postNeed = (params) => ({type: ACTION_POST_NEED, params})
+
+const ACTION_POST_NEED_SUCCESS = `[POST NEED] POST_NEED_SUCCESS`
+const postNeedSuccess = (response) => ({type: ACTION_POST_NEED_SUCCESS, response})
+
+const ACTION_POST_NEED_FAILURE = `[POST NEED] POST_NEED_FAILURE`
+const postNeedFailure = (error) => ({type: ACTION_POST_NEED_FAILURE, error})
+
+const ACTION_RESET_INFO_POST_NEED = `[POST NEED] RESET_INFO_POST_NEED`
+const resetInfoPostNeed = () => ({type: ACTION_RESET_INFO_POST_NEED})
 
 export const SHOW_MESSAGE = `SHOW_MESSAGE`
 export const UN_SHOW_MESSAGE = `UN_SHOW_MESSAGE`
@@ -377,10 +401,27 @@ export {
   uploadPostFor,
   uploadPostForSuccess,
   uploadPostForFailure,
+  ACTION_DELETE_IMAGE_POST,
+  ACTION_DELETE_IMAGE_POST_SUCCESS,
+  ACTION_DELETE_IMAGE_POST_FAILURE,
+  deleteImagePost,
+  deleteImagePostSuccess,
+  deleteImagePostFailure,
   ACTION_POST_FOR,
   ACTION_POST_FOR_SUCCESS,
   ACTION_POST_FOR_FAILURE,
   postFor,
   postForSuccess,
-  postForFailure
+  postForFailure,
+  ACTION_RESET_INFO_POST_FOR,
+  resetInfoPostFor,
+  //Post Need
+  ACTION_POST_NEED,
+  ACTION_POST_NEED_SUCCESS,
+  ACTION_POST_NEED_FAILURE,
+  postNeed,
+  postNeedSuccess,
+  postNeedFailure,
+  ACTION_RESET_INFO_POST_NEED,
+  resetInfoPostNeed
 }

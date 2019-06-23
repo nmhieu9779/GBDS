@@ -3,8 +3,6 @@ import {Text, TouchableOpacity, Platform, StyleSheet, View, Animated} from "reac
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faTimesCircle} from "@fortawesome/free-regular-svg-icons"
 import styles from "./styles"
-import Card from "@src/component/card"
-import {moderateScale, WIDTH} from "@src/utilities/scale"
 import {PanGestureHandler, State} from "react-native-gesture-handler"
 
 const ErrorMessage = (props) => {

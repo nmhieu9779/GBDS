@@ -3,7 +3,7 @@ import {TouchableOpacity, Animated, Platform, StyleSheet} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
 import {PanGestureHandler, State} from "react-native-gesture-handler"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const FloatingButton = (props) => {
   let _translateX = new Animated.Value(0)
@@ -57,7 +57,7 @@ const FloatingButton = (props) => {
           {
             transform: [{translateX: _translateX}, {translateY: _translateY}],
             zIndex: 1,
-            borderRadius: moderateScale(30),
+            borderRadius: scale.moderateScale(30),
             position: "absolute",
             backgroundColor: "white",
             bottom: 100,

@@ -8,8 +8,7 @@ import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import styles from "./styles"
 import TextInputCustom from "@src/component/text-input-custom"
-import {WIDTH, moderateScale} from "@src/utilities/scale"
-import {getDay, getMonth, getYear, formatDayMonth} from "@src/utilities/date"
+import {scale, date} from "@src/utilities"
 import {uploadImage, editProfile} from "@src/redux/actions"
 
 const GenderItem = (props) => (
@@ -40,9 +39,9 @@ const GenderInput = (props) => {
 const EditProfile = (props) => {
   const [name, setName] = useState(props.name)
   const [description, setDescription] = useState(props.description)
-  const [day, setDay] = useState(getDay(props.birthdate))
-  const [month, setMonth] = useState(getMonth(props.birthdate))
-  const [year, setYear] = useState(getYear(props.birthdate))
+  const [day, setDay] = useState(date.getDay(props.birthdate))
+  const [month, setMonth] = useState(date.getMonth(props.birthdate))
+  const [year, setYear] = useState(date.getYear(props.birthdate))
   const [email, setEmail] = useState(props.email)
   const [phone, setPhone] = useState(props.phone)
   const [address, setAddress] = useState(props.address)
@@ -82,7 +81,11 @@ const EditProfile = (props) => {
     let body = {
       address: address,
       birthdate:
-        (day && month && year && `${year}-${formatDayMonth(month)}-${formatDayMonth(day)} 00:00:00`) || null,
+        (day &&
+          month &&
+          year &&
+          `${year}-${date.formatDayMonth(month)}-${date.formatDayMonth(day)} 00:00:00`) ||
+        null,
       description: description,
       email: props.email || email,
       gender: gender,
@@ -115,18 +118,18 @@ const EditProfile = (props) => {
         </View>
         <View style={styles.infoContainer}>
           <TextInputCustom
-            marginBottom={moderateScale(5)}
+            marginBottom={scale.moderateScale(5)}
             onChangeText={(text) => setName(text)}
             value={name}
-            width={WIDTH - moderateScale(10)}
+            width={scale.WIDTH - scale.moderateScale(10)}
             label={"Họ và tên"}
           />
           <GenderInput gender={gender} setGender={(e) => setGender(e)} />
           <TextInputCustom
-            marginBottom={moderateScale(5)}
+            marginBottom={scale.moderateScale(5)}
             onChangeText={(text) => setDescription(text)}
             value={description}
-            width={WIDTH - moderateScale(10)}
+            width={scale.WIDTH - scale.moderateScale(10)}
             label={"Mô tả"}
           />
           <View style={styles.birthdateContainer}>
@@ -159,39 +162,39 @@ const EditProfile = (props) => {
             </View>
           </View>
           <TextInputCustom
-            marginBottom={moderateScale(5)}
+            marginBottom={scale.moderateScale(5)}
             onChangeText={(text) => setEmail(text)}
             value={email}
-            width={WIDTH - moderateScale(10)}
+            width={scale.WIDTH - scale.moderateScale(10)}
             label={"Email"}
             editable={false}
           />
           <TextInputCustom
-            marginBottom={moderateScale(5)}
+            marginBottom={scale.moderateScale(5)}
             onChangeText={(text) => setPhone(text)}
             value={phone}
-            width={WIDTH - moderateScale(10)}
+            width={scale.WIDTH - scale.moderateScale(10)}
             label={"Số điện thoại"}
           />
           <TextInputCustom
-            marginBottom={moderateScale(5)}
+            marginBottom={scale.moderateScale(5)}
             onChangeText={(text) => setAddress(text)}
             value={address}
-            width={WIDTH - moderateScale(10)}
+            width={scale.WIDTH - scale.moderateScale(10)}
             label={"Địa chỉ"}
           />
           <TextInputCustom
-            marginBottom={moderateScale(5)}
+            marginBottom={scale.moderateScale(5)}
             onChangeText={(text) => setOccupation(text)}
             value={occupation}
-            width={WIDTH - moderateScale(10)}
+            width={scale.WIDTH - scale.moderateScale(10)}
             label={"Nghề nghiệp"}
           />
           <TextInputCustom
-            marginBottom={moderateScale(5)}
+            marginBottom={scale.moderateScale(5)}
             onChangeText={(text) => setOrganization(text)}
             value={organization}
-            width={WIDTH - moderateScale(10)}
+            width={scale.WIDTH - scale.moderateScale(10)}
             label={"Cơ quan"}
           />
         </View>

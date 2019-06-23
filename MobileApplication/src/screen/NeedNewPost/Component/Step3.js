@@ -1,57 +1,62 @@
-import React, {Component} from "react"
-import {ScrollView, TouchableOpacity, Text} from "react-native"
+import React, {memo} from "react"
+import {ScrollView, TouchableOpacity, Text, View} from "react-native"
 import {styles_step3 as styles} from "../styles"
 import {string_step3 as string} from "../string"
 import Header from "@src/component/header-post"
-import SafeAreaView from "react-native-safe-area-view"
 import TextInputCustom from "@src/component/text-input-custom"
-import {WIDTH, moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
-class Step3 extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {name: "", address: "", phoneNumber: "", email: ""}
+const Step3 = (props) => {
+  onChangeText = (stateName, text) => {
+    let params = {[stateName]: {value: text}}
+    props.onChangeText(params)
   }
 
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Header text={string.header} />
-        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-          <TextInputCustom
-            onChangeText={(text) => this.setState({name: text})}
-            value={this.state.name}
-            width={WIDTH - moderateScale(10)}
-            label={string.nameLabel}
-          />
-          <TextInputCustom
-            onChangeText={(text) => this.setState({address: text})}
-            value={this.state.address}
-            width={WIDTH - moderateScale(10)}
-            label={string.addressLable}
-          />
-          <TextInputCustom
-            onChangeText={(text) => this.setState({phoneNumber: text})}
-            value={this.state.phoneNumber}
-            width={WIDTH - moderateScale(10)}
-            label={string.phoneNumberLabel}
-            keyboardType={"numeric"}
-          />
-          <TextInputCustom
-            onChangeText={(text) => this.setState({email: text})}
-            value={this.state.email}
-            width={WIDTH - moderateScale(10)}
-            label={string.emailLabel}
-            keyboardType={"email-address"}
-          />
-          <SafeAreaView style={styles.footer}>
-            <TouchableOpacity style={styles.btnPost}>
-              <Text style={{color: "white", fontWeight: "bold"}}>{"Đăng bài"}</Text>
-            </TouchableOpacity>
-          </SafeAreaView>
-        </ScrollView>
-      </SafeAreaView>
-    )
-  }
+  return (
+    <View style={styles.container}>
+      <Header text={string.header} />
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <TextInputCustom
+          onChangeText={onChangeText.bind(this, "name")}
+          value={props.name}
+          width={scale.WIDTH - scale.moderateScale(10)}
+          label={string.nameLabel}
+        />
+        <TextInputCustom
+          onChangeText={onChangeText.bind(this, "address")}
+          value={props.address}
+          width={scale.WIDTH - scale.moderateScale(10)}
+          label={string.addressLable}
+        />
+        <TextInputCustom
+          onChangeText={onChangeText.bind(this, "phone")}
+          value={props.phone}
+          width={scale.WIDTH - scale.moderateScale(10)}
+          label={string.phoneNumberLabel}
+          keyboardType={"numeric"}
+        />
+        <TextInputCustom
+          onChangeText={onChangeText.bind(this, "email")}
+          value={props.email}
+          width={scale.WIDTH - scale.moderateScale(10)}
+          label={string.emailLabel}
+          keyboardType={"email-address"}
+        />
+        <View style={styles.footer}>
+          <TouchableOpacity onPress={props.onPress.bind()} style={styles.btnPost}>
+            <Text style={{color: "white", fontWeight: "bold"}}>{props.isNew ? "Đăng bài" : "Chỉnh sửa"}</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </View>
+  )
 }
-export default Step3
+
+export default memo(
+  Step3
+  // (prevProps, nextProps) =>
+  //   prevProps.name.value === nextProps.name.value &&
+  //   prevProps.address.value === nextProps.address.value &&
+  //   prevProps.phone.value === nextProps.phone.value &&
+  //   prevProps.email.value === nextProps.email.value
+)

@@ -19,7 +19,8 @@ export const stringStep1 = {
   areaString: "m²",
   priceLabel: "Giá",
   priceTitle: "Tổng giá tiền:",
-  addressTitle: "Địa chỉ"
+  addressTitle: "Địa chỉ",
+  number: "Số nhà"
 }
 
 export const stringStep2 = {

@@ -4,7 +4,6 @@ import AddressInput from "@src/component/address-input"
 import styles from "./styles"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faSortUp} from "@fortawesome/free-solid-svg-icons"
-import {height, width} from "@src/utilities/scale"
 import SafeAreaView from "react-native-safe-area-view"
 
 class FilterContainer extends Component {

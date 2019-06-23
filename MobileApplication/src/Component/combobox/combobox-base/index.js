@@ -3,9 +3,8 @@ import {Text, View, TouchableOpacity, FlatList} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons"
 import styles from "./styles"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 import Modal from "react-native-modal"
-import {HEIGHT} from "@src/utilities/scale"
 
 const RenderItem = ({data, visiable, title, onClose, onChange}) => {
   const getHeightContainer = (length) => parseInt(length >= 5 ? 240 : 40 * (length + 1))
@@ -16,8 +15,11 @@ const RenderItem = ({data, visiable, title, onClose, onChange}) => {
       onPress={onPressItem.bind(this, {
         id: item.id,
         name: item.label,
-        type: item.type || null,
-        selected: index
+        type: item.type === 0 ? 0 : item.type || null,
+        selected: index,
+        cost: item.cost || null,
+        min: item.min === 0 ? 0 : item.min || null,
+        max: item.max === -1 ? -1 : item.max || null
       })}
       style={styles.itemContainer_item}>
       <Text style={styles.itemLabel_item}>{item.label}</Text>
@@ -32,11 +34,11 @@ const RenderItem = ({data, visiable, title, onClose, onChange}) => {
   return (
     <Modal
       isVisible={visiable}
-      deviceHeight={HEIGHT}
+      deviceHeight={scale.HEIGHT}
       onBackdropPress={onClose.bind()}
       onSwipeComplete={onClose.bind()}
       style={styles.modalContainer}>
-      <View style={[styles.container_item, {height: moderateScale(heightContainer)}]}>
+      <View style={[styles.container_item, {height: scale.moderateScale(heightContainer)}]}>
         <View style={styles.itemContainer_item}>
           <Text style={styles.header_item}>{title}</Text>
         </View>

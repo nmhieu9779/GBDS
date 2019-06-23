@@ -1,7 +1,7 @@
 import React from "react"
 import {Text, TouchableOpacity} from "react-native"
 import styles from "./styles"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 
 const ButtonCustom = ({style, label, iconColor, icon, onPress, backgroundColor, borderRadius, textColor}) => (
@@ -11,8 +11,8 @@ const ButtonCustom = ({style, label, iconColor, icon, onPress, backgroundColor, 
       style,
       {
         backgroundColor: backgroundColor,
-        borderTopLeftRadius: moderateScale(borderRadius || 20),
-        borderBottomRightRadius: moderateScale(borderRadius || 20)
+        borderTopLeftRadius: scale.moderateScale(borderRadius || 20),
+        borderBottomRightRadius: scale.moderateScale(borderRadius || 20)
       }
     ]}
     onPress={onPress.bind(this)}>

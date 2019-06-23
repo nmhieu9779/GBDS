@@ -1,4 +1,4 @@
-const URL_SERVER = `http://35.240.155.147:21006`
+const URL_SERVER = `http://35.247.136.3:21006`
 
 const URL_ADMNU = `${URL_SERVER}/api-gateway/grre-admnu`
 
@@ -41,3 +41,9 @@ export const URL_UN_FOLLOW_POST = `${URL_REMNG}/api/v1/posts/unsubscribe`
 export const URL_UPLOAD_POST_FOR = `${URL_REMNG}/api/v1/file-upload`
 export const URL_POST_FOR_SALE = `${URL_REMNG}/api/v1/for-sale-posts`
 export const URL_POST_FOR_RENT = `${URL_REMNG}/api/v1/for-rent-posts`
+export const URL_DELETE_IMAGE_POST_SALE_EXISTED = `${URL_REMNG}/api/v1/file-upload/existed/sale`
+export const URL_DELETE_IMAGE_POST_RENT_EXISTED = `${URL_REMNG}/api/v1/file-upload/existed/rent`
+export const URL_DELETE_IMAGE_POST = `${URL_REMNG}/api/v1/file-upload`
+
+export const URL_POST_NEED_BUY = `${URL_REMNG}/api/v1/buy-demand-posts`
+export const URL_POST_NEED_RENT = `${URL_REMNG}/api/v1/rent-demand-posts`

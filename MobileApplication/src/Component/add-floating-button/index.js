@@ -5,8 +5,8 @@ import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import {openSelectTypePost} from "@src/redux/actions"
 
-const AddFloatingButton = ({openSelectTypePost}) => (
-  <FloatingButton icon={faPencilAlt} onPress={() => openSelectTypePost()} />
+const AddFloatingButton = (props) => (
+  <FloatingButton icon={faPencilAlt} onPress={() => props.openSelectTypePost(props.screen)} />
 )
 
 const mapDispatchToProps = (dispatch) => {

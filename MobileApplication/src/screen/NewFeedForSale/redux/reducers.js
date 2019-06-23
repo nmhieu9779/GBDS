@@ -5,7 +5,8 @@ initStateNewFeedForSale = {
   refreshing: false,
   response: null,
   success: false,
-  loadMore: false
+  loadMore: false,
+  error: null
 }
 
 const newFeedForSale = (state = initStateNewFeedForSale, action) => {
@@ -16,7 +17,8 @@ const newFeedForSale = (state = initStateNewFeedForSale, action) => {
         loading: !action.params.loadMore,
         refreshing: true,
         success: false,
-        loadMore: action.params.loadMore
+        loadMore: action.params.loadMore,
+        error: null
       }
     case actions.ACTION_FETCH_POST_FOR_SALE_SUCCESS:
       return {
@@ -26,11 +28,11 @@ const newFeedForSale = (state = initStateNewFeedForSale, action) => {
         success: true,
         loadMore: false
       }
-    case actions.ACTION_FETCH_POST_FOR_SALE_SUCCESS:
+    case actions.ACTION_FETCH_POST_FOR_SALE_FAILURE:
       return {
         loading: false,
         refreshing: false,
-        response: action.error,
+        error: action.error,
         success: false,
         loadMore: false
       }

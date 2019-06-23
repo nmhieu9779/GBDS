@@ -1,42 +1,42 @@
-import React, {useState, useEffect} from "react"
+import React from "react"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import {getProductType, getProductCate, getPriceUnit, getArea, getPrice} from "@src/redux/actions"
-import SafeAreaView from "react-native-safe-area-view"
-import ComboBoxDetail from "@src/component/combobox-detail"
 import styles from "./styles"
 import strings from "./strings"
-import {cleanObject} from "@src/utilities/clean-object"
+import ComboBox from "@src/component/combobox"
+import {cleanObject} from "@src/utilities"
+import {View} from "react-native"
 
 const TypeProduct = (props) => {
-  const defaultState = {
-    id: null,
-    name: "",
-    type: null,
-    selected: -1
+  const styleCBB = {
+    container: styles.containerCombobox,
+    combobox: styles.combobox
   }
-  const [productType, setProductType] = useState(defaultState)
-  const [productCate, setProductCate] = useState(defaultState)
-  const [priceUnit, setPriceUnit] = useState(defaultState)
-  const [area, setArea] = useState(defaultState)
-  const [price, setPrice] = useState(defaultState)
 
-  useEffect(() => {
-    props.productType.length === 0 && props.getProductType()
-  }, [])
+  const defaultParams = {selected: -1, name: "", type: ""}
 
-  useEffect(() => {
-    const data = cleanObject({
-      productType: props.isProductType && productType,
-      productCate: props.isProductCate && productCate,
-      priceUnit: props.isPriceUnit && priceUnit,
-      area: props.isArea && area,
-      price: props.isPrice && price
-    })
-    props.onChange(data)
-  }, [productType, productCate, priceUnit, area, price])
+  const onChangeSelected = (stateName, data) => {
+    let params = {}
+    switch (stateName) {
+      case "productType":
+        getData(data.selected, props.postTypeId)
+        params = {
+          productType: data,
+          productCate: (props.isProductCate || props.otherKey.productCate) && defaultParams,
+          priceUnit: (props.isPriceUnit || props.otherKey.priceUnit) && defaultParams,
+          area: (props.isArea || props.otherKey.area) && defaultParams,
+          price: (props.isPrice || props.otherKey.price) && defaultParams
+        }
+        break
+      default:
+        params = {[stateName]: data}
+        break
+    }
+    props.onChangeSelected(cleanObject(params))
+  }
 
-  getData = (selected, postTypeId) => {
+  const getData = (selected, postTypeId) => {
     switch (postTypeId) {
       case 0:
         props.getProductCate({postTypeId, productTypeId: selected})
@@ -51,122 +51,79 @@ const TypeProduct = (props) => {
     }
   }
 
-  const onChangeSelected = ({id, name, type, selected, stateName}) => {
-    switch (stateName) {
-      case "TYPE":
-        setProductType({
-          ...productType,
-          id: id,
-          name: name,
-          type: type,
-          selected: selected
-        })
-        getData(selected, props.postTypeId)
-        break
-      case "CATE":
-        setProductCate({
-          ...productCate,
-          id: id,
-          name: name,
-          type: type,
-          selected: selected
-        })
-        break
-      case "UNIT":
-        setPriceUnit({
-          ...priceUnit,
-          id: id,
-          name: name,
-          type: type,
-          selected: selected
-        })
-        break
-      case "AREA":
-        setArea({
-          ...area,
-          id: id,
-          name: name,
-          type: type,
-          selected: selected
-        })
-        break
-      case "PRICE":
-        setPrice({
-          ...price,
-          id: id,
-          name: name,
-          type: type,
-          selected: selected
-        })
-        break
-      default:
-        break
-    }
-  }
-
   return (
-    <SafeAreaView style={[styles.container, props.style]}>
-      <ComboBoxDetail
-        is={props.isProductType}
-        data={props.productType[props.postTypeId]}
-        selected={productType.selected}
-        title={strings.productType.title}
-        label={strings.productType.label}
-        name={productType.name}
-        onChangeSelected={(e) => onChangeSelected({...e, stateName: "TYPE"})}
-        enable={true}
-      />
-      <ComboBoxDetail
-        is={props.isProductCate}
-        data={props.productCate}
-        selected={productCate.selected}
-        title={strings.productCate.title}
-        label={strings.productCate.label}
-        name={productCate.name}
-        onChangeSelected={(e) => onChangeSelected({...e, stateName: "CATE"})}
-        enable={true}
-      />
-      <ComboBoxDetail
-        is={props.isPriceUnit}
-        style={{}}
-        data={props.priceUnit}
-        selected={priceUnit.selected}
-        name={priceUnit.name}
-        title={strings.priceUnit.title}
-        onChangeSelected={(e) => onChangeSelected({...e, stateName: "UNIT"})}
-        enable={true}
-      />
-      <ComboBoxDetail
-        is={props.isArea}
-        data={props.area}
-        selected={area.selected}
-        title={strings.area.title}
-        label={strings.area.label}
-        name={area.name}
-        onChangeSelected={(e) => onChangeSelected({...e, stateName: "AREA"})}
-        enable={true}
-      />
-      <ComboBoxDetail
-        is={props.isPrice}
-        data={props.price}
-        selected={price.selected}
-        title={strings.price.title}
-        label={strings.price.label}
-        name={price.name}
-        onChangeSelected={(e) => onChangeSelected({...e, stateName: "PRICE"})}
-        enable={true}
-      />
-    </SafeAreaView>
+    <View style={[styles.container, props.style]}>
+      {props.isProductType && (
+        <ComboBox
+          style={styleCBB}
+          data={props.dataProductType[props.postTypeId]}
+          selected={props.productType.selected}
+          title={strings.productType.title}
+          label={strings.productType.label}
+          onChangeSelected={onChangeSelected.bind(this, "productType")}
+          enable={true}
+          name={props.productType.name}
+        />
+      )}
+      {props.isProductCate && (
+        <ComboBox
+          style={styleCBB}
+          data={props.dataProductCate}
+          selected={props.productCate.selected}
+          title={strings.productCate.title}
+          label={strings.productCate.label}
+          onChangeSelected={onChangeSelected.bind(this, "productCate")}
+          enable={true}
+          name={props.productCate.name}
+        />
+      )}
+      {props.isPriceUnit && (
+        <ComboBox
+          style={{}}
+          data={props.dataPriceUnit}
+          selected={props.priceUnit.selected}
+          title={strings.priceUnit.title}
+          label={strings.priceUnit.label}
+          onChangeSelected={onChangeSelected.bind(this, "priceUnit")}
+          enable={true}
+          name={props.priceUnit.name}
+        />
+      )}
+      {props.isArea && (
+        <ComboBox
+          style={styleCBB}
+          data={props.dataArea}
+          selected={props.area.selected}
+          title={strings.area.title}
+          label={strings.area.label}
+          onChangeSelected={onChangeSelected.bind(this, "area")}
+          enable={true}
+          name={props.area.name}
+        />
+      )}
+      {props.isPrice && (
+        <ComboBox
+          style={styleCBB}
+          data={props.dataPrice}
+          selected={props.price.selected}
+          title={strings.price.title}
+          label={strings.price.label}
+          onChangeSelected={onChangeSelected.bind(this, "price")}
+          enable={true}
+          name={props.price.name}
+        />
+      )}
+    </View>
   )
 }
 
 const mapStateToProps = ({typeProduct}) => {
   return {
-    productType: typeProduct.productType,
-    productCate: typeProduct.productCate,
-    priceUnit: typeProduct.priceUnit,
-    area: typeProduct.area,
-    price: typeProduct.price
+    dataProductType: typeProduct.productType,
+    dataProductCate: typeProduct.productCate,
+    dataPriceUnit: typeProduct.priceUnit,
+    dataArea: typeProduct.area,
+    dataPrice: typeProduct.price
   }
 }
 

@@ -7,9 +7,9 @@ initStateSelectTypePost = {
 const selectTypePost = (state = initStateSelectTypePost, action) => {
   switch (action.type) {
     case actions.ACTION_OPEN_SELECT_TYPE_POST:
-      return {visiable: true}
+      return {visiable: true, screen: action.params}
     case actions.ACTION_CLOSE_SELECT_TYPE_POST:
-      return {visiable: false}
+      return {visiable: false, screen: null}
     default:
       return state
   }

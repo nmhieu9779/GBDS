@@ -1,5 +1,5 @@
 import {StyleSheet, Platform} from "react-native"
-import {moderateScale} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
 
 const styles = StyleSheet.create({
   container: {
@@ -19,16 +19,16 @@ const styles = StyleSheet.create({
     })
   },
   indicator: {
-    width: moderateScale(90),
-    height: moderateScale(90),
+    width: scale.moderateScale(90),
+    height: scale.moderateScale(90),
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: moderateScale(12),
+    borderRadius: scale.moderateScale(12),
     backgroundColor: "rgba(0, 0, 0, 0.35)"
   },
   loadingText: {
-    marginTop: moderateScale(5),
+    marginTop: scale.moderateScale(5),
     color: "white"
   }
 })

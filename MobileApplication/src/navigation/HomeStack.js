@@ -1,4 +1,4 @@
-import {createBottomTabNavigator} from "react-navigation"
+import {createBottomTabNavigator, createStackNavigator} from "react-navigation"
 import NewFeedForSale from "@src/screen/NewFeedForSale"
 import NewFeedForRent from "@src/screen/NewFeedForRent"
 import NewFeedNeedBuy from "@src/screen/NewFeedNeedBuy"
@@ -10,7 +10,7 @@ import UserProfile from "@src/screen/UserProfile"
 import TabBarBottom from "./component/tab-bar-bottom"
 import EditProfile from "@src/screen/EditProfile"
 
-const HomeStack = createBottomTabNavigator(
+const BottomHome = createBottomTabNavigator(
   {
     NewFeedForSale: {
       screen: NewFeedForSale
@@ -26,28 +26,56 @@ const HomeStack = createBottomTabNavigator(
     },
     UserProfile: {
       screen: UserProfile
-    },
-    ForNewPost: {
-      screen: ForNewPost,
-      navigationOptions: {tabBarVisible: false}
-    },
-    NeedNewPost: {
-      screen: NeedNewPost,
-      navigationOptions: {tabBarVisible: false}
-    },
-    PostDetail: {
-      screen: PostDetail,
-      navigationOptions: {tabBarVisible: false}
-    },
-    EditProfile: {
-      screen: EditProfile,
-      navigationOptions: {tabBarVisible: false}
     }
   },
   {
-    initialRouteName: "NewFeedForSale",
+    swipeEnabled: true,
+    lazy: true,
     tabBarComponent: TabBarBottom
   }
 )
+
+const HomeStack = createStackNavigator(
+  {
+    BottomHome: {
+      screen: BottomHome
+    },
+    ForNewPost: {
+      screen: ForNewPost
+    },
+    NeedNewPost: {
+      screen: NeedNewPost
+    },
+    PostDetail: {
+      screen: PostDetail
+    },
+    EditProfile: {
+      screen: EditProfile
+    }
+  },
+  {initialRouteName: "BottomHome", headerMode: "none"}
+)
+
+// StackHome.navigationOptions = (props) => {
+//   debugger
+//   let tabBarVisible = true
+//   if (props.navigation.state.index > 4) {
+//     tabBarVisible = false
+//   }
+
+//   return {
+//     tabBarVisible
+//   }
+// }
+
+// const HomeStack = createBottomTabNavigator(
+//   {
+//     StackHome: StackHome
+//   },
+//   {
+//     initialRouteName: "StackHome",
+//     tabBarComponent: TabBarBottom
+//   }
+// )
 
 export default HomeStack

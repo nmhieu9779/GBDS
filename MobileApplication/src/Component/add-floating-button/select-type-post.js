@@ -8,14 +8,15 @@ import {closeSelectTypePost} from "@src/redux/actions"
 import NavigationService from "@src/navigation/NavigationService"
 import Card from "@src/component/card"
 import Modal from "react-native-modal"
-import {HEIGHT} from "@src/utilities/scale"
+import {scale} from "@src/utilities"
+import {toast} from "@src/utilities"
 
-const SelectTypePost = ({visiable, closeSelectTypePost}) => {
+const SelectTypePost = (props) => {
   return (
     <Modal
-      isVisible={visiable}
-      deviceHeight={HEIGHT}
-      onBackdropPress={() => closeSelectTypePost()}
+      isVisible={props.visiable}
+      deviceHeight={scale.HEIGHT}
+      onBackdropPress={() => props.closeSelectTypePost()}
       style={styles.modalContainer}>
       <Card style={styles.typeContainer}>
         <Text style={styles.modalTitle}>{string.modalTitle}</Text>
@@ -23,8 +24,10 @@ const SelectTypePost = ({visiable, closeSelectTypePost}) => {
           <TouchableOpacity
             style={[styles.modalButton, {marginRight: 2.5}]}
             onPress={() => {
-              closeSelectTypePost()
-              NavigationService.navigate("ForNewPost")
+              props.isNewProfile
+                ? toast.showToast("Bạn chưa câp nhập thông tin cá nhân", "#ffffff", "#E0002C")
+                : NavigationService.navigate("ForNewPost")
+              props.closeSelectTypePost()
             }}
             activeOpacity={1}>
             <Text style={styles.textBtn}>{string.forSale}</Text>
@@ -32,8 +35,10 @@ const SelectTypePost = ({visiable, closeSelectTypePost}) => {
           <TouchableOpacity
             style={[styles.modalButton, {marginLeft: 2.5}]}
             onPress={() => {
-              closeSelectTypePost()
-              NavigationService.navigate("NeedNewPost")
+              props.isNewProfile
+                ? toast.showToast("Bạn chưa câp nhập thông tin cá nhân", "#ffffff", "#E0002C")
+                : NavigationService.navigate("NeedNewPost")
+              props.closeSelectTypePost()
             }}
             activeOpacity={1}>
             <Text style={styles.textBtn}>{string.forRent}</Text>
@@ -44,16 +49,16 @@ const SelectTypePost = ({visiable, closeSelectTypePost}) => {
   )
 }
 
-const mapStateToProps = ({selectTypePost}) => {
+const mapStateToProps = (state) => {
   return {
-    visiable: selectTypePost.visiable
+    visiable: state.selectTypePost.visiable,
+    screen: state.selectTypePost.screen,
+    isNewProfile: !state.userProfile.userProfile.success && !state.userProfile.uriAvatar.success
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  let actionCreators = {
-    closeSelectTypePost
-  }
+  let actionCreators = {closeSelectTypePost}
   let actions = bindActionCreators(actionCreators, dispatch)
   return {...actions, dispatch}
 }

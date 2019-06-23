@@ -23,6 +23,7 @@ const TextInputCustom = ({
       secureTextEntry={secureTextEntry}
       keyboardType={keyboardType}
       returnKeyType={returnKeyType}
+      autoCapitalize="none"
     />
   </View>
 )

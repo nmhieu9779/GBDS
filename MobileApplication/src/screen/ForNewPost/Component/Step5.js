@@ -1,9 +1,8 @@
 import React, {Component} from "react"
-import {Text, ScrollView} from "react-native"
+import {Text, ScrollView, View} from "react-native"
 import {stringStep5 as string} from "../string"
 import {step5 as styles} from "../styles"
 import Header from "@src/component/header-post"
-import SafeAreaView from "react-native-safe-area-view"
 import MapView, {Marker} from "react-native-maps"
 
 const LATITUDE_DELTA = 0.01
@@ -58,14 +57,14 @@ class Step5 extends Component {
 
   render() {
     return (
-      <SafeAreaView style={[styles.container, this.props.style]}>
+      <View style={[styles.container, this.props.style]}>
         <Header text={string.header} />
         <ScrollView>
           <Text style={styles.note}>{string.suggest}</Text>
           <MapView style={styles.map} showsUserLocation={true} />
           <Text style={styles.note}>{string.note}</Text>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     )
   }
 }
