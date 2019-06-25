@@ -7,17 +7,18 @@ import TopBarMenu from "@src/component/top-bar-menu"
 import SafeAreaView from "react-native-safe-area-view"
 import {faFilter} from "@fortawesome/free-solid-svg-icons"
 import {faBell} from "@fortawesome/free-regular-svg-icons"
-import Filter from "@src/component/filter"
 import AddFloatingButton from "@src/component/add-floating-button"
 import PostListFor from "@src/component/post-list-for"
 import {fetchPostForSale, getDetailPost, interactivePost} from "@src/redux/actions"
+import {error} from "@src/utilities/message-error"
 
 const NewFeedForSale = (props) => {
-  const [visiableFilter, setVisiableFilter] = useState(false)
   const [refreshingSate, setRefreshingState] = useState(false)
 
   useEffect(() => {
-    props.nowPage === 0 && !props.loading && props.fetchPostForSale({page: 1, size: 10})
+    props.nowPage === 0 &&
+      !props.loading &&
+      props.fetchPostForSale({page: 1, size: 10, body: props.fieldx.body})
   }, [])
 
   useEffect(() => {
@@ -26,24 +27,30 @@ const NewFeedForSale = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TopBarMenu titleIsLeft={true} icon={[{icon: faBell}, {icon: faFilter}]} title={string.title} />
-      {visiableFilter && (
-        <Filter
-          visiable={visiableFilter}
-          onPressClose={() => {
-            setVisiableFilter(false)
-          }}
-        />
-      )}
+      <TopBarMenu
+        titleIsLeft={true}
+        icon={[{icon: faBell, name: "NOTI"}, {icon: faFilter, name: "FILTER"}]}
+        title={string.title}
+        onPress={(name) => {
+          name === "FILTER" && props.isNewProfile
+            ? error()
+            : props.navigation.navigate("Filter", {screen: "FOR_SALE"})
+        }}
+      />
       <AddFloatingButton screen={"NewFeedForSale"} />
       <PostListFor
         data={props.data}
         onRefresh={() => {
-          props.fetchPostForSale({page: 1, size: 10})
+          props.fetchPostForSale({page: 1, size: 10, body: props.fieldx.body})
         }}
         refreshing={refreshingSate}
         loadMore={() => {
-          props.fetchPostForSale({page: props.nowPage + 1, size: 10, loadMore: true})
+          props.fetchPostForSale({
+            page: props.nowPage + 1,
+            size: 10,
+            loadMore: true,
+            body: props.fieldx.body
+          })
         }}
         totalPost={props.totalPost}
         loading={props.loading}
@@ -62,6 +69,10 @@ const NewFeedForSale = (props) => {
 
 const mapStateToProps = (state) => {
   const newFeedForSale = state.newFeedForSale
+  let fieldx =
+    state.userProfile.userProfile.success &&
+    state.userProfile.userProfile.response.content.fieldx &&
+    JSON.parse(state.userProfile.userProfile.response.content.fieldx)
   return {
     refreshing: newFeedForSale.refreshing,
     data: newFeedForSale.response ? newFeedForSale.response.content.content : [],
@@ -69,7 +80,8 @@ const mapStateToProps = (state) => {
     totalPost: newFeedForSale.success && newFeedForSale.response.content.totalElements,
     loading: newFeedForSale.loading || newFeedForSale.loadMore,
     email: state.auth.signIn.success && state.auth.signIn.response.email,
-    isNewProfile: !state.userProfile.userProfile.success && !state.userProfile.uriAvatar.success
+    isNewProfile: !state.userProfile.userProfile.success && !state.userProfile.uriAvatar.success,
+    fieldx: (fieldx && Object.keys(fieldx.forSale.data).length !== 0 && fieldx.forSale) || {body: {}}
   }
 }
 

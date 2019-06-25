@@ -7,19 +7,8 @@ function* getUserProfile(action) {
   const response = yield call(service.getUserProfile, action.params)
   if (response.status === 200) {
     yield put(actions.getUserProfileSuccess(response.data))
-    yield asyncStorage.setItemAsyncStorage({
-      keyName: "USER_PROFILE",
-      // data: {
-      //   address: response.data.content.address,
-      //   name: response.data.content.name,
-      //   phone: response.data.content.phone,
-      //   email: response.data.content.email
-      // }
-      data: true
-    })
   } else {
     yield put(actions.getUserProfileFailure(response.response.data))
-    yield asyncStorage.setItemAsyncStorage({keyName: "USER_PROFILE", data: false})
   }
 }
 

@@ -4,7 +4,7 @@ import {post} from "@src/redux/server"
 function* fetchPostForSale(param) {
   const url = URL_GET_NEW_FEED_POST_FOR_SALE
   const params = {page: param.page, size: param.size}
-  const body = {}
+  const body = param.body || {}
   return yield post({url, params, body})
 }
 

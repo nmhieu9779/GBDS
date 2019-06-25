@@ -8,14 +8,14 @@ import {faCheckCircle, faSignOutAlt, faChevronRight} from "@fortawesome/free-sol
 import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import styles from "./styles"
-import {getMenuItem} from "./string"
+import {string} from "./string"
 import AvatarCirCle from "@src/component/avatar-circle"
 import {asyncStorage, scale, date} from "@src/utilities"
 import Card from "@src/component/card"
 import NavigationService from "@src/navigation/NavigationService"
 import {resetUserProfile, resetUriAvatar, resetSignIn, changePassword} from "@src/redux/actions"
 import Modal from "react-native-modal"
-import {toast} from "@src/utilities"
+import {error} from "@src/utilities/message-error"
 
 const ChangePassword = (props) => {
   const [oldPassword, setOldPassword] = useState("")
@@ -88,7 +88,7 @@ const ItemMenu = (props) => (
 )
 
 const UserProfile = (props) => {
-  const [menu, setMenu] = useState({menuUser: [], menuConfig: []})
+  const [menu, setMenu] = useState({menuUser: string.menuUser, menuConfig: string.menuConfig})
   const [isVisiableChangePassword, setIsVisiableChangePassword] = useState(false)
 
   const signOut = async () => {
@@ -102,10 +102,6 @@ const UserProfile = (props) => {
     }
   }
 
-  useEffect(() => {
-    setMenu(getMenuItem(props.signInSuccess))
-  }, [])
-
   const onPressMenu = (label) => () => {
     if (props.signInSuccess) {
       switch (label) {
@@ -114,11 +110,19 @@ const UserProfile = (props) => {
           break
 
         default:
-          props.isNewProfile && toast.showToast("Bạn chưa câp nhập thông tin cá nhân", "#ffffff", "#E0002C")
+          props.isNewProfile && error()
           break
       }
     } else {
       NavigationService.navigate("AuthStack")
+    }
+  }
+
+  onPressTop = () => {
+    if (props.signInSuccess) {
+      props.isNewProfile ? props.navigation.navigate("EditProfile") : alert("a")
+    } else {
+      props.navigation.navigate("AuthStack")
     }
   }
 
@@ -141,10 +145,7 @@ const UserProfile = (props) => {
         />
         <Card style={styles.topContainer}>
           <AvatarCirCle avatarImageUrl={props.uriAvatar} size={40} />
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => NavigationService.navigate("EditProfile")}
-            style={styles.topNameContainer}>
+          <TouchableOpacity activeOpacity={1} onPress={onPressTop.bind()} style={styles.topNameContainer}>
             <Text style={styles.topNameText}>{props.name}</Text>
             <Text style={styles.topNameTextLabel}>{props.description}</Text>
           </TouchableOpacity>

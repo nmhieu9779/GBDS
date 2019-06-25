@@ -63,7 +63,8 @@ const strings = {
         {label: "Triệu", cost: 1000000},
         {label: "Tỷ", cost: 1000000000},
         {label: "Trăm nghìn/m2", cost: 100000, type: "/m2"},
-        {label: "Triệu/m2", cost: 1000000, type: "/m2"}
+        {label: "Triệu/m2", cost: 1000000, type: "/m2"},
+        {label: "Nghìn/m2", cost: 1000, type: "/m2"}
       ],
       [
         {label: "Thoả thuận", type: -1},

@@ -9,6 +9,7 @@ import PostDetail from "@src/screen/PostDetail"
 import UserProfile from "@src/screen/UserProfile"
 import TabBarBottom from "./component/tab-bar-bottom"
 import EditProfile from "@src/screen/EditProfile"
+import Filter from "@src/screen/Filter"
 
 const BottomHome = createBottomTabNavigator(
   {
@@ -51,31 +52,12 @@ const HomeStack = createStackNavigator(
     },
     EditProfile: {
       screen: EditProfile
+    },
+    Filter: {
+      screen: Filter
     }
   },
   {initialRouteName: "BottomHome", headerMode: "none"}
 )
-
-// StackHome.navigationOptions = (props) => {
-//   debugger
-//   let tabBarVisible = true
-//   if (props.navigation.state.index > 4) {
-//     tabBarVisible = false
-//   }
-
-//   return {
-//     tabBarVisible
-//   }
-// }
-
-// const HomeStack = createBottomTabNavigator(
-//   {
-//     StackHome: StackHome
-//   },
-//   {
-//     initialRouteName: "StackHome",
-//     tabBarComponent: TabBarBottom
-//   }
-// )
 
 export default HomeStack

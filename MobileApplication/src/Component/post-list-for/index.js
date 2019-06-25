@@ -1,12 +1,12 @@
 import React, {memo, useState} from "react"
-import {Text, View, FlatList, TouchableOpacity, RefreshControl, ActivityIndicator} from "react-native"
+import {Text, View, FlatList, TouchableOpacity} from "react-native"
 import styles from "./styles"
 import BottomListPost from "@src/component/bottom-list-post"
 import AvatarCirCle from "@src/component/avatar-circle"
 import Card from "@src/component/card"
 import {CODE_VIP} from "@src/common/typeCode"
 import FastImage from "react-native-fast-image"
-import {toast} from "@src/utilities"
+import {error} from "@src/utilities/message-error"
 
 const PRIORITY_NORMAL = [CODE_VIP.X_NORMAL, CODE_VIP.VIP_S2]
 
@@ -55,20 +55,23 @@ const Description = (props) =>
     </View>
   ) : null
 
-const Images = (props) => {
-  return (
-    (props.images.length !== 0 && (
-      <View>
-        <PriceArea price={props.price} area={props.area} />
-        <FastImage
-          style={styles.image}
-          source={{uri: props.images[parseInt(Math.random() * props.images.length)]}}
-        />
-      </View>
-    )) ||
-    null
-  )
-}
+const Images = memo(
+  (props) => {
+    return (
+      (props.images.length !== 0 && (
+        <View>
+          <PriceArea price={props.price} area={props.area} />
+          <FastImage
+            style={styles.image}
+            source={{uri: props.images[parseInt(Math.random() * props.images.length)]}}
+          />
+        </View>
+      )) ||
+      null
+    )
+  },
+  (prevProps, nextProps) => prevProps.images[0] === nextProps.images[0]
+)
 
 const PriceArea = (props) => (
   <View style={styles.priceAreaContainer}>
@@ -116,7 +119,7 @@ const Item = ({item, onPressPost, onPressFollow, isFollow, isNewProfile}) => {
         <BottomListPost
           onPressFollow={() => {
             if (isNewProfile) {
-              toast.showToast("Bạn chưa câp nhập thông tin cá nhân", "#ffffff", "#E0002C")
+              error()
             } else {
               setFollow(!follow)
               onPressFollow(!follow)

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: scale.moderateScale(10)
   },
-  topNameContainer: {marginLeft: scale.moderateScale(5)},
+  topNameContainer: {marginLeft: scale.moderateScale(5), flex: 1},
   topNameText: {fontSize: scale.moderateScale(20)},
   topNameTextLabel: {color: "rgb(144, 148, 156)"},
   menuContainer: {backgroundColor: "white", margin: scale.moderateScale(5)},

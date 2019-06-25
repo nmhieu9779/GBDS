@@ -5,9 +5,11 @@ import styles from "./styles"
 
 const ComboBox = ({style, data, selected, title, label, onChangeSelected, enable, name}) => (
   <View style={[styles.container, style.container]}>
-    <View style={styles.labelContainer}>
-      <Text style={style.label}>{label}</Text>
-    </View>
+    {label && (
+      <View style={styles.labelContainer}>
+        <Text style={style.label}>{label}</Text>
+      </View>
+    )}
     <ComboBoxBase
       style={style.combobox}
       data={data || []}

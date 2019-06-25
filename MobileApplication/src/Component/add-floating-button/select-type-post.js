@@ -8,8 +8,8 @@ import {closeSelectTypePost} from "@src/redux/actions"
 import NavigationService from "@src/navigation/NavigationService"
 import Card from "@src/component/card"
 import Modal from "react-native-modal"
-import {scale} from "@src/utilities"
-import {toast} from "@src/utilities"
+import {scale, toast} from "@src/utilities"
+import {error} from "@src/utilities/message-error"
 
 const SelectTypePost = (props) => {
   return (
@@ -24,9 +24,7 @@ const SelectTypePost = (props) => {
           <TouchableOpacity
             style={[styles.modalButton, {marginRight: 2.5}]}
             onPress={() => {
-              props.isNewProfile
-                ? toast.showToast("Bạn chưa câp nhập thông tin cá nhân", "#ffffff", "#E0002C")
-                : NavigationService.navigate("ForNewPost")
+              props.isNewProfile ? error() : NavigationService.navigate("ForNewPost")
               props.closeSelectTypePost()
             }}
             activeOpacity={1}>
@@ -35,9 +33,7 @@ const SelectTypePost = (props) => {
           <TouchableOpacity
             style={[styles.modalButton, {marginLeft: 2.5}]}
             onPress={() => {
-              props.isNewProfile
-                ? toast.showToast("Bạn chưa câp nhập thông tin cá nhân", "#ffffff", "#E0002C")
-                : NavigationService.navigate("NeedNewPost")
+              props.isNewProfile ? error() : NavigationService.navigate("NeedNewPost")
               props.closeSelectTypePost()
             }}
             activeOpacity={1}>

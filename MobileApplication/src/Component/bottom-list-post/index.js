@@ -6,6 +6,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {faBell} from "@fortawesome/free-regular-svg-icons"
 
 const BottomListPost = (props) => {
+  console.log(props.isFollow)
   const color = props.isFollow ? "rgb(32, 120, 244)" : "#606770"
   return (
     <View style={styles.bottomContainer}>

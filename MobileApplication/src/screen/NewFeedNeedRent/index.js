@@ -7,13 +7,12 @@ import TopBarMenu from "@src/component/top-bar-menu"
 import SafeAreaView from "react-native-safe-area-view"
 import {faFilter} from "@fortawesome/free-solid-svg-icons"
 import {faBell} from "@fortawesome/free-regular-svg-icons"
-import Filter from "@src/component/filter"
 import AddFloatingButton from "@src/component/add-floating-button"
 import PostListNeed from "@src/component/post-list-need"
 import {fetchPostNeedRent, getDetailPost, interactivePost} from "@src/redux/actions"
+import {error} from "@src/utilities/message-error"
 
 const NewFeedNeedRent = (props) => {
-  const [visiableFilter, setVisiableFilter] = useState(false)
   const [refreshingSate, setRefreshingState] = useState(false)
 
   useEffect(() => {
@@ -26,15 +25,16 @@ const NewFeedNeedRent = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TopBarMenu titleIsLeft={true} icon={[{icon: faBell}, {icon: faFilter}]} title={string.title} />
-      {visiableFilter && (
-        <Filter
-          visiable={visiableFilter}
-          onPressClose={() => {
-            setVisiableFilter(false)
-          }}
-        />
-      )}
+      <TopBarMenu
+        titleIsLeft={true}
+        icon={[{icon: faBell}, {icon: faFilter, name: "NEED_RENT"}]}
+        title={string.title}
+        onPress={(name) => {
+          name === "FILTER" && props.isNewProfile
+            ? error()
+            : props.navigation.navigate("Filter", {screen: "NEED_RENT"})
+        }}
+      />
       <AddFloatingButton screen={"NewFeedNeedRent"} />
       <PostListNeed
         data={props.data}

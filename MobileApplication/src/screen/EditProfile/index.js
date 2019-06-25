@@ -76,6 +76,13 @@ const EditProfile = (props) => {
     )
     props.uploadImage(formData)
   }
+  const emptyFieldx = {data: {}, body: {}}
+  const newFieldx = JSON.stringify({
+    forSale: {...emptyFieldx},
+    forRent: {...emptyFieldx},
+    needBuy: {...emptyFieldx},
+    needRent: {...emptyFieldx}
+  })
 
   const onPressSave = () => {
     let body = {
@@ -94,8 +101,9 @@ const EditProfile = (props) => {
       organization: organization,
       phone: phone
     }
+    const tempBody = props.isNewProfile ? {...body, fieldx: newFieldx} : body
     props.editProfile({
-      body: body,
+      body: tempBody,
       isCreate: props.isNewProfile
     })
   }
@@ -216,7 +224,7 @@ const mapStateToProps = (state) => {
       ? state.userProfile.uriAvatar.response.content
       : userProfile.avatarImageUrl,
     name: userProfile.name,
-    description: userProfile.name,
+    description: userProfile.description,
     birthdate: userProfile.birthdate,
     email: state.auth.signIn.success && state.auth.signIn.response.email,
     phone: userProfile.phone,
@@ -228,7 +236,8 @@ const mapStateToProps = (state) => {
     uploadImageSuccess: editProfile.uploadImage.success,
     avatarImageUrl: editProfile.uploadImage.success && editProfile.uploadImage.response.content,
     editProfileSuccess: editProfile.editProfile.success,
-    gender: userProfile.gender
+    gender: userProfile.gender,
+    fieldx: userProfile.fieldx && JSON.parse(userProfile.fieldx)
   }
 }
 
