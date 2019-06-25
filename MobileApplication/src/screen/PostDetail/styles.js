@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   infoUserContainer: {
-    width: scale.WIDTH,
-    backgroundColor: "#E8ECEF"
+    backgroundColor: "#E8ECEF",
+    margin: scale.moderateScale(5)
   },
   infoUserTopContainer: {
     flexDirection: "row",

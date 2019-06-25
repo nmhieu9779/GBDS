@@ -4,7 +4,8 @@ import {scale} from "@src/utilities"
 export const stylesFor = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "white"
   },
   priceContainer: {
     flexDirection: "row",
@@ -40,7 +41,8 @@ export const stylesFor = StyleSheet.create({
 
 export const stylesNeed = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "white"
   }
 })
 

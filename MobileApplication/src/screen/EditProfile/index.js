@@ -10,6 +10,7 @@ import styles from "./styles"
 import TextInputCustom from "@src/component/text-input-custom"
 import {scale, date} from "@src/utilities"
 import {uploadImage, editProfile} from "@src/redux/actions"
+import LinearGradient from "react-native-linear-gradient"
 
 const GenderItem = (props) => (
   <TouchableOpacity
@@ -109,13 +110,13 @@ const EditProfile = (props) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <LinearGradient style={styles.container} colors={["#5c6099", "#089a9a"]}>
       <TopBarMenu
         title={"Chỉnh sửa thông tin cá nhân"}
         icon={[{icon: faArrowLeft}]}
         onPress={() => props.navigation.goBack()}
       />
-      <ScrollView>
+      <ScrollView contentContainerStyle={{backgroundColor: "white"}}>
         <View style={styles.avatarContainer}>
           <AvatarCirCle
             avatarImageUrl={props.uriAvatar}
@@ -210,7 +211,7 @@ const EditProfile = (props) => {
       <TouchableOpacity activeOpacity={0.8} style={styles.btnSaveContainer} onPress={onPressSave.bind(this)}>
         <Text style={styles.btnSaveText}>{"LƯU"}</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </LinearGradient>
   )
 }
 

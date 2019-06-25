@@ -2,7 +2,7 @@ import {StyleSheet, Platform} from "react-native"
 import {scale} from "@src/utilities"
 
 export const step1 = StyleSheet.create({
-  container: {width: scale.WIDTH},
+  container: {width: scale.WIDTH, backgroundColor: "white"},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -47,7 +47,7 @@ export const step1 = StyleSheet.create({
 })
 
 export const step2 = StyleSheet.create({
-  container: {width: scale.WIDTH},
+  container: {width: scale.WIDTH, backgroundColor: "white"},
   noteContent: {
     fontStyle: "italic",
     color: "gray",
@@ -69,7 +69,7 @@ export const step2 = StyleSheet.create({
 })
 
 export const step3 = StyleSheet.create({
-  container: {width: scale.WIDTH},
+  container: {width: scale.WIDTH, backgroundColor: "white"},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -110,7 +110,7 @@ export const step3 = StyleSheet.create({
 })
 
 export const step4 = StyleSheet.create({
-  container: {width: scale.WIDTH},
+  container: {width: scale.WIDTH, backgroundColor: "white"},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -155,7 +155,7 @@ export const step4 = StyleSheet.create({
 })
 
 export const step5 = StyleSheet.create({
-  container: {width: scale.WIDTH},
+  container: {width: scale.WIDTH, backgroundColor: "white"},
   note: {
     fontStyle: "italic",
     color: "gray",
@@ -168,7 +168,7 @@ export const step5 = StyleSheet.create({
 })
 
 export const step6 = StyleSheet.create({
-  container: {width: scale.WIDTH},
+  container: {width: scale.WIDTH, backgroundColor: "white"},
   contentContainerStyle: {alignItems: "center"}
 })
 
@@ -177,7 +177,7 @@ export const step7 = StyleSheet.create({
     width: scale.WIDTH
   },
   combobox: {flex: 2},
-  container: {width: scale.WIDTH},
+  container: {width: scale.WIDTH, backgroundColor: "white"},
   text: {
     padding: scale.moderateScale(5)
   },

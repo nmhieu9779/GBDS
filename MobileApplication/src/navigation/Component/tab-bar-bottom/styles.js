@@ -4,11 +4,13 @@ import {scale} from "@src/utilities"
 const styles = StyleSheet.create({
   container: {
     width: scale.WIDTH,
-    backgroundColor: "#2E75ED",
+    backgroundColor: "white",
     flexDirection: "row",
     justifyContent: "center",
     paddingTop: scale.moderateScale(5),
-    paddingBottom: scale.moderateScale(3)
+    paddingBottom: scale.moderateScale(3),
+    borderTopColor: "#B3B7BD",
+    borderTopWidth: scale.moderateScale(0.5)
   },
   btnContainer: {
     flex: 1,

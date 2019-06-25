@@ -19,6 +19,8 @@ function* signIn(action) {
     yield put(actions.signInSuccess(data))
     yield put(actions.getUserProfile({email: data.email}))
     yield put(actions.getUriAvatar({email: data.email}))
+    yield put(actions.getProductType())
+    yield put(actions.getCity())
     toast.showToast("Đăng nhập thành công", "#ffffff", "#0EA854")
   } else {
     yield put(actions.signInFailure(response.response.data))

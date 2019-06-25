@@ -24,6 +24,7 @@ import {
   fetchPostForSale,
   fetchPostForRent
 } from "@src/redux/actions"
+import LinearGradient from "react-native-linear-gradient"
 
 const ForNewPost = (props) => {
   const defaultState = {
@@ -214,7 +215,7 @@ const ForNewPost = (props) => {
   }, [props.postSuccess])
 
   return (
-    <View style={styles.for_sale_post_container}>
+    <LinearGradient style={styles.for_sale_post_container} colors={["#5c6099", "#089a9a"]}>
       <TopBarMenu
         icon={[{icon: faArrowLeft}]}
         title={"Đăng bài mua"}
@@ -284,7 +285,7 @@ const ForNewPost = (props) => {
         }}
         data={main.labelStep}
       />
-    </View>
+    </LinearGradient>
   )
 }
 

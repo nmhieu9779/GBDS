@@ -28,6 +28,7 @@
     "react-native-image-crop-picker": "^0.24.1",
     "react-native-image-picker": "^0.28.1",
     "react-native-iphone-x-helper": "^1.2.0",
+    "react-native-linear-gradient": "^2.5.4",
     "react-native-maps": "^0.24.0",
     "react-native-modal": "^11.0.1",
     "react-native-svg": "^9.4.0",

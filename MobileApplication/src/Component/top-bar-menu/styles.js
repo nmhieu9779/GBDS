@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     width: "100%",
-    backgroundColor: "#2E75ED",
+    backgroundColor: "transparent",
     alignItems: "center",
     ...Platform.select({
       ios: {

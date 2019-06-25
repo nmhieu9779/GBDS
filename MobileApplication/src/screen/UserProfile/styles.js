@@ -4,13 +4,13 @@ import {scale} from "@src/utilities"
 const styles = StyleSheet.create({
   container: {
     flex: 1
-    // backgroundColor: "#D9DDE0"
   },
   topContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
     backgroundColor: "white",
-    padding: scale.moderateScale(10)
+    padding: scale.moderateScale(10),
+    margin: scale.moderateScale(5)
   },
   topNameContainer: {marginLeft: scale.moderateScale(5), flex: 1},
   topNameText: {fontSize: scale.moderateScale(20)},

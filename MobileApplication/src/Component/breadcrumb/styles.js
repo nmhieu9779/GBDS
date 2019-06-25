@@ -5,7 +5,7 @@ const COLOR = "#2E75ED"
 
 const styles = StyleSheet.create({
   breadcrums_container: {
-    backgroundColor: "transparent",
+    backgroundColor: "white",
     flexDirection: "row",
     borderTopWidth: 1,
     borderTopColor: "#d6d6d6",

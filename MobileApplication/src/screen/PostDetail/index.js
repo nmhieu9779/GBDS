@@ -14,6 +14,7 @@ import FastImage from "react-native-fast-image"
 import {NavigationActions} from "react-navigation"
 import {postNeed, postFor, closePost, openPost, deletePost, resetPostDetail} from "@src/redux/actions"
 import {date} from "@src/utilities"
+import LinearGradient from "react-native-linear-gradient"
 
 const TableInfo = (props) => (
   <Card style={styles.infoPostContainer}>
@@ -109,7 +110,7 @@ const PostDetail = (props) => {
   }, [props.actionSuccess])
 
   return (
-    <SafeAreaView style={styles.container}>
+    <LinearGradient style={styles.container} colors={["#5c6099", "#089a9a"]}>
       <TopBarMenu icon={[{icon: faArrowLeft}]} title={props.name} onPress={() => props.navigation.goBack()} />
       {props.success && (
         <ScrollView>
@@ -174,11 +175,11 @@ const PostDetail = (props) => {
           {props.images && <ImagePost images={props.images} />}
         </ScrollView>
       )}
-      <View style={styles.commentContainer}>
+      {/* <View style={styles.commentContainer}>
         <TextInput style={styles.textInputComment} placeholder={"Viết bình luận..."} />
         <FontAwesomeIcon style={styles.iconComment} color={"#2E75ED"} icon={faPaperPlane} />
-      </View>
-    </SafeAreaView>
+      </View> */}
+    </LinearGradient>
   )
 }
 

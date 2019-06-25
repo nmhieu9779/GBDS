@@ -19,6 +19,9 @@ import {
   fetchPostNeedRent,
   editProfile
 } from "@src/redux/actions"
+import LinearGradient from "react-native-linear-gradient"
+import TopBarMenu from "@src/component/top-bar-menu"
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons"
 
 const styleCBB = {
   container: styles.containerCombobox,
@@ -317,8 +320,6 @@ const FilterNeed = (props) => {
   )
 }
 const Filter = (props) => {
-  console.log(props)
-
   onFilter = (type, params) => {
     const emptyFieldx = {data: {}, body: {}}
     let fieldx = props.fieldx
@@ -382,12 +383,8 @@ const Filter = (props) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.closeContainer}>
-        <TouchableOpacity style={styles.icon} onPress={() => props.navigation.goBack()}>
-          <FontAwesomeIcon size={20} color={"red"} icon={faWindowClose} />
-        </TouchableOpacity>
-      </View>
+    <LinearGradient style={styles.container} colors={["#5c6099", "#089a9a"]}>
+      <TopBarMenu icon={[{icon: faArrowLeft}]} title={"Tìm kiếm"} onPress={() => props.navigation.goBack()} />
       {props.navigation.state.params.screen === "FOR_SALE" ||
       props.navigation.state.params.screen === "FOR_RENT" ? (
         <FilterFor
@@ -412,7 +409,7 @@ const Filter = (props) => {
           resetFilter={onFilter.bind(this, "RESET")}
         />
       )}
-    </SafeAreaView>
+    </LinearGradient>
   )
 }
 

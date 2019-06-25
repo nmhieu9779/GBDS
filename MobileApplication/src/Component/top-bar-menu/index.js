@@ -4,7 +4,6 @@ import SafeAreaView from "react-native-safe-area-view"
 import {TouchableOpacity, View, Platform, Text} from "react-native"
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome"
 import {scale} from "@src/utilities"
-import Card from "@src/component/card"
 
 const Title = ({title}) => (
   <Text style={styles.title} numberOfLines={1}>
@@ -24,23 +23,21 @@ const Icon = ({icon, onPress}) =>
   )) || <View style={{width: scale.moderateScale(40)}} />
 
 const TopBarMenu = ({icon, title, titleIsLeft, onPress}) => (
-  <SafeAreaView>
-    <Card style={styles.container}>
-      {titleIsLeft && <Title title={title} />}
-      <View style={[styles.itemContainer, {justifyContent: titleIsLeft ? "flex-end" : "flex-start"}]}>
-        {icon &&
-          icon.map(({icon, name}, index) => (
-            <Icon
-              key={index}
-              onPress={() => {
-                onPress(name)
-              }}
-              icon={icon || null}
-            />
-          ))}
-      </View>
-      {!titleIsLeft && <Title title={title} />}
-    </Card>
+  <SafeAreaView style={styles.container}>
+    {titleIsLeft && <Title title={title} />}
+    <View style={[styles.itemContainer, {justifyContent: titleIsLeft ? "flex-end" : "flex-start"}]}>
+      {icon &&
+        icon.map(({icon, name}, index) => (
+          <Icon
+            key={index}
+            onPress={() => {
+              onPress(name)
+            }}
+            icon={icon || null}
+          />
+        ))}
+    </View>
+    {!titleIsLeft && <Title title={title} />}
   </SafeAreaView>
 )
 

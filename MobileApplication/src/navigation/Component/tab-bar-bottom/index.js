@@ -20,7 +20,7 @@ const TabBarBottom = ({navigation}) => {
           key={index}
           label={label}
           icon={icon}
-          color={navigation.state.index === index ? "white" : "#33AAD5"}
+          color={navigation.state.index === index ? "#00a19c" : "#B3B7BD"}
           onPress={() => {
             navigation.navigate(stateName)
           }}

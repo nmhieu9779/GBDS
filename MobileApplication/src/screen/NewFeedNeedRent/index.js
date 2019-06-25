@@ -11,6 +11,7 @@ import AddFloatingButton from "@src/component/add-floating-button"
 import PostListNeed from "@src/component/post-list-need"
 import {fetchPostNeedRent, getDetailPost, interactivePost} from "@src/redux/actions"
 import {error} from "@src/utilities/message-error"
+import LinearGradient from "react-native-linear-gradient"
 
 const NewFeedNeedRent = (props) => {
   const [refreshingSate, setRefreshingState] = useState(false)
@@ -24,7 +25,7 @@ const NewFeedNeedRent = (props) => {
   }, [props.refreshing])
 
   return (
-    <SafeAreaView style={styles.container}>
+    <LinearGradient style={styles.container} colors={["#5c6099", "#089a9a"]}>
       <TopBarMenu
         titleIsLeft={true}
         icon={[{icon: faBell}, {icon: faFilter, name: "NEED_RENT"}]}
@@ -56,7 +57,7 @@ const NewFeedNeedRent = (props) => {
         email={props.email}
         isNewProfile={props.isNewProfile}
       />
-    </SafeAreaView>
+    </LinearGradient>
   )
 }
 

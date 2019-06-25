@@ -6,14 +6,14 @@ export const styles_main = StyleSheet.create({
 })
 
 export const styles_step1 = StyleSheet.create({
-  container: {width: scale.WIDTH},
+  container: {width: scale.WIDTH, backgroundColor: "white"},
   contentContainerStyle: {
     alignItems: "center"
   }
 })
 
 export const styles_step2 = StyleSheet.create({
-  container: {width: scale.WIDTH},
+  container: {width: scale.WIDTH, backgroundColor: "white"},
   contentContainerStyle: {
     alignItems: "center"
   },
@@ -36,7 +36,7 @@ export const styles_step2 = StyleSheet.create({
 })
 
 export const styles_step3 = StyleSheet.create({
-  container: {width: scale.WIDTH},
+  container: {width: scale.WIDTH, backgroundColor: "white"},
   contentContainerStyle: {
     alignItems: "center"
   },

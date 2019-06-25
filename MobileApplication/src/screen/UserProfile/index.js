@@ -16,6 +16,7 @@ import NavigationService from "@src/navigation/NavigationService"
 import {resetUserProfile, resetUriAvatar, resetSignIn, changePassword} from "@src/redux/actions"
 import Modal from "react-native-modal"
 import {error} from "@src/utilities/message-error"
+import LinearGradient from "react-native-linear-gradient"
 
 const ChangePassword = (props) => {
   const [oldPassword, setOldPassword] = useState("")
@@ -98,7 +99,6 @@ const UserProfile = (props) => {
       props.resetUriAvatar()
       props.resetSignIn()
       asyncStorage.removeAllItemAsyncStorage()
-      setMenu(getMenuItem(false))
     }
   }
 
@@ -127,7 +127,7 @@ const UserProfile = (props) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <LinearGradient style={styles.container} colors={["#5c6099", "#089a9a"]}>
       <TopBarMenu
         title={"Thông tin cá nhân"}
         icon={[{icon: faSignOutAlt}]}
@@ -183,7 +183,7 @@ const UserProfile = (props) => {
           ))}
         </Card>
       </ScrollView>
-    </SafeAreaView>
+    </LinearGradient>
   )
 }
 

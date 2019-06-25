@@ -13,6 +13,7 @@ import Step2 from "./component/Step2"
 import Step3 from "./component/Step3"
 import {scale} from "@src/utilities"
 import {postNeed, fetchPostNeedBuy, fetchPostNeedRent, resetInfoPostNeed} from "@src/redux/actions"
+import LinearGradient from "react-native-linear-gradient"
 
 const NeedNewPost = (props) => {
   const defaultState = {
@@ -108,7 +109,7 @@ const NeedNewPost = (props) => {
   }, [props.success])
 
   return (
-    <SafeAreaView style={styles.container}>
+    <LinearGradient style={styles.container} colors={["#5c6099", "#089a9a"]}>
       <TopBarMenu
         icon={[{icon: faArrowLeft}]}
         title={"Đăng bài mua"}
@@ -149,7 +150,7 @@ const NeedNewPost = (props) => {
         }}
         data={string.breadcrumb}
       />
-    </SafeAreaView>
+    </LinearGradient>
   )
 }
 
