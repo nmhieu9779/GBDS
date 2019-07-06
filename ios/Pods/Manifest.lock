@@ -1,0 +1,39 @@
+PODS:
+  - AppCenter/Analytics (2.1.0):
+    - AppCenter/Core
+  - AppCenter/Core (2.1.0)
+  - AppCenter/Crashes (2.1.0):
+    - AppCenter/Core
+  - AppCenterReactNativeShared (2.1.0):
+    - AppCenter/Core (= 2.1.0)
+  - GoogleMaps (3.0.3):
+    - GoogleMaps/Maps (= 3.0.3)
+  - GoogleMaps/Base (3.0.3)
+  - GoogleMaps/Maps (3.0.3):
+    - GoogleMaps/Base
+  - GooglePlaces (3.0.3):
+    - GoogleMaps/Base (= 3.0.3)
+
+DEPENDENCIES:
+  - AppCenter/Analytics (~> 2.1.0)
+  - AppCenter/Crashes (~> 2.1.0)
+  - AppCenterReactNativeShared (~> 2.1.0)
+  - GoogleMaps
+  - GooglePlaces
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AppCenter
+    - AppCenterReactNativeShared
+    - GoogleMaps
+    - GooglePlaces
+
+SPEC CHECKSUMS:
+  AppCenter: 21decaa4488024e8355e650e44ccabb69ca60d47
+  AppCenterReactNativeShared: 6e856a993f022a2a7afaa1bc21834d4dded708b2
+  GoogleMaps: fd5c9fa58871781b9fb94d4936f19c69fe60ce32
+  GooglePlaces: f09e76993c9c3ee4af8f4f7f535bb94d6aa3b649
+
+PODFILE CHECKSUM: c0127a7e11085b7191c35e50876f6327c7399b48
+
+COCOAPODS: 1.7.2

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GBDS</string>
+    <string name="facebook_app_id">2688206661192679</string>
+    <string name="fb_login_protocol_scheme">fb2688206661192679</string>
+    <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
+    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
+</resources>
